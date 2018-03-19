@@ -1,0 +1,9 @@
+CursorType=block
+CursorBlinks=no
+SwitchShortcuts=no
+RightClickAction=paste
+ClickTargetMod=ctrl
+Transparency=off
+Font=Menlo for Powerline
+FontHeight=13
+FontSmoothing=full

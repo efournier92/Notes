@@ -1,0 +1,5 @@
+source /usr/local/etc/babun.rc
+source /usr/local/etc/babun.zsh
+source /usr/local/etc/babun.start
+cd ../../C/Users/efournier
+prompt_context () { }

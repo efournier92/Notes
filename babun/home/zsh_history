@@ -1,0 +1,418 @@
+: 1476652727:0;pact install tmux
+: 1476653059:0;tmux
+: 1476653068:0;vim
+: 1476653484:0;tmux
+: 1476654010:0;kill-session -a
+: 1476654019:0;tmux attach
+: 1476654047:0;tmux
+: 1476654945:0;vim
+: 1476810532:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1476810563:0;bower uninstall angular-tree-control
+: 1476810597:0;bower uninstall angular-bootstrap-grid-tree
+: 1476810833:0;bower list
+: 1476810989:0;bower install angular-tree-control
+: 1476811090:0;bower list
+: 1476812081:0;npm install g bower
+: 1476812249:0;bower install angular-tree-control
+: 1476813942:0;bower list
+: 1476818050:0;bower install angular-tree-control
+: 1476818055:0;bower list
+: 1476818093:0;bower install angular-tree-control --force
+: 1476818108:0;bower list
+: 1476818333:0;bower init
+: 1476821226:0;C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media
+: 1476821233:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1476821245:0;call DebugBuild.bat
+: 1476971871:0;cd 'C:\TFS\Nova\Trunk\app'
+: 1476971878:0;vim .
+: 1476991102:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1476991110:0;gulp build
+: 1476991208:0;tmux
+: 1476991215:0;tmux attach
+: 1476991321:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1476991421:0;ReleaseBuild.bat
+: 1476991433:0;run ReleaseBuild.bat
+: 1476991490:0;gulp build
+: 1476994279:0;jspm install tree-walk
+: 1476994346:0;jspm install npm:tree-walk
+: 1476995128:0;gulp es
+: 1477058237:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1477058248:0;gulp es
+: 1477058424:0;vim
+: 1477059298:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1477059977:0;gulp build 
+: 1477064926:0;gulp es
+: 1477066525:0;cd 'C:\Users\efournier\Documents\CodeSpace'
+: 1477066542:0;ls
+: 1477067613:0;cd 'C:\Users\efournier\Documents\CodeSpace'
+: 1477067628:0;call ReleaseBuild.bat
+: 1477067849:0;npm install -g
+: 1477068031:0;npm -v
+: 1477068037:0;node -v
+: 1477069506:0;cd 'C:\Users\efournier\Documents\CodeSpace'
+: 1477069508:0;ls
+: 1477069532:0;cd ConfigDashboard
+: 1477069536:0;ls
+: 1477069543:0;cs tree-scripts
+: 1477069549:0;cd tree-scripts
+: 1477069552:0;ls
+: 1477069565:0;vim treesSANE.js
+: 1477070309:0;..
+: 1477070311:0;ivm
+: 1477070312:0;vim
+: 1477070348:0;ls
+: 1477070356:0;cs tree-scripts
+: 1477070359:0;cd tree-scripts
+: 1477070360:0;ls
+: 1477070367:0;cd angular-tree-control
+: 1477070408:0;cd '/Users/efournier/Documents/CodeSpace/ConfigDashboard/tree-scripts/angular-tree-control'
+: 1477327727:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1477327740:0;call DebugBuild.bat
+: 1477327749:0;run DebugBuild.bat
+: 1477339230:0;cd Desktop
+: 1477339233:0;ls
+: 1477339246:0;http-server tree.js
+: 1477339346:0;touch index.html
+: 1477339350:0;vim index.html
+: 1477339503:0;http-server tree.js
+: 1477339510:0;http-server index.html
+: 1477339586:0;ls
+: 1477339599:0;http-server index.html
+: 1477339632:0;cd Desktop
+: 1477339635:0;http-server index.html
+: 1477924800:0;cd 'C:\Users\efournier\CodeSpace\ConfigDashboard\angular-tree-control'
+: 1477924843:0;http-server -o
+: 1477924946:0;nodemon
+: 1477924958:0;npm install -g nodemon
+: 1477924976:0;nodemon
+: 1477925122:0;nodemon -o
+: 1477925830:0;npm install -g live-server
+: 1477925852:0;live-server -o
+: 1477927230:0;http-server -o
+: 1477927368:0;cd 'C:\Users\efournier\CodeSpace\ConfigDashboard\angular-tree-control'
+: 1477927376:0;vim
+: 1477927452:0;http-server -o
+: 1477929927:0;npm uninstall -g live-server
+: 1477929952:0;npm uninstall -g nodemon
+: 1477934127:0;Desk
+: 1477934130:0;Desktop
+: 1477934144:0;git clone https://github.com/angular-ui/ui-grid.git
+: 1477934166:0;cd ui-grid
+: 1477934169:0;vim
+: 1477934340:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media\jspm_packages\npm\angular-ui-grid@3.2.9' 
+: 1477934343:0;ivm
+: 1477934345:0;vim
+: 1478032172:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media' 
+: 1478032177:0;gulp build
+: 1478032228:0;call DebugBuild.bat
+: 1478032234:0;run DebugBuild.bat
+: 1478107188:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media' 
+: 1478107194:0;vim
+: 1478109803:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media' 
+: 1478109814:0;run ReleaseBuild.bat
+: 1478543067:0;Codespace
+: 1478543070:0;ls
+: 1478543075:0;AngularPractice
+: 1478543076:0;ls
+: 1478543080:0;..
+: 1478543092:0;ConfigDashboard
+: 1478543098:0;ls
+: 1478543107:0;angular-tree-control\ \(default.json\)
+: 1478543109:0;vim
+: 1478543419:0;cd 'C:\Users\efournier\CodeSpace\ConfigDashboard\angular-tree-control (default.json)'
+: 1478543429:0;http-server -o
+: 1478544215:0;vim
+: 1478715096:0;Codespace
+: 1478715111:0;git clone https://github.com/techtalk/SpecFlow-Examples.git
+: 1478715137:0;ls
+: 1478715141:0;Spec
+: 1478715147:0;SpecFlow-Examples
+: 1478715151:0;tree
+: 1478715157:0;ls
+: 1478715163:0;ASP.NET-MVC
+: 1478715259:0;cd 'C:\Users\efournier\CodeSpace\SpecFlow-Examples\ASP.NET-MVC\BookShop'
+: 1478715264:0;ivm
+: 1478715266:0;vim
+: 1478879741:0;cd 'C:\Users\efournier\CodeSpace\ToolsQAp'
+: 1478879763:0;Codespace
+: 1478879769:0;ls
+: 1478879775:0;Tools
+: 1478879783:0;ToolsQA
+: 1478879787:0;git add .
+: 1478879791:0;git init
+: 1478879865:0;git remote add origin https://github.com/efournier92/SpecFlow-Sampler.git
+: 1478879871:0;git add .
+: 1478879882:0;git status
+: 1478879899:0;ogit add ToolsQA.sln
+: 1478879908:0;git add ToolsQA.sln
+: 1478879917:0;git add ToolsQA
+: 1478879920:0;git status
+: 1478879935:0;git commit -m "initial commit"
+: 1478879944:0;git push origin master
+: 1478880858:0;git status
+: 1478880861:0;..
+: 1478880870:0;~
+: 1478880894:0;cd 'C:\Users\efournier\CodeSpace\SpecFlow-Sampler'
+: 1478880902:0;git status
+: 1478880910:0;git add .
+: 1478880955:0;git commit -m "re-init project as SpecFlow-Sampler"
+: 1478880961:0;git push origin master
+: 1478881080:0;git init
+: 1478881090:0;git remote remove origin
+: 1478881162:0;git remote add origin https://github.com/efournier92/SpecFlow-Sampler.git
+: 1478881166:0;git push origin master
+: 1478881193:0;git add .
+: 1478881208:0;git commit -m "re-init project as SpecFlow-Sampler"
+: 1478881273:0;git status
+: 1478881280:0;git add. 
+: 1478881284:0;git add . 
+: 1478881313:0;git commit -m "start Sample1"
+: 1478881318:0;git push origin master
+: 1478881370:0;git init
+: 1478881430:0;git remote add origin https://github.com/efournier92/SpecFlow-Sampler.git
+: 1478881437:0;git commit -m "start Sample1"
+: 1478881445:0;git add .
+: 1478881464:0;git commit -m "start Sample1"
+: 1478881470:0;git push origin master
+: 1478881476:0;git push origin master -f
+: 1478881541:0;git init
+: 1478881565:0;git remote add origin https://github.com/efournier92/SpecFlow-Sampler.git
+: 1478881569:0;git add .
+: 1478881588:0;git commit -m "initial commit"
+: 1478881598:0;git push origin master -f
+: 1478881628:0;git remote add origin https://github.com/efournier92/SpecFlow-Sampler.git
+: 1478881637:0;git push origin master
+: 1478882685:0;vim .gitignore
+: 1478882788:0;git add .
+: 1478882805:0;git commit -m "add gitignore"
+: 1478882819:0;git push origin master
+: 1478887064:0;git status
+: 1478887071:0;git add .
+: 1478887083:0;git commit -m "add step definitions"
+: 1478887088:0;git push origin master
+: 1479134916:0;cd ''
+: 1479134920:0;cd 
+: 1479134958:0;cd 'C:\Users\efournier\CodeSpace\SpecFlow-Sampler'
+: 1479134979:0;git status
+: 1479134988:0;git add .
+: 1479135012:0;git commit -m "SpecFlowFeature1.feature"
+: 1479135019:0;git push origin master
+: 1479311684:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media' 
+: 1479311691:0;..
+: 1479311697:0;vim
+: 1479319966:0;Drive
+: 1479319971:0;lss
+: 1479319973:0;ls
+: 1479319983:0;Google Drive
+: 1479319989:0;Google\ Drive
+: 1479320014:0;git clone 'https://github.com/iron-io/functions'
+: 1479320019:0;ls
+: 1479320036:0;function
+: 1479320044:0;Google\ Drive
+: 1479320051:0;functions
+: 1479320054:0;ls
+: 1479320059:0;cs functions
+: 1479320068:0;cd functions
+: 1479320072:0;ivm
+: 1479320074:0;vim
+: 1480701560:0;Desktop
+: 1480701568:0;curl http://j.mp/spf13-vim3 -L -o - | sh
+: 1481147016:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media' 
+: 1481147019:0;gulp build
+: 1481231220:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1481231227:0;gulp es
+: 1481233670:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1481294616:0;gulp es
+: 1481319111:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1481555920:0;gulp build
+: 1481556108:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin'
+: 1481556230:0;call DebugBuild.bat
+: 1481556237:0;DebugBuild.bat
+: 1481556245:0;ls
+: 1481569925:0;cd 'C:\TFS\Nova\Trunk\app'
+: 1481569928:0;vim
+: 1481641018:0;gulp build
+: 1481899274:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1481899304:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin'
+: 1482346594:0;..
+: 1482346596:0;ls
+: 1482346611:0;Pch.Nova.Admin.Media
+: 1482346620:0;gulp es
+: 1483110142:0;cd 'C:\TFS\Nova\Trunk\app\Pch.Nova.Admin.Media'
+: 1483123089:0;call ReleaseBuild.bat
+: 1483123111:0;ReaseBuild.bat
+: 1483123120:0;ReleaseBuild.bat
+: 1483561286:0;Codespace
+: 1483561320:0;JS_Practice
+: 1483561323:0;vim
+: 1483561411:0;vm
+: 1483561413:0;vim
+: 1483639289:0;ivm
+: 1483639291:0;vim
+: 1483639915:0;git config --global core.autocrlf input
+: 1483639931:0;vim
+: 1483640407:0;dir
+: 1483640410:0;ls
+: 1483640482:0;cd 'C:\Users\efournier\.babun\cygwin\etc'
+: 1483640485:0;ls
+: 1483640506:0;dos2unix.exe vimrc\
+: 1483640507:0;dos2unix.exe vimrc
+: 1483640517:0;vim
+: 1483640624:0;dos2unix.exe vimrc
+: 1483640627:0;vim
+: 1483643608:0;cd '/home/efournier/.vim/bundle/Vundle.vim/autoload/'
+: 1483643686:0;dos2unix.exe vundle.vim
+: 1483643692:0;vim
+: 1483643722:0;..
+: 1483643734:0;dos2unix.exe bundle
+: 1483643760:0;cd '/home/efournier/.vim/bundle/Vundle.vim/autoload/'
+: 1483643764:0;ls
+: 1483643774:0;vundle
+: 1483643812:0;dos2unix.exe config.vim
+: 1483643821:0;dos2unix.exe scripts.vim
+: 1483643827:0;dos2unix.exe installer.vim
+: 1483643830:0;vim
+: 1483644609:0;Desk
+: 1483644612:0;Desktop
+: 1483644639:0;git clone 'https://github.com/efournier92/vim_config.git'
+: 1483644691:0;ivm
+: 1483644693:0;vim
+: 1483644987:0;vim test.js
+: 1483645157:0;cd 'C:\Users\efournier\CodeSpace\JS-UnderstandingTheWeirdParts'
+: 1483645164:0;http-server -o
+: 1483645197:0;02_Execution
+: 1483645203:0;lsa
+: 1483645204:0;ls
+: 1483645222:0;nodemon -o
+: 1483645226:0;http-server -o
+: 1483645245:0;http-server app.js
+: 1483645306:0;http-server index.html
+: 1483645395:0;cd 'C:\Users\efournier\CodeSpace\JS-UnderstandingTheWeirdParts'
+: 1483645400:0;vim
+: 1483645435:0;http-server
+: 1483645684:0;..
+: 1483645689:0;http-server
+: 1483645811:0;ls
+: 1483645817:0;02_Execution
+: 1483645821:0;http-server
+: 1483646287:0;nodemon
+: 1483646329:0;http-server
+: 1483646337:0;http-server -h
+: 1483647475:0;npm install -g reload
+: 1483647512:0;reload -b
+: 1483647547:0;reload
+: 1483647589:0;:q
+: 1483647651:0;npm install simple-reload-server -g
+: 1483647672:0;npm install simple-autoreload-server -g
+: 1483647709:0;autoreload-server 
+: 1483647833:0;autoreload-server -w "\\.(html|css|js)" ./site-files 8008
+: 1483647899:0;live-server
+: 1483647904:0;live-server -o
+: 1483648696:0;npm -h
+: 1483648872:0;live-server
+: 1483649051:0;npm install -g lr-http-server
+: 1483649070:0;lr-http-server
+: 1483649268:0;npm ls
+: 1483649312:0;simple-auto-reload-server
+: 1483649318:0;simple-autoreload-server
+: 1483649861:0;cd 'C:\Users\efournier\CodeSpace\JS-UnderstandingTheWeirdParts'
+: 1483649898:0;npm install --save live-server
+: 1483649914:0;ls
+: 1483649933:0;live-server
+: 1483649943:0;npm live-server
+: 1483651429:0;live-server
+: 1483651460:0;npm -ls
+: 1483651473:0;npm ls
+: 1483651489:0;cd 'C:\Users\efournier\CodeSpace\JS-UnderstandingTheWeirdParts'
+: 1483651493:0;live-server
+: 1483714467:0;npm list -g
+: 1483715256:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1483715263:0;vim
+: 1483715271:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1483715294:0;live-server
+: 1483726866:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1483726868:0;vim
+: 1483726876:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1483726893:0;live-server
+: 1483727274:0;vim
+: 1483986872:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1483986876:0;live-server
+: 1483987015:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1483987039:0;live-server
+: 1483987057:0;vimk
+: 1483987058:0;vim
+: 1483996212:0;+pq
+: 1484007889:0;j
+: 1484008002:0;tmux attach
+: 1484058813:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1484058819:0;:q
+: 1484058830:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1484061640:0;live-server
+: 1484061647:0;vim
+: 1484104878:0;Desktop
+: 1484105088:0;Dw
+: 1484105091:0;Desktop
+: 1484105135:0;tmux attach
+: 1484105154:0;Desktop
+: 1484105210:0;tmux attach
+: 1484105694:0;Desktop
+: 1484106647:0;"#{pane_current_path}"
+: 1484106660:0;current_path
+: 1484106705:0;bind-key S command-prompt "new-session -A -c '#{pane_current_path}' -s '%%'"
+: 1484106742:0;new-session -A -c '#{pane_current_path}' -s '%%'
+: 1484146853:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1484146857:0;:q
+: 1484146866:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1484146869:0;vim
+: 1484146876:0;live-server
+: 1484170082:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1484170087:0;..
+: 1484170094:0;vim mirrorNums.js
+: 1484231297:0;CodeSpace/MirrorNumbers
+: 1484231301:0;vim
+: 1484231336:0;CodeSpace/MirrorNumbers
+: 1484231376:0;tmux attach
+: 1484231446:0;CodeSpace/MirrorNumbers
+: 1484231449:0;vim
+: 1484231459:0;CodeSpace/MirrorNumbers
+: 1484231463:0;live-server
+: 1484231561:0;git clone 'https://github.com/efournier92/MirrorNumbers.git'
+: 1484231615:0;CodeSpace/MirrorNumbers
+: 1484231619:0;vim
+: 1484231627:0;live-server
+: 1484231673:0;CodeSpace/MirrorNumbers
+: 1484231675:0;live-server
+: 1484236893:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1484236895:0;vim
+: 1484236915:0;tmux attach
+: 1484237007:0;killall tmux
+: 1484237034:0;tmux kill-session 
+: 1484237061:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1484237066:0;vim
+: 1484237072:0;CodeSpace/JS-UnderstandingTheWeirdParts
+: 1484237075:0;live-server
+: 1484237091:0;CodeSpace/MirrorNumbers
+: 1484237094:0;vim
+: 1484237109:0;CodeSpace/MirrorNumbers
+: 1484237113:0;live-server
+: 1484352720:0;vim
+: 1484355606:0;$HOME
+: 1484355612:0;ls
+: 1484355630:0;v
+: 1484355637:0;C:\Users\efournier\.babun\cygwin\home\efournier\.vim\bundle
+: 1484355702:0;cd 'C:\Users\efournier\.babun\cygwin\home\efournier\.vim\bundle'
+: 1484355731:0;dos2unix
+: 1484355769:0;ls
+: 1484355776:0;Vundle.vim
+: 1484355790:0;dos2unix
+: 1484355905:0;autoload
+: 1484355910:0;ls
+: 1484355918:0;cd autoload
+: 1484355930:0;ls
+: 1484355948:0;dos2unix.exe vundle.vim
+: 1484355955:0;vim
+: 1484356012:0;..
+: 1484356031:0;dos2unix.exe bundle
+: 1484356086:0;bundle
+: 1484356104:0;find . -type f -exec dos2unix {} \;
+: 1484356146:0;vim
