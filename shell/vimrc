@@ -1,4 +1,31 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" OS DEPENDENT OPTIONS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('unix')
+  set rtp+=~/.vim/bundle/Vundle.vim "vundle package location
+  if has('mac')
+    " Mac
+    set directory^=$HOME/.vim/swp/ " swap files
+    set undodir^=$HOME/.vim/undo/ " swap files
+    set guifont=Menlo:h14 " font
+    set clipboard=unnamed " clipboard
+  else
+    " Linux
+    set undodir^=$HOME/.vim/undo/ " undo files
+    set directory^=$HOME/.vim/swp/ " swap files
+    set guifont=Consola:h13 " font
+  endif
+elseif has('win32') || has('win64')
+  " Windows
+  set rtp+=~/vimfiles/bundle/Vundle.vim " vundle package location
+  set directory^=$HOME/vimfiles/swp/ " swap files
+  set undodir^=$HOME/vimfiles/undo/ " undo files
+  set guifont=Consolas:h13 " font
+  set guioptions -=T
+  set guioptions -=m
+  source $VIMRUNTIME/mswin.vim
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LOAD
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible " not compatible with vi
@@ -20,31 +47,6 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SYSTEM 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set ff=unix
-" OS Dependent
-if has('unix')
-  if has('mac')
-    " Mac
-    set directory^=$HOME/.vim/tmp/ " swap files
-    set undodir^=$HOME/.vim/tmp/ " swap files
-    set guifont=Menlo:h14 " font
-  else
-    " Linux
-    set directory^=$HOME/.vim/swp/ " swap files
-    set undodir^=$HOME/.vim/undo/ " undo files
-    set guifont=Consola:h13 " font
-    set clipboard=unnamed
-  endif
-elseif has('win32') || has('win64')
-  " Windows
-  set directory^=$HOME/vimfiles/swp/ " swap files
-  set undodir^=$HOME/vimfiles/undo/ " undo files
-  set guifont=Consolas:h13 " font
-  set guioptions -=T
-  set guioptions -=m
-  source $VIMRUNTIME/mswin.vim
-endif
-
 " Core
 let mapleader = '\'
 set cm=blowfish2 " encryption method
