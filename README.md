@@ -4,6 +4,6 @@
 * vim
 * refind
 * aLg
-* Babun
 * Shell
+* Babun
 
