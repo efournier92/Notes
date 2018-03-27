@@ -1,6 +1,7 @@
 # Shell Theme
 ZSH_THEME="agnoster"
 
+
 # Default User
 DEFAULT_USER="efournier"
 
