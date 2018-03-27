@@ -38,22 +38,16 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 
-<<<<<<< HEAD
-=======
 # Load colors file
 source ~/.zsh/colors/mintty-solarized-dark.sh
->>>>>>> 072a64eaeaef2bcb54bffa8adb2bc34268e8e5fc
-
-# Load alias file
-# source $ZSH/aliasFile.sh
 
 # Load NVM
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Start Directory
-# cd /mnt/BNK/Sync
+cd /cygdrive/c/Users/efournier
 
 # Run Tmux
 if [ -z "$TMUX" ]
