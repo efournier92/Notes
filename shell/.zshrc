@@ -28,7 +28,8 @@ plugins=(
 )
 
 # Load oh-my-zsh
-source ~/.oh-my-zsh/oh-my-zsh.sh
+export ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
