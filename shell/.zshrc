@@ -27,6 +27,9 @@ export LANG=en_US.UTF-8
 # Vim as Default Editor
 export EDITOR=vim
 
+# Load MC Solarized Skin
+export MC_SKIN=$HOME/.mc/solarized.ini
+
 # Load oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
