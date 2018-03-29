@@ -27,11 +27,6 @@ export LANG=en_US.UTF-8
 # Vim as Default Editor
 export EDITOR=vim
 
-# Plugins
-plugins=(
-  git
-)
-
 # Load oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
