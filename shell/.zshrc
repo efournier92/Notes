@@ -21,6 +21,9 @@ ENABLE_CORRECTION="true"
 # Timestamp format 
 HIST_STAMPS="yyyy-mm-dd"
 
+# Vim as Default Editor
+export EDITOR=vim
+
 # Plugins
 plugins=(
   git
@@ -34,8 +37,6 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 
-# Load colors file
-source ~/.zsh/colors/mintty-solarized-dark.sh
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
@@ -50,13 +51,14 @@ fi
 # OS Specific Configs
 if [[ ${machineOs} == Linux ]]; then
   DEFAULT_USER="misigno"
-  cd /mnt/BNK/Sync # Start Directory
-  source ~/aliasFile.sh # Load alias file
+  cd /mnt/BNK # Start Directory
+  source ~/.zsh-alias.sh # Load alias file
 elif [[ ${machineOs} == Osx ]]; then
   DEFAULT_USER="misigno"
-  cd /Volumes/BNK/Sync # Start Directory
+  cd /BNK # Start Directory
 elif [[ ${machineOs} == Cygwin ]]; then
   DEFAULT_USER="efournier"
+  source ~/.zsh/colors/mintty-solarized-dark.sh # Load colors file
   cd /cygdrive/c/Users/efournier # Start Directory
 fi
 
