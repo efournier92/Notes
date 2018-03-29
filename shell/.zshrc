@@ -1,9 +1,9 @@
 # Determine Operating System
 nameOfOs="$(uname -s)"
-case "${nameOfOs}" in
-    Linux*)     machineOs=Linux;;
-    Darwin*)    machineOs=Osx;;
-    CYGWIN*)    machineOs=Cygwin
+case "${nameOfOs}" in 
+  Linux*)  machineOs=Linux;;
+  Darwin*) machineOs=Osx;;
+  CYGWIN*) machineOs=Cygwin
 esac
 
 # Shell Theme
@@ -21,13 +21,15 @@ ENABLE_CORRECTION="true"
 # Timestamp format 
 HIST_STAMPS="yyyy-mm-dd"
 
+# Default Language
+export LANG=en_US.UTF-8
+
 # Vim as Default Editor
 export EDITOR=vim
 
 # Plugins
 plugins=(
   git
-  zsh-autosuggestions
 )
 
 # Load oh-my-zsh
@@ -36,7 +38,6 @@ source $ZSH/oh-my-zsh.sh
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
-
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
@@ -55,7 +56,7 @@ if [[ ${machineOs} == Linux ]]; then
   source ~/.zsh-alias.sh # Load alias file
 elif [[ ${machineOs} == Osx ]]; then
   DEFAULT_USER="misigno"
-  cd /BNK # Start Directory
+  cd /Volumes/BNK # Start Directory
 elif [[ ${machineOs} == Cygwin ]]; then
   DEFAULT_USER="efournier"
   source ~/.zsh/colors/mintty-solarized-dark.sh # Load colors file
