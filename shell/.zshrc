@@ -42,11 +42,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Run Tmux
-if [ -z "$TMUX" ]
-  then tmux
-fi
-
 # OS Specific Configs
 if [[ ${machineOs} == Linux ]]; then
   DEFAULT_USER="misigno"
@@ -59,5 +54,10 @@ elif [[ ${machineOs} == Cygwin ]]; then
   DEFAULT_USER="efournier"
   source ~/.zsh/colors/mintty-solarized-dark.sh # Load colors file
   cd /cygdrive/c/Users/efournier # Start Directory
+fi
+
+# Run Tmux
+if [ -z "$TMUX" ]
+  then tmux
 fi
 
