@@ -45,19 +45,19 @@ export NVM_DIR="$HOME/.nvm"
 # OS Specific Configs
 if [[ ${machineOs} == Linux ]]; then
   DEFAULT_USER="misigno"
-  cd /mnt/BNK # Start Directory
   source ~/.zsh-alias.sh # Load alias file
+  export START_DIR=/mnt/BNK # Start Directory
 elif [[ ${machineOs} == Osx ]]; then
   DEFAULT_USER="misigno"
-  cd /Volumes/BNK # Start Directory
+  export START_DIR=/Volumes/BNK # Start Directory
 elif [[ ${machineOs} == Cygwin ]]; then
   DEFAULT_USER="efournier"
   source ~/.zsh/colors/mintty-solarized-dark.sh # Load colors file
-  cd /cygdrive/c/Users/efournier # Start Directory
+  export START_DIR=/cygdrive/c/Users/efournier # Start Directory
 fi
 
 # Run Tmux
 if [ -z "$TMUX" ]
-  then tmux
+  then (cd $START_DIR; tmux)
 fi
 
