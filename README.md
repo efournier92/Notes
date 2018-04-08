@@ -5,5 +5,6 @@
 * refind
 * aLg
 * Babun
+* Cygwin
 * Shell
 
