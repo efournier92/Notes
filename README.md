@@ -4,7 +4,7 @@
 * vim
 * refind
 * aLg
-* Babun
 * Cygwin
+* Babun
 * Shell
 
