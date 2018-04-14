@@ -27,6 +27,9 @@ export LANG=en_US.UTF-8
 # Vim as Default Editor
 export EDITOR=vim
 
+# Load alias file
+source ~/.zsh-alias.sh
+
 # Load MC Solarized Skin
 export MC_SKIN=$HOME/.mc/solarized.ini
 
@@ -45,7 +48,6 @@ export NVM_DIR="$HOME/.nvm"
 # OS Specific Configs
 if [[ ${machineOs} == Linux ]]; then
   DEFAULT_USER="misigno"
-  source ~/.zsh-alias.sh # Load alias file
   export START_DIR=/mnt/BNK # Start Directory
 elif [[ ${machineOs} == Osx ]]; then
   DEFAULT_USER="misigno"
