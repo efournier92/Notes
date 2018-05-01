@@ -2,22 +2,16 @@
 " OS DEPENDENT OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('unix')
-  set rtp+=~/.vim/bundle/Vundle.vim "vundle package location
   if has('mac')
     " Mac
-    set directory^=$HOME/.vim/swp/ " swap files
-    set undodir^=$HOME/.vim/undo/ " swap files
     set guifont=Menlo:h14 " font
     set clipboard=unnamed " clipboard
   else
     " Linux
-    set undodir^=$HOME/.vim/undo/ " undo files
-    set directory^=$HOME/.vim/swp/ " swap files
     set guifont=Consola:h13 " font
   endif
 elseif has('win32') || has('win64')
   " Windows
-  set rtp+=~/vimfiles/bundle/Vundle.vim " vundle package location
   set directory^=$HOME/vimfiles/swp/ " swap files
   set undodir^=$HOME/vimfiles/undo/ " undo files
   set guifont=Consolas:h13 " font
@@ -30,7 +24,9 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible " not compatible with vi
 filetype off
-set rtp+=~/.vim/bundle/vundle "runtime includes Vundle
+set directory^=$HOME/.vim/swp/ " swap files
+set undodir^=$HOME/.vim/undo/ " swap files
+set rtp+=$HOME/.vim/bundle/Vundle.vim "runtime includes Vundle
 call vundle#begin()
   Plugin 'kien/ctrlp.vim'
   Plugin 'scrooloose/nerdtree'
