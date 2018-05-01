@@ -12,8 +12,6 @@ if has('unix')
   endif
 elseif has('win32') || has('win64')
   " Windows
-  set directory^=$HOME/vimfiles/swp/ " swap files
-  set undodir^=$HOME/vimfiles/undo/ " undo files
   set guifont=Consolas:h13 " font
   set guioptions -=T
   set guioptions -=m
