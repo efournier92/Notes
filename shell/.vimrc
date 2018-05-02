@@ -20,8 +20,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LOAD
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible " not compatible with vi
 filetype off
+set nocompatible " not compatible with vi
 set directory^=$HOME/.vim/swp/ " swap files
 set undodir^=$HOME/.vim/undo/ " swap files
 set rtp+=$HOME/.vim/bundle/Vundle.vim "runtime includes Vundle

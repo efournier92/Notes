@@ -749,8 +749,8 @@ type/^Parity\ Archive\ Volume\ Set
 
 # Default target for anything not described above
 default/*
-	Open=
-	View=
+	Open=vim
+	View=vim
 
 
 ### EOF ###
