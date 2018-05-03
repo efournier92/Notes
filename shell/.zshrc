@@ -2,7 +2,7 @@
 nameOfOs="$(uname -s)"
 case "${nameOfOs}" in 
   Linux*)  machineOs=Linux;;
-  Darwin*) machineOs=Osx
+  Darwin*) machineOs=Osx;;
   CYGWIN*) machineOs=Cygwin
 esac
 
