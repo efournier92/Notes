@@ -85,6 +85,8 @@ set tabstop=2 " visible width of tabs
 set softtabstop=2 " edit as if the tabs are this width 
 set shiftwidth=2 " indent spaces 
 set shiftround " round indent to a multiple of 'shiftwidth'
+nnoremap <silent> <C-W>t :tabnew<CR>
+
 
 " Search
 set ignorecase " case insensitive searching
