@@ -45,17 +45,21 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+DEFAULT_USER=$USER
 # OS Specific Configs
 if [[ ${machineOs} == Linux ]]; then
-  DEFAULT_USER="misigno"
   export START_DIR=/mnt/BNK # Start Directory
 elif [[ ${machineOs} == Osx ]]; then
-  DEFAULT_USER="misigno"
   export START_DIR=/Volumes/BNK # Start Directory
 elif [[ ${machineOs} == Cygwin ]]; then
-  DEFAULT_USER="efournier"
   source ~/.zsh/colors/mintty-solarized-dark.sh # Load colors file
-  export START_DIR=/cygdrive/c/Users/efournier # Start Directory
+  if [[ $USER == misigno ]]; then
+    export START_DIR=/cygdrive/z # Start Directory
+  elif [[ $USER == efournier ]]; then
+    export START_DIR=/cygdrive/c/Users/efournier # Start Directory
+  fi
+else
+  export START_DIR=$HOME # Start Directory
 fi
 
 # Run Tmux
