@@ -5,8 +5,7 @@
 * refind
 * aLg
 * Cygwin
-* Babun
 * Shell
-  - .mc/
+  - .mc
   - .zshrc
   - .vimrc
