@@ -7,5 +7,6 @@
 * Cygwin
 * Babun
 * Shell
-  - Zsh
+  - .zshrc
+  - .vimrc
 
