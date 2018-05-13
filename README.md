@@ -7,4 +7,5 @@
 * Cygwin
 * Babun
 * Shell
+  - Zsh
 
