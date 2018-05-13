@@ -8,7 +8,10 @@ if has('unix')
     set clipboard=unnamed " clipboard
   else
     " Linux
-    set guifont=Consola:h13 " font
+    set guifont=Monospace\ 11 " font
+    set guioptions -=T
+    set guioptions -=m
+    set clipboard=unnamed " clipboard
   endif
 elseif has('win32') || has('win64')
   " Windows
