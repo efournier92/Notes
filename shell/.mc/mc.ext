@@ -294,9 +294,8 @@ shell/i/.f
 regex/i/\.(s|asm)$
 	Include=editor
 
-# Markdown or Plain Text
-regex/\.(md|txt)$
-	Open=%var{EDITOR:vi} %f
+include/editor
+	Open=%var{EDITOR:editor} %f
 
 # .so libraries
 regex/\.(so|so\.[0-9\.]*)$
@@ -443,6 +442,10 @@ shell/i/.waw22
 	Open=/usr/lib/mc/ext.d/sound.sh open wav22
 
 shell/i/.mp3
+	Open=/usr/lib/mc/ext.d/sound.sh open mp3
+	View=%view{ascii} /usr/lib/mc/ext.d/sound.sh view mp3
+
+shell/i/.WAV
 	Open=/usr/lib/mc/ext.d/sound.sh open mp3
 	View=%view{ascii} /usr/lib/mc/ext.d/sound.sh view mp3
 
@@ -749,8 +752,6 @@ type/^Parity\ Archive\ Volume\ Set
 
 # Default target for anything not described above
 default/*
-	Open=
-	View=
-
+  Open=%var{EDITOR:vim} %f
 
 ### EOF ###
