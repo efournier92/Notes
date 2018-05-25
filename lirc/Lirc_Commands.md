@@ -2,7 +2,7 @@
 
 ## Commands
 
-### Modify Results in X11
+### Modify Remotes in X11
 ```bash
 sudo vim /etc/X11/xorg.conf.d/00-ir.conf 
 ```
@@ -47,6 +47,11 @@ sudo irrecord -n -d /dev/input/event4 -H devinput -u
 sudo mode2 -d /dev/input/event4
 ```
 
+### Check Remote Configuration With `irw`
+```bash
+irw
+```
+
 ### Install `ir-keytable` Tool
 ```bash
 sudo apt-get install ir-keytable
@@ -55,11 +60,6 @@ sudo apt-get install ir-keytable
 ### Run `ir-keytable`
 ```bash
 sudo ir-keytable -d /dev/input/event4
-```
-
-### Check Remote Configuration with `irw`
-```bash
-irw
 ```
 
 ### Important Directories
