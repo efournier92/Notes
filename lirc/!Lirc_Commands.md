@@ -62,12 +62,12 @@ sudo apt-get install ir-keytable
 sudo ir-keytable -d /dev/input/event4
 ```
 
-### Files
+## Files
 * `/etc/lirc/lircd.conf.d/HARMONY_350.lircd.conf`
 * `~/.kodi/userdata/Lircmap.xml`
 * `/etc/X11/xorg.conf.d/00-ir.conf`
 
-### Directories
+## Directories
 * `/usr/share/lirc/`
 * `/etc/lirc/`
 * `/etc/lirc/lircd.conf.d/`
@@ -75,7 +75,7 @@ sudo ir-keytable -d /dev/input/event4
 * `/dev/input/`
 * `~/.kodi/userdata/`
 
-### LINKS
+## LINKS
 [Lirc Configuration Guide](http://www.lirc.org/html/configuration-guide.html)
 [Ubuntu HTPC on a Mac mini (late 2012)](https://davidlfvr.wordpress.com/2016/11/12/mac-mini-ubuntu-htpc/)
 [Ubuntu + MacMini + Harmony 650 + OpenPHT + Plex Media Server](https://trustdarkness.com/blog/2016/07/17/ubuntu-macmini-harmony-650-openpht-plex-media-server/)
