@@ -1,9 +1,8 @@
 # Configs
 
-### Contains
-* vim
-* refind
+### Contents
 * aLg
+* refind
 * Cygwin
 * Shell
   - .mc
