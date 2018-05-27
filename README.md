@@ -2,9 +2,10 @@
 
 ### Contents
 * aLg
-* refind
+* CopyQ
+* lirc
+* rEFInd
 * Cygwin
-* Shell
   - .mc
   - .zshrc
   - .vimrc
