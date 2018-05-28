@@ -62,6 +62,11 @@ sudo apt-get install ir-keytable
 sudo ir-keytable -d /dev/input/event4
 ```
 
+### Run Kodi
+```bash
+kodi -l /var/run/lirc/lircd
+```
+
 ## Files
 * `/etc/lirc/lircd.conf.d/HARMONY_350.lircd.conf`
 * `~/.kodi/userdata/Lircmap.xml`
@@ -76,9 +81,9 @@ sudo ir-keytable -d /dev/input/event4
 * `~/.kodi/userdata/`
 
 ## LINKS
-[Lirc Configuration Guide](http://www.lirc.org/html/configuration-guide.html)
-[Ubuntu HTPC on a Mac mini (late 2012)](https://davidlfvr.wordpress.com/2016/11/12/mac-mini-ubuntu-htpc/)
-[Ubuntu + MacMini + Harmony 650 + OpenPHT + Plex Media Server](https://trustdarkness.com/blog/2016/07/17/ubuntu-macmini-harmony-650-openpht-plex-media-server/)
-[Kodi - How to set up lirc](https://kodi.wiki/view/HOW-TO:Set_up_LIRC#Download_and_install_Lirc)
-[`ir-keytable` Thread Reference](https://askubuntu.com/questions/908810/ir-remote-ubuntu-17-04)
+* [Lirc Configuration Guide](http://www.lirc.org/html/configuration-guide.html)
+* [Ubuntu HTPC on a Mac mini (late 2012)](https://davidlfvr.wordpress.com/2016/11/12/mac-mini-ubuntu-htpc/)
+* [Ubuntu + MacMini + Harmony 650 + OpenPHT + Plex Media Server](https://trustdarkness.com/blog/2016/07/17/ubuntu-macmini-harmony-650-openpht-plex-media-server/)
+* [Kodi - How to set up lirc](https://kodi.wiki/view/HOW-TO:Set_up_LIRC#Download_and_install_Lirc)
+* [`ir-keytable` Thread Reference](https://askubuntu.com/questions/908810/ir-remote-ubuntu-17-04)
 
