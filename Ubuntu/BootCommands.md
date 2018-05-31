@@ -14,15 +14,22 @@ uname -r
 sudo update-grub
 ```
 
-### Edit
+### Edit Grub Defaults
 ```bash
 sudo vim /etc/default/grub
-sudo mc /boot/grub/
-sudo mc /boot/grub/grub.cfg
+sudo update-grub
+```
+
+### Edit Grub Config
+```bash
+sudo vim /boot/grub/grub.cfg
 ```
 
 ## `initramfs`
+
+### Fix `resume` Slow Boot
 ```bash
 sudo vim /etc/initramfs-tools/conf.d/resume
 sudo update-initramfs -u
 ```
+
