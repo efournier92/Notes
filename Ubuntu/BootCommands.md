@@ -1,4 +1,4 @@
-# Ubuntu Boot Config
+# Ubuntu Boot Commands
 
 ## Kernel
 
