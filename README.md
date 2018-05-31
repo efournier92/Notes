@@ -3,10 +3,12 @@
 ### Contents
 * aLg
 * CopyQ
-* lirc
-* rEFInd
 * Cygwin
   - .mc
   - .zshrc
   - .vimrc
+* lirc
+* rEFInd
+* Ubuntu
+* Unix Terminal
 
