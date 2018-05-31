@@ -10,5 +10,5 @@
 * lirc
 * rEFInd
 * Ubuntu
-* Unix Terminal
+* Unix Terminal Environment
 
