@@ -11,5 +11,5 @@
 * rEFInd
 * Ubuntu
 * Unix Terminal Environment
-* `vimrc` Changelog
+* `.vimrc` Changelog
 
