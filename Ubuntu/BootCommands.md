@@ -30,6 +30,13 @@ sudo vim /boot/grub/grub.cfg
 ### Fix `resume` Slow Boot
 ```bash
 sudo vim /etc/initramfs-tools/conf.d/resume
+  > RESUME=none
 sudo update-initramfs -u
+```
+
+## `fstab`
+### Edit `fstab`
+```bash
+sudo vim /etc/fstab
 ```
 
