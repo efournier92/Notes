@@ -6,6 +6,8 @@ if has('unix')
     " Mac
     set guifont=Menlo:h14 " font
     set clipboard=unnamed " clipboard
+  elseif has('win32unix') || has('win64unix')
+    set guifont=Menlo:h14 " font
   else
     " Linux
     set guifont=Monospace\ 11 " font
