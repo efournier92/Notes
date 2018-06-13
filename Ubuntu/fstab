@@ -15,5 +15,3 @@ UUID=80d3fdc8-5af3-4ed6-8013-86ffef4c6d53 none  swap  sw  0  0
 # ROOT
 UUID=508a55ea-33a9-40c7-b316-e97e8f1850bb  /  ext4  errors=remount-ro  0  1
 
-
-
