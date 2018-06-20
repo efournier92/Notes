@@ -1,0 +1,9 @@
+[core]
+	autocrlf = input
+[credential]
+	useHttpPath = true
+	helper = wincred
+[user]
+[user]
+	name = efournier92
+	email = efournier92@gmail.com

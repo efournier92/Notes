@@ -53,9 +53,9 @@ elif [[ ${machineOs} == Osx ]]; then
   export START_DIR=/Volumes/BNK # Start Directory
 elif [[ ${machineOs} == Cygwin ]]; then
   source ~/.zsh/colors/mintty-solarized-dark.sh # Load colors file
-  if [[ $USER == misigno ]]; then
+  if [[ $(whoami) = "misigno" ]]; then
     export START_DIR=/cygdrive/z # Start Directory
-  elif [[ $USER == efournier ]]; then
+  elif [[ $(whoami) = "efournier" ]]; then
     export START_DIR=/cygdrive/c/Users/efournier # Start Directory
   fi
 else
