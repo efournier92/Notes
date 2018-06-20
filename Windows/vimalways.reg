@@ -1,0 +1,7 @@
+REGEDIT4
+[HKEY_CLASSES_ROOT\Unknown\shell]
+@="vim"
+[HKEY_CLASSES_ROOT\Unknown\shell\vim]
+[HKEY_CLASSES_ROOT\Unknown\shell\vim\command]
+@="\"C:\\Program Files (x86)\\vim\\vim80\\gvim.exe\" \"%1\""
+
