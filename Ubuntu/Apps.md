@@ -400,5 +400,6 @@ sudo apt-get install torbrowser-launcher
 * USB 3.0 Host Controller Utility
 * Vim Command Prompt
 * VS Code
-
+* Winaero Tweaker
+* WinHotKey
 
