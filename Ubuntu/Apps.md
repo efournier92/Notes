@@ -370,13 +370,15 @@ sudo apt-get install torbrowser-launcher
 
 ## Work
 * 7-Zip
-* Babun
+* Adobe Acrobat Reader
+* Adobe Digital Editions
 * Backup & Sync (Google Drive)
-* Brackets
+* BlueJeans
+* Brio Screen Projector
 * Canary
 * Chrome
 * Chromium
-* ContextEdit
+* CopyQ
 * Git CLI
 * GVim
 * Flux
