@@ -381,10 +381,16 @@ sudo apt-get install torbrowser-launcher
 * CopyQ
 * Git CLI
 * GVim
-* Flux
+* f.lux
+* FileZilla
+* FireFox
+* IIS Express
 * Launchy
 * MPow Thor (Bluetooth Headphones)
+* MS Office
+* NodeJS
 * Notepad++
+* Python (32bit)
 * Q-Dir
 * SharpKeys
 * Skype
