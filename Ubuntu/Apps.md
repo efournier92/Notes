@@ -392,9 +392,13 @@ sudo apt-get install torbrowser-launcher
 * Notepad++
 * Python (32bit)
 * Q-Dir
+* ScaleOut (Receiver)
 * SharpKeys
+* Simplenote
 * Skype
+* SQL Server Browser
 * USB 3.0 Host Controller Utility
 * Vim Command Prompt
 * VS Code
+
 
