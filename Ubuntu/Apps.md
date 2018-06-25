@@ -379,6 +379,7 @@ sudo apt-get install torbrowser-launcher
 * Chrome
 * Chromium
 * CopyQ
+* DB Browser for SQL Lite
 * Git CLI
 * GVim
 * f.lux
@@ -388,17 +389,21 @@ sudo apt-get install torbrowser-launcher
 * Launchy
 * MPow Thor (Bluetooth Headphones)
 * MS Office
+* MS SQL Server
 * NodeJS
 * Notepad++
-* Python (32bit)
+* Opera
+* Python (2.X, 32bit)
 * Q-Dir
+* ReSharper
+* Ruby
 * ScaleOut (Receiver)
 * SharpKeys
 * Simplenote
 * Skype
-* SQL Server Browser
 * USB 3.0 Host Controller Utility
 * Vim Command Prompt
+* VS 2012
 * VS Code
 * Winaero Tweaker
 * WinHotKey
