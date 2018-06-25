@@ -370,23 +370,36 @@ sudo apt-get install torbrowser-launcher
 
 ## Work
 * 7-Zip
-* Babun
+* Adobe Acrobat Reader
+* Adobe Digital Editions
 * Backup & Sync (Google Drive)
-* Brackets
+* BlueJeans
+* Brio Screen Projector
 * Canary
 * Chrome
 * Chromium
-* ContextEdit
+* CopyQ
 * Git CLI
 * GVim
-* Flux
+* f.lux
+* FileZilla
+* FireFox
+* IIS Express
 * Launchy
 * MPow Thor (Bluetooth Headphones)
+* MS Office
+* NodeJS
 * Notepad++
+* Python (32bit)
 * Q-Dir
+* ScaleOut (Receiver)
 * SharpKeys
+* Simplenote
 * Skype
+* SQL Server Browser
 * USB 3.0 Host Controller Utility
 * Vim Command Prompt
 * VS Code
+* Winaero Tweaker
+* WinHotKey
 
