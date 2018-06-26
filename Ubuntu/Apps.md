@@ -118,6 +118,20 @@ sudo apt-get install kodi
 sudo apt-get install openvpn
 ```
 
+## MongoDB
+```
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+```
+
+## NodeJS
+```
+curl -sL https://deb.nodesource.com/setup_{version-major}.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
 ## Pinta
 ```
 sudo add-apt-repository ppa:pinta-maintainers/pinta-stable
