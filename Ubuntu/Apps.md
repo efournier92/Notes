@@ -171,6 +171,11 @@ wget https://github.com/Automattic/simplenote-electron/releases/download/v1.0.8/
 sudo dpkg -i simplenote-1.0.8.deb
 ```
 
+## Simple Scan
+```
+sudo apt-get install simple-scan
+```
+
 ## SQLite Browser
 ```
 sudo apt-get install sqlitebrowser
@@ -199,6 +204,11 @@ sudo apt-get install code
 ## Tor
 ```
 sudo apt-get install torbrowser-launcher
+```
+
+## Xsane
+```
+sudo apt-get install sane sane-utils libsane-extras xsane
 ```
 
 
