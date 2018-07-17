@@ -11,5 +11,6 @@
 * rEFInd
 * Ubuntu
 * Unix Terminal Environment
+* Windows
 * `.vimrc` Changelog
 
