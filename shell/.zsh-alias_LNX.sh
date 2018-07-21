@@ -1,8 +1,8 @@
 alias icecream='/etc/openvpn;sudo openvpn --daemon --config Icecream.ovpn'
 alias tor='torbrowser-launcher'
 
-alias bnkMnt='veracrypt /dev/disk/by-partuuid/e68c8ec3-9c49-489c-9a0f-339f866920d6 /mnt/BNK --slot=33'
-alias bnkMnt!='veracrypt -t -d /dev/disk/by-partuuid/9bd48f56-7489-487c-9c96-9e145b637426'
+alias m_bnk='veracrypt /dev/disk/by-partuuid/e68c8ec3-9c49-489c-9a0f-339f866920d6 /mnt/BNK --slot=33'
+alias m_bnk!='veracrypt -t -d /dev/disk/by-partuuid/9bd48f56-7489-487c-9c96-9e145b637426'
 
 alias m_extA='veracrypt --mount /dev/disk/by-partuuid/7684c170-a88e-4db8-8759-5a80e99ad74b /mnt/extA --slot=8'
 alias m_extA!='veracrypt -t -d /dev/disk/by-partuuid/7684c170-a88e-4db8-8759-5a80e99ad74b'
@@ -32,7 +32,7 @@ alias bk_extBC='sudo rclone sync /mnt/extB /mnt/extC --verbose'
 alias bk_extCA='sudo rclone sync /mnt/extC /mnt/extA --verbose'
 alias bk_extCB='sudo rclone sync /mnt/extC /mnt/extB --verbose'
 alias bk_AMD='sudo rclone sync /mnt/extA/Media /mnt/MD --verbose'
-alias bk_gryblk='sudo rclone sync /mnt/gryEx/PRJTS /mnt/blkEx/PRJTS --verbose ; sudo rclone sync /mnt/gryEx/aLg /mnt/blkEx/aLg --verbose ; sudo rclone sync /mnt/gryNt/Nx /mnt/blkEx/Nx --verbose ; sudo rclone sync /mnt/gryNt/VM /mnt/blkEx/VM --verbose'
+alias bk_gryblk='rclone sync /mnt/gryEx/PRJTS /mnt/blkEx/PRJTS --verbose ; rclone sync /mnt/gryEx/aLg /mnt/blkEx/aLg --verbose ; rclone sync /mnt/gryNt/Nx /mnt/blkEx/Nx --verbose ; rclone sync /mnt/gryNt/VM /mnt/blkEx/VM --verbose'
 
 alias bk_bnkA='sudo rclone sync /mnt/BNK /mnt/extA/Bk/BNK --verbose'
 alias bk_bnkB='sudo rclone sync /mnt/BNK /mnt/extB/Bk/BNK --verbose'
