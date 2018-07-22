@@ -6,18 +6,14 @@ sudo add-apt-repository ppa:bookworm-team/bookworm
 sudo apt-get install bookworm
 ```
 
-## .boot-apps.sh
-```
-#! /bin/bash
-
-sleep 2
-veracrypt /dev/disk/by-id/ata-APPLE_SSD_SM0512G_S2ZCNY0H953755-part5 /mnt/BNK --slot=33
-copyq
-```
-
 ## BleachBit
 ```
 sudo apt-get install bleachbit 
+```
+
+## Clonezilla
+```
+https://packages.ubuntu.com/bionic/all/clonezilla/download
 ```
 
 ## Grive2
@@ -210,7 +206,6 @@ sudo apt-get install torbrowser-launcher
 ```
 sudo apt-get install sane sane-utils libsane-extras xsane
 ```
-
 
 # OSX
 
