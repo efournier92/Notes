@@ -19,4 +19,6 @@
   * Apply changes 
   * Click `Manage Flags` for `ESP` Partition
     - Check `boot` & `lba`
-2. Copy 
+2. Copy [Github repo directory](https://github.com/efournier92/configs/tree/master/Ubuntu/LiveUsb/ESP) contents to ESP
+3. 
+
