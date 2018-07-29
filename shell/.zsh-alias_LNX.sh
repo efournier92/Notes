@@ -1,28 +1,38 @@
 alias icecream='/etc/openvpn;sudo openvpn --daemon --config Icecream.ovpn'
+alias icecream!='sudo killall openvpn'
 alias tor='torbrowser-launcher'
 
-alias m_bnk='veracrypt /dev/disk/by-partuuid/e68c8ec3-9c49-489c-9a0f-339f866920d6 /mnt/BNK --slot=33'
-alias m_bnk!='veracrypt -t -d /dev/disk/by-partuuid/9bd48f56-7489-487c-9c96-9e145b637426'
+uid_bnk='e68c8ec3-9c49-489c-9a0f-339f866920d6'
+uid_extA='7684c170-a88e-4db8-8759-5a80e99ad74b'
+uid_extB='165e34c0-708f-4700-99c9-65bdc632a1d9'
+uid_extC=
+uid_MD='2824c02b-422c-4702-acd7-d8bbe8bdcbbf'
+uid_gryEx='cf03b736-d2cd-44dd-9578-d68844421b83'
+uid_gryNt='b56d5683-3653-4b07-8054-89ea93d058e6'
+uid_blkEx='d68c8953-e5f6-4d51-b202-7b06abeab67f'
 
-alias m_extA='veracrypt --mount /dev/disk/by-partuuid/7684c170-a88e-4db8-8759-5a80e99ad74b /mnt/extA --slot=8'
-alias m_extA!='veracrypt -t -d /dev/disk/by-partuuid/7684c170-a88e-4db8-8759-5a80e99ad74b'
+alias m_bnk='veracrypt /dev/disk/by-partuuid/${uid_bnk} /mnt/BNK --slot=33'
+alias m_bnk!='veracrypt -t -d /dev/disk/by-partuuid/${uid_bnk}'
 
-alias m_extB='veracrypt --mount /dev/disk/by-id/usb-JMicron_JMicron_DB987654321CC-0:0-part2 /mnt/extB --slot=12'
-alias m_extB!='veracrypt -t -d /dev/disk/by-id/usb-JMicron_JMicron_DB987654321CC-0:0-part2'
+alias m_extA='veracrypt --mount /dev/disk/by-partuuid/${uid_extA} /mnt/extA --slot=8'
+alias m_extA!='veracrypt -t -d /dev/disk/by-partuuid/${uid_extA}'
 
-alias m_extC='veracrypt --mount /dev/disk/by-id/wwn-0x5002538900000000-part2 /mnt/extC --slot=16'
-alias m_extC!='veracrypt -t -d /dev/disk/by-id/wwn-0x5002538900000000-part2'
+alias m_extB='veracrypt --mount /dev/disk/by-partuuid/${uid_extB} /mnt/extB --slot=12'
+alias m_extB!='veracrypt -t -d /dev/disk/by-partuuid/${uid_extB}'
 
-alias m_MD='veracrypt --mount /dev/disk/by-partuuid/2824c02b-422c-4702-acd7-d8bbe8bdcbbf /mnt/MD --slot=20'
-alias m_MD!='veracrypt -t -d /dev/disk/by-partuuid/2824c02b-422c-4702-acd7-d8bbe8bdcbbf'
+alias m_extC='veracrypt --mount /dev/disk/by-partuuid/${uid_extC} /mnt/extC --slot=16'
+alias m_extC!='veracrypt -t -d /dev/disk/by-partuuid/${uid_extC}'
 
-alias m_gryEx='veracrypt --mount /dev/disk/by-partuuid/cf03b736-d2cd-44dd-9578-d68844421b83 /mnt/gryEx --slot=21'
-alias m_gryEx!='veracrypt -t -d /dev/disk/by-partuuid/cf03b736-d2cd-44dd-9578-d68844421b83'
+alias m_MD='veracrypt --mount /dev/disk/by-partuuid/${uid_MD} /mnt/MD --slot=20'
+alias m_MD!='veracrypt -t -d /dev/disk/by-partuuid/${uid_MD}'
 
-alias m_gryNt='veracrypt --mount /dev/disk/by-partuuid/b56d5683-3653-4b07-8054-89ea93d058e6 /mnt/gryNt --slot=22'
-alias m_gryNt!='veracrypt -t -d /dev/disk/by-partuuid/b56d5683-3653-4b07-8054-89ea93d058e6'
+alias m_gryEx='veracrypt --mount /dev/disk/by-partuuid/${uid_gryEx} /mnt/gryEx --slot=21'
+alias m_gryEx!='veracrypt -t -d /dev/disk/by-partuuid/${uid_gryEx}'
 
-alias m_blkEx='veracrypt --mount /dev/disk/by-partuuid/d68c8953-e5f6-4d51-b202-7b06abeab67f /mnt/blkEx --slot=23'
+alias m_gryNt='veracrypt --mount /dev/disk/by-partuuid/${uid_gryNt} /mnt/gryNt --slot=22'
+alias m_gryNt!='veracrypt -t -d /dev/disk/by-partuuid/${uid_gryNt}'
+
+alias m_blkEx='veracrypt --mount /dev/disk/by-partuuid/${uid_blkEx} /mnt/blkEx --slot=23'
 alias m_blkEx!='veracrypt -t -d /dev/disk/by-partuuid/d68c8953-e5f6-4d51-b202-7b06abeab67f'
 
 alias bk_extAB='sudo rclone sync /mnt/extA /mnt/extB --verbose'
