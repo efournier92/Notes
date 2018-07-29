@@ -33,7 +33,7 @@ alias m_gryNt='veracrypt --mount /dev/disk/by-partuuid/${uid_gryNt} /mnt/gryNt -
 alias m_gryNt!='veracrypt -t -d /dev/disk/by-partuuid/${uid_gryNt}'
 
 alias m_blkEx='veracrypt --mount /dev/disk/by-partuuid/${uid_blkEx} /mnt/blkEx --slot=23'
-alias m_blkEx!='veracrypt -t -d /dev/disk/by-partuuid/d68c8953-e5f6-4d51-b202-7b06abeab67f'
+alias m_blkEx!='veracrypt -t -d /dev/disk/by-partuuid/${uid_blkEx}'
 
 alias bk_extAB='sudo rclone sync /mnt/extA /mnt/extB --verbose'
 alias bk_extAC='sudo rclone sync /mnt/extA /mnt/extC --verbose'
