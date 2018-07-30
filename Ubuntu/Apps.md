@@ -11,11 +11,6 @@ sudo apt-get install bookworm
 sudo apt-get install bleachbit 
 ```
 
-## Clonezilla
-```
-https://packages.ubuntu.com/bionic/all/clonezilla/download
-```
-
 ## Grive2
 ```
 sudo apt-get install git cmake build-essential libgcrypt11-dev libyajl-dev libboost-all-dev libcurl4-openssl-dev libexpat1-dev libcppunit-dev binutils-dev debhelper zlib1g-dev dpkg-dev pkg-config
