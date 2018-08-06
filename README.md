@@ -9,6 +9,8 @@
   - .vimrc
 * lirc
 * rEFInd
+  - LiveUsb
+  - polkit
 * Ubuntu
 * Unix Terminal Environment
 * Windows
