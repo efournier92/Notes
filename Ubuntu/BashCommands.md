@@ -1,6 +1,6 @@
 # `bash` Rename Commands
 
-## `bash` Pattern Subsititution
+## Pattern Substitution
 ```bash
 for filename in /mnt/extC/**/*; do
   mv "$filename" "${filename//:/-}"
