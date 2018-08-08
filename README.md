@@ -11,6 +11,7 @@
 * rEFInd
   - LiveUsb
   - polkit
+  - BashCommands
 * Ubuntu
 * Unix Terminal Environment
 * Windows
