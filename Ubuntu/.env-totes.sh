@@ -5,7 +5,8 @@ tmux new-session -d -s totesnote
 tmux switch -t totesnote
 
 tmux new-window -t totesnote:1
-tmux send-keys -t totesnote:1 "pkexec /usr/bin/mongod --quiet --config /etc/mongod.conf & cd /mnt/BNK/CodeSpace/totesnote;vim ." C-m
+tmux send-keys -t totesnote:1 "pkexec /usr/bin/mongod --quiet --config /etc/mongod.conf & cd /mnt/BNK/CodeSpace/totesnote"
+tmux send-keys -t totesnote:1 "vim ." C-m
 
 tmux new-window -t totesnote:2
 tmux select-window -t totesnote:2
