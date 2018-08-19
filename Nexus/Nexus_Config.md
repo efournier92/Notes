@@ -53,9 +53,9 @@ fastboot format userdata
 
 ### ADB
 ```
+sudo adb devices
 adb sideload SuperSU-v2.82-201705271822.zip
 adb sideload purenexus_bullhead-7.1.2-20170612-OFFICIAL.zip
 adb sideload BeansGapps-Mini-7.1.x-20170610.zip
 ```
-
 
