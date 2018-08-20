@@ -36,9 +36,44 @@
 * WearOS
 * WhatsApp
 
+## Custom ROM Installation
+
+### Unlock Bootloader
+
+1. Enable USB Debugging in the `Developer Options`
+2. Enable OEM unlock in the `Developer Options`
+3. Connect device to computer
+4. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`
+5. Verify device connection: `$ sudo fastboot devices`
+6. Unlock device `$ fastboot flashing unlock`
+7. Reboot
+
+### Install TWRP
+1. [Download TWRP](https://dl.twrp.me/bullhead/twrp-3.0.2-2-bullhead.img)
+2. Connect device to computer
+3. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`
+4. Verify device connection: `$ sudo fastboot devices`
+5. `$ fastboot flash recovery twrp-3.0.2-2-bullhead.img`
+
+### Root Device
+1. [Download SuperSU](http://www.supersu.com/download)
+2. Copy downloaded zip file to device
+3. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`
+4. Enter `recovery` mode using via bootloader
+5. Select `Install`, locate the SuperSU zip file, and install it
+6. Select `reboot` from the main TWRP menu
+
+### Flash Custom ROM
+1. Choose & Download Desired Custom ROM
+2. Copy downloaded zip file to device
+3. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`
+4. Enter `recovery` mode using via bootloader
+5. Select `Install`, locate the ROM zip file, and install it
+6. Select `reboot` from the main TWRP menu
+
 ## Root Commands
 
-### Fastboot
+### `fastboot`
 ```
 fastboot flash boot boot.img
 fastboot flash bootloader bootloader-bullhead-bhz11m.img
@@ -51,7 +86,7 @@ fastboot format cache
 fastboot format userdata
 ```
 
-### ADB
+### `adb` 
 ```
 sudo adb devices
 adb sideload SuperSU-v2.82-201705271822.zip
