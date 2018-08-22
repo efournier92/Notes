@@ -1,41 +1,5 @@
 # Nexus 5X Configuration
 
-## Apps
-* ADE
-* Calculator
-* Camera
-* Chrome
-* Clock
-* Compass
-* Drive
-* Double Twist
-* I Can't Wake Up (Alarm)
-* Jess(CereProc)
-* Kodi
-* Lyft
-* Maps
-* MTA eTix
-* Native Clipboard
-* Oculus
-* OpenVPN
-* Out Loud
-* Outlook
-* Phone
-* Photo Gallery
-* Pushbullet
-* Score
-* Shazam
-* SimpleNote
-* Skype
-* Solid Explorer
-* Substratum
-* Textra
-* Transit
-* Uber
-* Voice Recorder
-* WearOS
-* WhatsApp
-
 ## Custom ROM Installation
 
 ### Unlock Bootloader
@@ -93,4 +57,47 @@ adb sideload SuperSU-v2.82-201705271822.zip
 adb sideload purenexus_bullhead-7.1.2-20170612-OFFICIAL.zip
 adb sideload BeansGapps-Mini-7.1.x-20170610.zip
 ```
+
+## Apps
+* ADE
+* Calculator
+* Camera
+* Chrome
+* Clock
+* Compass
+* Drive
+* Double Twist
+* Good Vibrations
+* I Can't Wake Up (Alarm)
+* Jess(CereProc)
+* Kodi
+* Lyft
+* Maps
+* MTA eTix
+* MYmta
+* Native Clipboard
+* Oculus
+* OpenVPN
+* Out Loud
+* Outlook
+* Phone
+* Photo Gallery
+* Play Store
+* Pushbullet
+* Score
+* Shazam
+* SimpleNote
+* Skype
+* Solid Explorer
+* Substratum
+* Swift Dark
+* Textra
+* Transit
+* Tuner
+* TWRP
+* Uber
+* Voice Recorder
+* WearOS
+* Weather
+* WhatsApp
 
