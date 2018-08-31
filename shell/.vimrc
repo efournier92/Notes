@@ -6,6 +6,9 @@ if has('unix')
     " Mac
     set guifont=Menlo:h14 " font
     set clipboard=unnamed " clipboard
+  elseif has('win32unix') || has('win64unix')
+    " Cygwin
+    set guifont=Menlo:h14 " font
   else
     " Linux
     set guifont=Monospace\ 11 " font
@@ -54,6 +57,7 @@ set gcr=n:blinkon0 " no blinking cursor
 set autoread " detect when a file is changed
 set backspace=indent,eol,start " fix backspace
 set ttyfast " faster redrawing
+autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
 " Color
 colorscheme solarized
@@ -169,4 +173,5 @@ nmap <leader>bq :bp <BAR> bd #<cr>
 
 " Emmet HTML Helper
 let g:user_emmet_leader_key='<C-Z>'
+
 
