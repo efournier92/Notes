@@ -82,6 +82,14 @@ sudo apt update
 sudo apt install filezilla
 ```
 
+## Handbrake
+```
+sudo apt-get install handbrake
+sudo apt-get install ubuntu-restricted-extras
+sudo apt-get install libdvd-pkg
+sudo dpkg-reconfigure libdvd-pkg
+```
+
 ## Jumpapp
 ```
 sudo add-apt-repository ppa:mkropat/ppa
