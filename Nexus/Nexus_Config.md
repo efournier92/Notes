@@ -1,5 +1,33 @@
 # Nexus 5X Configuration
 
+## TWRP Backup/Restore
+
+### Backup
+1. Boot into TWRP recovery mode
+2. Select `Backup`
+3. Uncheck everything except `Data (excl. storage)`
+4. Swipe to Backup
+5. Copy `/TWRP` directory contents to backup location
+
+### Restore
+1. Copy ROM, OpenGApps, and SuperSU to device
+2. Boot into TWRP recovery mode
+3. Install ROM
+4. Install SuperSU
+5. Reboot to system and skip setup
+6. Reboot to recovery
+7. Install OpenGApps
+8. Reboot to system
+9. Reboot to recovery
+10. Select `Backup`
+11. Uncheck everything except `Boot`
+12. Swipe to Backup
+13. Copy TWRP from backup location to the backup folder created in step 12
+14. Select `Restore`
+15. Uncheck everything except `Data (excl. storage)`
+16. Swipe to restore
+17. Reboot to system
+
 ## Custom ROM Installation
 
 ### Unlock Bootloader
