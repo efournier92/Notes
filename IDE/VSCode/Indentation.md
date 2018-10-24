@@ -1,5 +1,7 @@
 # Configure Tab Indentation in `VS Code`
 
+### Configure via File -> Preferences -> Settings
+
 1. Set number of spaces in a Tab
   - Overridden based on the file contents if `editor.detectIndentation` is true
   - `"editor.tabSize": 2`
