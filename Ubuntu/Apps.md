@@ -210,6 +210,11 @@ sudo apt-get install torbrowser-launcher
 sudo apt-get install sane sane-utils libsane-extras xsane
 ```
 
+## youtube-dl
+```
+sudo apt-get install youtube-dl
+```
+
 # OSX
 
 ## Open
