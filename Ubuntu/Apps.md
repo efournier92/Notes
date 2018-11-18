@@ -212,7 +212,8 @@ sudo apt-get install sane sane-utils libsane-extras xsane
 
 ## youtube-dl
 ```
-sudo apt-get install youtube-dl
+sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
 ```
 
 # OSX
