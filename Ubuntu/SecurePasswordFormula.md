@@ -1,9 +1,11 @@
 # Secure Password Formula
 
 * 16+ Characters
-* 3 Four Letter Words
+* Three Letter Words
+
+### Safe Symbols
 
 ```ascii
-!#$%&()+-/:;@[\]^_|~
+! $ % + / @ ~
 ```
 
