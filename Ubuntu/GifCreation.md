@@ -2,13 +2,25 @@
 
 ## Process
 
-### 1. Merge with Background Layer
+### Standardize File Names
 ```bash
-for i in Image*.png; do
-  composite -blend 10 $i background.png "out/${i}"
+IDX=0
+for i in *.png; do
+  mv $i "Image`printf "%02d" $IDX`.png"
+  let IDX++
 done
 ```
 
+### 1. Merge with Background Layer
+```bash
+for i in Image*.png; do
+  composite -blend 6 $i background.png "out/${i}"
+done
+```
+
+for i in Image*.png; do
+  convert $i -crop 2560x1500+0+56 -resize 1200 "out/${i}"
+done
 ### 2. All `convert` Commands
 ```bash
 for i in Image*.png; do
