@@ -231,3 +231,7 @@
 ### Collapse Entire Solution
 - `ctrl-k, ctrl-k`
 
+### Go To Team Explorer
+- `ctrl-0, ctrl-t`
+
+
