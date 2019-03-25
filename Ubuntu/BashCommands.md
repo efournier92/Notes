@@ -48,7 +48,30 @@ ffmpeg -i /dev/video0 \
   -c:v libx264 -preset veryfast -pix_fmt yuv420p -threads 0 -tune zerolatency -g 60 \
   -t 00:59:57 \
   -f flv "rtmp://live.twitch.tv/app/live_422375864_tssyAl45ZdXrUcfHuoEnCte2QO0VLe"
+```
 
+## Standardize Audio Library With Logging
+```bash
+shopt -s globstar
+
+logFile="/home/misigno/Desktop/fflog.log"
+baseDirIn="/mnt/extB/Media/Audio/Music"
+baseDirOut="/mnt/extB/MusicOut"
+
+mkdir -p "$baseDirOut"
+
+for inFile in $baseDirIn/**/*.mp3; do
+  filePath=${inFile##$baseDirIn/}
+  outFilePath="$baseDirOut/$filePath"
+
+  mkdir -p "${outFilePath%/*}"
+  echo "$outFilePath" >> "fflog.log"
+
+  ffmpeg -y -i "$inFile" \
+  -c:a libmp3lame -b:a 128k \
+  -map_metadata 0:g:0 -vsync 2 \
+  "$outFilePath" &>> "fflog.log"
+done
 ```
 
 ## Standardize Audio Library
@@ -80,6 +103,17 @@ for inFile in "$baseDirIn"/**/*.*; do
 done
 ```
 
+## Find Files Without `mp3` Extension
+```bash
+shopt -s globstar
+
+for file in **/*; do
+  if ! [[ $file == *"mp3"* ]] && [[ $file == *"."* ]]; then
+    echo "$file"
+  fi
+done
+```
+
 ## Bible Loop
 ```bash
 #!/bin/bash
@@ -108,5 +142,4 @@ for i in **/*.mp3; do
   COUNT=$((COUNT + 1))
 done
 ```
-
 
