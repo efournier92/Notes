@@ -22,7 +22,7 @@ done
 
 FFREPORT=file="$LivestreamDir/Logs/$NowTimestamp.log":level=24 \
 ffmpeg -i /dev/video0 \
-  -f concat -safe 0 -i $ConcatFile -c:a libfdk_aac -b:a 64k \
+  -f concat -safe 0 -i $ConcatFile -c:a aac \
   -fflags +igndts -fflags +genpts -copytb 1 \
   -c:v libx264 -preset veryfast -pix_fmt yuv420p -threads 0 -tune zerolatency -g 60 \
   -t 01:00:00 \
