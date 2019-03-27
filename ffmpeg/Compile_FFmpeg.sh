@@ -9,27 +9,26 @@ sudo apt-get update && sudo apt-get -y install \
   cmake \
   git-core \
   libass-dev \
-  libfdk-aac-dev \
   libfreetype6-dev \
-  libmp3lame-dev \
-  libopus-dev
   libsdl2-dev \
   libtool \
   libva-dev \
   libvdpau-dev \
-  libvpx-dev \
   libvorbis-dev \
-  libx264-dev \
-  libx265-dev libnuma-dev \
   libxcb1-dev \
   libxcb-shm0-dev \
   libxcb-xfixes0-dev \
-  nasm \
   pkg-config \
   texinfo \
   wget \
-  yasm \
   zlib1g-dev
+
+sudo apt-get -y install libx264-dev
+sudo apt-get -y install libx265-dev libnuma-dev
+sudo apt-get -y install libvpx-dev
+sudo apt-get -y install libfdk-aac-dev
+sudo apt-get -y install libmp3lame-dev
+sudo apt-get -y install libopus-dev
 
 cd ~/.ffmpeg_sources && \
 wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && \

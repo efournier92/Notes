@@ -1,0 +1,42 @@
+Command line:
+ffmpeg -i /dev/video0 -f concat -safe 0 -i /home/misigno/.livestream/Playlists/2019-03-26-18.txt -c:a libfdk_aac -b:a 64k -fflags +igndts -fflags +genpts -copytb 1 -c:v libx264 -preset veryfast -pix_fmt yuv420p -threads 0 -tune zerolatency -g 60 -t 00:59:57 -f flv rtmp://live.twitch.tv/app/live_422375864_tssyAl45ZdXrUcfHuoEnCte2QO0VLe
+[video4linux2,v4l2 @ 0x55abb78c2000] Thread message queue blocking; consider raising the thread_queue_size option (current value: 8)
+[mp3 @ 0x7fe0e4005b00] Estimating duration from bitrate, this may be inaccurate
+[mp3 @ 0x7fe0e401d000] Estimating duration from bitrate, this may be inaccurate
+[mp3 @ 0x7fe0e401ec00] Estimating duration from bitrate, this may be inaccurate
+[libfdk_aac @ 0x55abb7914dc0] Queue input is backward in time
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740096; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740117; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740139; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740160; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740181; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740203; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740224; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740245; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740267; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740288; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740309; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740331; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740352; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740373; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740395; changing to 1740439. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 1740439, current: 1740416; changing to 1740439. This may result in incorrect timestamps in the output file.
+[mp3 @ 0x7fe0e401d3c0] Estimating duration from bitrate, this may be inaccurate
+[mp3 @ 0x7fe0e402e580] Estimating duration from bitrate, this may be inaccurate
+[mp3 @ 0x7fe0e402e580] Estimating duration from bitrate, this may be inaccurate
+[mp3 @ 0x7fe0e4032740] Estimating duration from bitrate, this may be inaccurate
+[mp3 @ 0x7fe0e400e780] Estimating duration from bitrate, this may be inaccurate
+[libfdk_aac @ 0x55abb7914dc0] Queue input is backward in time
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526318; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526339; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526361; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526382; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526403; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526425; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526446; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526467; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526489; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526510; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Non-monotonous DTS in output stream 0:1; previous: 3526550, current: 3526531; changing to 3526550. This may result in incorrect timestamps in the output file.
+[flv @ 0x55abb79376c0] Failed to update header with correct duration.
+[flv @ 0x55abb79376c0] Failed to update header with correct filesize.
