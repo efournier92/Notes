@@ -25,6 +25,6 @@ ffmpeg -i /dev/video0 \
   -f concat -safe 0 -i $ConcatFile -c:a aac \
   -fflags +igndts -fflags +genpts -copytb 1 \
   -c:v libx264 -preset veryfast -pix_fmt yuv420p -threads 0 -tune zerolatency -g 60 \
-  -t 01:00:00 \
+  -t 00:59:58 \
   -f flv "rtmp://live.twitch.tv/app/live_422375864_tssyAl45ZdXrUcfHuoEnCte2QO0VLe"
 
