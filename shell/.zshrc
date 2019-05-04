@@ -33,6 +33,9 @@ source ~/.zsh-alias.sh
 # Load MC Solarized Skin
 export MC_SKIN=$HOME/.mc/solarized.ini
 
+# Fix MC Slow Load
+alias mc="mc --nosubshell"
+
 # Load oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh

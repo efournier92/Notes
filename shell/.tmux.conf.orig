@@ -167,4 +167,3 @@ set -g message-command-style bg=colour233,fg=black
 # Mode
 set -g mode-style bg=colour39,fg=colour232
 
-
