@@ -33,9 +33,6 @@ source ~/.zsh-alias.sh
 # Load MC Solarized Skin
 export MC_SKIN=$HOME/.mc/solarized.ini
 
-# Fix MC Slow Load
-alias mc="mc --nosubshell"
-
 # Load oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -70,3 +67,9 @@ if [ -z "$TMUX" ]
   then (cd $START_DIR; tmux)
 fi
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/misigno/google-cloud-sdk/path.zsh.inc' ]; then . '/home/misigno/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/misigno/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/misigno/google-cloud-sdk/completion.zsh.inc'; fi
