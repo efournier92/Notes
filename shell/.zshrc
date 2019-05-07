@@ -34,6 +34,7 @@ source ~/.zsh-alias.sh
 export MC_SKIN=$HOME/.mc/solarized.ini
 
 # Load oh-my-zsh
+ZSH_DISABLE_COMPFIX=true
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -66,7 +67,6 @@ fi
 if [ -z "$TMUX" ]
   then (cd $START_DIR; tmux)
 fi
-
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/misigno/google-cloud-sdk/path.zsh.inc' ]; then . '/home/misigno/google-cloud-sdk/path.zsh.inc'; fi
