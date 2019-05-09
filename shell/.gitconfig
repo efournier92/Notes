@@ -2,7 +2,6 @@
 	autocrlf = input
 [credential]
 	useHttpPath = true
-	helper = wincred
 [user]
 	name = efournier92
 	email = efournier92@gmail.com
