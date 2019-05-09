@@ -150,6 +150,11 @@ regex/\.t(ar\.xz|xz)$
 	Open=%cd %p/utar://
 	View=%view{ascii} /usr/libexec/mc/ext.d/archive.sh view tar.xz
 
+# .tar.zst, .tzst
+regex/\.t(ar\.zst|zst)$
+	Open=%cd %p/utar://
+	View=%view{ascii} /usr/libexec/mc/ext.d/archive.sh view tar.zst
+
 # .tar.F - used in QNX
 shell/.tar.F
 	# Open=%cd %p/utar://
@@ -212,6 +217,10 @@ shell/.cpio.xz
 	Open=%cd %p/ucpio://
 	View=%view{ascii} /usr/libexec/mc/ext.d/archive.sh view cpio.xz
 
+shell/.cpio.zst
+	Open=%cd %p/ucpio://
+	View=%view{ascii} /usr/libexec/mc/ext.d/archive.sh view cpio.zst
+
 shell/.cpio.gz
 	Open=%cd %p/ucpio://
 	View=%view{ascii} /usr/libexec/mc/ext.d/archive.sh view cpio.gz
@@ -242,6 +251,10 @@ regex/\.(diff|patch)(\.(gz|Z))$
 regex/\.(diff|patch)(\.xz)$
     Open=%cd %p/patchfs://
     View=%view{ascii} /usr/libexec/mc/ext.d/archive.sh view xz
+
+regex/\.(diff|patch)(\.zst)$
+    Open=%cd %p/patchfs://
+    View=%view{ascii} /usr/libexec/mc/ext.d/archive.sh view zst
 
 # ls-lR
 regex/(^|\.)ls-?lR(\.gz|Z|bz2)$
@@ -402,6 +415,10 @@ regex/([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|[ln])\.lzma$
 regex/([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|[ln])\.xz$
 	Open=/usr/libexec/mc/ext.d/text.sh open man.xz %var{PAGER:more}
 	View=%view{ascii,nroff} /usr/libexec/mc/ext.d/text.sh view man.xz %var{PAGER:more}
+
+regex/([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|[ln])\.zst$
+	Open=/usr/libexec/mc/ext.d/text.sh open man.zst %var{PAGER:more}
+	View=%view{ascii,nroff} /usr/libexec/mc/ext.d/text.sh view man.zst %var{PAGER:more}
 
 # CHM
 shell/i/.chm
@@ -590,7 +607,7 @@ shell/i/.gnumeric
 	Open=/usr/libexec/mc/ext.d/doc.sh open gnumeric
 
 # Microsoft Word Document
-regex/i/\.(do[ct]|wri)$
+regex/i/\.(do[ct]|wri|docx)$
 	Open=/usr/libexec/mc/ext.d/doc.sh open msdoc
 	View=%view{ascii} /usr/libexec/mc/ext.d/doc.sh view msdoc
 type/^Microsoft\ Word
@@ -602,19 +619,22 @@ shell/i/.rtf
 	Open=/usr/libexec/mc/ext.d/doc.sh open msdoc
 
 # Microsoft Excel Worksheet
-regex/i/\.xl[sw]$
+regex/i/\.(xl[sw]|xlsx)$
 	Open=/usr/libexec/mc/ext.d/doc.sh open msxls
 	View=%view{ascii} /usr/libexec/mc/ext.d/doc.sh view msxls
 type/^Microsoft\ Excel
 	Open=/usr/libexec/mc/ext.d/doc.sh open msxls
 	View=%view{ascii} /usr/libexec/mc/ext.d/doc.sh view msxls
 
-regex/i/\.(ppt|pps)$
+# Microsoft PowerPoint Presentation
+regex/i/\.(pp[ts]|pptx)$
 	Open=/usr/libexec/mc/ext.d/doc.sh open msppt
 	View=%view{ascii} /usr/libexec/mc/ext.d/doc.sh view msppt
 
-# Use OpenOffice.org to open any MS Office documents
+# Use OpenOffice.org/LibreOffice to open any MS Office documents
 type/^Microsoft\ Office\ Document
+	Open=/usr/libexec/mc/ext.d/doc.sh open ooffice
+type/^Microsoft\ OOXML
 	Open=/usr/libexec/mc/ext.d/doc.sh open ooffice
 
 # Framemaker
@@ -790,6 +810,11 @@ regex/\.xz$
 	Open=/usr/libexec/mc/ext.d/archive.sh view xz %var{PAGER:more}
 	View=%view{ascii} /usr/libexec/mc/ext.d/archive.sh view xz
 
+# zstd
+regex/\.zst$
+	Open=/usr/libexec/mc/ext.d/archive.sh view zst %var{PAGER:more}
+	View=%view{ascii} /usr/libexec/mc/ext.d/archive.sh view zst
+
 # Parity Archive
 type/^Parity\ Archive\ Volume\ Set
 	Open=/usr/libexec/mc/ext.d/archive.sh open par2
@@ -798,7 +823,7 @@ type/^Parity\ Archive\ Volume\ Set
 
 # Default target for anything not described above
 default/*
-	Open=vim %f
-
+  Open=%var{EDITOR:vim} %f
 
 ### EOF ###
+
