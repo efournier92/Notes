@@ -1,6 +1,6 @@
 # Configs
 
-### Contents
+## Contents
 - aLg
 - CopyQ
 - Cygwin
