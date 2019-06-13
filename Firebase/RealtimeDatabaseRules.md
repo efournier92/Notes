@@ -5,7 +5,7 @@
 {
   "rules": {
     ".read": true,
-      ".write": true
+    ".write": true
   }
 }
 ```
@@ -15,7 +15,7 @@
 {
   "rules": {
     ".read": false,
-      ".write": false
+    ".write": false
   }
 }
 ```
@@ -25,7 +25,7 @@
 {
   "rules": {
     ".read": "auth != null",
-      ".write": "auth != null"
+    ".write": "auth != null"
   }
 }
 ```
@@ -37,7 +37,7 @@
     "posts": {
       "$uid": {
         ".read": "$uid === auth.uid",
-          ".write": "$uid === auth.uid"
+        ".write": "$uid === auth.uid"
       }
     }
   }
