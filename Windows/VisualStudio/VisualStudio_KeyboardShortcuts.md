@@ -202,9 +202,6 @@
 ### Find Usages
 - `shift-F12`
 
-### Find Usages
-- `shift-F12`
-
 ### Navigate To
 - `alt-{``}`
 
@@ -233,5 +230,4 @@
 
 ### Go To Team Explorer
 - `ctrl-0, ctrl-t`
-
 
