@@ -1,5 +1,27 @@
 # `bash` Rename Commands
 
+## Empty Folders
+
+### List
+```bash
+find . -empty -type d -printf '%p\n' 
+```
+
+### Delete
+```bash
+find . -empty -type d -delete
+```
+
+## Batch Rename
+```bash
+INDEX=1
+for i in *.JP*; do
+  NEW_NAME="$( printf '(2018)_%03d.jpg' "$INDEX" )"
+  mv "$i" "$NEW_NAME"
+  INDEX=$(( INDEX + 1 ))
+done
+```
+
 ## Pattern Substitution
 
 ```bash
