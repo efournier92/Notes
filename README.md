@@ -22,19 +22,15 @@ If you have feature suggestions, please contact me here or at efournier92@gmail.
 ## License
 This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) licence and I hereby grant rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software without limitation, provided the resulting software also carries the same open-source licensing statement.
 
-## Features
+## Guides
+- []()
+- []()
+- []()
+- []()
+- []()
 
-###
-![Screen]()
-
-###
-![Screen]()
-
-###
-![Screen]()
-
-## Features To Do
-- [ ]
-- [ ]
-- [ ]
+## Guides To Do
+- [ ] 
+- [ ] 
+- [ ] 
 
