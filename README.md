@@ -31,6 +31,4 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 
 ## Guides To Do
 - [ ] 
-- [ ] 
-- [ ] 
 
