@@ -8,6 +8,7 @@ esac
 
 # Shell Theme
 ZSH_THEME="agnoster"
+DEFAULT_USER=$USER
 
 # . _ and - will be interchangeable
 HYPHEN_INSENSITIVE="true"
@@ -46,21 +47,23 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-DEFAULT_USER=$USER
 # OS Specific Configs
-if [[ ${machineOs} == Linux ]]; then
-  export START_DIR=/mnt/BNK # Start Directory
+if [[ ${machineOs} == Linux && $(hostname) == EFOURNIER-LT ]]; then
+  export START_DIR=/mnt/c/Users/efournier
+elif [[ ${machineOs} == Linux ]]; then
+  export START_DIR=/mnt/BNK
 elif [[ ${machineOs} == Osx ]]; then
-  export START_DIR=/Volumes/BNK # Start Directory
+  export START_DIR=/Volumes/BNK
 elif [[ ${machineOs} == Cygwin ]]; then
   source ~/.zsh/colors/mintty-solarized-dark.sh # Load colors file
   if [[ $(whoami) = "misigno" ]]; then
-    export START_DIR=/cygdrive/z # Start Directory
+    export START_DIR=/cygdrive/z
   elif [[ $(whoami) = "efournier" ]]; then
-    export START_DIR=/cygdrive/c/Users/efournier # Start Directory
+    export START_DIR=/cygdrive/c/Users/efournier
   fi
 else
-  export START_DIR=$HOME # Start Directory
+  export START_DIR=$HOME
+  echo START_DIR
 fi
 
 # Run Tmux
