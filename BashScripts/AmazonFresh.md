@@ -1,3 +1,11 @@
+# Amazon Fresh Script
+
+## Description
+
+
+## Script
+
+```bash
 #!/bin/bash
 
 SEARCH="https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Damazonfresh&field-keywords="
@@ -19,4 +27,5 @@ google-chrome --new-window $HOMEPAGE \
 -d "${SEARCH}dried+fruit" \
 -d "${SEARCH}water+320" \
 -d $HOMEPAGE
+```
 
