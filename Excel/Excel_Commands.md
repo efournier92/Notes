@@ -1,7 +1,7 @@
 # Excel Commands
 
 ## Description
-I maintain the following file as a repository for commands and functions I write when working with `[Microsoft Excel](https://products.office.com/en-us/excel)`.
+I maintain the following file as a repository for commands and functions I write, whenever I find myself using `[Microsoft Excel](https://products.office.com/en-us/excel)`.
 
 ## Functions
 
