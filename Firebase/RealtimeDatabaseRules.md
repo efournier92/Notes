@@ -1,6 +1,11 @@
 # Firebase Realtime Database Rules
 
-## No Security
+## Description
+Below are a variety of rules, for use with [Firebase](https://firebase.google.com) [Realtime Database](https://firebase.google.com/docs/database).
+
+## Rules
+
+### No Security
 ```json
 {
   "rules": {
@@ -10,7 +15,7 @@
 }
 ```
 
-## Full security
+### Full security
 ```json
 {
   "rules": {
@@ -20,7 +25,7 @@
 }
 ```
 
-## Only authenticated users can access/write data
+### Only authenticated users can access/write data
 ```json
 {
   "rules": {
@@ -30,7 +35,7 @@
 }
 ```
 
-## User can only access their own data
+### User can only access their own data
 ```json
 {
   "rules": {
@@ -45,7 +50,7 @@
 ```
 
 
-## Validates user is moderator from different database location
+### Validates user is moderator from different database location
 ```json
 {
   "rules": {
@@ -59,7 +64,7 @@
 ```
 
 
-## Validates string datatype and length range
+### Validates string datatype and length range
 ```json
 {
   "rules": {
@@ -75,7 +80,7 @@
 ```
 
 
-## Checks presense of child attributes
+### Checks presense of child attributes
 ```json
 {
   "rules": {
@@ -89,7 +94,7 @@
 ```
 
 
-## Validates timestamp is not a future value
+### Validates timestamp is not a future value
 ```json
 {
   "rules": {
@@ -105,7 +110,7 @@
 ```
 
 
-## Prevents Delete or Update
+### Prevents Delete or Update
 ```json
 {
   "rules": {
@@ -118,7 +123,7 @@
 }
 ```
 
-## Prevents only Delete
+### Prevents only Delete
 ```json
 {
   "rules": {
@@ -131,7 +136,7 @@
 }
 ```
 
-## Prevents only Update
+### Prevents only Update
 ```json
 {
   "rules": {
@@ -144,7 +149,7 @@
 }
 ```
 
-## Prevents Create and Delete
+### Prevents Create and Delete
 ```json
 {
   "rules": {
