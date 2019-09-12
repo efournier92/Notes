@@ -1,6 +1,9 @@
 # Visual Studio Performance Configuration
 
-## `Visual Studio 2017`
+## Description
+The following are 
+
+## Configs
 
 ### `Environment | General`
 - Disable Automatically adjust visual experience based on client performance
