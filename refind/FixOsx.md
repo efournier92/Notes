@@ -1,5 +1,9 @@
 # Fix APFS Boot with `rEFInd`
 
+## Description
+
+## Commands
+
 ### List Disks
 ```bash
 diskutil list
