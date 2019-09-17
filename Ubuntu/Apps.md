@@ -1,17 +1,21 @@
 # Ubuntu
 
-## Bookworm
+## Description
+
+## Applications to Install
+
+### Bookworm
 ```
 sudo add-apt-repository ppa:bookworm-team/bookworm
 sudo apt-get install bookworm
 ```
 
-## BleachBit
+### BleachBit
 ```
 sudo apt-get install bleachbit 
 ```
 
-## Grive2
+### Grive2
 ```
 sudo apt-get install git cmake build-essential libgcrypt11-dev libyajl-dev libboost-all-dev libcurl4-openssl-dev libexpat1-dev libcppunit-dev binutils-dev debhelper zlib1g-dev dpkg-dev pkg-config
 git clone https://github.com/vitalif/grive2
@@ -23,7 +27,7 @@ make -j4
 sudo make install
 ```
 
-## .grive.sh
+### .grive.sh
 ```
 #!/bin/bash
 
@@ -31,7 +35,7 @@ cd /mnt/BNK/Sync
 grive
 ```
 
-## Crontab
+### Crontab
 ```
 crontab -e
 ```
@@ -39,7 +43,7 @@ crontab -e
 */5 * * * * /mnt/BNK/Sync/.grive.sh
 ```
 
-## Chrome
+### Chrome
 ```
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
@@ -47,34 +51,34 @@ sudo apt-get update
 sudo apt-get install google-chrome-stable
 ```
 
-## Chromium
+### Chromium
 ```
 sudo apt install chromium-browser
 ```
 
-## Citrix Receiver
+### Citrix Receiver
 ```
 firefox https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linux-latest.html 
 ```
 
-## CopyQ
+### CopyQ
 ```
 sudo add-apt-repository ppa:hluk/copyq
 sudo apt update
 sudo apt install copyq
 ```
 
-## Disk Analyzer
+### Disk Analyzer
 ```
 sudo apt-get install baobab 
 ```
 
-## ffmpeg
+### ffmpeg
 ```
 sudo apt-get install ffmpeg
 ```
 
-## FileZilla
+### FileZilla
 ```
 sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu xenial-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
 wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
@@ -82,7 +86,7 @@ sudo apt update
 sudo apt install filezilla
 ```
 
-## Handbrake
+### Handbrake
 ```
 sudo apt-get install handbrake
 sudo apt-get install ubuntu-restricted-extras
@@ -90,21 +94,21 @@ sudo apt-get install libdvd-pkg
 sudo dpkg-reconfigure libdvd-pkg
 ```
 
-## Jumpapp
+### Jumpapp
 ```
 sudo add-apt-repository ppa:mkropat/ppa
 sudo apt-get update
 sudo apt-get install jumpapp
 ```
 
-## Kid3 (TagEditor)
+### Kid3 (TagEditor)
 ```
 sudo add-apt-repository ppa:ufleisch/kid3
 sudo apt-get update
 sudo apt-get install kid3-qt
 ```
 
-## Kodi
+### Kodi
 ```
 sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:team-xbmc/ppa
@@ -112,12 +116,12 @@ sudo apt-get update
 sudo apt-get install kodi
 ```
 
-## OpenVpn
+### OpenVpn
 ```
 sudo apt-get install openvpn
 ```
 
-## MongoDB
+### MongoDB
 ```
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
@@ -125,92 +129,92 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org
 ```
 
-## NodeJS
+### NodeJS
 ```
 curl -sL https://deb.nodesource.com/setup_{version-major}.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-## Pinta
+### Pinta
 ```
 sudo add-apt-repository ppa:pinta-maintainers/pinta-stable
 sudo apt-get update
 sudo apt-get install pinta
 ```
 
-## Powerline Fonts
+### Powerline Fonts
 ```
 sudo apt-get install fonts-powerline
 ```
 
-## Python
+### Python
 ```
 sudo apt-get install python 
 ```
 
-## RedShift
+### RedShift
 ```
 sudo apt-get install redshift redshift-gtk
 ```
 
-## Rsync/Rclone
+### Rsync/Rclone
 ```
 sudo apt-get install rsync grsync
 sudo apt-get install rclone
 ```
 
-## Ruby
+### Ruby
 ```
 sudo apt-get install ruby
 ```
 
-## Simplenote
+### Simplenote
 ```
 wget https://github.com/Automattic/simplenote-electron/releases/download/v1.0.8/simplenote-1.0.8.deb
 sudo dpkg -i simplenote-1.0.8.deb
 ```
 
-## Simple Scan
+### Simple Scan
 ```
 sudo apt-get install simple-scan
 ```
 
-## SQLite Browser
+### SQLite Browser
 ```
 sudo apt-get install sqlitebrowser
 ```
 
-## VLC
+### VLC
 ```
 sudo apt-get install vlc
 ```
 
-## Vim
+### Vim
 ```
 sudo apt-get install vim-gnome
 ```
 
-## VirtualBox
+### VirtualBox
 ```
 sudo apt-get install virtualbox
 ```
 
-## Visual Studio Code
+### Visual Studio Code
 ```
 sudo apt-get install code
 ```
 
-## Tor
+### Tor
 ```
 sudo apt-get install torbrowser-launcher
 ```
 
-## Xsane
+### Xsane
 ```
 sudo apt-get install sane sane-utils libsane-extras xsane
 ```
 
-## youtube-dl
+### youtube-dl
 ```
 sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
 sudo chmod a+rx /usr/local/bin/youtube-dl
