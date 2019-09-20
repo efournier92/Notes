@@ -1,3 +1,10 @@
+# Improve Aeon MQ8 Music Visualizations
+
+## Description
+
+## Configuration
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
 	<!-- Aeon MQ 8 -->
@@ -836,4 +843,4 @@
 		<include>background_black</include>
 	</controls>
 </window>
-
+```
