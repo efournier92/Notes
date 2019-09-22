@@ -1,11 +1,21 @@
 # Audio Log Scripts
 
 ## Description
+I wrote the following [Ruby](https://www.ruby-lang.org/en/) scripts to migrate audio recordings off 
 
-## Ruby Scripts
+Done early
+Gets the job done
+Since file protocols can differ between operating system, I 
 
+## Available Scripts
+- [Linux Audio Log]()
+- [OsX Audio Log]()
 
-### Ubuntu
+## Script Contents
+
+### [Ubuntu]()
+
+#### _Ruby_
 
 ```ruby
 def directory_exists?(directory)
@@ -53,7 +63,9 @@ dates.each do |date|
 end
 ```
 
-### OsX
+### [OsX]()
+
+#### _Ruby_
 
 ```ruby
 def directory_exists?(directory)
@@ -115,3 +127,4 @@ dates.each do |date|
   END
 end
 ```
+
