@@ -1,6 +1,5 @@
 # `polkit` Commands
 
-
 ## Policies
 
 ### Notes
