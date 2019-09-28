@@ -1,4 +1,5 @@
-# New Relic Futurestack - Dashboarding Workshop - 2019-09-18
+### 2019-09-18
+# New Relic Futurestack - Dashboarding Workshop
 
 ## Introduction to `Insights`
 
@@ -165,7 +166,8 @@ SELECT function(attribute_) FROM Event_Type WHERE condition FACET grouping
   - These can be shared with specific users
   - Useful for sharing snapshots between teams
 
-# New Relic Futurestack - Main Event - 2019-09-19
+### 2019-09-19
+# New Relic Futurestack - Main Event
 
 ## Keynote 
 ### __Speaker:__ _Lew Cirne, CEO & Founder of New Relic_
@@ -303,7 +305,7 @@ SELECT function(attribute_) FROM Event_Type WHERE condition FACET grouping
 ## AWS Migration, Modernization, and Optimization
 ### __Speaker:__ _David McCann, VP, AWS Marketplace_
 
-### Core message
+### Core Message
 - Focus on differentiating your company
 - Innovate at start-up like speed
 - Migrate under your terms
