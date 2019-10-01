@@ -1,0 +1,23 @@
+#!/bin/bash
+
+Drive1Path="/mnt/$1"
+Drive2Path="/mnt/$2"
+
+shouldBackUp() {
+  if ls -1qA "$Drive1Path" | grep -q . && ls -1qA "$Drive2Path" | grep -q .
+  then
+    true
+  else
+    false
+  fi
+}
+
+if shouldBackUp; then
+  pkexec rclone sync "$Drive1Path" "$Drive2Path" --verbose
+  echo " --------------------"
+  echo " DELETING DIRECTORIES"
+  echo " --------------------"
+  pkexec find "$Drive1Path" -empty -type d -print -delete -vf
+  pkexec find "$Drive2Path" -empty -type d -print -delete -vf
+fi
+
