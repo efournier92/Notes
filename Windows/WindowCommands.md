@@ -54,3 +54,14 @@ wsh = New-Object -ComObject WScript.Shell
 wsh.SendKeys('{SCROLLLOCK}')
 ```
 
+### Open Sound Settings in `Windows 10`
+```dos
+control.exe /name Microsoft.Sound
+```
+
+### Launch `gnome-terminal`
+```dos
+"C:\Program Files (x86)\Xming\Xming.exe" -clipboard -multiwindow &
+wsl -- export DISPLAY=:0; sudo gvim; sudo pkill gvim; sudo gnome-terminal
+```
+
