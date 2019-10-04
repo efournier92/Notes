@@ -3,6 +3,12 @@
 Drive1Path="/mnt/$1"
 Drive2Path="/mnt/$2"
 
+if [ -z "$1" ] || [ -z "$2" ]
+  then
+    echo "Must Supply 2 Drive Names"
+    exit 1
+fi
+
 shouldBackUp() {
   if ls -1qA "$Drive1Path" | grep -q . && ls -1qA "$Drive2Path" | grep -q .
   then
@@ -17,7 +23,7 @@ if shouldBackUp; then
   echo " --------------------"
   echo " DELETING DIRECTORIES"
   echo " --------------------"
-  pkexec find "$Drive1Path" -empty -type d -print -delete -vf
-  pkexec find "$Drive2Path" -empty -type d -print -delete -vf
+  pkexec find "$Drive1Path" -empty -type d -print -delete
+  pkexec find "$Drive2Path" -empty -type d -print -delete
 fi
 
