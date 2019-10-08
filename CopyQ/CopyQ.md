@@ -1,6 +1,0 @@
-# [`CopyQ`]()
-
-## Overview
-
-## Settings
-
