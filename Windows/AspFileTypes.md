@@ -1,6 +1,6 @@
 # ASP.NET Filetypes
 
-## Description
+## Overview
 For easy reference, I've compiles the following list of filetypes, as defined by the [.NET](https://dotnet.microsoft.com/apps/aspnet) [Framework](https://en.wikipedia.org/wiki/Software_framework).
 
 ## Types by Extension

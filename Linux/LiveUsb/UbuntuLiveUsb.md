@@ -2,6 +2,7 @@
 
 ## Description
 
+
 ## Migrating to a Larger Partition
 1. In `GParted`, prepare the flash drive
   - Select the flash drive

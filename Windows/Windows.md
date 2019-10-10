@@ -1,20 +1,26 @@
 # Windows Commands
 
-## Description
-Commands I sometimes use when forced to operate in a [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) environment.
+## Overview
+Sometimes, operating in a [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) environment is a necessary evil. When forced to do so, I sometimes use the following commands and configurations to enhance my workflow.
 
 ## Commands
 
 ### Set Default Program to Open Files
 
+#### Description
+
+#### Command
 ```dos
 assoc .="No Extension"
 ftype "No Extension"="C:\path\to\my editor.exe" "%1"
 ```
 
-### Favor [`vim`](https://www.vim.org/) for editing
+### Always Edit with [`vim`](https://www.vim.org/)
+
+#### Description
 [`vim`](https://www.vim.org/) is my preferred text editor for [`mardown`](https://daringfireball.net/projects/markdown/) and small projects. To make [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) favor [`vim`](https://www.vim.org/) as the system text editor, add the following entry to you [Registry](https://en.wikipedia.org/wiki/Windows_Registry).
 
+#### Command
 ```dos
 REGEDIT4
 [HKEY_CLASSES_ROOT\Unknown\shell]
@@ -24,8 +30,12 @@ REGEDIT4
 @="\"C:\\Program Files (x86)\\Vim\\vim81\\gvim.exe\" \"%1\""
 ```
 
-### [`slmgr`](https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-using-key-management-service-vamt) Commands
+## [`slmgr`](https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-using-key-management-service-vamt)
+
+### Description
 [`slmgr`](https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-using-key-management-service-vamt) is a [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) service that ensures you're licensed, and sometimes acts buggy. If you find this service misbehaving, the following commands may come in handy.
+
+### Commands
 
 #### Show Details
 

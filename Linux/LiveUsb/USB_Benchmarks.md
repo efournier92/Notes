@@ -1,35 +1,82 @@
-## Sandisk Cruzer Glide (16GB)
-Read :  31.1 MB/s
-Write:  2.6 MB/s
-Accss:  0.68 msec
+# USB Benchmarks
 
-## PNY (128GB)
-Read :  15.2 MB/s
-Write:  MB/s
-Accss:  8.57 msec
+## Overview
+I once took a notion to benchmark a variety of [USB](https://www.usb.org/) [flash drives](https://en.wikipedia.org/wiki/USB_flash_drive), to see how wide a range there was. The below results indicate that speed can vary tremendously, particularly between cheap and expensive hardware.
 
-## Sandisk Cruzer Fit (64GB)
-Read : 33.9 MB/s
-Write:  MB/s
-Accss: 1.22 msec
+## Drives
 
-## Sandisk Cruzer Blade (8GB)
-Read : 40.0 MB/s
-Write: 4.4 MB/s
-Accss: 0.92 msec
+### Sandisk Cruzer Glide
 
-## Silver Swivel (128GB)
-Read : 13.0 MB/s
-Write: 10.1 MB/s
-Accss: 2.90 msec
+#### Size
+16GB
 
-## Blue Straight (134GB)
-Read : 14.2 MB/s
-Write: 10.3 MB/s
-Accss:  msec
+#### Read
+31.1 MB/s
 
-## 
-Read :  MB/s
-Write:  MB/s
-Accss:  msec
+#### Write
+2.6 MB/s
+
+#### Access
+0.68 msec
+
+### PNY (128GB)
+
+#### Size
+128GB
+
+#### Read
+15.2 MB/s
+
+#### Access
+8.57 msec
+
+### Sandisk Cruzer Fit
+
+#### Size
+64GB
+
+#### Read
+33.9 MB/s
+
+#### Access
+1.22 msec
+
+### Sandisk Cruzer Blade
+
+#### Size
+8GB
+
+#### Read
+40.0 MB/s
+
+#### Write
+4.4 MB/s
+
+#### Access
+0.92 msec
+
+### Silver Swivel
+
+#### Size
+128GB
+
+#### Read
+13.0 MB/s
+
+#### Write
+10.1 MB/s
+
+#### Access
+2.90 msec
+
+### Blue Straight
+
+#### Size
+134GB
+
+#### Read
+14.2 MB/s
+
+#### Write
+10.3 MB/s
 

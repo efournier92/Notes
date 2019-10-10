@@ -1,7 +1,7 @@
 # Visual Studio Code
 
 ## Overview
-I like [Visual Studio Code](https://code.visualstudio.com/) as an IDE when working on client-side projects, particularly when using [Angular](https://angular.io/). Below are some tips I've learned while using it.
+I like [Visual Studio Code](https://code.visualstudio.com/) as an IDE when working on client-side projects, particularly when using [Angular](https://angular.io/) and similar frameworks. Below are some tips I've learned while using it.
 
 ## Configurations
 
