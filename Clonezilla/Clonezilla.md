@@ -1,10 +1,16 @@
-# Restore A Clonezilla Image
+# [Clonezilla](https://clonezilla.org/)
 
-## Description
+## Overview
+The free and open-source tool available. Built on Linux, it can be installed on a thumb drive to provide a bootable solution for disk cloning, imaging, restoration, and network deployments.
+
+## Tips
+
+### Restore from Image
+
+#### Description
 A step-by-step set of instructions to restore a [Clonezilla](https://clonezilla.org/) image you created earlier, via the [Clonezilla](https://clonezilla.org/) bootloader interface. I originally wrote this in case I ever need to talk anyone thru this process over the phone.
 
-## Steps
-
+#### Steps
 1. In the top drawer next to the computer, find the USB flash drive marked `Recovery`
 2. Plug the flash drive into the front of the computer
 3. Power on the computer, then hold `F12` on the keyboard
