@@ -1,11 +1,15 @@
-# Firebase Realtime Database Rules
+# Firebase 
 
-## Description
+## Overview
+
+## Realtime Database
+
+### Description
 Below are a variety of rules, for use with [Firebase](https://firebase.google.com) [Realtime Database](https://firebase.google.com/docs/database).
 
-## Rules
+### Rules
 
-### No Security
+#### No security
 ```json
 {
   "rules": {
@@ -15,7 +19,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-### Full security
+#### Full security
 ```json
 {
   "rules": {
@@ -25,7 +29,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-### Only authenticated users can access/write data
+#### Only authenticated users can access/write data
 ```json
 {
   "rules": {
@@ -35,7 +39,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-### User can only access their own data
+#### User can only access their own data
 ```json
 {
   "rules": {
@@ -49,8 +53,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-
-### Validates user is moderator from different database location
+#### Validate user is moderator, from different DB location
 ```json
 {
   "rules": {
@@ -64,7 +67,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 ```
 
 
-### Validates string datatype and length range
+#### Validate `string` datatype and `length` range
 ```json
 {
   "rules": {
@@ -80,7 +83,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 ```
 
 
-### Checks presense of child attributes
+#### Check for presence of child attributes
 ```json
 {
   "rules": {
@@ -94,7 +97,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 ```
 
 
-### Validates timestamp is not a future value
+#### Validate `timestamp` is not a future value
 ```json
 {
   "rules": {
@@ -110,7 +113,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 ```
 
 
-### Prevents Delete or Update
+#### Prevent updates and deletes
 ```json
 {
   "rules": {
@@ -123,7 +126,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-### Prevents only Delete
+#### Prevent deletes, but not updates
 ```json
 {
   "rules": {
@@ -136,7 +139,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-### Prevents only Update
+#### Prevent updates, but not deletes
 ```json
 {
   "rules": {
@@ -149,7 +152,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-### Prevents Create and Delete
+#### Prevent creates and deletes
 ```json
 {
   "rules": {

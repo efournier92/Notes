@@ -1,6 +1,6 @@
 # Service Workers
 
-## General Information
+## Overview
 - A service worker's life cycle is completely separate from the rest of the web page.
 - We need a server with HTTPS to user a service worker
   - It will also work on `localhost` domains during development
@@ -19,6 +19,8 @@
   - Registration will complete if it finds the `sw.js` file in the domain root
     - It's important to put that file in the root, so the service worker's scope will be the entire domain
   - It doesn't hurt to register the service worker on every page load, since the browser will figure out if it's already registered or not
+
+### [`JS`](https://en.wikipedia.org/wiki/JavaScript) Code
 ```javascript
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
@@ -34,18 +36,27 @@ if ('serviceWorker' in navigator) {
 ```
 
 ## Install a Service Worker
-- We can add an event listener to handle the service worker `install` event
 
+### Event Listener
+
+#### Description
+- We can add an event listener to handle the service worker `install` event.
+
+#### [`JS`](https://en.wikipedia.org/wiki/JavaScript) Code
 ```javascript
 self.addEventListener('install', function(event) {
   // Perform install steps
 });
 ```
 
+### Callback
+
+#### Description
 - We'll use the install callback to cache relevant files, then check to make sure caching was successful
   - Below, the service worker will only be installed if _all_ required files are successfully cached
   - We could set up other tasks in the `install` callback, or even skip it altogether
 
+#### [`JS`](https://en.wikipedia.org/wiki/JavaScript) Code
 ```javascript
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
@@ -67,10 +78,13 @@ self.addEventListener('install', function(event) {
 ```
 
 ## Fetch via a Service Worker
+
+### Description
 - Once installed, our service worker will begin receving fetch events whenever our user navigates or refreshes
   - We can choose what to tasks to perform by listening for a `fetch` event
   - In our example, we'll use this event to find any cached results the service worker created during install
 
+### [`JS`](https://en.wikipedia.org/wiki/JavaScript) Code
 ```javascript
 self.addEventListener('fetch', function(event) {
   event.respondWith(
@@ -87,14 +101,14 @@ self.addEventListener('fetch', function(event) {
 });
 ```
 
-## Updating a Service Worker
+### Updating a Service Worker
 - Service workers also facilitate a simple update process, if we need to change the logic contained in that file. Do so with the following steps:
   1. Replace the `sw.js` file from our application root with an updated version
   2. The browser will sense the file has changed
   3. The `install` event will be fired next time our user navigates to our page
   4. Once the new one is installed, our old service worker file will be killed, relinquishing control to the new one
 
-## Service Worker Life Cycle
+### Service Worker Life Cycle
 - The life cycle of a service worker is the most complex aspect to understand
 - The cycle supports the following functionality
   1. Makes offline-first possible
@@ -118,13 +132,12 @@ self.addEventListener('fetch', function(event) {
   - If our promise rejects, the browser throws away our service worker
 3. `activate`
   - Will fire once our worker is ready to control clients, and handle functional events
-    * `push` & `sync`, for example, will be fired from here
-
+    - `push` & `sync`, for example, will be fired from here
 
 ## Proper Service Worker Registrations
-* In order to avoid degrading our users' first visit experience, certain steps must be kept in mind
+- In order to avoid degrading our users' first visit experience, certain steps must be kept in mind
   - Typically, we should defer registration of our service worker until after the initial page is loaded
-* A generic boilerplate service worker registration goes as follows
+- A generic boilerplate service worker registration goes as follows
   - This goes against best practice, since it potentially ties up an extra thread, which may not be idle. This could lead to a noticeable increase in page load time, particularly on underpowered mobile devices
 ```javascript
 if ('serviceWorker' in navigator) {
@@ -132,9 +145,9 @@ if ('serviceWorker' in navigator) {
 }
 ```
 
-* We could easily improve this flow by waiting for the page `load` event to fire
+- We could easily improve this flow by waiting for the page `load` event to fire
   - The effectiveness of this solution also depends on the page, and what we execute right after it loads
-    * If, for example, we play an animation right after `load`, it could cause that animation to appear choppy on slower devices
+    - If, for example, we play an animation right after `load`, it could cause that animation to appear choppy on slower devices
 ```javascript
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
@@ -146,7 +159,7 @@ if ('serviceWorker' in navigator) {
 ## High-Performance Service Worker Loading
 - Since service workers have the potential to enhance performance on our page, adherence to the below tips can ensure we achieve the best possible performance.
   - Nagivation requests refer to any time we enter a URL into the browser's location bar, interactive with `window.location`, or click a link from one web page to another
-    * Even interacting with an `<iframe>` represents a navigation request
+    - Even interacting with an `<iframe>` represents a navigation request
   - To acheive best performace, we want to actively bypass the network for navigations, relying on cached data instead
   - If we have a sing page app, for example, we could use the following code to retrieve our application shell `html` from the cache
 
@@ -175,7 +188,7 @@ self.addEventListener('fetch', event => {
   return new Request(urlToPrefetch, { mode: 'no-cors' });
     - `return new Request(urlToPrefetch, { mode: 'no-cors' });`
 
-## References
+## Useful References
 - [Service Worker Docs](https://developers.google.com/web/fundamentals/primers/service-workers/)
 - [GitHub Pages are great for testing service-workers](https://pages.github.com/)
 

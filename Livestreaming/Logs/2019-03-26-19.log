@@ -1,3 +1,0 @@
-Command line:
-ffmpeg -i /dev/video0 -f concat -safe 0 -i /home/misigno/.livestream/Playlists/2019-03-26-19.txt -c:a libfdk_aac -b:a 64k -fflags +igndts -fflags +genpts -copytb 1 -c:v libx264 -preset veryfast -pix_fmt yuv420p -threads 0 -tune zerolatency -g 60 -t 00:59:57 -f flv rtmp://live.twitch.tv/app/live_422375864_tssyAl45ZdXrUcfHuoEnCte2QO0VLe
-/dev/video0: Device or resource busy

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# crontab
-# 0 * * * * bash /home/misigno/.livestream/livestream.sh
-
 NowTimestamp=`date +'%Y-%m-%d-%H'`
 LivestreamDir="/home/misigno/.livestream"
 MusicDir="/mnt/MD/Audio/Music"

@@ -3,6 +3,9 @@
 ## Overview
 I sometimes use `mc` as a visual file manager from the command line. It's a basic orthodox file manager, which is useful to file browsing and manipulation.
 
+## Screenshot
+![]()
+
 ## Shortcuts
 
 ### Function Keys
