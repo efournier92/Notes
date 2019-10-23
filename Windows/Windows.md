@@ -75,3 +75,108 @@ control.exe /name Microsoft.Sound
 wsl -- export DISPLAY=:0; sudo gvim; sudo pkill gvim; sudo gnome-terminal
 ```
 
+## Apps
+
+### Home
+- [7-Zip](https://sourceforge.net/projects/sevenzip/)
+- [Backup & Sync](https://www.google.com/drive/download/)
+- [Chrome](https://www.google.com/chrome/)
+- [ContextEdit](https://www.softpedia.com/get/System/OS-Enhancements/ContextEdit.shtml)
+- [CopyQ](https://sourceforge.net/projects/copyq/files/latest/download)
+- [FileZilla](https://filezilla-project.org/download.php?platform=win64)
+- [Git CLI](https://git-scm.com/download/win)
+- [gVim](https://www.vim.org/download.php)
+- [Flux](https://justgetflux.com/)
+- [OpenVPN](https://openvpn.net/)
+- [Q-Dir](https://www.techspot.com/downloads/6482-q-dir.html)
+- [SharpKeys](https://www.randyrants.com/category/sharpkeys/)
+- [SimpleNote](https://simplenote.com/category/windows/)
+- [Veracrypt](https://www.veracrypt.fr/en/Downloads.html)
+  - `"C:/Program Files/VeraCrypt/VeraCrypt.exe" /l Z /v \\?\Volume{e68c8ec3-9c49-489c-9a0f-339f866920d6}\ /q`
+- [VLC](https://www.videolan.org/vlc/download-windows.html)
+- [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-manual)
+
+### Disable Updates
+1. Type "Services" in Start Menu
+2. Right Click `Windows Update`
+3. Select `Disabled` in `Startup type` drop down
+
+### Remove Default Software
+#### `Powershell`:
+* 3D Builder 
+  - `Get-AppxPackage *3dbuilder* | Remove-AppxPackage`
+* Calendar and Mail 
+  - `Get-AppxPackage *windowscommunicationsapps* | Remove-AppxPackage`
+* Get Office 
+  - `Get-AppxPackage *officehub* | Remove-AppxPackage`
+* Get Skype
+  - `Get-AppxPackage *skypeapp* | Remove-AppxPackage`
+* Get Started
+  - `Get-AppxPackage *getstarted* | Remove-AppxPackage`
+* Groove Music 
+  - `Get-AppxPackage *zunemusic* | Remove-AppxPackage`
+* Maps 
+  - `Get-AppxPackage *windowsmaps* | Remove-AppxPackage`
+* Solitaire Collection 
+  - `Get-AppxPackage *solitairecollection* | Remove-AppxPackage`
+* Money 
+  - `Get-AppxPackage *bingfinance* | Remove-AppxPackage`
+* Movies & TV
+  - `Get-AppxPackage *zunevideo* | Remove-AppxPackage`
+* News 
+  - `Get-AppxPackage *bingnews* | Remove-AppxPackage`
+* OneNote 
+  - `Get-AppxPackage *onenote* | Remove-AppxPackage`
+* People 
+  - `Get-AppxPackage *people* | Remove-AppxPackage`
+* Phone Companion 
+  - `Get-AppxPackage *windowsphone* | Remove-AppxPackage`
+* Sports 
+  - `Get-AppxPackage *bingsports* | Remove-AppxPackage`
+* Weather
+  - `Get-AppxPackage *bingweather* | Remove-AppxPackage`
+* Xbox 
+  - `Get-AppxPackage *xboxapp* | Remove-AppxPackage`
+  - ``
+
+## Work
+* 7-Zip
+* Adobe Acrobat Reader
+* Adobe Digital Editions
+* Backup & Sync (Google Drive)
+* BlueJeans
+* Brio Screen Projector
+* Canary
+* Chrome
+* Chromium
+* CopyQ
+* DB Browser for SQL Lite
+* Git CLI
+* GVim
+* f.lux
+* FileZilla
+* FireFox
+* IIS Express
+* Launchy
+* MPow Thor (Bluetooth Headphones)
+* MS Office
+* MS SQL Server
+* NodeJS
+* Notepad++
+* Opera
+* Python (2.X, 32bit)
+* Q-Dir
+* ReSharper
+* Ruby
+* ScaleOut (Receiver)
+* SharpKeys
+* Simplenote
+* Skype
+* USB 3.0 Host Controller Utility
+* Vim Command Prompt
+* VS 2012
+* VS Code
+* Winaero Tweaker
+* WinHotKey
+
+
