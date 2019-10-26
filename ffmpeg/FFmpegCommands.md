@@ -1,7 +1,40 @@
-# [`FFmpeg`](https://www.ffmpeg.org/)
+# [FFmpeg](https://www.ffmpeg.org/)
 
-## Description
-[`FFmpeg`](https://www.ffmpeg.org/) is the coolest and most obscurely ubiquitous tool I've ever happened upon. It's the engine running behind the vast majority of open-source tools for video editing and encoding. Clever [CLI](https://en.wikipedia.org/wiki/Command-line_interface) commands can invoke virtually any video editing process. Below are some of the commands I use most often.
+## Contents
+- [Overview](overview)
+- [Commands](commands)
+  - [Batch Conversion](batch-conversion)
+  - [Trim File Duration](trim-file-duration)
+  - [Join List of Media](join-list-of-media)
+  - [Crop Edges](crop-edges)
+  - [CRF Quality Reduction](crf-quality-reduction)
+  - [Spoken Audio](spoken-audio)
+  - [Low Quality](low-quality)
+  - [Subtitles](subtitles)
+  - [Segment](segment)
+  - [Video to `gif`](video-to-gif)
+  - [Video Bumper](video-bumper)
+  - [Waveform](waveform)
+  - [Draw Text](draw-text)
+  - [All to `mpeg`](all-to-mpeg)
+  - [Waveform](waveform)
+  - [Draw Text](draw-text)
+  - [All to `mpeg`](all-to-mpeg)
+  - [`webm`](webm)
+  - [Media Info](media-info)
+  - [Image Sequence](image-sequence)
+  - [Images from Video](images-from-video)
+  - [Extract Audio](extract-audio)
+  - [`wav` to `mp3` ](wav-to-mp3)
+  - [Combine Video with Audio](combine-video-with-audio)
+  - [`avi` to `flv`](avi-to-flv)
+  - [`avi` to `divx`](avi-to-divx)
+  - [Install in OsX ](install-in-osx )
+  - [Install in Debian](install-in-debian)
+  - [Compile From Source](compile-from-source)
+
+## Overview
+[FFmpeg](https://www.ffmpeg.org/) is the coolest and most obscurely ubiquitous tool I've ever happened upon. It's the engine running behind the vast majority of open-source tools for video editing and encoding. Clever [CLI](https://en.wikipedia.org/wiki/Command-line_interface) commands can invoke virtually any video editing process. Below are some of the commands I use most often.
 
 ## Commands
 
@@ -226,7 +259,7 @@ Convert a video into a series of images.
 ffmpeg -i in.mpg out%d.jpg
 ```
 
-### Extract Sound
+### Extract Audio
 
 #### Description
 Output the sound from a video as an audio file.
@@ -246,7 +279,7 @@ Convert a `wav` audio file into an `mp3`.
 ffmpeg -i in.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 out.mp3
 ```
 
-### Combine Vid & AUDIO
+### Combine Video with Audio
 
 #### Description
 Use an audio file as the soundtrack to a video.
@@ -276,11 +309,10 @@ Convert an `avi` to `divx` for some reason.
 ffmpeg -i in.avi -s 320x240 -vcodec msmpeg4v2 out.avi
 ```
 
-
 ### Install in OsX 
 
 #### Description
-Build and install `ffmpeg` on a Mac via [`homebrew`](https://brew.sh/)
+Build and install `ffmpeg` on a Mac via [homebrew](https://brew.sh/)
 
 #### Command
 ```bash
