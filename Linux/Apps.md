@@ -223,59 +223,69 @@ sudo chmod a+rx /usr/local/bin/youtube-dl
 # OSX
 
 ## Open
-* ADE (Adobe Digital Editions)
-* AirMail3
-* AppCleaner
-* Atom
-* AudioBookBinder
-* Backup & Sync (Google Drive)
-* Blisk
-* Calendar2 [MenuCal]
-* Calibre
-* Canary
-* Chrome
-* Chromium
-* Citrix Receiver
-* CleanMyMac
-* CopyClip2
-* Commander One
-* Electrum (Versions)
-* Element Inspector
-* FileZilla
-* Firefox
-* Flux
-* GPG Keychain
-* iExplorer
-* iResize
-* iTerm
-* Kindle
-* Kodi
-* MacVim
-* MS Remote Desktop
-* MS Office Mac (Word, Excel, PowerPoint)
-* MyHarmony
-* NameChanger
-* Paintbrush
-* PdfWriter (LisaNet)
-* Quicksilver
-* ShiftIt
-* Simplenote
-* SiteSucker
-* Skype
-* Slack
-* Sleipnir (Tor)
-* Snagit
-* SQLite Browser
-* Tag Editor
-* Total Video
-* Tunnelblick
-* UnRarX
-* VirtualBox
-* Visual Studio Mac
-* Visual Studio Code
-* VLC
-* WinClone
-* xCode
+- [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
+- [Adobe Premier Pro](https://www.adobe.com/products/premiere/free-trial-download.html)
+  - with [Media Encoder](https://www.adobe.com/products/media-encoder.html)
+- [Adobe Indesign](https://www.adobe.com/products/indesign/free-trial-download.html)
+- [ChronoSync](https://www.econtechnologies.com/chronosync/overview.html)
+- [Paragon NTFS for Mac](https://www.paragon-software.com/us/home/ntfs-mac/)
+- [Wondershare PdfElement](https://pdf.wondershare.com)
+- [Print Shop Mac](https://www.broderbund.com/the-print-shop-mac-download-macintosh)
+- [VueScan](https://www.hamrick.com/download.html)
+
+- [Adobe Digital Editions](https://www.adobe.com/solutions/ebook/digital-editions/download.html)
+- [AirMail3](https://airmailapp.com)
+- [AppCleaner](https://freemacsoft.net/appcleaner/)
+- [Atom](https://atom.io)
+- [AudioBookBinder](https://apps.apple.com/us/app/audiobook-binder/id413969927?mt=12)
+- [Backup & Sync](https://www.google.com/drive/download/backup-and-sync/)
+- [Blisk](https://blisk.io)
+- [MenuCal](https://www.macupdate.com/app/mac/16760/menucal)
+- [Calibre](https://calibre-ebook.com/download_osx)
+- [Chrome](https://www.google.com/chrome/)
+- [Chrome Canary](https://www.google.com/chrome/canary/)
+- [Chromium](https://www.chromium.org/getting-involved/download-chromium)
+- [Citrix Receiver](https://www.citrix.com/downloads/citrix-receiver/)
+- [CleanMyMac](https://macpaw.com/download/cleanmymac)
+- [CopyClip2]()
+- [Commander One]()
+- [Electrum (Versions)]()
+- [Element Inspector]()
+- [FileZilla]()
+- [Firefox]()
+- [Flux]()
+- [GPG Keychain]()
+- [iExplorer]()
+- [iResize]()
+- [iTerm]()
+- [Kindle]()
+- [Kodi]()
+- [MacVim]()
+- [MS Remote Desktop]()
+- [MS Office Mac (Word, Excel, PowerPoint)]()
+- [MyHarmony]()
+- [NameChanger]()
+- [Paintbrush]()
+- [PdfWriter (LisaNet)]()
+- [Quicksilver]()
+- [ShiftIt]()
+- [Simplenote]()
+- [SiteSucker]()
+- [Skype]()
+- [Slack]()
+- [Sleipnir (Tor)]()
+- [Snagit]()
+- [SQLite Browser]()
+- [Tag Editor]()
+- [Total Video]()
+- [Tunnelblick]()
+- [UnRarX]()
+- [VirtualBox]()
+- [Visual Studio Mac]()
+- [Visual Studio Code]()
+- [VLC]()
+- [WinClone]()
+- [xCode]()
 
 ## B
 * Bartender
