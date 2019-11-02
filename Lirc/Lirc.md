@@ -1,61 +1,81 @@
-# [`LIRC`](http://www.lirc.org/) Configuration
+# [LIRC](http://www.lirc.org/) Configuration
+
+## Contents
+- [Overview](overview)
+- [Commands](commands)
+  - [Install](install)
+  - [Start Process](start-process)
+  - [Stop Process](stop-process)
+  - [Kill Process](kill-process)
+  - [Refresh Configuration](refresh-configuration)
+  - [Record Button Presses to File](record-button-presses-to-file)
+  - [Check IR Input](check-ir-input)
+  - [Check Remote Control Configuration](check-remote-control-configuration)
+  - [Modify Remote Controls](modify-remote-controls)
+  - [Start `ir-keytable`](start-ir-keytable)
+  - [Start `Kodi`](start-kodi)
+- [Custom Configuration Files](custom configuration files)
+  - [`lircmap`](lircmap)
+- [Important Directories](important-directories)
+- [Important Files](important-files)
+- [Useful Links](useful-links)
 
 ## Overview
-[`LIRC`](http://www.lirc.org/) is a handy open-source tool sending and decoding infra-red signals. It has to power to enable any device with a USB slot to receive signals from most universal remote. I use this with my home theatre setup, and find the following commands useful.
+[LIRC](http://www.lirc.org/) is a handy open-source tool sending and decoding infra-red signals. It has to power to enable any device with a USB slot to receive signals from most universal remote. I use this with my home theatre setup, and find the following commands useful.
 
 ## Commands
 
-### Install `LIRC`
+### Install
 
 #### Description
-Install [`LIRC`](http://www.lirc.org/) via [`apt`](https://en.wikipedia.org/wiki/APT_(software))
+Install [LIRC](http://www.lirc.org/) via [apt](https://en.wikipedia.org/wiki/APT_(software))
 
 #### Command
 ```bash
 sudo apt-get install lirc
 ```
 
-### Run [`lirc`](http://www.lirc.org/) process gracefully.
+### Start Process
 
 #### Description
-Start the [`LIRC`](http://www.lirc.org/) process.
+Start the [LIRC](http://www.lirc.org/) process.
 
 #### Command
 ```bash
 sudo lircd -n --driver=devinput --device=/dev/input/event4 ~/HARMONY_350.lircd.conf
 ```
 
-### Stop `LIRC`
+### Stop Process
 
 #### Description
-Attempt to stop [`LIRC`](http://www.LIRC.org/) process gracefully.
+Attempt to stop [LIRC](http://www.LIRC.org/) process gracefully.
 
 #### Command
 ```bash
 /etc/init.d/lircd stop
 ```
 
-### Kill `LIRC`
+### Kill Process
 
 #### Description
-Kill [`LIRC`](http://www.lirc.org/) process.
+Kill [LIRC](http://www.lirc.org/) process.
 
 #### Command
 ```bash
 sudo kill $(pidof lircd)
 ```
 
-### Refresh [`LIRC`](http://www.lirc.org/)
+### Refresh Configuration
 
 #### Description
-Refresh [`LIRC`](http://www.lirc.org/) configuration cache.
+Refresh [LIRC](http://www.lirc.org/) configuration cache.
 
 #### Command
 ```bash
 /etc/init.d/lircd reload
 ```
 
-### Button Presses to File
+### Record Button Presses to File
 
 #### Description
 Record [IR](https://en.wikipedia.org/wiki/Consumer_IR) button presses to a system file.
@@ -73,64 +93,64 @@ sudo irrecord -n -d /dev/input/event4 -H devinput -u
 ### Check IR Input
 
 #### Description
-View [IR](https://en.wikipedia.org/wiki/Consumer_IR) input details using [`mode2`](http://www.lirc.org/html/mode2.html).
+View [IR](https://en.wikipedia.org/wiki/Consumer_IR) input details using [mode2](http://www.lirc.org/html/mode2.html).
 
 #### Command
 ```bash
 sudo mode2 -d /dev/input/event4
 ```
 
-### Check Remote Configuration
+### Check Remote Control Configuration
 
 #### Description
-View Remote Configuration details via [`irw`](http://www.lirc.org/html/irw.html).
+View Remote Configuration details via [irw](http://www.lirc.org/html/irw.html).
 
 #### Command
 ```bash
 irw
 ```
 
-### Modify Remotes
+### Modify Remote Controls
 
 #### Description
-Update remote mappings for [`X11`](https://en.wikipedia.org/wiki/X_Window_System) systems.
+Update remote mappings for [X11](https://en.wikipedia.org/wiki/X_Window_System) systems.
 
 #### Command
 ```bash
 sudo vim /etc/X11/xorg.conf.d/00-ir.conf 
 ```
 
-### Install [`ir-keytable`](http://manpages.ubuntu.com/manpages/bionic/man1/ir-keytable.1.html)
+### Install [ir-keytable](http://manpages.ubuntu.com/manpages/bionic/man1/ir-keytable.1.html)
 
 #### Description
-Install [`ir-keytable`](http://manpages.ubuntu.com/manpages/bionic/man1/ir-keytable.1.html) via [`apt`](https://en.wikipedia.org/wiki/APT_(software)), for additional remote control functionality.
+Install [ir-keytable](http://manpages.ubuntu.com/manpages/bionic/man1/ir-keytable.1.html) via [apt](https://en.wikipedia.org/wiki/APT_(software)), for additional remote control functionality.
 
 #### Command
 ```bash
 sudo apt-get install ir-keytable
 ```
 
-### Run [`ir-keytable`](http://manpages.ubuntu.com/manpages/bionic/man1/ir-keytable.1.html)
+### Start [ir-keytable](http://manpages.ubuntu.com/manpages/bionic/man1/ir-keytable.1.html)
 
 #### Description
-Open [`ir-keytable`](http://manpages.ubuntu.com/manpages/bionic/man1/ir-keytable.1.html) from the terminal.
+Open [ir-keytable](http://manpages.ubuntu.com/manpages/bionic/man1/ir-keytable.1.html) from the terminal.
 
 #### Command
 ```bash
 sudo ir-keytable -d /dev/input/event4
 ```
 
-### Run [`Kodi`](https://kodi.tv/)
+### Start [Kodi](https://kodi.tv/)
 
 #### Description
-Open [`Kodi`](https://kodi.tv/) from the terminal.
+Open [Kodi](https://kodi.tv/) from the terminal.
 
 #### Command
 ```bash
 kodi -l /var/run/lirc/lircd
 ```
 
-## Custom Config Files
+## Custom Configuration Files
 
 ### `00-ir`
 
@@ -160,10 +180,10 @@ kodi -l /var/run/lirc/lircd
 - `~/.kodi/userdata/lircmap.xml`
 - `/etc/X11/xorg.conf.d/00-ir.conf`
 
-## Links
+## Useful Links
 - [LIRC Configuration Guide](http://www.lirc.org/html/configuration-guide.html)
 - [Ubuntu HTPC on a Mac mini (late 2012)](https://davidlfvr.wordpress.com/2016/11/12/mac-mini-ubuntu-htpc/)
 - [Ubuntu + MacMini + Harmony 650 + OpenPHT + Plex Media Server](https://trustdarkness.com/blog/2016/07/17/ubuntu-macmini-harmony-650-openpht-plex-media-server/)
 - [Kodi - How to set up lirc](https://kodi.wiki/view/HOW-TO:Set_up_lirc#Download_and_install_lirc)
-- [`ir-keytable` Thread Reference](https://askubuntu.com/questions/908810/ir-remote-ubuntu-17-04)
+- [ir-keytable` Thread Reference](https://askubuntu.com/questions/908810/ir-remote-ubuntu-17-04)
 
