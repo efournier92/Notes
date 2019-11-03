@@ -1,4 +1,5 @@
-# Tealium Training
+## 19-10-29
+# Tealium Training | Day 01
 
 ## Training Account
 
@@ -37,13 +38,12 @@ education.tealium.com
 ### Join Group
 4EM4j1F4j
 
-
 ## Plugging into Tealium
 
 ### Collect
 - Can be from basic desktop or mobile
-- Even collect tags from a foosball tabl ein one instance
-  - 1000 _ turnkey vendor integrations in their marketplace
+- Even collect tags from a Foosball table in one instance
+  - 1000+ turnkey vendor integrations in their marketplace
 
 ### Standardize
 
@@ -52,15 +52,15 @@ education.tealium.com
 - Client ID
 - 0 Page URL
 
-### Onmivendor Platform
+### Omnivendor Platform
 - Tealium plays nicely with a lot of different vendors
 
-## Tag Management Concetps
+## Tag Management Concepts
 
-### Without Tag Mangement
-- There are over 7000 marketing managmenment platforms today
+### Without Tag Management
+- There are over 7000 marketing management platforms today
   - These can work different, and become cumbersome if hard-coding them all into client-side code
-    - TealiumIQ eases this, by consolidating such tags
+    - `TealiumIQ` eases this, by consolidating such tags
 
 ## Basics
 
@@ -70,16 +70,16 @@ education.tealium.com
   - This is _not_ necessarily the whole data layer
     - It's ~ 1/6 of the whole data layer
   - Is a plain JS object
-  -  Business britical data needed at Page Load
+  -  Business critical data needed at Page Load
     - Data to be passed to tags at Page Load
-    - DAta needed to evaluated Load Rules corerectly
-    - Data needed to fule Extensions
+    - Data needed to evaluated Load Rules correctly
+    - Data needed to fuel Extensions
   - Page-Type dependent
     - Not all data is needed on all pages
       - Don't include anything that doesn't need to be there
 
 ### `utag.js`
-- Loaded asyncronously
+- Loaded asynchronously
 - Controller file
 - Collects and collates data from utag_data and other sources, into the data layer
 - Contains load rules logic
@@ -105,8 +105,8 @@ education.tealium.com
 
 ### Best Practices
 - Avoid creating redundant variables
-  - Have each data point reprented only once
-- Be as wendor-agnostic as possible, until we can't anymore
+  - Have each data point represented only once
+- Be as vendor-agnostic as possible, until we can't anymore
   - Reuse data elements if possible
     - Only create a GA-specific parameter unless absolutely necessary
 
@@ -161,25 +161,25 @@ education.tealium.com
 
 ### Bulk Import from CSV
 1. https://my.tealiumiq.com/
-2. Sidenav => Data Layer
-3. `+ Add Variable` > `Down Arrow` next to buton
+2. Sidenav > Data Layer
+3. `+ Add Variable` > `Down Arrow` next to button
 4. `Bulk Import from CSV`
 
 ### Add Common Variables
 1. https://my.tealiumiq.com/
-2. Sidenav => Data Layer
+2. Sidenav > Data Layer
 3. `+ Add Variable` > `Down Arrow` next to buton
 4. `Add Common Variables`
-5. Choose a revelant bundle
+5. Choose a relevant bundle
 6. Click `Import this Bundle`
 
 ### Fliter Variables
 1. https://my.tealiumiq.com/
-2. Topnav => `Filter`
+2. Topnav > `Filter`
 
 ### Saving
 1. https://my.tealiumiq.com/
-2. Topnav => `Save / Publish`
+2. Topnav > `Save / Publish`
 
 ##### `Save`
 - Will overwrite our current version
@@ -190,10 +190,10 @@ education.tealium.com
   - Unless we're just fixing an issue
 
 #### Publish
-1. Select some or all of the envirments listed in the modal
+1. Select some or all of the environments listed in the modal
 
 ### `_c` Variable
-- Is a common convension, expected for ecommerce platforms
+- Is a common convention, expected for e-commerce platforms
   - Expected by GA, Adobe, etc
 
 ### Viewing Data
@@ -210,7 +210,7 @@ education.tealium.com
 
 ### Adding Tags
 1. https://my.tealiumiq.com/
-2. Sidenav => `Tags`
+2. Sidenav > `Tags`
 
 #### Tag Configuration
 1. Select a tag version from `Tag Marketplace`
@@ -250,7 +250,7 @@ education.tealium.com
 
 ### Add Load Rule
 1. https://my.tealiumiq.com/
-2. Sidenav => `Load Rules`
+2. Sidenav > `Load Rules`
 3. `+ Add Load Rule`
 4. Modal tools allot us the ability to define logic, expressing when we want the load rule to run
 
@@ -268,9 +268,9 @@ education.tealium.com
 
 ### Add Extension
 1. https://my.tealiumiq.com/
-2. Sidenav => `Extensions`
+2. Sidenav > `Extensions`
 3. `+ Add Extension`
-4. Selet Extension type from tabs at top of modal
+4. Select Extension type from tabs at top of modal
 5. Click green `+ Add` button next to the extension we want to utilize
 
 ### Extension Types
@@ -281,7 +281,7 @@ education.tealium.com
 - Join Data Values
 - Hosted Data Layer
 - Lookup Table
-- Pathname Tokenizer
+- Pathname Tokeniser
 - Crypto Extension
 
 ### Conditions
@@ -290,19 +290,19 @@ education.tealium.com
 
 ### Advanced Extension Types
 - E-Commerce
-- Domain-based Dayplotment
-  - Load QA of DEV version ot our Tag Deployment, based on hostname.
+- Domain-based Deployment
+  - Load QA of DEV version to our Tag Deployment, based on host name
 - Channels
   - View customer's journey across multiple channels
 - JavaScript Code
-  - Publish JS code without a deployment.
+  - Publish JS code without a deployment
 - View-Through Tracking
-  - Configure a cross-domain view-throuh tracking pixel, for use in ad creative.
+  - Configure a cross-domain view-through tracking pixel, for use in ad creative
 - Content Modification
   - Change the content of an HTML element
     - Used to show A/B content, based on a condition
 - Modal Offer
-  - Enables instertion of a modal overlay on any pages
+  - Enables insertion of a modal overlay on any pages
   - Alert users of offers, promotions, etc
 - Flatten JSON Objects
   - Flatten out nested JSON objects
@@ -322,9 +322,12 @@ education.tealium.com
 - Tags are recorded logging the time and user who published the changes
   - For finger-pointing purposes
 - JS extensions support advanced use-cases
-  - Virtually any logic that's not natively supported by Tealium, can be accomodated via this extension
+  - Virtually any logic that's not natively supported by Tealium, can be accommodated via this extension
 - __Do not tag templates in JS extensions__
   - Such templates should be fed directly from Tealium Tag marketplace
+
+## 19-10-30
+# Tealium Training | Day 02
 
 ## Order of Operations
 
@@ -336,7 +339,7 @@ education.tealium.com
 3. Load Rules
 4. Vendor Tags
 5. DOM Ready
-6. utag.view
+6. `utag.view`
 - _`utag.link` fires afterwards, if applicable_
   - Tracks interaction events, as per configuration
 
@@ -369,12 +372,12 @@ education.tealium.com
 9. `utag.view`
 
 ### Data Object Access
-1. Preloader
-  - utag_data
-2. All Tags | TagScope
+1. `Preloader`
+  - `utag_data`
+2. All Tags | `TagScope`
   - `b` object
     - A local copy of the data layer
-    - _eg. `b.product_id`_
+    - Example: `b.product_id`
 3. Load Rules
   - `d` object
     - We should seldom need to worry about the `d` object
@@ -426,7 +429,7 @@ education.tealium.com
 
 #### Content
 - Configure dialog content
-- Add supportted languages according to our site's needs
+- Add supported languages according to our site's needs
 
 #### Customization
 - Define opt-out categories
@@ -447,7 +450,7 @@ education.tealium.com
   - We pass requirements for a new provider over to Tealium
   - Usually takes a couple weeks
 - If we don't have time to wait, we can add a generic tag
-  - This is a catch-all, which can be used for almpost any provider
+  - This is a catch-all, which can be used for almost any provider
 
 ### Generic Tag Configuration
 
@@ -457,7 +460,7 @@ education.tealium.com
 - Choose type
   - Image
   - Script
-  - etco
+  - etc
 - Configure base URL
   - Point to `gif` file, if is of type Image
 - Optionally override for HTTPS
@@ -506,25 +509,25 @@ education.tealium.com
 ### Interaction events
 - `utag.link()`
 
-## Synac
-utag.view(data_object[, callback, uid_array]);
-utag.link(data_object[, callback, uid_array]);
+## Sync
+- `utag.view(data_object[, callback, uid_array]);`
+- `utag.link(data_object[, callback, uid_array]);`
 
 ### Parameters
 
 #### `data_object`
 - A JS object containing the relevant page view data
 
-#### Callboack
+#### Callback
 - A function to be called after the tags have been fired
 - _Optional_
 
-#### uid_array
-- Indcate the specific tags to fie
+#### `uid_array`
+- Indicate the specific tags to fie
 - _Optional_
 
 ### Special Variables
-Use special vsairable to idenfity the different types of pages and events to be tracked in our application
+Use special variable to identify the different types of pages and events to be tracked in our application
 
 ### Examples
 
@@ -597,47 +600,40 @@ utag.view({
 ### Checklist
 1. Is Tealium `utag.js` coded on the page?
 2. Are there console errors?
-3. Are there 303 errorse
-Is our profile publish?
-Are we lookin gat the most recent version
+3. Are there 303 errors
+4. Is our profile publish?
+5. Are we looking at the most recent version?
   - Check Publish Data within web Companion
-  - Look at timestamp in frist line comment of utag.sj file
-  Is the correct Profile being called?called
-    - Includes the Envrionment part
-
-Aretag templkates being delivered
-  - A filter within the Network panel on _utag___, then look for `utag.1.js`, etc
-
-Are the venodor network calls made?
+  - Look at timestamp in first line comment of `utag.js` file
+6. Is the correct Profile being called?called?
+  - Includes the `Environment` part
+7. Are tag templates being delivered?
+  - A filter within the Network panel on _utag_, then look for `utag.1.js`, etc
+8. Are the vendor network calls made?
   - Filter within the Network panel on the Vendor's domain
     - or a part of the URL we're familiar with
-
-10 . Do the Load Rules matc?
+10. Do the Load Rules match?
   - Domain [ends with]
   - Path [exact match]
   - Query Parameters [contain]
-  -  Hash [exact match __excluding__ the #]
-
-Check the values in the Data Layer
+  - Hash [exact match __excluding__ the #]
+11. Check the values in the Data Layer
   - `utag.js`
-
-Do we have debug mode ON
+12. Do we have debug mode ON
   - Either thru `utag=dev`, or using the Tealium Tool
     - In console: `document.cookie='utagdb=true'`
     - In console: `document..cookie="utag_env_utag_poc#//tags.tiq.cdn.com/utag/poc/dev/utag.js"`
-
-Check for spce sin Load Rules
-Does the pathnamem start with a `/`
-Are the Tags set with the appropriate Environment Glag?
-Are teh correct values coming out?
+13. Check for spaces in `Load Rules`
+14. Does the pathname start with a `/`?
+15. Are the Tags set with the appropriate Environment flag?
+16. Are the correct values coming out?
   - Are they mapped in the tag
-  Are the Extensions evaluating?
-  Are the EZxtensions in the proper Order?
-  Correct Scope on the Extension
-  Is the Extension set to Before Load Rules?
-
-Does the code run in the Console without errors?
-Do Breakpoints get hit, and values set in Watch statemetns
+17. Are the Extensions evaluating?
+18. Are the Extensions in the proper Order?
+  - Correct Scope on the Extension
+  - Is the Extension set to Before Load Rules?
+19. Does the code run in the Console without errors?
+20. Do Breakpoints get hit, and values set in `Watch` statements
 
 ### Key Breakpoint spots in `utag.js`
 1. Pre Loader
@@ -658,7 +654,7 @@ Do Breakpoints get hit, and values set in Watch statemetns
     - `page_type`
 
 ### `utag.handler.iflag`
-- The "Everythin is OK" Flag
+- The "Everything is OK" Flag
   - If we don't see that, we need to double-check our implementation
 
 ### `utag.loader.cfg`
@@ -668,12 +664,11 @@ Do Breakpoints get hit, and values set in Watch statemetns
 - _Ideally, we shouldn't need to go this far down the rabbit hole_
 
 #### Properties
-- id
-- load
-- send
-- tid
-- v
-- wait
+- `id`
+- `load`
+- `send`
+- `tid`
+- `wait`
 
 ## Administration
 
@@ -702,10 +697,8 @@ Do Breakpoints get hit, and values set in Watch statemetns
 - Limit available Tags from the marketplace selector
   - In case we don't have a provider for a particular vendor
 
-
 ### Manage Password Policy
 - Configure rules for user password validation
-
 
 ### Manage Labels
 - Only allow certain users to edit certain labels
