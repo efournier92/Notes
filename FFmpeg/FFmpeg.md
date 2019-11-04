@@ -111,7 +111,7 @@ Reduce file size for spoken audio files, like stand-up comedy.
 ffmpeg -i in.mp4 -c:a libmp3lame -b:a 128k -ac 1 out.mp3
 ```
 
-### Low Quality
+### Low Quality Audio
 
 #### Description
 Reduce the file size for a list of low quality recordings.
