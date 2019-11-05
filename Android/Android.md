@@ -1,11 +1,11 @@
 # Android
 
 ## Contents
-- [Overview](overview)
-- [TWRP](twrp)
-- [Install Custom ROMs](install-custom-roms)
-- [Rooting Commands](rooting-commands)
-- [Applications](applications)
+- [Overview](#overview)
+- [TWRP](#twrp)
+- [Install Custom ROMs](#install-custom-roms)
+- [Rooting Commands](#rooting-commands)
+- [Applications](#applications)
 
 ## Overview
 When it comes to mobile device Operating Systems, [Android](https://www.android.com/) has become the norm across a multitude of non-desktop devices. I like it because it's based on the Linux kernel, and is a lot more open than [iOS](https://www.apple.com/ios/). I usually install a [custom ROM](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions) and a whole bunch of apps, as detailed below.
