@@ -41,7 +41,7 @@ A custom Recovery tool, used for installing custom software, backup, restoration
 16. Swipe to restore
 17. Reboot to system
 
-## [Install Custom ROMs](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions)
+## Installing [Custom ROMs](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions)
 
 ### Description
 In order to install a [custom ROM](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions) on a device, the following steps must first be performed.
