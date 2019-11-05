@@ -40,7 +40,7 @@
 
 1. Introduction:
 
-   Installation requires [Git] and triggers [`git clone`] for each configured repository to `~/.vim/bundle/` by default.
+   Installation requires [Git] and triggers [git clone] for each configured repository to `~/.vim/bundle/` by default.
    Curl is required for search.
 
    If you are using Windows, go directly to [Windows setup]. If you run into any issues, please consult the [FAQ].
@@ -112,7 +112,7 @@
 
 ## Docs
 
-See the [`:h vundle`](https://github.com/VundleVim/Vundle.vim/blob/master/doc/vundle.txt) Vimdoc for more details.
+See the [:h vundle](https://github.com/VundleVim/Vundle.vim/blob/master/doc/vundle.txt) Vimdoc for more details.
 
 ## Changelog
 
@@ -160,7 +160,7 @@ see [Vundle contributors](https://github.com/VundleVim/Vundle.vim/graphs/contrib
 [Tips]:https://github.com/VundleVim/Vundle.vim/wiki/Tips-and-Tricks
 [Vim]:http://www.vim.org
 [Git]:http://git-scm.com
-[`git clone`]:http://gitref.org/creating/#clone
+[git clone]:http://gitref.org/creating/#clone
 
 [Vim scripts]:http://vim-scripts.org/vim/scripts.html
 [help tags]:http://vimdoc.sourceforge.net/htmldoc/helphelp.html#:helptags

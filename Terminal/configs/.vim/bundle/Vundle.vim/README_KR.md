@@ -29,7 +29,7 @@
 1. 시작하기:
 
    Vundle을 설치하기 위해선 [Git]이 필요합니다.
-   설치 과정에서 각각의 저장소를 `~/.vim/bundle/` 경로에 기본값으로 [`git clone`]합니다.
+   설치 과정에서 각각의 저장소를 `~/.vim/bundle/` 경로에 기본값으로 [git clone]합니다.
    검색 기능을 위해 Curl이 필요합니다.
 
    Windows 사용자라면, [윈도우에서 설치] 문서를 참조하십시오. 만약 어떤 문제라도 발생한다면, [자주 묻는 질문]에 도움을 요청하십시오.
@@ -101,7 +101,7 @@
 
 ## 문서
 
-더 자세한 내용은 [`:h vundle`](https://github.com/VundleVim/Vundle.vim/blob/master/doc/vundle.txt) 문서를 참조하십시오.
+더 자세한 내용은 [:h vundle](https://github.com/VundleVim/Vundle.vim/blob/master/doc/vundle.txt) 문서를 참조하십시오.
 
 ## 변경 로그
 
@@ -149,7 +149,7 @@
 [도움말]:https://github.com/VundleVim/Vundle.vim/wiki/Tips-and-Tricks
 [Vim]:http://www.vim.org
 [Git]:http://git-scm.com
-[`git clone`]:http://gitref.org/creating/#clone
+[git clone]:http://gitref.org/creating/#clone
 
 [Vim scripts]:http://vim-scripts.org/vim/scripts.html
 [도움말 태그]:http://vimdoc.sourceforge.net/htmldoc/helphelp.html#:helptags

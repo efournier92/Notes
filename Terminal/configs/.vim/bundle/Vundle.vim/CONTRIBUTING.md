@@ -14,7 +14,7 @@ Issues
 
 Before submitting an issue, be sure to check the following places for answers.
 
-1. Vundle docs at [`:h vundle`](https://github.com/VundleVim/Vundle.vim/blob/master/doc/vundle.txt).
+1. Vundle docs at [:h vundle](https://github.com/VundleVim/Vundle.vim/blob/master/doc/vundle.txt).
 
 2. The [FAQ](https://github.com/VundleVim/Vundle.vim/wiki).
 

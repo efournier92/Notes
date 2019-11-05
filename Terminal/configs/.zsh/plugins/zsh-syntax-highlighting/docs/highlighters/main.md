@@ -89,7 +89,7 @@ released.
 
 A _command word_ is something like a function name, external command name, et
 cetera.  (See
-[Simple Commands & Pipelines in `zshmisc(1)`][zshmisc-Simple-Commands-And-Pipelines]
+[Simple Commands & Pipelines in `zshmisc(1)][zshmisc-Simple-Commands-And-Pipelines]
 for a formal definition.)
 
 If a new _kind_ of command word is ever added to zsh — something conceptually

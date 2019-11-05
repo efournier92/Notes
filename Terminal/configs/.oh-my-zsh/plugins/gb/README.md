@@ -7,7 +7,7 @@ See https://getgb.io for the full `gb` documentation
 * * * *
 
 - Adds completion support for all `gb` commands.
-- Also supports completion for the [`gb-vendor` plugin](https://godoc.org/github.com/constabulary/gb/cmd/gb-vendor).
+- Also supports completion for the [gb-vendor` plugin](https://godoc.org/github.com/constabulary/gb/cmd/gb-vendor).
 
 To use it, add `gb` to your plugins array:
 ```sh

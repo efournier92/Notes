@@ -2,7 +2,7 @@ vi-mode
 =======
 This plugin increase `vi-like` zsh functionality.
 
-Use `ESC` or `CTRL-[` to enter `Normal mode`.
+Use `ESC` or `CTRL-[ to enter `Normal mode`.
 
 
 History

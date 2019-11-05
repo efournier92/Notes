@@ -9,20 +9,20 @@ in the default shell of any Unix-like
 
 ## Configuration
 
-### [`zsh`]()
+### [zsh]()
 
 #### Description
 
 #### Custom Configs
 
-### [`oh-my-zsh`]()
+### [oh-my-zsh]()
 
 #### Description
 
 #### Custom Configs
 
 
-### [`vim`]()
+### [vim]()
 
 #### Description
 
@@ -30,6 +30,6 @@ in the default shell of any Unix-like
 
 #### Changelog
 
-### [`MidnightCommander`]()
+### [MidnightCommander]()
 
 

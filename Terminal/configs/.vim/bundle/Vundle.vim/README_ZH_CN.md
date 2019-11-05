@@ -28,7 +28,7 @@
 
 1. 介绍:
 
-   安装需要[Git](http://git-scm.com/),触发[`git clone`](http://gitref.org/creating/#clone),默认将每一个指定特定格式插件的仓库复制到`~/.vim/bundle/`.
+   安装需要[Git](http://git-scm.com/),触发[git clone](http://gitref.org/creating/#clone),默认将每一个指定特定格式插件的仓库复制到`~/.vim/bundle/`.
    搜索需要Curl支持.
 
    Windows用户请直接访问[Windows setup]. 如果有任何问题, 请参考 [FAQ].
@@ -99,7 +99,7 @@
 
 ## Docs
 
-查阅 [`:h vundle`](https://github.com/VundleVim/Vundle.vim/blob/master/doc/vundle.txt) Vimdoc 以获取更多细节.
+查阅 [:h vundle](https://github.com/VundleVim/Vundle.vim/blob/master/doc/vundle.txt) Vimdoc 以获取更多细节.
 
 ## 更新日志
 
@@ -147,7 +147,7 @@
 [Tips]:https://github.com/VundleVim/Vundle.vim/wiki/Tips-and-Tricks
 [Vim]:http://www.vim.org
 [Git]:http://git-scm.com
-[`git clone`]:http://gitref.org/creating/#clone
+[git clone]:http://gitref.org/creating/#clone
 
 [Vim scripts]:http://vim-scripts.org/vim/scripts.html
 [help tags]:http://vimdoc.sourceforge.net/htmldoc/helphelp.html#:helptags

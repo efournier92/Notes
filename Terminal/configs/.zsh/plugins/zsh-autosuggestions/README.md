@@ -47,7 +47,7 @@ Requirements: Zsh v4.3.11 or later
 3. Start a new terminal session.
 
 ### Arch Linux via the AUR
-1. Install the [`zsh-autosuggestions`](https://aur.archlinux.org/packages/zsh-autosuggestions/) or the [`zsh-autosuggestions-git`](https://aur.archlinux.org/packages/zsh-autosuggestions-git/) packages from the [AUR](https://wiki.archlinux.org/index.php/Arch_User_Repository).
+1. Install the [zsh-autosuggestions](https://aur.archlinux.org/packages/zsh-autosuggestions/) or the [zsh-autosuggestions-git](https://aur.archlinux.org/packages/zsh-autosuggestions-git/) packages from the [AUR](https://wiki.archlinux.org/index.php/Arch_User_Repository).
 
     ```sh
     pacaur -S zsh-autosuggestions
@@ -199,7 +199,7 @@ Pull requests are welcome! If you send a pull request, please:
 
 ### Testing
 
-Tests are written in ruby using the [`rspec`](http://rspec.info/) framework. They use [`tmux`](https://tmux.github.io/) to drive a pseudoterminal, sending simulated keystrokes and making assertions on the terminal content.
+Tests are written in ruby using the [rspec](http://rspec.info/) framework. They use [tmux](https://tmux.github.io/) to drive a pseudoterminal, sending simulated keystrokes and making assertions on the terminal content.
 
 Test files live in `spec/`. To run the tests, run `make test`. To run a specific test, run `TESTS=spec/some_spec.rb make test`. You can also specify a `zsh` binary to use by setting the `TEST_ZSH_BIN` environment variable (ex: `TEST_ZSH_BIN=/bin/zsh make test`).
 

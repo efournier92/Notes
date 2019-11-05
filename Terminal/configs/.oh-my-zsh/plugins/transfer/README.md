@@ -1,6 +1,6 @@
 # `transfer` plugin
 
-[`transfer.sh`](https://transfer.sh) is an easy to use file sharing service from the command line
+[transfer.sh](https://transfer.sh) is an easy to use file sharing service from the command line
 
 ## Usage
 

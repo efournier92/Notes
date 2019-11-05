@@ -10,7 +10,7 @@ This is a stable release, featuring bugfixes and minor improvements.
 
 ## Added highlighting of:
 
-- The `isearch` and `suffix` [`$zle_highlight` settings][zshzle-Character-Highlighting].
+- The `isearch` and `suffix` [$zle_highlight` settings][zshzle-Character-Highlighting].
   (79e4d3d12405, 15db71abd0cc, b56ee542d619; requires zsh 5.3 for `$ISEARCHMATCH_ACTIVE` / `$SUFFIX_ACTIVE` support)
 
 [zshzle-Character-Highlighting]: http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting
