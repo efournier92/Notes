@@ -10,11 +10,7 @@
   - [USB Benchmarks](#usb-benchmarks)
 
 ## Overview
-[Linux]() has been in active development since
-
-when [Linus ]()
-
-Over time, it's become the kernel I run the most. The following sections link out 
+[Linux](https://www.linux.org/) has been in active development since 1991, when [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) developed the [kernel](https://en.wikipedia.org/wiki/Linux_kernel) in the style of [Unix](https://en.wikipedia.org/wiki/Unix).  Over time, it's become the kernel I find myself running most often. The following sections link out to more in-depth looks at certain distributions and functionalities.
 
 ## [Ubuntu](https://ubuntu.com/)
 

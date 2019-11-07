@@ -1,24 +1,24 @@
 # [LIRC](http://www.lirc.org/) Configuration
 
 ## Contents
-- [Overview](overview)
-- [Commands](commands)
-  - [Install](install)
-  - [Start Process](start-process)
-  - [Stop Process](stop-process)
-  - [Kill Process](kill-process)
-  - [Refresh Configuration](refresh-configuration)
-  - [Record Button Presses to File](record-button-presses-to-file)
-  - [Check IR Input](check-ir-input)
-  - [Check Remote Control Configuration](check-remote-control-configuration)
-  - [Modify Remote Controls](modify-remote-controls)
-  - [Start `ir-keytable`](start-ir-keytable)
-  - [Start `Kodi`](start-kodi)
-- [Custom Configuration Files](custom configuration files)
-  - [`lircmap`](lircmap)
-- [Important Directories](important-directories)
-- [Important Files](important-files)
-- [Useful Links](useful-links)
+- [Overview](#overview)
+- [Commands](#commands)
+  - [Install](#install)
+  - [Start Process](#start-process)
+  - [Stop Process](#stop-process)
+  - [Kill Process](#kill-process)
+  - [Refresh Configuration](#refresh-configuration)
+  - [Record Button Presses to File](#record-button-presses-to-file)
+  - [Check IR Input](#check-ir-input)
+  - [Check Remote Control Configuration](#check-remote-control-configuration)
+  - [Modify Remote Controls](#modify-remote-controls)
+  - [Start `ir-keytable`](#start-ir-keytable)
+  - [Start `Kodi`](#start-kodi)
+- [Custom Configuration Files](#custom configuration files)
+  - [`lircmap`](#lircmap)
+- [Important Directories](#important-directories)
+- [Important Files](#important-files)
+- [Useful Links](#useful-links)
 
 ## Overview
 [LIRC](http://www.lirc.org/) is a handy open-source tool sending and decoding infra-red signals. It has to power to enable any device with a USB slot to receive signals from most universal remote. I use this with my home theatre setup, and find the following commands useful.
@@ -28,7 +28,7 @@
 ### Install
 
 #### Description
-Install [LIRC](http://www.lirc.org/) via [apt](https://en.wikipedia.org/wiki/APT_(software))
+Install [LIRC](http://www.lirc.org/) via [apt](https://en.wikipedia.org/wiki/APT_(software)).
 
 #### Command
 ```bash
@@ -160,12 +160,12 @@ kodi -l /var/run/lirc/lircd
 ### `HARMONY_350.lircd.conf`
 
 #### Location
-[Github](https://github.com/efournier92/Notes/blob/master/lirc/HARMONY_350.lircd.conf)
+[Github](https://github.com/efournier92/Notes/blob/master/Lirc/HARMONY_350.lircd.conf)
 
 ### `lircmap`
 
 #### Location
-[Github](https://github.com/efournier92/Notes/blob/master/lirc/lircmap.conf)
+[Github](https://github.com/efournier92/Notes/blob/master/Lirc/lircmap.conf)
 
 ## Important Directories
 - `/usr/share/lirc/`
