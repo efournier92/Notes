@@ -1,7 +1,13 @@
 # Visual Studio Performance Configuration
 
+## Contents
+- [Overview](#overview)
+- [ReSharper Performance Optimization](#resharper-performance-optimization)
+- [Visual Studio Keyboard Shortcuts](#visual-studio-keyboard-shortcuts)
+- [ReSharper Shortcuts](#resharper-shortcuts)
+
 ## Overview
-I use Visual Studio as my IDE for a large corporate [`ASP.NET`](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I typically use it in conjuntion with
+I use Visual Studio as my IDE for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I typically use it in conjuntion with
 [JetBrains](https://www.jetbrains.com/) [ReSharper](https://www.jetbrains.com/resharper/). Below are some configurations I find useful.
 
 ## VS Performance Optimization
@@ -65,10 +71,10 @@ The following are options that can improve VS performance. Many of them disable 
 1. `Text Editor -> C# -> Advanced`
 2. Disable `Full Solution Analysis`
 
-## [`ReSharper`](https://www.jetbrains.com/resharper/) Performance Optimization
+## [ReSharper](https://www.jetbrains.com/resharper/) Performance Optimization
 
 ### Description
-[`ReSharper`](https://www.jetbrains.com/resharper/) is provides awesome tooling capabilities, but can also slow system performance to a crawl if left unchecked. Below are some performance optimizations that can improve usability on slower systems. Beware toggling all of them, lest you render [`ReSharper`](https://www.jetbrains.com/resharper/) virtually useless.
+[ReSharper](https://www.jetbrains.com/resharper/) is provides awesome tooling capabilities, but can also slow system performance to a crawl if left unchecked. Below are some performance optimizations that can improve usability on slower systems. Beware toggling all of them, lest you render [ReSharper](https://www.jetbrains.com/resharper/) virtually useless.
 
 ### Settings
 
@@ -127,7 +133,7 @@ The following are options that can improve VS performance. Many of them disable 
 1. `ReSharper -> Options -> Environment -> General `
 2. Disable `Enable code analysis`
 
-## VS Keyboard Shortcuts
+## [Visual Studio]() Keyboard Shortcuts
 
 ### Description
 Below is a list of default hotkeys that ship with Visual Studio.
@@ -311,7 +317,7 @@ Below is a list of default hotkeys that ship with Visual Studio.
 #### Switch to Saved Window Layout
 - `ctrl-alt-{0-9}`
 
-## [`ReSharper`](https://www.jetbrains.com/resharper/) Shortcuts
+## [ReSharper](https://www.jetbrains.com/resharper/) Shortcuts
 
 ### Description
 Below is a list of hotkeys that ship as ReSharper's default keyboard layout.

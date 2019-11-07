@@ -1,5 +1,11 @@
 # README Files
 
+## Contents
+- [Overview](#overview)
+- [Templates](#templates)
+  - [All Sections](#all-sections)
+  - [Basic](#basic)
+
 ## Overview
 README files play a huge role in how our projects are perceived by the outside world. Often, the hardest part is knowing where to start, and what to include. To remedy this, I studied hundreds of READMEs, and devised the following template, which I paste into every new project to get me started. Not all sections will apply to all projects, so I usually prune some off as I go along.
 

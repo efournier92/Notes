@@ -1,11 +1,17 @@
-# Visual Studio Code
+# [Visual Studio Code](https://code.visualstudio.com/)
+
+## Contents
+- [Overview](#overview)
+- [Configurations](#configurations)
+  - [Format on Save](#format-on-save)
+  - [Tab Indentation](#tab-indentation)
 
 ## Overview
 I like [Visual Studio Code](https://code.visualstudio.com/) as an IDE when working on client-side projects, particularly when using [Angular](https://angular.io/) and similar frameworks. Below are some tips I've learned while using it.
 
 ## Configurations
 
-### Format On Save
+### Format on Save
 
 #### Description
 Format files when saving.
