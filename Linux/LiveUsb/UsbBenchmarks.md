@@ -1,9 +1,19 @@
 # USB Benchmarks
 
+## Contents
+- [Overview](#overview)
+- [Drive Metrics](#drive-metrics)
+  - [Sandisk Cruzer Glide](#sandisk-cruzer-glide)
+  - [Sandisk Cruzer Blade](#sandisk-cruzer-blade)
+  - [Sandisk Cruzer Fit](#sandisk-cruzer-fit)
+  - [PNY](#pny)
+  - [Silver Swivel](#silver-swivel)
+  - [Blue Straight](#blue-straight)
+
 ## Overview
 I once took a notion to benchmark a variety of [USB](https://www.usb.org/) [flash drives](https://en.wikipedia.org/wiki/USB_flash_drive), to see how wide a range there was. The below results indicate that speed can vary tremendously, particularly between cheap and expensive hardware.
 
-## Drives
+## Drive Metrics
 
 ### Sandisk Cruzer Glide
 
@@ -19,28 +29,6 @@ I once took a notion to benchmark a variety of [USB](https://www.usb.org/) [flas
 #### Access
 0.68 msec
 
-### PNY (128GB)
-
-#### Size
-128GB
-
-#### Read
-15.2 MB/s
-
-#### Access
-8.57 msec
-
-### Sandisk Cruzer Fit
-
-#### Size
-64GB
-
-#### Read
-33.9 MB/s
-
-#### Access
-1.22 msec
-
 ### Sandisk Cruzer Blade
 
 #### Size
@@ -54,6 +42,28 @@ I once took a notion to benchmark a variety of [USB](https://www.usb.org/) [flas
 
 #### Access
 0.92 msec
+
+### Sandisk Cruzer Fit
+
+#### Size
+64GB
+
+#### Read
+33.9 MB/s
+
+#### Access
+1.22 msec
+
+### PNY
+
+#### Size
+128GB
+
+#### Read
+15.2 MB/s
+
+#### Access
+8.57 msec
 
 ### Silver Swivel
 
