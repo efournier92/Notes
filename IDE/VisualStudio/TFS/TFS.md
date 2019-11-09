@@ -23,7 +23,7 @@ Cut a new branch from Trunk.
 3. Open `Source Control Explorer`
 4. Right click `Trunk`
 5. Select `Branching and Merging`, then `Branch...`
-6. Select `Browse...`A
+6. Select `Browse...`
 7. Browse to `path/to/target/dir`, then click `OK`
 8. Enter `Target Branch Name` as `path/to/target/dir/{ NewBranchName }`
 9. Select `Changeset` from `Branch from Version` drop-down, then enter last Trunk changeset number

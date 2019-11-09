@@ -82,7 +82,7 @@ When adding a new policy, copy the file to different directory, edit it, then co
 ## [fstab](https://help.ubuntu.com/community/Fstab)
 
 ### Description
-[fstab](https://help.ubuntu.com/community/Fstab) is a system configuration file found on most [Linux]() systems. The following info is useful when editing that configuration file.
+[fstab](https://help.ubuntu.com/community/Fstab) is a system configuration file found on most [Linux](https://www.linux.org/) systems. The following info is useful when editing that configuration file.
 
 ### Edit
 ```bash

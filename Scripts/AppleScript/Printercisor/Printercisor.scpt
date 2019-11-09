@@ -1,0 +1,1 @@
+set theFile to "/Users/Misigno/Library/Assistants/Printercisor/Printercisor.pdf" as stringtell application "PDFwriter"	activate	print theFileend telldelay 3tell application "System Events" to keystroke "h" using command down

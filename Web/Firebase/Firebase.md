@@ -1,15 +1,18 @@
 # [Firebase](https://firebase.google.com)
 
-## Overview
+## Contents
+- [Overview](#overview)
+- [Realtime Database Rules](#realtime-database-rules)
 
-## [Realtime Database](https://firebase.google.com/docs/database)
+## Overview
+[Firebase](https://firebase.google.com/) is a [Google](https://about.google/) product, which offers a cohesive platform for performing back-end tasks. I use it for the [Realtime Database](https://firebase.google.com/docs/database), [Authentication](https://firebase.google.com/docs/auth), [File Storage](https://firebase.google.com/docs/storage), and [Hosting](https://firebase.google.com/docs/hosting). It makes all of those exceedingly simple, play well with [Angular](https://angular.io/), and can eliminate the need to build a back-end for simple apps.
+
+## [Realtime Database](https://firebase.google.com/docs/database) Rules
 
 ### Description
 Below are a variety of rules, for use with [Firebase](https://firebase.google.com) [Realtime Database](https://firebase.google.com/docs/database).
 
-### Rules
-
-#### No security
+### No security
 ```json
 {
   "rules": {
@@ -19,7 +22,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-#### Full security
+### Full security
 ```json
 {
   "rules": {
@@ -29,7 +32,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-#### Only authenticated users can access/write data
+### Only authenticated users can access/write data
 ```json
 {
   "rules": {
@@ -39,7 +42,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-#### User can only access their own data
+### User can only access their own data
 ```json
 {
   "rules": {
@@ -53,13 +56,12 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-#### Validate user is moderator, from different DB location
+### Validate user is moderator, from different DB location
 ```json
 {
   "rules": {
     "posts": {
-      "$uid": {
-        ".write": "root.child('users').child('moderator').val() === true"
+      "$uid": { ".write": "root.child('users').child('moderator').val() === true"
       }
     }
   }
@@ -67,7 +69,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 ```
 
 
-#### Validate `string` datatype and `length` range
+### Validate `string` datatype and `length` range
 ```json
 {
   "rules": {
@@ -83,7 +85,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 ```
 
 
-#### Check for presence of child attributes
+### Check for presence of child attributes
 ```json
 {
   "rules": {
@@ -97,7 +99,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 ```
 
 
-#### Validate `timestamp` is not a future value
+### Validate `timestamp` is not a future value
 ```json
 {
   "rules": {
@@ -113,7 +115,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 ```
 
 
-#### Prevent updates and deletes
+### Prevent updates and deletes
 ```json
 {
   "rules": {
@@ -126,7 +128,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-#### Prevent deletes, but not updates
+### Prevent deletes, but not updates
 ```json
 {
   "rules": {
@@ -139,7 +141,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-#### Prevent updates, but not deletes
+### Prevent updates, but not deletes
 ```json
 {
   "rules": {
@@ -152,7 +154,7 @@ Below are a variety of rules, for use with [Firebase](https://firebase.google.co
 }
 ```
 
-#### Prevent creates and deletes
+### Prevent creates and deletes
 ```json
 {
   "rules": {

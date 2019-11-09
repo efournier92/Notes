@@ -4,8 +4,8 @@
 - [Overview](#overview)
 - [ReSharper](#resharper)
 - [Team Foundation Server](#team-foundation-server)
-- [Performance Optimization](#vs-performance-optimization)
-- [Keyboard Shortcuts](#visual-studio-keyboard-shortcuts)
+- [Performance Optimization](#performance-optimization)
+- [Keyboard Shortcuts](#keyboard-shortcuts)
 
 ## Overview
 I use Visual Studio as my IDE for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I typically use it in conjunction with

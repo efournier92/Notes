@@ -1,42 +1,84 @@
-## 19-10-29
+### 19-10-29
 # Tealium Training | Day 01
 
-## Training Account
+## Contents
 
-### Credentials
+### Day 01
+- [Plugging into Tealium](#plugging-into-tealium)
+  - [Collect](#collect)
+  - [Standardize](#standardize)
+  - [Omnivendor Platform](#omnivendor-platform)
+- [Tag Management Concepts](#tag-management-concepts)
+- [Without Tag Management](#without-tag-management)
+- [Basics](#basics)
+  - [Universal Data Object](#universal-data-object)
+  - [`utag.js`](#utag.js)
+- [Design Our Data Layer](#design-our-data-layer)
+  - [What is a Data Layer](#what-is-a-data-layer)
+  - [Best Practices](#best-practices)
+- [Architecture](#architecture)
+  - [Basic Architecture](#basic-architecture)
+  - [Save & Publish](#save-&-publish)
+  - [Code Center](#code-center)
+- [Use case: Initial Tag Configuration](#use-case:-initial-tag-configuration)
+  - [Add a Variable](#add-a-variable)
+  - [Bulk Import from CSV](#bulk-import-from-csv)
+  - [Add Common Variables](#add-common-variables)
+  - [Filter Variables](#filter-variables)
+  - [Saving](#saving)
+  - [`_c` Variable](#`_c`-variable)
+  - [Viewing Data](#viewing-data)
+  - [Adding Tags](#adding-tags)
+  - [JS Files](#js-files)
+- [Load Rules](#load-rules)
+  - [Load Conditions Logic](#load-conditions-logic)
+  - [Add Load Rule](#add-load-rule)
+- [Extensions](#extensions)
+  - [Overview](#overview)
+- [Add Extension](#add-extension)
+  - [Extension Types](#extension-types)
+  - [Conditions](#conditions)
+  - [Advanced Extension Types](#advanced-extension-types)
+  - [JavaScript Extension](#javascript-extension)
 
-#### Email
-pch19-011@tealium.net
-
-#### Password
-PCH19-011
-
-### Ecommerce Training Platform
-
-#### Url
-http://www.tealiumecommerce.com/training
-
-#### Account
-education-craig
-
-#### Profile
-pch19-011
-
-#### Group Key
-1Bf6y6Lz2
-
-### Educational Content
-
-#### Url
-http://education.tealium.com/
-
-## Slides Location
-
-### Domain
-education.tealium.com
-
-### Join Group
-4EM4j1F4j
+### Day 02
+- [Order of Operations](#order-of-operations)
+  - [Load Order](#load-order)
+  - [Extension Scope](#extension-scope)
+  - [Extension Load Order](#extension-load-order)
+  - [Data Object Access](#data-object-access)
+  - [Load Order Manager](#load-order-manager)
+- [Consent Manager](#consent-manager)
+  - [Configure Globally](#configure-globally)
+  - [Configure Per Profile](#configure-per-profile)
+  - [Explicit Consent Prompt Configuration](#explicit-consent-prompt-configuration)
+  - [Consent Preferences Dialog](#consent-preferences-dialog)
+- [Use Case: Custom Tags](#use-case:-custom-tags)
+  - [Generic Tag Configuration](#generic-tag-configuration)
+- [Event Tracking](#event-tracking)
+  - [Description](#description)
+  - [Page view Events](#page-view-events)
+  - [Interaction Events](#interaction-events)
+- [Sync](#sync)
+  - [Parameters](#parameters)
+  - [Special Variables](#special-variables)
+  - [Examples](#examples)
+  - [`jQuery` Extension](#`jquery`-extension)
+- [Testing and Troubleshooting](#testing-and-troubleshooting)
+  - [Required Tools](#required-tools)
+  - [Checklist](#checklist)
+  - [Key Breakpoint spots in `utag.js`](#key-breakpoint-spots-in-utag.js)
+  - [Load Rule Gotchas](#load-rule-gotchas)
+  - [`utag.handler.iflag`](#utag.handler.iflag)
+  - [`utag.loader.cfg`](#utag.loader.cfg)
+- [Administration](#administration)
+  - [Creating a New Profile](#creating-a-new-profile)
+  - [Deleting Profiles](#deleting-profiles)
+  - [User Manager](#user-manager)
+  - [Manage Tag marketplace Policy](#manage-tag-marketplace-policy)
+  - [Manage Password Policy](#manage-password-policy)
+  - [Manage Labels](#manage-labels)
+  - [Version Manager](#version-manager)
 
 ## Plugging into Tealium
 
@@ -86,9 +128,9 @@ education.tealium.com
 - Contains most extensions
 - May contain tag templates
 
-## Design Our Data Latyer
+## Design Our Data Layer
 
-### What is a Data Layer | Integrated Data Layer Components
+### What is a Data Layer Integrated Data Layer Components
 - All data points available in any given web page
   - Universal data object
   - Query params
@@ -150,7 +192,7 @@ education.tealium.com
 ### Code Center
 - Outlines all the code we may want to include on our site
 
-## Use case: Initial Tag Conifguration
+## Use case: Initial Tag Configuration
 
 ### Add a Variable
 1. https://my.tealiumiq.com/
@@ -173,7 +215,7 @@ education.tealium.com
 5. Choose a relevant bundle
 6. Click `Import this Bundle`
 
-### Fliter Variables
+### Filter Variables
 1. https://my.tealiumiq.com/
 2. Topnav > `Filter`
 
@@ -326,7 +368,7 @@ education.tealium.com
 - __Do not tag templates in JS extensions__
   - Such templates should be fed directly from Tealium Tag marketplace
 
-## 19-10-30
+### 19-10-30
 # Tealium Training | Day 02
 
 ## Order of Operations
@@ -506,7 +548,7 @@ education.tealium.com
 ### Page view Events
 - `utag.view()`
 
-### Interaction events
+### Interaction Events
 - `utag.link()`
 
 ## Sync
@@ -710,4 +752,41 @@ utag.view({
 - View past versions published to any environment
   - Allows us to revert changes if something gets broken
   - We can view all changes associated with each previously-published version
+
+## Training Account
+
+### Credentials
+
+#### Email
+pch19-011@tealium.net
+
+#### Password
+PCH19-011
+
+### Ecommerce Training Platform
+
+#### Url
+http://www.tealiumecommerce.com/training
+
+#### Account
+education-craig
+
+#### Profile
+pch19-011
+
+#### Group Key
+1Bf6y6Lz2
+
+### Educational Content
+
+#### Url
+http://education.tealium.com/
+
+## Slides Location
+
+### Domain
+education.tealium.com
+
+### Join Group
+4EM4j1F4j
 

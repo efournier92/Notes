@@ -1,3 +1,87 @@
+# [New Relic](https://newrelic.com/) [Futurestack](https://newrelic.com/futurestack) 2018
+
+## Contents
+
+### Dashboarding Workshop
+- [Introduction to Insights](#introduction-to-insights)
+  - [New Relic Products that Feed Data](#new-relic-products-that-feed-data)
+  - [Metrics vs Events](#metrics-vs-events)
+- [`NRQL` Syntax and Event Types](#nrql-syntax-and-event-types)
+  - [Simple `NRQL` Syntax Example](#simple-nrql-syntax-example)
+  - [Main Event Types](#main-event-types)
+  - [How Events Are Fired](#how-events-are-fired)
+  - [Exploring Data](#exploring-data)
+  - [Create Dashboard](#create-dashboard)
+  - [Training Account](#training-account)
+- [Writing Queries](#writing-queries)
+  - [Four Main Features to Use](#four-main-features-to-use)
+  - [Basic Functionality](#basic-functionality)
+  - [Autocomplete Caveat](#autocomplete-caveat)
+  - [Geolocation Methodology](#geolocation-methodology)
+  - [`APM`](#apm)
+- [New Relic `ONE`](#new-relic-one)
+  - [General Information](#general-information)
+  - [Chart Builder](#chart-builder)
+  - [Timezone Considerations](#timezone-considerations)
+  - [Events vs Attributes](#events-vs-attributes)
+  - [Advanced `NRQL`](#advanced-`nrql`)
+  - [React-Native](#react-native)
+  - [Sharing Graphs](#sharing-graphs)
+  - [Adding Notes](#adding-notes)
+
+### Main Event
+- [Keynote Address](#keynote-address)
+  - [New Product Announcements](#new-product-announcements)
+  - [Other New Apps & Initiatives](#other-new-apps-&-initiatives)
+- [Customer Session](#customer-session)
+  - [Cox Automotive Thoughts on NR Integration](#cox-automotive-thoughts-on-nr-integration)
+- [AWS Migration, Modernization, and Optimization](#aws-migration,-modernization,-and-optimization)
+  - [Core Message](#core-message)
+  - [Modern Software Systems Should Be](#modern-software-systems-should-be)
+  - [A Successful Migration Should Include](#a-successful-migration-should-include)
+- [Moving to Entity-Centric Observability with New Relic `ONE`](#moving-to-entity-centric-observability-with-new-relic-`one`)
+  - [New Relic `ONE`](#new-relic-`one`)
+- [Generating Context From Your Log Data](#generating-context-from-your-log-data)
+  - [Why Logs?](#why-logs?)
+  - [Design Principles of NR Logging](#design-principles-of-nr-logging)
+  - [Demo](#demo)
+  - [Long Term Vision for `Logging`](#long-term-vision-for-`logging`)
+  - [Current Selling Points](#current-selling-points)
+- [Defining the Principles, Habits, and Practices of Site Reliability Engineering (_SRE_)](#defining-the-principles,-habits,-and-practices-of-site-reliability-engineering-(_sre_))
+  - [Benefits of SRE](#benefits-of-sre)
+- [After Lift & Shift - What Does Successful Modernization Take?](#after-lift-&-shift---what-does-successful-modernization-take?)
+  - [Deprecation Steps](#deprecation-steps)
+  - [Modernization Steps](#modernization-steps)
+  - [Thoughts from a New Relic Customer at Cardinal Health](#thoughts-from-a-new-relic-customer-at-cardinal-health)
+  - [Thoughts from a New Relic Customer at Fleet Complete](#thoughts-from-a-new-relic-customer-at-fleet-complete)
+  - [Next Steps](#next-steps)
+  - [Risks](#risks)
+  - [Steps to Continuous Application Modernization](#steps-to-continuous-application-modernization)
+  - [Thoughts of Modernization](#thoughts-of-modernization)
+  - [Examples of Defining Goals](#examples-of-defining-goals)
+  - [Corporate KPIs](#corporate-kpis)
+  - [Approaching Modernization](#approaching-modernization)
+  - [Reasons for Re-Platforming](#reasons-for-re-platforming)
+  - [What to Consider when Re-Platforming](#what-to-consider-when-re-platforming)
+  - [Reasons to Refactor](#reasons-to-refactor)
+  - [Considerations for Informed Refactoring](#considerations-for-informed-refactoring)
+  - [Types of Refactoring](#types-of-refactoring)
+  - [Observability](#observability)
+  - [Repeat](#repeat)
+- [Multidimensional Kubernetes Monitoring with New Relic](#multidimensional-kubernetes-monitoring-with-new-relic)
+  - [Kubernetes Basic Functionality](#kubernetes-basic-functionality)
+  - [Identifying Parts of the Environment](#identifying-parts-of-the-environment)
+  - [Three Steps to Observability](#three-steps-to-observability)
+  - [USA Today Testimonial](#usa-today-testimonial)
+- [Getting to Faster Incident Response with Applied Intelligence](#getting-to-faster-incident-response-with-applied-intelligence)
+  - [General Info](#general-info)
+  - [Human-Driven Detection](#human-driven-detection)
+  - [Human vs Automated Incident Management](#human-vs-automated-incident-management)
+  - [SRE Steps](#sre-steps)
+  - [Actionable Detection](#actionable-detection)
+  - [Alert Classification](#alert-classification)
+  - [New Relic AI](#new-relic-ai)
+
 ### 2019-09-18
 # New Relic Futurestack - Dashboarding Workshop
 
@@ -169,7 +253,7 @@ SELECT function(attribute_) FROM Event_Type WHERE condition FACET grouping
 ### 2019-09-19
 # New Relic Futurestack - Main Event
 
-## Keynote 
+## Keynote Address
 ### __Speaker:__ _Lew Cirne, CEO & Founder of New Relic_
 
 ### New Product Announcements
@@ -473,7 +557,7 @@ Defining the Principles, Habits, and Practices of Site Reliability Engineering
 ### __Speaker:__ _Boris Grinberg, Director, GE Monitoring Product & Engineering Leader, GE Digital_
 ### __Speaker:__ _Anjeneya Dubey, Senior Director of Engineering Site Reliability, Performance and Capacity_
 
-### Panel included reps From:
+### Panel included reps from
 - McGraw-Hill
   - Which is no longer a publication house
   - Is now focused on all aspects of digital education solutions
@@ -513,8 +597,6 @@ _these account of ~ 75% of work and improvements_
 - Re-host
 - Re-platform
 - Refactor
-
-### Benefits
 - Lower costs
 - Improve infrastructure
 - Speed up development
@@ -637,11 +719,11 @@ Grow market share
   - We should redefine our definition of _done_
     - Even when it comes to aspects like a feature story
 
-## Multidimensional Kubernetes Monitoring with New Relic
+## Multidimensional [Kubernetes](https://kubernetes.io/) Monitoring with New Relic
 ### __Speaker:__ _Stijn Polfliet, Principal Technical Evangelist, New Relic_
 ### __Speaker:__ _Kyle Weaver, Senior Platform Developer, SRE, Gannett_
 
-### Kubernetes Basic Functionality
+### [Kubernetes](https://kubernetes.io/) Basic Functionality
 - Allows us to easily schedule our workloads across our cluster
   - Also to move workloads to a different cluster, or part of cluster
 - Scalability
@@ -667,7 +749,7 @@ Grow market share
 3. New Relic `Logging`
   - Configure log forwarding to New Relic
 
-### _USA Today_ Testimonial
+### [USA Today](https://www.usatoday.com/) Testimonial
 
 #### Scaling Efforts
 - They're a customer of Kubernetes
