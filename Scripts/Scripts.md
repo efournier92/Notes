@@ -82,8 +82,7 @@ Launches a [Citrix Receiver](https://en.wikipedia.org/wiki/Citrix_Receiver) sess
 Feeds a [live stream](https://en.wikipedia.org/wiki/Live_streaming) to [Twitch](https://www.twitch.tv/), complete with [soundtrack](https://en.wikipedia.org/wiki/Soundtrack) from a disk storage directory.
 
 #### Location
-[Github](
-https://github.com/efournier92/Notes/blob/master/Scripts/Bash/.livestream.bash)
+[Github](https://github.com/efournier92/Notes/blob/master/Scripts/Bash/.livestream.bash)
 
 ### `open-chrome-tabs`
 
@@ -91,8 +90,7 @@ https://github.com/efournier92/Notes/blob/master/Scripts/Bash/.livestream.bash)
 A quick-and-dirty approach to opening a fresh [Chrome](https://www.google.com/chrome/), while loading a specific set of app tabs. This example opens a window with several tabs, each a different product on [Amazon Fresh](https://www.amazon.com/AmazonFresh), to make for a faster shopping experience.
 
 #### Location
-[Github](
-https://github.com/efournier92/Notes/blob/masterScripts/Bash/.open-chrome-tabs)
+[Github](https://github.com/efournier92/Notes/blob/master/Scripts/Bash/.open-chrome-tabs)
 
 ## [Ruby](https://www.ruby-lang.org/en/)
 

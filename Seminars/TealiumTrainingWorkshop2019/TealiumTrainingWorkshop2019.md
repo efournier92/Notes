@@ -1,6 +1,6 @@
 # Tealium Training Workshop 2019
 
-### [Day 01](#tealium-training-|-day-01)
+### [Day 01](#day-01)
 - [Plugging into Tealium](#plugging-into-tealium)
   - [Collect](#collect)
   - [Standardize](#standardize)
@@ -38,7 +38,7 @@
   - [Advanced Extension Types](#advanced-extension-types)
   - [JavaScript Extension](#javascript-extension)
 
-### [Day 02](#tealium-training-|-day-02)
+### [Day 02](#day-02)
 - [Order of Operations](#order-of-operations)
   - [Load Order](#load-order)
   - [Extension Scope](#extension-scope)
@@ -78,7 +78,7 @@
   - [Version Manager](#version-manager)
 
 ### 19-10-29
-# Tealium Training | Day 01
+# Day 01
 
 ## Plugging into Tealium
 
@@ -369,7 +369,7 @@
   - Such templates should be fed directly from Tealium Tag marketplace
 
 ### 19-10-30
-# Tealium Training | Day 02
+# Day 02
 
 ## Order of Operations
 

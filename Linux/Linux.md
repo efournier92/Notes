@@ -21,12 +21,12 @@
 [Github](https://github.com/efournier92/Notes/blob/master/Linux/Ubuntu/Ubuntu.md)
 
 ### [Chrome Remote Desktop](https://remotedesktop.google.com/)
-[Github](https://github.com/efournier92/Notes/blob/master/Linux/Ubuntu/ChromeRemoteDesktopUbuntu.md)
+[Github](https://github.com/efournier92/Notes/blob/master/Linux/Ubuntu/ChromeRemoteDesktop.md)
 
 ### [Polkit](https://en.wikipedia.org/wiki/Polkit) Policies
-- [ex.dmidecode.policy](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/Ubuntu/polkit-policies/ex.dmidecode.policy)
-- [ex.livestream.policy](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/Ubuntu/polkit-policies/ex.dmidecode.policy)
-- [ex.mongod.policy](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/Ubuntu/polkit-policies/ex.dmidecode.policy)
+- [ex.dmidecode.policy](https://github.com/efournier92/Notes/blob/master/Linux/Ubuntu/polkit-policies/ex.dmidecode.policy)
+- [ex.livestream.policy](https://github.com/efournier92/Notes/blob/master/Linux/Ubuntu/polkit-policies/ex.dmidecode.policy)
+- [ex.mongod.policy](https://github.com/efournier92/Notes/blob/master/Linux/Ubuntu/polkit-policies/ex.dmidecode.policy)
 
 ## Live USB
 

@@ -23,7 +23,7 @@
   - [Chart Builder](#chart-builder)
   - [Timezone Considerations](#timezone-considerations)
   - [Events vs Attributes](#events-vs-attributes)
-  - [Advanced `NRQL`](#advanced-`nrql`)
+  - [Advanced `NRQL`](#advanced-nrql)
   - [React-Native](#react-native)
   - [Sharing Graphs](#sharing-graphs)
   - [Adding Notes](#adding-notes)

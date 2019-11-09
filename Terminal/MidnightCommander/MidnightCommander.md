@@ -1,6 +1,12 @@
 # [Midnight Commander](https://midnight-commander.org/)
 
 ## Contents
+- [Overview](#overview)
+- [Screenshot](#screenshot)
+- [Shortcuts](#shortcuts)
+  - [Function Keys](#function-keys)
+  - [General Functionality](#general-functionality)
+  - [Shell](#shell)
 
 ## Overview
 I sometimes use [mc](https://midnight-commander.org/) as a visual file manager from the command line. It's a basic [orthodox file manager](https://en.wikipedia.org/wiki/File_manager#Orthodox_file_managers), which is useful to file browsing and manipulation.

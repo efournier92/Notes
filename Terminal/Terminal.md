@@ -27,7 +27,7 @@ I maintain the following location as a repository for all the [shell](https://en
 
 ### Installation
 
-#### Via [Apt](https://en.wikipedia.org/wiki/APT_(software)
+#### Via [Apt](https://en.wikipedia.org/wiki/APT_(software))
 ```bash
 sudo apt install zsh
 ```
@@ -42,7 +42,7 @@ Vim's been around since 1991, when it was cloned from [vi](https://en.wikipedia.
 
 ### Installation
 
-#### Via [Apt](https://en.wikipedia.org/wiki/APT_(software)
+#### Via [Apt](https://en.wikipedia.org/wiki/APT_(software))
 ```bash
 sudo apt install vim
 ```
@@ -67,7 +67,7 @@ sudo apt install vim
 
 ### Installation
 
-#### Via [Apt](https://en.wikipedia.org/wiki/APT_(software)
+#### Via [Apt](https://en.wikipedia.org/wiki/APT_(software))
 ```bash
 sudo apt-get install powerline fonts-powerline
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
@@ -83,7 +83,7 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 ### Installation
 
-#### Via [Apt](https://en.wikipedia.org/wiki/APT_(software)
+#### Via [Apt](https://en.wikipedia.org/wiki/APT_(software))
 ```bash
 sudo apt-get install mc
 ```

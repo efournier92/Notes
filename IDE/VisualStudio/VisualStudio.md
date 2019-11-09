@@ -17,7 +17,7 @@ I use Visual Studio as my IDE for a large corporate [ASP.NET](https://docs.micro
 [ReSharper](https://www.jetbrains.com/resharper/) provides some awesome tooling capabilities, which extend the power of [Visual Studio](https://visualstudio.microsoft.com/). I've compiled more information about using [ReSharper](https://www.jetbrains.com/resharper/) at the following location.
 
 ### Location
-[Github](https://github.com/efournier92/Notes/blob/master/IDE/ReSharper/ReSharper.md)
+[Github](https://github.com/efournier92/Notes/blob/master/IDE/VisualStudio/ReSharper/ReSharper.md)
 
 ## [Team Foundation Server](https://en.wikipedia.org/wiki/Team_Foundation_Server)
 

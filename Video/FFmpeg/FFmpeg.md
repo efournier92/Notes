@@ -216,10 +216,10 @@ do name=`echo $i | cut -d'.' -f1`;
 done
 ```
 
-## `webm`
+## `webm` to `mp4`
 
 ### Description
-Convert a `webm` file to mp4, without losing quality.
+Convert a `webm` file to `mp4`, without losing quality.
 
 ### Command
 ```bash

@@ -6,10 +6,9 @@
 - [Contribute](#contribute)
 - [License](#license)
 - [Notes](#notes)
-- [Notes To Do](#notes-to-do)
 
 ## Overview
-
+Whenever I do a project, I try to document my findings at the end. For the most part, this is as simple as annotating the commands I've used in a [Markdown] file. I keep these for my own future reference, with the added benefit of shareability. These notes can also be viewed on my website [efournier92.com](https://efournier92.com/notes/all).
 
 ## Demo
 [Notes](https://efournier92.com/notes/all)
@@ -21,8 +20,8 @@ If you have feature suggestions, please contact me here or at efournier92@gmail.
 This project is provided under the [MIT](https://opensource.org/licenses/MIT) licence and I hereby grant rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software without limitation, provided the resulting software also carries the same open-source licensing statement.
 
 ## Notes
-- [Android](https://raw.githubusercontent.com/efournier92/Notes/master/Android/Android.md)
-- [Clipboards](https://raw.githubusercontent.com/efournier92/Notes/master/Clipboards/Clipboards.md)
+- [Android](https://github.com/efournier92/Notes/blob/master/Android/Android.md)
+- [Clipboards](https://github.com/efournier92/Notes/blob/master/Clipboards/Clipboards.md)
 - [Clonezilla](https://github.com/efournier92/Notes/blob/master/Clonezilla/Clonezilla.md)
 - [GIFs](https://github.com/efournier92/Notes/blob/master/Gifs/Gifs.md)
 - [Git](https://github.com/efournier92/Notes/blob/master/Git/Git.md)
@@ -36,8 +35,8 @@ This project is provided under the [MIT](https://opensource.org/licenses/MIT) li
 - [Linux](https://github.com/efournier92/Notes/blob/master/Linux/Linux.md)
   - [Ubuntu](https://github.com/efournier92/Notes/blob/master/Linux/Ubuntu/Ubuntu.md)
     - [Chrome Remote Desktop](https://github.com/efournier92/Notes/blob/master/Linux/Ubuntu/ChromeRemoteDesktop.md)
-  - [LiveUsb](https://github.com/efournier92/Notes/blob/master/LiveUsb/LiveUsb.md)
-    - [UsbBenchmarks](https://github.com/efournier92/Notes/blob/master/LiveUsb/UsbBenchmarks.md)
+  - [LiveUsb](https://github.com/efournier92/Notes/blob/master/Linux/LiveUsb/LiveUsb.md)
+    - [UsbBenchmarks](https://github.com/efournier92/Notes/blob/master/Linux/LiveUsb/UsbBenchmarks.md)
 - [Lirc](https://github.com/efournier92/Notes/blob/master/Lirc/Lirc.md)
 - [Mac](https://github.com/efournier92/Notes/blob/master/Mac/Mac.md)
 - [PDFs](https://github.com/efournier92/Notes/blob/master/Pdfs/Pdfs.md)
@@ -59,6 +58,4 @@ This project is provided under the [MIT](https://opensource.org/licenses/MIT) li
   - [Service Workers](https://github.com/efournier92/Notes/blob/master/Web/ServiceWorkers/ServiceWorkers.md)
 - [Windows](https://github.com/efournier92/Notes/blob/master/Windows/Windows.md)
   - [.NET](https://github.com/efournier92/Notes/blob/master/Windows/DotNet/DotNet.md)
-
-## Notes To Do
 
