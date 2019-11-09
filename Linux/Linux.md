@@ -34,8 +34,9 @@
 I've documented my method of turning a [Linux](https://www.linux.org/) system into a [bootable](https://en.wikipedia.org/wiki/Boot_disk) [USB flash drive](https://en.wikipedia.org/wiki/USB_flash_drive). My solution predominantly relies upon [grub2](https://www.gnu.org/software/grub/manual/grub/grub.html) and [Clonezilla](https://www.clonezilla.org/).
 
 ### Configuration Steps
-[Github](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/LiveUsb/UbuntuLiveUsb.md)
+[Github](
+https://github.com/efournier92/Notes/blob/master/Linux/LiveUsb/LiveUsb.md)
 
 ### USB Benchmarks
-[Github](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/LiveUsb/UsbBenchmarks.md)
+[Github](https://github.com/efournier92/Notes/blob/master/Notes/master/Linux/LiveUsb/UsbBenchmarks.md)
 

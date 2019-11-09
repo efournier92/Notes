@@ -28,7 +28,7 @@ sudo make install
 ## Download the Template
 
 ### Via Browser
-[Github](https://raw.githubusercontent.com/efournier92/Notes/master/GreetingCards/GreetingCardTemplate.zip)
+[Github](https://github.com/efournier92/Notes/blob/master/GreetingCards/GreetingCardTemplate.zip)
 
 ### Via [cURL](https://curl.haxx.se/)
 ```bash

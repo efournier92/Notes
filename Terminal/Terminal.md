@@ -57,7 +57,7 @@ sudo apt install vim
 - [18-01-14](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-01-14_vimrc)
 - [18-01-17](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-01-17_vimrc)
 - [18-01-29](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-01-29_vimrc)
-- [18-02-06](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-02-06_vimrc)
+- [18-02-06 _viminfo_](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-02-06_viminfo)
 - [19-11-09](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/19-11-09_vimrc)
 
 ## [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)

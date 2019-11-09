@@ -33,7 +33,7 @@
 Used to periodically [zip](https://en.wikipedia.org/wiki/Zip_(file_format)) a directory recursively, for archival purposes.
 
 #### Location
-[Github](https://github.com/efournier92/Notes/master/Scripts/Bash/.bk-bnk.bash)
+[Github](https://github.com/efournier92/Notes/blob/master/Windows/Fonts/DejaVuSansMonoForPowerline.ttf)
 
 ### `bk-drive`
 
@@ -41,7 +41,7 @@ Used to periodically [zip](https://en.wikipedia.org/wiki/Zip_(file_format)) a di
 Synced two back-up directories, as a [DRP](https://en.wikipedia.org/wiki/Disaster_recovery_and_business_continuity_auditing#Disaster_recovery_plan).
 
 #### Location
-[Github](https://github.com/efournier92/Notes/Scripts/Bash/.bk-drive.bash)
+[Github](https://github.com/efournier92/Notes/blob/master/Scripts/Bash/.bk-drive.bash)
 
 ### `bk-gry`
 
@@ -49,7 +49,7 @@ Synced two back-up directories, as a [DRP](https://en.wikipedia.org/wiki/Disaste
 Selectively syncs a smaller back-up directory, into a larger one.
 
 #### Location
-[Github](https://github.com/efournier92/Notes/Scripts/Bash/.bk-gry.bash)
+[Github](https://github.com/efournier92/Notes/blob/master/Scripts/Bash/.bk-gry.bash)
 
 ### `boot-cmds`
 
@@ -58,7 +58,7 @@ Configure system and launch some utilities on [Ubuntu](https://ubuntu.com/) syst
 
 #### Location
 [Github](
-https://github.com/efournier92/Notes/Scripts/Bash/.boot-cmds.bash)
+https://github.com/efournier92/Notes/blob/master/Scripts/Bash/.boot-cmds.bash)
 
 ### `dev-env`
 
@@ -66,7 +66,7 @@ https://github.com/efournier92/Notes/Scripts/Bash/.boot-cmds.bash)
 Opens appropriate [tmux](https://github.com/tmux/tmux/wiki) tabs and panes for development on an [Angular](https://angular.io/) project.
 
 #### Location
-[Github](https://github.com/efournier92/Notes/Scripts/Bash/.dev-env.bash)
+[Github](https://github.com/efournier92/Notes/blob/master/Scripts/Bash/.dev-env.bash)
 
 ### `launch-citrix`
 
@@ -74,7 +74,7 @@ Opens appropriate [tmux](https://github.com/tmux/tmux/wiki) tabs and panes for d
 Launches a [Citrix Receiver](https://en.wikipedia.org/wiki/Citrix_Receiver) session.
 
 #### Location
-[Github](https://github.com/efournier92/Notes/Scripts/Bash/.launch-citrix.bash)
+[Github](https://github.com/efournier92/Notes/blob/master/Scripts/Bash/.launch-citrix.bash)
 
 ### `livestream`
 
@@ -83,7 +83,7 @@ Feeds a [live stream](https://en.wikipedia.org/wiki/Live_streaming) to [Twitch](
 
 #### Location
 [Github](
-https://github.com/efournier92/Notes/Scripts/Bash/.livestream.bash)
+https://github.com/efournier92/Notes/blob/master/Scripts/Bash/.livestream.bash)
 
 ### `open-chrome-tabs`
 
@@ -92,7 +92,7 @@ A quick-and-dirty approach to opening a fresh [Chrome](https://www.google.com/ch
 
 #### Location
 [Github](
-https://github.com/efournier92/Notes/Scripts/Bash/.open-chrome-tabs)
+https://github.com/efournier92/Notes/blob/masterScripts/Bash/.open-chrome-tabs)
 
 ## [Ruby](https://www.ruby-lang.org/en/)
 
@@ -105,8 +105,7 @@ https://github.com/efournier92/Notes/Scripts/Bash/.open-chrome-tabs)
 Compresses a directory of `.WAV` files, outputting `.mp3` files to a different directory.
 
 #### Location
-[Github](
-https://github.com/efournier92/Notes/Scripts/Ruby/audio_logger.rb)
+[Github](https://github.com/efournier92/Notes/blob/master/Scripts/Ruby/audio_logger.rb)
 
 ## [AppleScript](https://en.wikipedia.org/wiki/AppleScript)
 
@@ -119,7 +118,7 @@ https://github.com/efournier92/Notes/Scripts/Ruby/audio_logger.rb)
 I used to run this little [AppleScript](https://en.wikipedia.org/wiki/AppleScript) application whenever my [OS X](https://en.wikipedia.org/wiki/MacOS) system booted. It automated care of some desktop and app-launching operations. I didn't know what I was doing when I wrote it, but it continued to mostly work for my purposes for years of intermittent tweaking, before I abandoned [MacOS](https://en.wikipedia.org/wiki/MacOS).
 
 #### Location
-[Github](https://github.com/efournier92/Notes/Scripts/AppleScript/RunTime.scpt)
+[Github](https://github.com/efournier92/Notes/blob/master/Scripts/AppleScript/RunTime.scpt)
 
 ### `Printercisor`
 
@@ -127,7 +126,7 @@ I used to run this little [AppleScript](https://en.wikipedia.org/wiki/AppleScrip
 I wrote this script as part of a failed attempt to configure an [Epson Workforce 30](https://files.support.epson.com/pdf/wf30__/wf30__qg.pdf) printer with a [Continuous Ink Supply System](https://en.wikipedia.org/wiki/Continuous_ink_system). My idea was that, since I wouldn't be using the printer every day, I should write a script print a page every couple days, to prevent the [heads](https://en.wikipedia.org/wiki/Inkjet_printing#Disposable_head) from drying out. I keep the result of this effort at the following location.
 
 #### Location
-[Github](https://github.com/efournier92/Notes/tree/master/Scripts/AppleScript/Printercisor)
+[Github](https://github.com/efournier92/Notes/blob/master/Scripts/AppleScript/Printercisor)
 
 ### `Waker`
 
@@ -135,7 +134,7 @@ I wrote this script as part of a failed attempt to configure an [Epson Workforce
 This script would fire on the system-wakeup event, to fix some bugs on a [Mac Mini](https://en.wikipedia.org/wiki/Mac_Mini#2nd_generation_(Intel-based,_2006-2009)) media center machine.
 
 #### Location
-[Github](https://github.com/efournier92/Notes/Scripts/AppleScript/Waker.scpt)
+[Github](https://github.com/efournier92/Notes/blob/master/Scripts/AppleScript/Waker.scpt)
 
 ### `KbRightClick`
 

@@ -73,7 +73,7 @@ When left unchecked, [ReSharper](https://www.jetbrains.com/resharper/) can slow 
 ### Description
 Below is a list of hotkeys that ship as [ReSharper's](https://www.jetbrains.com/resharper/) default keyboard layout.
 
-### Shortcuts
+### Keyboard Shortcuts
 
 #### Search Everything
 - `ctrl-t`

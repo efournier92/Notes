@@ -8,7 +8,7 @@
   - [Aeon Nox](#aeon-nox)
 
 ## Overview
-I've been using [Kodi](https://kodi.tv/) as a media platform since 2012, when it was still called XBMC. It's always had a great open-source community around it, and I cut my code-writing teeth pasting Python blocks together in search of custom functionality. Below is a non-comprehensive collection of tips I've learned along the way.
+I've been using [Kodi](https://kodi.tv/) as a media platform since 2012, when it was still called `XBMC`. It's always had a great open-source community around it, and I cut my code-writing teeth pasting Python blocks together in search of custom functionality. Below is a non-comprehensive collection of tips I've learned along the way.
 
 ## Skins
 
@@ -18,19 +18,19 @@ Finding the right skin can make or break one's [Kodi](https://kodi.tv/) experien
 
 ### [Aeon MQ8](https://kodi.tv/addon/skins/aeon-mq-8)
 
-### Description
+#### Description
 Simple, modern, lightweight, fairly customizable.
 
-### Music Visualization Tweak
+#### Music Visualization Tweak
 
-#### Description
+##### Description
 One of my major complaints with [Aeon MQ8](https://kodi.tv/addon/skins/aeon-mq-8) is that the stock overlay for audio playback is way too busy, and detracts from [projectM](https://github.com/projectM-visualizer/projectm) visualizations. I use the below config file 
 
-#### Location
-`.kodi/addons/skin.aeonmq8/xml`
+##### File Location
+`.kodi/addons/skin.aeonmq8/xml/`
 
-#### Config File
-[MusicVisualization.xml](https://github.com/efournier92/Notes/blob/master/Kodi/skin.aeonmq8/xml/MusicVisualisation.xml)
+##### `MusicVisualization.xml`
+[Github](https://github.com/efournier92/Notes/blob/master/Kodi/skin.aeonmq8/xml/MusicVisualisation.xml)
 
 ### [Aeon Nox](https://kodi.tv/addon/skins/aeon-nox)
 

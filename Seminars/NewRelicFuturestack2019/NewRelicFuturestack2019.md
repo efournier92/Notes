@@ -12,7 +12,6 @@
   - [How Events Are Fired](#how-events-are-fired)
   - [Exploring Data](#exploring-data)
   - [Create Dashboard](#create-dashboard)
-  - [Training Account](#training-account)
 - [Writing Queries](#writing-queries)
   - [Four Main Features to Use](#four-main-features-to-use)
   - [Basic Functionality](#basic-functionality)

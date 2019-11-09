@@ -12,7 +12,7 @@
 ### Description
 Below is a list of applications I've at some point used in [OS X](https://en.wikipedia.org/wiki/MacOS), which I might consider reinstalling when building on a fresh install.
 
-### App List
+### Full List
 - [Adobe Digital Editions](https://www.adobe.com/solutions/ebook/digital-editions/download.html)
 - [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
 - [Adobe Premier Pro](https://www.adobe.com/products/premiere/free-trial-download.html)

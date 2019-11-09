@@ -19,7 +19,7 @@ Cut a new branch from Trunk.
 #### Steps
 1. Create a clean TFS workspace
 2. Open a new instance of Visual Studio
-  - Don't open any solution
+    - Don't open any solution
 3. Open `Source Control Explorer`
 4. Right click `Trunk`
 5. Select `Branching and Merging`, then `Branch...`
@@ -38,14 +38,14 @@ Merge a branch into Trunk.
 #### Steps
 1. Create a clean TFS workspace
 2. Open a new instance of Visual Studio
-  - Don't open any solution
+    - Don't open any solution
 3. Open `Source Control Explorer`
 4. Force get latest for both Trunk & the relevant Branch
 5. Right click the relevant Branch in `Source Control Explorer`
-  - Select `Branching and Merging`
-  - Click `Merge...`
+    - Select `Branching and Merging`
+    - Click `Merge...`
 6. Select appropriate settings in the next window and click `Finish`
 7. Verify pending changes in local environment
 8. Check-in pending changes
-  - Comment: `Merged { Branch } into Trunk as of branch changeset #{ CHANGESET } [Release { MAJOR }.{ MINOR }]`
+    - Comment: `Merged { Branch } into Trunk as of branch changeset #{ CHANGESET } [Release { MAJOR }.{ MINOR }]`
 

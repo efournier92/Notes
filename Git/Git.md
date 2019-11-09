@@ -2,7 +2,7 @@
 
 ## Contents
 - [Overview](#overview)
-- [READMEs](#readmes)
+- [ReadMes](#readmes)
   - [Templates](#templates)
     - [All Sections](#all-sections)
     - [Basic](#basic)

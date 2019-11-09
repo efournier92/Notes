@@ -3,7 +3,7 @@
 ## Contents
 - [Overview](#overview)
 - [Convert Screenshots to GIF](#convert-screenshots-to-gif)
-- [Commands](#useful-commands)
+- [Commands](#commands)
   - [Standardize File Names](#standardize-file-names)
   - [Merge with Background Layer](#merge-with-background-layer)
   - [Make Image Grayscale](#make-image-grayscale)

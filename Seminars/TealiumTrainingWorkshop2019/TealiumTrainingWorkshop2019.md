@@ -9,7 +9,7 @@
 - [Without Tag Management](#without-tag-management)
 - [Basics](#basics)
   - [Universal Data Object](#universal-data-object)
-  - [`utag.js`](###`utag.js`)
+  - [utag.js](#utag.js)
 - [Design Our Data Layer](#design-our-data-layer)
   - [What is a Data Layer](#what-is-a-data-layer)
   - [Best Practices](#best-practices)
@@ -23,7 +23,7 @@
   - [Add Common Variables](#add-common-variables)
   - [Filter Variables](#filter-variables)
   - [Saving](#saving)
-  - [`_c` Variable](#`_c`-variable)
+  - [`_c` Variable](#c-variable)
   - [Viewing Data](#viewing-data)
   - [Adding Tags](#adding-tags)
   - [JS Files](#js-files)
@@ -60,14 +60,14 @@
   - [Parameters](#parameters)
   - [Special Variables](#special-variables)
   - [Examples](#examples)
-  - [`jQuery` Extension](#`jquery`-extension)
+  - [jQuery Extension](#jquery-extension)
 - [Testing and Troubleshooting](#testing-and-troubleshooting)
   - [Required Tools](#required-tools)
   - [Checklist](#checklist)
-  - [Key Breakpoint spots in `utag.js`](#key-breakpoint-spots-in-utag.js)
+  - [Key Breakpoint spots in utag.js](#key-breakpoint-spots-in-utag.js)
   - [Load Rule Gotchas](#load-rule-gotchas)
-  - [`utag.handler.iflag`](#utag.handler.iflag)
-  - [`utag.loader.cfg`](#utag.loader.cfg)
+  - [utag.handler.iflag](#utag.handler.iflag)
+  - [utag.loader.cfg](#utag.loader.cfg)
 - [Administration](#administration)
   - [Creating a New Profile](#creating-a-new-profile)
   - [Deleting Profiles](#deleting-profiles)
@@ -120,7 +120,7 @@
     - Not all data is needed on all pages
       - Don't include anything that doesn't need to be there
 
-### `utag.js`
+### [utag.js](https://docs.tealium.com/platforms/javascript/)
 - Loaded asynchronously
 - Controller file
 - Collects and collates data from utag_data and other sources, into the data layer
@@ -234,8 +234,8 @@
 #### Publish
 1. Select some or all of the environments listed in the modal
 
-### `_c` Variable
-- Is a common convention, expected for e-commerce platforms
+### c Variable
+- `_c` is a common convention, expected for e-commerce platforms
   - Expected by GA, Adobe, etc
 
 ### Viewing Data
@@ -616,7 +616,7 @@ utag.view({
   }, function() {}, [42]);
 ```
 
-### `jQuery` Extension
+### [jQuery](https://jquery.com/) Extension
 
 #### Description
 - Ideal for custom click tracking
@@ -677,7 +677,7 @@ utag.view({
 19. Does the code run in the Console without errors?
 20. Do Breakpoints get hit, and values set in `Watch` statements
 
-### Key Breakpoint spots in `utag.js`
+### Key Breakpoint spots in utag.js
 1. Pre Loader
   - `utag.conload`
 2. Load Rules
@@ -695,11 +695,11 @@ utag.view({
     - `page_view`
     - `page_type`
 
-### `utag.handler.iflag`
+### utag.handler.iflag
 - The "Everything is OK" Flag
   - If we don't see that, we need to double-check our implementation
 
-### `utag.loader.cfg`
+### utag.loader.cfg
 - Provides status codes for each tab
   - `0` is success
   - `1` is fail
