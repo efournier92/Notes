@@ -6,7 +6,7 @@
 - [Commands](#useful-commands)
   - [Standardize File Names](#standardize-file-names)
   - [Merge with Background Layer](#merge-with-background-layer)
-  - [Make Image Grayscale](#make-image-grascale)
+  - [Make Image Grayscale](#make-image-grayscale)
   - [Crop Image](#crop-image)
   - [Resize Image](#resize-image)
   - [Optimize Image](#optimize-image)

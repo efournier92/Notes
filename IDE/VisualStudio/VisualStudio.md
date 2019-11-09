@@ -1,7 +1,9 @@
-# Visual Studio Performance Configuration
+# [Visual Studio](https://visualstudio.microsoft.com/)
 
 ## Contents
 - [Overview](#overview)
+- [Team Foundation Server](#team-foundation-server)
+- [VS Performance Optimization](#vs-performance-optimization)
 - [ReSharper Performance Optimization](#resharper-performance-optimization)
 - [Visual Studio Keyboard Shortcuts](#visual-studio-keyboard-shortcuts)
 - [ReSharper Shortcuts](#resharper-shortcuts)
@@ -9,6 +11,14 @@
 ## Overview
 I use Visual Studio as my IDE for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I typically use it in conjuntion with
 [JetBrains](https://www.jetbrains.com/) [ReSharper](https://www.jetbrains.com/resharper/). Below are some configurations I find useful.
+
+## [Team Foundation Server](https://en.wikipedia.org/wiki/Team_Foundation_Server)
+
+### Description
+I use TFS in conjunction with Visual Studio as a centralized version control system for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I've compiled more information at the following location
+
+### Location
+[Github](https://github.com/efournier92/Notes/blob/master/IDE/VisualStudio/TFS/TFS.md)
 
 ## VS Performance Optimization
 
