@@ -11,7 +11,6 @@
 ## Overview
 Somehow, with all the [open source](https://en.wikipedia.org/wiki/Open_source) applications available from [Apt](https://wiki.debian.org/Apt), options for easily printing greeting cards are sparse. Since I love [GIMP](https://www.gimp.org/), I decided I could easily just make the contents of a card there, then run a script to print it using [CLI](https://en.wikipedia.org/wiki/Command-line_interface) tools. The below contents outline my method for printing a greeting card this way.
 
-
 ## Install Dependencies
 
 ### [ImageMagick](https://imagemagick.org/)
