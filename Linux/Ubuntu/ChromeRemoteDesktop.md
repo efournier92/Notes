@@ -1,9 +1,8 @@
-# [Chrome Remote Desktop Server](https://remotedesktop.google.com/)
-# [Ubuntu](https://ubuntu.com/) Configuration
+# [Chrome Remote Desktop](https://remotedesktop.google.com/)
 
 ## Contents
 - [Overview](#overview)
-- [Commands](#commands)
+- [Ubuntu Server Configuration](#ubuntu-server-configuration)
   - [Download](#download)
   - [Install](#install)
   - [Stop the server](#stop-the-server)
@@ -16,7 +15,7 @@
 ## Overview
 When it comes to [remote desktops](https://en.wikipedia.org/wiki/Remote_desktop_software), I find [Google's](https://remotedesktop.google.com/) to be as sufficient and simple to install as anything. I find the following commands useful when setting up a server in [Ubuntu](https://ubuntu.com/).
 
-## Commands
+## [Ubuntu](https://ubuntu.com/) Server Configuration
 
 ### Download
 

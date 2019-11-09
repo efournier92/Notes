@@ -75,9 +75,9 @@ sudo update-initramfs -u
 When adding a new policy, copy the file to different directory, edit it, then copy it back to the `actions` folder.
 
 ### Examples
-- [Github](https://github.com/efournier92/Notes/blob/master/Linux/Polkit/policies/ex.dmidecode.policy)
-- [Github](https://github.com/efournier92/Notes/blob/master/Linux/Polkit/policies/ex.livestream.policy)
-- [Github](https://github.com/efournier92/Notes/blob/master/Linux/Polkit/policies/ex.mongod.policy)
+- [ex.dmidecode.policy](https://github.com/efournier92/Notes/blob/master/Linux/Polkit/policies/ex.dmidecode.policy)
+- [ex.livestream.policy](https://github.com/efournier92/Notes/blob/master/Linux/Polkit/policies/ex.livestream.policy)
+- [ex.mongod.policy](https://github.com/efournier92/Notes/blob/master/Linux/Polkit/policies/ex.mongod.policy)
 
 ## [fstab](https://help.ubuntu.com/community/Fstab)
 

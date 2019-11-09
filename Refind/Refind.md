@@ -34,7 +34,7 @@ diskutil mount disk1s2
 ls /Volumes/Preboot/
 ```
 
-#### Update `rEFInd` Stanza
+#### Update [rEFInd](http://www.rodsbooks.com/refind/) Stanza
 ```
 menuentry OSX {
   icon   /EFI/refind/themes/misigno/icons/os_mac.png

@@ -18,10 +18,10 @@
 [Ubuntu](https://ubuntu.com/) is my favorite [Linux flavor](https://en.wikipedia.org/wiki/List_of_Linux_distributions), and favorite [OS](https://en.wikipedia.org/wiki/Operating_system) from 2018 on. I've compiled a great deal of information on activities related to [Ubuntu](https://ubuntu.com/), at the following locations.
 
 ### System Configuration
-[Github](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/Ubuntu/Ubuntu.md)
+[Github](https://github.com/efournier92/Notes/blob/master/Linux/Ubuntu/Ubuntu.md)
 
 ### [Chrome Remote Desktop](https://remotedesktop.google.com/)
-[Github](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/Ubuntu/ChromeRemoteDesktopUbuntu.md)
+[Github](https://github.com/efournier92/Notes/blob/master/Linux/Ubuntu/ChromeRemoteDesktopUbuntu.md)
 
 ### [Polkit](https://en.wikipedia.org/wiki/Polkit) Policies
 - [ex.dmidecode.policy](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/Ubuntu/polkit-policies/ex.dmidecode.policy)

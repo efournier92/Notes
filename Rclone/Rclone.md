@@ -1,4 +1,4 @@
-# [rclone](https://rclone.org/) `RClone` Batch Backup
+# [rclone](https://rclone.org/)
 
 ## Contents
 - [Overview](#overview)

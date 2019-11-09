@@ -4,7 +4,6 @@
 - [Overview](#overview)
 - [Rotate](#rotate)
 - [Crop](#crop)
-  - [Left Side](#left-side)
 - [Reduce File Size](#reduce-file-size)
 
 ## Overview
@@ -15,15 +14,13 @@ I often find myself needing to manipulate [PDF](https://en.wikipedia.org/wiki/PD
 ### Description
 When I need to rotate the pages of a [PDF](https://en.wikipedia.org/wiki/PDF), I use [pdftk](https://www.pdflabs.com/docs/pdftk-man-page/) in conjunction with a variation the following command.
 
-### Commands
-
-#### Install Dependency
+### Install Dependency
 ```bash
 sudo add-apt-repository ppa:malteworld/ppa
 sudo apt install pdftk
 ```
 
-#### Rotate Clockwise
+### Rotate Clockwise
 ```bash
 pdftk input.pdf cat 1-endeast output output.pdf
 ```
@@ -33,14 +30,12 @@ pdftk input.pdf cat 1-endeast output output.pdf
 ### Description
 To crop a [PDF](https://en.wikipedia.org/wiki/PDF), I use [pdfcrop](https://ctan.org/pkg/pdfcrop).
 
-### Commands
-
-#### Install Dependency
+### Install Dependency
 ```bash
 sudo apt-get install texlive-extra-utils
 ```
 
-#### Left Side
+### Crop Left Side
 ```bash
 pdfcrop --margins '30 0 0 0' output_rotate.pdf output_rotate_crop.pdf
 ```
