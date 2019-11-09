@@ -18,7 +18,7 @@ My first choice for any operating system.
 I like to tweak the default settings a bit, particularly to use the [Solarized](https://ethanschoonover.com/solarized/) color palette. My download configuration file, along with an example screenshot, are available below.
 
 #### Configuration File
-[Github Location](https://github.com/efournier92/configs/blob/master/Clipboards/CopyQ/18-05-05.cpq)
+[Github](https://github.com/efournier92/configs/blob/master/Clipboards/CopyQ/18-05-05.cpq)
 
 #### Screenshot
 ![CopyQ Screenshot](https://github.com/efournier92/configs/blob/master/Clipboards/CopyQ/CopyQ_Screenshot.png)

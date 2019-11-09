@@ -2,10 +2,10 @@
 
 ## Contents
 - [Overview](#overview)
-- [Restore from Image](restore-from-Image)
+- [Restore from Image](#restore-from-Image)
 
 ## Overview
-The free and open-source tool available. Built on Linux, it can be installed on a thumb drive to provide a bootable solution for disk cloning, imaging, restoration, and network deployments.
+The best free and [open source](https://en.wikipedia.org/wiki/Open_source) tool available, for [disk cloning](https://en.wikipedia.org/wiki/Disk_cloning), and much more. Built on [Linux](https://www.linux.org/), it can be installed on a thumb drive to provide a bootable solution for [disk cloning](https://en.wikipedia.org/wiki/Disk_cloning), [imaging](https://en.wikipedia.org/wiki/Disk_image), restoration, and network deployments.
 
 ## Restore from Image
 

@@ -1,15 +1,14 @@
-# Converting ScreenShots to `.gif`
+# [GIFs](https://en.wikipedia.org/wiki/GIF)
 
-## Process
+## Contents
+- [Overview](#overview)
+- [Convert Screenshots to `.gif`](#convert-screenshots-to-.gif)
+- [Useful Commands](#useful-commands)
 
-### Standardize File Names
-```bash
-IDX=0
-for i in *.png; do
-  mv $i "Image`printf "%02d" $IDX`.png"
-  let IDX++
-done
-```
+## Overview
+I like to spin up [GIFs](https://en.wikipedia.org/wiki/GIF) sometimes, as a funny and shareable form of media. I use the following commands and processes to facilitate working with them.
+
+## Convert Screenshots to `.gif`
 
 ### 1. Merge with Background Layer
 ```bash
@@ -18,9 +17,6 @@ for i in Image*.png; do
 done
 ```
 
-for i in Image*.png; do
-  convert $i -crop 2560x1500+0+56 -resize 1200 "out/${i}"
-done
 ### 2. All `convert` Commands
 ```bash
 for i in Image*.png; do
@@ -33,7 +29,7 @@ done
 pngquant 8 --speed 1 *.png 
 ```
 
-## Commands
+## Useful Commands
 
 ### Standardize File Names
 ```bash

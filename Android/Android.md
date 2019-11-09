@@ -152,7 +152,7 @@ fastboot format cache
 fastboot format userdata
 ```
 
-## Apps
+## Applications
 
 ### Description
 This is a comprehensive list of Android Apps I find useful, and usually install on my devices.
