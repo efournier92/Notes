@@ -3,10 +3,10 @@
 ## Contents
 - [Overview](#overview)
 - [Convert Screenshots to GIF](#convert-screenshots-to-gif)
-- [Useful Commands](#useful-commands)
+- [Commands](#useful-commands)
   - [Standardize File Names](#standardize-file-names)
   - [Merge with Background Layer](#merge-with-background-layer)
-  - [Make Image [Grayscale](https://en.wikipedia.org/wiki/Grayscale)](#make-image-[grayscale](https://en.wikipedia.org/wiki/grayscale))
+  - [Make Image Grayscale](#make-image-grascale)
   - [Crop Image](#crop-image)
   - [Resize Image](#resize-image)
   - [Optimize Image](#optimize-image)
@@ -37,7 +37,7 @@ done
 pngquant 8 --speed 1 *.png 
 ```
 
-## Useful Commands
+## Commands
 
 ### Standardize File Names
 ```bash

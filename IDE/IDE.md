@@ -19,7 +19,7 @@ I like [Visual Studio Code](https://code.visualstudio.com/) as an IDE when worki
 ## [Visual Studio](https://visualstudio.microsoft.com/)
 
 ### Description
-I use Visual Studio as my IDE for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I typically use it in conjuntion with
+I use Visual Studio as my [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I typically use it in conjunction with [ReSharper](https://www.jetbrains.com/resharper/), for a more powerful experience.
 
 ### Location
 [Github](https://github.com/efournier92/Notes/blob/master/IDE/VisualStudio/VisualStudio.md)

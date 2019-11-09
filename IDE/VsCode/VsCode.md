@@ -7,7 +7,7 @@
   - [Tab Indentation](#tab-indentation)
 
 ## Overview
-I like [Visual Studio Code](https://code.visualstudio.com/) as an IDE when working on client-side projects, particularly when using [Angular](https://angular.io/) and similar frameworks. Below are some tips I've learned while using it.
+I like [Visual Studio Code](https://code.visualstudio.com/) as an [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) when working on client-side projects, particularly when using [Angular](https://angular.io/) and similar [frameworks](https://en.wikipedia.org/wiki/Software_framework). Below are some tips I've learned while using it.
 
 ## Configurations
 

@@ -6,7 +6,8 @@
 - [Download the Template](#download-the-template)
 - [Unzip the Directory](#unzip-the-directory)
 - [Open the Card in GIMP](#open-the-card-in-gimp)
-- [Print the Card](#print-the-card)
+- [Print Half-Fold Card](#print-half-fold-card)
+- [Print Quarter-Fold Card](#print-quarter-fold-card)
 
 ## Overview
 Somehow, with all the [open source](https://en.wikipedia.org/wiki/Open_source) applications available from [Apt](https://wiki.debian.org/Apt), options for easily printing greeting cards are sparse. Since I love [GIMP](https://www.gimp.org/), I decided I could easily just make the contents of a card there, then run a script to print it using [CLI](https://en.wikipedia.org/wiki/Command-line_interface) tools. The below contents outline my method for printing a greeting card this way.
@@ -24,7 +25,7 @@ make
 sudo make install
 ```
 
-## Download the Project
+## Download the Template
 
 ### Via Browser
 [Github](https://raw.githubusercontent.com/efournier92/Notes/master/GreetingCards/GreetingCardTemplate.zip)
