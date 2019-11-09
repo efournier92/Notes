@@ -5,13 +5,14 @@
 - [Demo](#demo)
 - [Contribute](#contribute)
 - [License](#license)
-- [Notes](#features)
-- [Notes To Do](#features-to-do)
+- [Notes](#notes)
+- [Notes To Do](#notes-to-do)
 
 ## Overview
 
+
 ## Demo
-[Notes](efournier92.com/Notes)
+[Notes](https://efournier92.com/notes/all)
 
 ## Contribute
 If you have feature suggestions, please contact me here or at efournier92@gmail.com. If you'd like to submit a pull request, please feel free to, and I'll review merge it at my earliest convenience!
@@ -55,10 +56,9 @@ This project is provided under the [MIT](https://opensource.org/licenses/MIT) li
   - [youtube-dl](https://github.com/efournier92/Notes/blob/master/Video/YoutubeDL/YoutubeDL.md)
 - [Web](https://github.com/efournier92/Notes/blob/master/Web/Web.md)
   - [Firebase](https://github.com/efournier92/Notes/blob/master/Web/Firebase/Firebase.md)
-  - [Service Workers](https://github.com/efournier92/Notes/blob/master/ServiceWorkers/ServiceWorkers.md)
+  - [Service Workers](https://github.com/efournier92/Notes/blob/master/Web/ServiceWorkers/ServiceWorkers.md)
 - [Windows](https://github.com/efournier92/Notes/blob/master/Windows/Windows.md)
-  - [.NET](https://github.com/efournier92/Notes/blob/master/Windows/DotNet/DotNet.md
+  - [.NET](https://github.com/efournier92/Notes/blob/master/Windows/DotNet/DotNet.md)
 
 ## Notes To Do
-- [ ] 
 

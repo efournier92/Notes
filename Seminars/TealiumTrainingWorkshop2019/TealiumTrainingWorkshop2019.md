@@ -1,9 +1,6 @@
-### 19-10-29
-# Tealium Training | Day 01
+# Tealium Training Workshop 2019
 
-## Contents
-
-### Day 01
+### [Day 01](#tealium-training-|-day-01)
 - [Plugging into Tealium](#plugging-into-tealium)
   - [Collect](#collect)
   - [Standardize](#standardize)
@@ -12,7 +9,7 @@
 - [Without Tag Management](#without-tag-management)
 - [Basics](#basics)
   - [Universal Data Object](#universal-data-object)
-  - [`utag.js`](#utag.js)
+  - [`utag.js`](###`utag.js`)
 - [Design Our Data Layer](#design-our-data-layer)
   - [What is a Data Layer](#what-is-a-data-layer)
   - [Best Practices](#best-practices)
@@ -41,7 +38,7 @@
   - [Advanced Extension Types](#advanced-extension-types)
   - [JavaScript Extension](#javascript-extension)
 
-### Day 02
+### [Day 02](#tealium-training-|-day-02)
 - [Order of Operations](#order-of-operations)
   - [Load Order](#load-order)
   - [Extension Scope](#extension-scope)
@@ -79,6 +76,9 @@
   - [Manage Password Policy](#manage-password-policy)
   - [Manage Labels](#manage-labels)
   - [Version Manager](#version-manager)
+
+### 19-10-29
+# Tealium Training | Day 01
 
 ## Plugging into Tealium
 

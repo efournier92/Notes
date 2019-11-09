@@ -33,7 +33,7 @@
 - [Compile From Source](#compile-from-source)
 
 ## Overview
-[FFmpeg](https://www.ffmpeg.org/) is the coolest and most obscurely ubiquitous tool I've ever happened upon. It's the engine running behind the vast majority of open-source tools for video editing and encoding. Clever [CLI](https://en.wikipedia.org/wiki/Command-line_interface) commands can invoke virtually any video editing process. Below are some of the commands I use most often.
+[FFmpeg](https://www.ffmpeg.org/) is the coolest and most obscurely-ubiquitous tool I've ever happened upon. It's the engine running behind the vast majority of open-source tools for video editing and encoding. Clever [CLI](https://en.wikipedia.org/wiki/Command-line_interface) commands can invoke virtually any video editing process. Below are some of the commands I use most often.
 
 ## Batch Conversion
 
