@@ -30,7 +30,7 @@ One of my major complaints with [Aeon MQ8](https://kodi.tv/addon/skins/aeon-mq-8
 `.kodi/addons/skin.aeonmq8/xml`
 
 #### Config File
-[MusicVisualization.xml](https://raw.githubusercontent.com/efournier92/Notes/master/Kodi/skin.aeonmq8/xml/MusicVisualisation.md)
+[MusicVisualization.xml](https://github.com/efournier92/Notes/blob/master/Kodi/skin.aeonmq8/xml/MusicVisualisation.xml)
 
 ### [Aeon Nox](https://kodi.tv/addon/skins/aeon-nox)
 

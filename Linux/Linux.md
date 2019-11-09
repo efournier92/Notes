@@ -14,6 +14,9 @@
 
 ## [Ubuntu](https://ubuntu.com/)
 
+### Description
+[Ubuntu](https://ubuntu.com/) is my favorite [Linux flavor](https://en.wikipedia.org/wiki/List_of_Linux_distributions), and favorite [OS](https://en.wikipedia.org/wiki/Operating_system) from 2018 on. I've compiled a great deal of information on activities related to [Ubuntu](https://ubuntu.com/), at the following locations.
+
 ### System Configuration
 [Github](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/Ubuntu/Ubuntu.md)
 
@@ -26,6 +29,9 @@
 - [ex.mongod.policy](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/Ubuntu/polkit-policies/ex.dmidecode.policy)
 
 ## Live USB
+
+### Description
+I've documented my method of turning a [Linux]() system into a [bootable]() [USB flash drive](https://en.wikipedia.org/wiki/USB_flash_drive). My solution predominantly relies upon [grub2](https://www.gnu.org/software/grub/manual/grub/grub.html) and [Clonezilla](https://www.clonezilla.org/).
 
 ### Configuration Steps
 [Github](https://raw.githubusercontent.com/efournier92/Notes/master/Linux/LiveUsb/UbuntuLiveUsb.md)
