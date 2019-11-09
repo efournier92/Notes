@@ -7,9 +7,9 @@
   - [Safe Symbols](#safe-symbols)
 - [Container Encryption](#container-encryption)
   - [Using `Veracrypt`](#using-veracrypt)
-  - [Using `Zip`](#zip)
+  - [Using `Zip`](#using-zip)
 - [File Encryption](#file-encryption)
-  - [`Zip`](#zip)
+  - [Using `Vim`](#using-vim)
 
 ## Overview
 In our increasingly antagonistic web landscape, security protocols are the most important defensive tool we have at our disposal. That said, I see most average users making all the wrong decisions when it comes to their [passwords](https://en.wikipedia.org/wiki/Password), [encryption](https://en.wikipedia.org/wiki/Encryption), and more. The below sections outline some best practices regarding security in today's computer age.

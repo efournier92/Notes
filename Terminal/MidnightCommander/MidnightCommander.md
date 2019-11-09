@@ -1,10 +1,12 @@
-# [Midnight-Commander](https://midnight-commander.org/)
+# [Midnight Commander](https://midnight-commander.org/)
+
+## Contents
 
 ## Overview
-I sometimes use `mc` as a visual file manager from the command line. It's a basic orthodox file manager, which is useful to file browsing and manipulation.
+I sometimes use [mc](https://midnight-commander.org/) as a visual file manager from the command line. It's a basic [orthodox file manager](https://en.wikipedia.org/wiki/File_manager#Orthodox_file_managers), which is useful to file browsing and manipulation.
 
 ## Screenshot
-![]()
+![Midnight Commander](https://raw.githubusercontent.com/efournier92/Notes/master/Terminal/MidnightCommander/MidnightCommander.png)
 
 ## Shortcuts
 

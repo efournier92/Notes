@@ -51,14 +51,14 @@ sudo apt install vim
 - [Github](https://github.com/efournier92/Notes/blob/master/Terminal/configs/.vimrc)
 
 ### `.vimrc` Changelog
-- [Github](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/16-05-21_vimrc)
-- [Github](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/16-06-20_vimrc)
-- [Github](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/16-12-27_vimrc)
-- [Github](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-01-14_vimrc)
-- [Github](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-01-17_vimrc)
-- [Github](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-01-29_vimrc)
-- [Github](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-02-06_vimrc)
-- [Github](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/19-11-07_vimrc)
+- [16-05-21](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/16-05-21_vimrc)
+- [16-06-20](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/16-06-20_vimrc)
+- [16-12-27](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/16-12-27_vimrc)
+- [18-01-14](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-01-14_vimrc)
+- [18-01-17](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-01-17_vimrc)
+- [18-01-29](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-01-29_vimrc)
+- [18-02-06](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/18-02-06_vimrc)
+- [19-11-09](https://github.com/efournier92/Notes/blob/master/Terminal/Vimrcs/19-11-09_vimrc)
 
 ## [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
 
@@ -74,7 +74,7 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ```
 
 ### `~/.oh-my-zsh/`
-[Github](https://github.com/efournier92/Notes/blob/master/Terminal/.oh-my-zsh)
+[Github](https://github.com/efournier92/Notes/blob/master/Terminal/configs/.oh-my-zsh)
 
 ## [Midnight Commander](https://midnight-commander.org/)
 

@@ -4,11 +4,11 @@
 - [Overview](#overview)
 - [Commands](#commands)
   - [Set Default Apps](#set-default-apps)
-  - [Always Edit with Vim](always-edit-with-vim)
-- [slmgr](https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-using-key-management-service-vamt)
+  - [Always Edit with Vim](#always-edit-with-vim)
+- [Slmgr](#slmgr)
 - [Fonts](#fonts)
-- [.NET](#.net)
-- [Apps](#apps)
+- [dotNET](#dotnet)
+- [Applications](#applications)
   - [Home](#home)
   - [Pro](#pro)
 
@@ -28,10 +28,10 @@ assoc .="No Extension"
 ftype "No Extension"="C:\path\to\my editor.exe" "%1"
 ```
 
-### Always Edit with [vim](https://www.vim.org/)
+### Always Edit with [Vim](https://www.vim.org/)
 
 #### Description
-[vim](https://www.vim.org/) is my preferred text editor for writing [mardown](https://daringfireball.net/projects/markdown/) and small projects. To make [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) favor [vim](https://www.vim.org/) as the system text editor, add the following entry to you [Registry](https://en.wikipedia.org/wiki/Windows_Registry).
+[Vim](https://www.vim.org/) is my preferred text editor for writing [mardown](https://daringfireball.net/projects/markdown/) and small projects. To make [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) favor [Vim](https://www.vim.org/) as the system text editor, add the following entry to you [Registry](https://en.wikipedia.org/wiki/Windows_Registry).
 
 #### Command
 ```dos
@@ -43,10 +43,10 @@ REGEDIT4
 @="\"C:\\Program Files (x86)\\Vim\\vim81\\gvim.exe\" \"%1\""
 ```
 
-## [slmgr](https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-using-key-management-service-vamt)
+## [Slmgr](https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-using-key-management-service-vamt)
 
 ### Description
-[slmgr](https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-using-key-management-service-vamt) is a [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) service that ensures you're licensed, and sometimes acts buggy. If you find this service misbehaving, the following commands may come in handy.
+[Slmgr](https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-using-key-management-service-vamt) is a [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) service that ensures you're licensed, and sometimes acts buggy. If you find this service misbehaving, the following commands may come in handy.
 
 ### Commands
 
@@ -95,7 +95,7 @@ wsl -- export DISPLAY=:0; sudo gvim; sudo pkill gvim; sudo gnome-terminal
 
 ### Remove Default Software
 
-#### `Powershell`:
+#### In [PowerShell](https://en.wikipedia.org/wiki/PowerShell)
 - 3D Builder 
   - `Get-AppxPackage *3dbuilder* | Remove-AppxPackage`
 - Calendar and Mail 
@@ -133,12 +133,12 @@ wsl -- export DISPLAY=:0; sudo gvim; sudo pkill gvim; sudo gnome-terminal
 
 ## Fonts
 
-### DejaVu Sans for Powerline
+### `DejaVu Sans for Powerline`
 
 #### Location
-[Github](https://github.com/efournier92/Notes/blob/master/Windows/Fronts/DejaVuSansMonoForPowerline.ttf)
+[Github](https://github.com/efournier92/Notes/blob/master/Windows/Fonts/DejaVuSansMonoForPowerline.ttf)
 
-## [.NET](https://dotnet.microsoft.com/) 
+## [dotNET](https://dotnet.microsoft.com/) 
 
 ### Description
 [.NET](https://dotnet.microsoft.com/) is [Microsoft's](https://www.microsoft.com/en-us) core [Software Framework](https://en.wikipedia.org/wiki/Software_framework), which has been available to developers since 2002. I mostly use it with [ASP.NET](https://dotnet.microsoft.com/apps/aspnet), for developing enterprise web applications. I've compiled a great deal more information at the following location.
@@ -146,7 +146,7 @@ wsl -- export DISPLAY=:0; sudo gvim; sudo pkill gvim; sudo gnome-terminal
 ### Location
 [Github](https://github.com/efournier92/Notes/blob/master/Windows/DotNet/DotNet.md)
 
-## Apps
+## Applications
 
 ### Home
 - [7-Zip](https://sourceforge.net/projects/sevenzip/)

@@ -1,0 +1,7 @@
+[core]
+	autocrlf = input
+[credential]
+	useHttpPath = true
+[user]
+	name = efournier92
+	email = efournier92@gmail.com
