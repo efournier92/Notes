@@ -1,17 +1,23 @@
-# [ReadMes](https://en.wikipedia.org/wiki/README)
+# [Git](https://en.wikipedia.org/wiki/Git)
 
 ## Contents
 - [Overview](#overview)
-- [Templates](#templates)
-  - [All Sections](#all-sections)
-  - [Basic](#basic)
+- [READMEs](#readmes)
+  - [Templates](#templates)
+    - [All Sections](#all-sections)
+    - [Basic](#basic)
 
 ## Overview
+[Git](https://en.wikipedia.org/wiki/Git), like [Linux](https://www.linux.org/), was created by [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds). It was originally meant as a means of [version control](https://en.wikipedia.org/wiki/Version_control) for the [Linux kernel](https://en.wikipedia.org/wiki/Linux_kernel). It's come to be the most common [Distributed version control](https://en.wikipedia.org/wiki/Distributed_version_control) in the world, and is my [source control](https://en.wikipedia.org/wiki/Version_control) mechanism of choice.
+
+## [ReadMes](https://en.wikipedia.org/wiki/README)
+
+### Description
 [README](https://en.wikipedia.org/wiki/README) files play a huge role in how our projects are perceived by the outside world. Often, the hardest part is knowing where to start, and what to include. To remedy this, I studied dozens of [READMEs](https://en.wikipedia.org/wiki/README), and devised the following template, which I paste into every new project to get me started. Not all sections will apply to all projects, so I usually prune some off as I go along.
 
-## Templates
+### Templates
 
-### All Sections
+#### All Sections
 
 ```markdown
 # ![Logo]()
@@ -90,7 +96,7 @@ This project is provided under the [`MIT`](https://opensource.org/licenses/MIT) 
 - [] New Feature
 ```
 
-### Basic
+#### Basic
 
 ```markdown
 # ![Logo]()

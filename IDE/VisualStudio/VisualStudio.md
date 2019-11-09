@@ -2,28 +2,35 @@
 
 ## Contents
 - [Overview](#overview)
+- [ReSharper](#resharper)
 - [Team Foundation Server](#team-foundation-server)
-- [VS Performance Optimization](#vs-performance-optimization)
-- [ReSharper Performance Optimization](#resharper-performance-optimization)
-- [Visual Studio Keyboard Shortcuts](#visual-studio-keyboard-shortcuts)
-- [ReSharper Shortcuts](#resharper-shortcuts)
+- [Performance Optimization](#vs-performance-optimization)
+- [Keyboard Shortcuts](#visual-studio-keyboard-shortcuts)
 
 ## Overview
-I use Visual Studio as my IDE for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I typically use it in conjuntion with
-[JetBrains](https://www.jetbrains.com/) [ReSharper](https://www.jetbrains.com/resharper/). Below are some configurations I find useful.
+I use Visual Studio as my IDE for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I typically use it in conjunction with
+[JetBrains](https://www.jetbrains.com/) [ReSharper](https://www.jetbrains.com/resharper/) and [Team Foundation Server](https://en.wikipedia.org/wiki/Team_Foundation_Server), to extend its power. Below are some configurations I find useful.
+
+## [ReSharper](https://www.jetbrains.com/resharper/)
+
+### Description
+[ReSharper](https://www.jetbrains.com/resharper/) provides some awesome tooling capabilities, which extend the power of [Visual Studio](https://visualstudio.microsoft.com/). I've compiled more information about using [ReSharper](https://www.jetbrains.com/resharper/) at the following location.
+
+### Location
+[Github](https://github.com/efournier92/Notes/blob/master/IDE/ReSharper/ReSharper.md)
 
 ## [Team Foundation Server](https://en.wikipedia.org/wiki/Team_Foundation_Server)
 
 ### Description
-I use TFS in conjunction with Visual Studio as a centralized version control system for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I've compiled more information at the following location
+I use TFS in conjunction with Visual Studio as a centralized version control system for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. I've compiled more information at the following location.
 
 ### Location
 [Github](https://github.com/efournier92/Notes/blob/master/IDE/VisualStudio/TFS/TFS.md)
 
-## VS Performance Optimization
+## Performance Optimization
 
 ### Description
-The following are options that can improve VS performance. Many of them disable potentially-useful functionality, so be aware of the costs and benefits to toggling these settings.
+The following are options that can improve [VS](https://visualstudio.microsoft.com/) performance. Many of them disable potentially-useful functionality, so be aware of the costs and benefits to toggling these settings.
 
 ### Settings
 
@@ -69,8 +76,7 @@ The following are options that can improve VS performance. Many of them disable 
 1. `Text Editor -> [Language] -> Formatting`
 2. Disable all auto-formatting preferences
 
-#### Semantic Colorization
-1. `Text Editor -> C/C++ -> Advanced`
+#### Semantic Colorization 1. `Text Editor -> C/C++ -> Advanced`
 2. Set the `IntelliSense -> Disable Semantic Colorization` preference to `True`
 
 #### Synchronized Settings
@@ -81,69 +87,7 @@ The following are options that can improve VS performance. Many of them disable 
 1. `Text Editor -> C# -> Advanced`
 2. Disable `Full Solution Analysis`
 
-## [ReSharper](https://www.jetbrains.com/resharper/) Performance Optimization
-
-### Description
-[ReSharper](https://www.jetbrains.com/resharper/) is provides awesome tooling capabilities, but can also slow system performance to a crawl if left unchecked. Below are some performance optimizations that can improve usability on slower systems. Beware toggling all of them, lest you render [ReSharper](https://www.jetbrains.com/resharper/) virtually useless.
-
-### Settings
-
-#### Solution-Wide Analysis
-1. `ReSharper -> Options -> Code Inspection -> Settings`
-2. Ensure `Do not show Visual Studio Light Bulb` is selected and `Merge Visual Studio Light Bulb actions into ReSharper bulb` is cleared.
-3. Disable `solution-wide analysis`
-
-#### Extraneous Features
-1. `ReSharper -> Options -> Environment -> Products & Features`
-2. Disable any ReSharper features that you do not use
-
-#### Solution Caches
-1. `ReSharper -> Options -> Environment -> General`
-2. Choose `System TEMP` in `Store solution caches`
-3. In `Store solution caches in`, choose `System TEMP`
-
-#### Completion
-1. `ReSharper -> Options -> Environment -> IntelliSense -> Completion Appearance`
-2. Clear `Show member signatures`
-3. Clear `Show symbol types`
-4. Clear `Show summary`.
-
-#### IntelliSense
-1. `ReSharper -> Options -> Environment -> IntelliSense -> General`
-2. Turn off ReSharper's IntelliSense for specific languages (Custom IntelliSense) or turn it off altogether (Visual Studio).
-
-#### Language-Specific Typos
-1. `ReSharper -> Options -> Environment -> Editor -> Editor Behavior`
-2. Disable `Auto-format on semicolon`
-3. Disable `Auto-format on closing brace`
-4. Disable `Correct common language-specific typos`
-
-#### Highlighting
-1. `ReSharper -> Options -> Environment -> Editor -> Editor Appearance`
-2. Disable `Highlight current line`
-3. Disable `Highlight matching delimiters`
-
-#### Extensions
-1. `ReSharper -> Options -> Environment -> Extension Manager`
-2. Disable `ReSharper` extensions that you do not use.
-
-#### `ReSharper` Build
-1. `ReSharper -> Options -> Tools -> Build`
-2. Enable `ReSharper` build
-
-#### Context Actions
-1. `ReSharper -> Options -> Code Editing -> Context Actions`
-2. Disable the context actions that are not helpful to you.
-
-#### Automatic Language Injections
-1. `ReSharper -> Options -> Code Editing -> Language Injections`
-2. Disable automatic language injections that are of no interest to you.
-
-#### Disable Code Analysis | _Nuclear Option_
-1. `ReSharper -> Options -> Environment -> General `
-2. Disable `Enable code analysis`
-
-## [Visual Studio]() Keyboard Shortcuts
+## Keyboard Shortcuts
 
 ### Description
 Below is a list of default hotkeys that ship with Visual Studio.
@@ -326,53 +270,4 @@ Below is a list of default hotkeys that ship with Visual Studio.
 
 #### Switch to Saved Window Layout
 - `ctrl-alt-{0-9}`
-
-## [ReSharper](https://www.jetbrains.com/resharper/) Shortcuts
-
-### Description
-Below is a list of hotkeys that ship as ReSharper's default keyboard layout.
-
-### Shortcuts
-
-#### Search Everything
-- `ctrl-t`
-
-#### Search Everything
-- `ctrl-t`
-
-#### Go To File
-- `ctrl-shift-t`
-
-#### Go To Symbol
-- `alt-shift-t`
-
-#### Show Cursor Actions List
-- `alt-enter`
-
-#### Go To Word
-- `ctrl-t-t-t`
-
-#### Find Usages
-- `shift-F12`
-
-#### Navigate To
-- `alt-{``}`
-
-#### Show Find Results Window
-- `ctrl-alt-F12`
-
-#### Go To Declaration
-- `F12`
-
-#### Go To Implementation
-- `ctrl-F12`
-
-#### Go To Usage
-- `alt-shift-F12`
-
-#### Move Type or Static Member
-- `ctrl-r, ctrl-o`
-
-#### Change Method Signature
-- `ctrl-r, ctrl-s`
 
