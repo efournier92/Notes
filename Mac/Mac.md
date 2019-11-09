@@ -2,42 +2,10 @@
 
 ## Contents
 - [Overview](#overview)
-- [Runtime App](#runtime-app)
-- [Waker App](#waker-app)
-- [KbRightClick](#kbrightclick)
-- [Applications](applications)
+- [Applications](#applications)
 
 ## Overview
 [MacOS](https://en.wikipedia.org/wiki/MacOS) was my favorite [operating system](https://en.wikipedia.org/wiki/Operating_system) for the majority of my computing career. Only recently has it fallen in favor of [Ubuntu](https://ubuntu.com/), and I blame Apple for that. Somewhere around the end of the big cat versioning era, I felt the quality [OS X](https://en.wikipedia.org/wiki/MacOS) began to decline, as their ecosystem became even more closed than it was before, to the point where it's no longer pleasurable to use. I still think [Apple](https://www.apple.com/) has the best hardware in the game, and usually run [Ubuntu](https://ubuntu.com/) on a [Macbook](https://www.apple.com/macbook-pro/). All that said, my first coding experiences were in [OS X](https://en.wikipedia.org/wiki/MacOS), writing simple [AppleScripts](https://en.wikipedia.org/wiki/AppleScript) to automate tasks. Below are some apps and scripts I accumulated during my time in their ecosystem.
-
-## Runtime App
-
-### Description
-I used to run this little [AppleScript](https://en.wikipedia.org/wiki/AppleScript) application whenever my [OS X](https://en.wikipedia.org/wiki/MacOS) system booted. It automated care of some desktop and app-launching operations. I didn't know what I was doing when I wrote it, but it continued to mostly work for my purposes for years of intermittent tweaking, before I abandoned [MacOS](https://en.wikipedia.org/wiki/MacOS).
-
-### Location
-[Github](https://github.com/efournier92/Notes/blob/master/Mac/RUNtime.app)
-
-## Waker App
-
-### Description
-This script would fire on the system-wakeup event, to fix some bugs on a [Mac Mini](https://en.wikipedia.org/wiki/Mac_Mini#2nd_generation_(Intel-based,_2006-2009)) media center machine.
-
-### Location
-[Github](https://github.com/efournier92/Notes/blob/master/Mac/Waker.app)
-
-## `KbRightClick`
-
-### Description
-I've completely lost sight of where this script came from, and why I saved it in the first place. On the premise that it must have seemed important at the time, assets for the mystery utility can be found as follows.
-
-### Assets
-
-#### `KbRightClick.scpt`
-[Github](https://github.com/efournier92/Notes/blob/master/Mac/KbRightClick/KbRightClick.scpt)
-
-#### `MouseTools`
-[Github](https://github.com/efournier92/Notes/blob/master/Mac/KbRightClick/MouseTools)
 
 ## Applications
 
