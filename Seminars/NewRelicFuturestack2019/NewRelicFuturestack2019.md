@@ -2,7 +2,7 @@
 
 ## Contents
 
-### Dashboarding Workshop
+### [Dashboarding Workshop](#dashboarding-workshop)
 - [Introduction to Insights](#introduction-to-insights)
   - [New Relic Products that Feed Data](#new-relic-products-that-feed-data)
   - [Metrics vs Events](#metrics-vs-events)
@@ -28,7 +28,7 @@
   - [Sharing Graphs](#sharing-graphs)
   - [Adding Notes](#adding-notes)
 
-### Main Event
+### [Main Event](#main-event)
 - [Keynote Address](#keynote-address)
   - [New Product Announcements](#new-product-announcements)
   - [Other New Apps & Initiatives](#other-new-apps-&-initiatives)
@@ -38,17 +38,17 @@
   - [Core Message](#core-message)
   - [Modern Software Systems Should Be](#modern-software-systems-should-be)
   - [A Successful Migration Should Include](#a-successful-migration-should-include)
-- [Moving to Entity-Centric Observability with New Relic `ONE`](#moving-to-entity-centric-observability-with-new-relic-`one`)
+- [Moving to Entity-Centric Observability with New Relic `ONE`](#moving-to-entity-centric-observability-with-new-relic-one)
   - [New Relic `ONE`](#new-relic-`one`)
 - [Generating Context From Your Log Data](#generating-context-from-your-log-data)
   - [Why Logs?](#why-logs?)
   - [Design Principles of NR Logging](#design-principles-of-nr-logging)
   - [Demo](#demo)
-  - [Long Term Vision for `Logging`](#long-term-vision-for-`logging`)
+  - [Long Term Vision for `Logging`](#long-term-vision-for-logging)
   - [Current Selling Points](#current-selling-points)
-- [Defining the Principles, Habits, and Practices of Site Reliability Engineering (_SRE_)](#defining-the-principles,-habits,-and-practices-of-site-reliability-engineering-(_sre_))
+- [Site Reliability Engineering](#site-reliability-engineering)
   - [Benefits of SRE](#benefits-of-sre)
-- [After Lift & Shift - What Does Successful Modernization Take?](#after-lift-&-shift---what-does-successful-modernization-take?)
+- [What Does Successful Modernization Take](#what-does-successful-modernization-take)
   - [Deprecation Steps](#deprecation-steps)
   - [Modernization Steps](#modernization-steps)
   - [Thoughts from a New Relic Customer at Cardinal Health](#thoughts-from-a-new-relic-customer-at-cardinal-health)
@@ -82,7 +82,7 @@
   - [New Relic AI](#new-relic-ai)
 
 ### 2019-09-18
-# New Relic Futurestack - Dashboarding Workshop
+# Dashboarding Workshop
 
 ## Introduction to `Insights`
 
@@ -250,7 +250,7 @@ SELECT function(attribute_) FROM Event_Type WHERE condition FACET grouping
   - Useful for sharing snapshots between teams
 
 ### 2019-09-19
-# New Relic Futurestack - Main Event
+# Main Event
 
 ## Keynote Address
 ### __Speaker:__ _Lew Cirne, CEO & Founder of New Relic_
@@ -488,8 +488,6 @@ SELECT function(attribute_) FROM Event_Type WHERE condition FACET grouping
   - It's best to start with a question, then work towards the answer in pieces
     - Great questions are a powerful tool
 
-Defining the Principles, Habits, and Practices of Site Reliability Engineering
-
 ## Generating Context From Your Log Data
 ### __Speaker:__ _Julian Giuca, Product GM & Principal Software Engineer, New Relic_
 ### __Speaker:__ _Jené Scott, Software Engineer, New Relic_
@@ -551,7 +549,7 @@ Defining the Principles, Habits, and Practices of Site Reliability Engineering
     - Following the typical premise of "covering your ass"
   - Time spent querying and reading logs was greatly reduced for customers testing the Beta
 
-## Defining the Principles, Habits, and Practices of Site Reliability Engineering (_SRE_)
+## Site Reliability Engineering
 ### __Speaker:__ _Tori Wieldt, Senior Solution Strategy Manager, New Relic_
 ### __Speaker:__ _Boris Grinberg, Director, GE Monitoring Product & Engineering Leader, GE Digital_
 ### __Speaker:__ _Anjeneya Dubey, Senior Director of Engineering Site Reliability, Performance and Capacity_
@@ -581,7 +579,8 @@ Defining the Principles, Habits, and Practices of Site Reliability Engineering
   - If the outcome is useless to customers, we've gone too far and done too much
   - It's important to be able to easily show them the value
 
-## After Lift & Shift - What Does Successful Modernization Take?
+## After Lift & Shift
+## What Does Successful Modernization Take
 ### __Speaker:__ _Kevin Downs, Principal Solutions Strategy Manager, New Relic_
 ### __Speaker:__ _Josh Biggley, Senior Engineer, Enterprise Monitoring, Cardinal Health_
 ### __Speaker:__ _Javier Miguez, Director, Technology Operations, Fleet Complete_

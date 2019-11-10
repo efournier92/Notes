@@ -1,14 +1,16 @@
 # [.NET](https://dotnet.microsoft.com/)
 
+## Contents
+- [Overview](#overview)
+- [ASP.NET File Types](#asp.net-file-types)
+
 ## Overview
 [.NET](https://dotnet.microsoft.com/) is [Microsoft's](https://www.microsoft.com/) core [Software Framework](https://en.wikipedia.org/wiki/Software_framework), which has been available to developers since 2002. I mostly use it with [ASP.NET](https://dotnet.microsoft.com/apps/aspnet), for developing enterprise web applications.
 
 ## [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) File Types
 
-## Description
+### Description
 For easy reference, I've compiles the following list of file types, as defined by the [.NET](https://dotnet.microsoft.com/apps/aspnet) [Framework](https://en.wikipedia.org/wiki/Software_framework).
-
-## Types by Extension
 
 ### `.asax`
 - `Global.asax`
