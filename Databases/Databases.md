@@ -6,25 +6,25 @@
   - [Relationships](#relationships)
   - [Tables](#tables)
   - [Schema](#schema)
-- [SQL](#sql)
-- [DB Actions](#db-actions)
-- [NoSQL Databases](#nosql-databases)
+  - [SQL](#sql)
+  - [DB Actions](#db-actions)
+- [Non-Relational Databases](#non-relational-databases)
   - [MongoDB](#mongodb)
   - [Firebase](#firebase)
 
 ## Overview
-A [database](https://en.wikipedia.org/wiki/Database) is a mechanism for persisting [data](https://en.wikipedia.org/wiki/Data) in an application. The way this has traditional been done is via [relational databasing](https://en.wikipedia.org/wiki/Relational_database). [SQL](https://en.wikipedia.org/wiki/SQL) is the most common language used to interact with a [relational database](https://en.wikipedia.org/wiki/Relational_database). Modern data-storage solutions have evolved to include [NoSQL](https://en.wikipedia.org/wiki/NoSQL) databases, which have become more common. That said, [SQL-based](https://en.wikipedia.org/wiki/SQL) [relational databases](https://en.wikipedia.org/wiki/Relational_database) are still the most common in 2020.
+A [database](https://en.wikipedia.org/wiki/Database) is a mechanism for persisting [data](https://en.wikipedia.org/wiki/Data) in an application. The way this has traditional been done is via [relational databasing](https://en.wikipedia.org/wiki/Relational_database). [SQL](https://en.wikipedia.org/wiki/SQL) is the most common language used to interact with a [relational database](https://en.wikipedia.org/wiki/Relational_database). Modern data-storage solutions have evolved to include non-relational, [NoSQL](https://en.wikipedia.org/wiki/NoSQL) databases, which are gaining popularity. That said, [SQL-based](https://en.wikipedia.org/wiki/SQL) [relational databases](https://en.wikipedia.org/wiki/Relational_database) are still the most common in 2020.
 
 ## [Relational Databases](https://en.wikipedia.org/wiki/Relational_database)
 
 ### Description
-[Relational databases](https://en.wikipedia.org/wiki/Relational_database) have been around since 1970. They consist of related tables, each of which contains rows and columns.
-
-### Visual
-![DB Table](https://raw.githubusercontent.com/efournier92/Notes/master/Databases/Visuals/Table.png)
+Have been around since 1970. They consist of related tables, each of which contains rows and columns.
 
 ### Tables
 A set of data with consistent attributes. These attributes usually model an object, or part of one object.
+
+#### Visual
+![DB Table](https://raw.githubusercontent.com/efournier92/Notes/master/Databases/Visuals/Table.png)
 
 #### Columns
 Represent one of the table's properties.
@@ -35,7 +35,7 @@ Represents one object instance, with properties on the table.
 #### Example
 The below statement will create a new table, defining data types on four object properties, to be mapped to the table's columns.
 ```sql
-CREATE TABLE Users (
+CREATE TABLE USERS (
   Id        INT NOT NULL,
   LastName  VARCHAR(255),
   FirstName VARCHAR(255) NOT NULL,
@@ -72,7 +72,7 @@ GO;
 
 To run the [procedure](https://en.wikipedia.org/wiki/Stored_procedure), execute the following in [SQL](https://en.wikipedia.org/wiki/SQL).
 ```sql
-EXEC SelectAllCustomers;
+EXEC SelectAllUsers;
 ```
 
 ## SQL
@@ -108,13 +108,13 @@ Change a record, in a row that already exists.
 ### Delete
 Delete one or more rows in a table.
 
-## [NoSQL](https://en.wikipedia.org/wiki/NoSQL) Databases
+## [Non-Relational](https://en.wikipedia.org/wiki/NoSQL) Databases
 
 ### Description
-Given that [SQL](https://en.wikipedia.org/wiki/SQL) has been the norm for such a large portion of the computer industry's history, any [DB](https://en.wikipedia.org/wiki/Database) architecture that doesn't use it is called [NoSQL](https://en.wikipedia.org/wiki/NoSQL). In recent years, these have been gaining ground as better alternatives to [relational databases](https://en.wikipedia.org/wiki/Relational_database), which are notoriously brittle and prone to failure.
+Given that [SQL](https://en.wikipedia.org/wiki/SQL) has been the norm for such a large portion of the [industry's](https://en.wikipedia.org/wiki/Information_technology) history, any [DB](https://en.wikipedia.org/wiki/Database) architecture that doesn't use it is called [NoSQL](https://en.wikipedia.org/wiki/NoSQL). In recent years, these have been gaining ground as better alternatives to [relational databases](https://en.wikipedia.org/wiki/Relational_database), which are notoriously brittle and prone to failure.
 
 ### [MongoDB](https://en.wikipedia.org/wiki/MongoDB)
-The most common [NoSQL](https://en.wikipedia.org/wiki/NoSQL) database on the market; responsible for bringing the [NoSQL](https://en.wikipedia.org/wiki/NoSQL) concept to public attention. Rather than tables, rows, and columns, [Mongo](https://en.wikipedia.org/wiki/MongoDB) uses [JSON-like](https://en.wikipedia.org/wiki/JSON), which are defined by [schema](https://en.wikipedia.org/wiki/Database_schema). Queries can be run [imperatively](https://en.wikipedia.org/wiki/Imperative_programming), using [JavaScript](https://en.wikipedia.org/wiki/JavaScript) and various extension [frameworks](https://en.wikipedia.org/wiki/Software_framework). Properly designed document structures can yield better performance than [SQL](https://en.wikipedia.org/wiki/SQL) databases.
+The most common [NoSQL](https://en.wikipedia.org/wiki/NoSQL) database on the market; responsible for bringing the [NoSQL](https://en.wikipedia.org/wiki/NoSQL) concept to public attention. Rather than tables, rows, and columns, [Mongo](https://en.wikipedia.org/wiki/MongoDB) uses [JSON-like](https://en.wikipedia.org/wiki/JSON) documents, which are defined by it's own [schema](https://docs.mongodb.com/manual/data-modeling/). Queries can be run [imperatively](https://en.wikipedia.org/wiki/Imperative_programming), using [JavaScript](https://en.wikipedia.org/wiki/JavaScript) and various extension [frameworks](https://en.wikipedia.org/wiki/Software_framework). Properly designed document structures can yield better performance than [SQL](https://en.wikipedia.org/wiki/SQL) databases.
 
 #### Visualization
 ![Document Visualization](https://raw.githubusercontent.com/efournier92/Notes/master/Databases/Visuals/MongoDoc.png)
