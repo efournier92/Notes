@@ -1,7 +1,19 @@
 # [Databases](https://en.wikipedia.org/wiki/Database)
 
+## Contents
+- [Overview](#overview)
+- [Relational Databases](#relational-databases)
+  - [Relationships](#relationships)
+  - [Tables](#tables)
+  - [Schema](#schema)
+- [SQL](#sql)
+- [DB Actions](#db-actions)
+- [NoSQL Databases](#nosql-databases)
+  - [MongoDB](#mongodb)
+  - [Firebase](#firebase)
+
 ## Overview
-A [database](https://en.wikipedia.org/wiki/Database) is a mechanism for persisting [data](https://en.wikipedia.org/wiki/Data) in an application. The way this has typically been done in the past is with [relational databases](https://en.wikipedia.org/wiki/Relational_database). [SQL](https://en.wikipedia.org/wiki/SQL) is the most common language used to manipulate a [relational database](https://en.wikipedia.org/wiki/Relational_database). Modern data-storage solutions have evolved to incnlude [NoSQL](https://en.wikipedia.org/wiki/NoSQL) databases, which have become more common. That said, [SQL-based](https://en.wikipedia.org/wiki/SQL) [relational databases](https://en.wikipedia.org/wiki/Relational_database) are the most common to this day.
+A [database](https://en.wikipedia.org/wiki/Database) is a mechanism for persisting [data](https://en.wikipedia.org/wiki/Data) in an application. The way this has traditional been done is via [relational databasing](https://en.wikipedia.org/wiki/Relational_database). [SQL](https://en.wikipedia.org/wiki/SQL) is the most common language used to interact with a [relational database](https://en.wikipedia.org/wiki/Relational_database). Modern data-storage solutions have evolved to include [NoSQL](https://en.wikipedia.org/wiki/NoSQL) databases, which have become more common. That said, [SQL-based](https://en.wikipedia.org/wiki/SQL) [relational databases](https://en.wikipedia.org/wiki/Relational_database) are still the most common in 2020.
 
 ## [Relational Databases](https://en.wikipedia.org/wiki/Relational_database)
 
@@ -11,31 +23,31 @@ A [database](https://en.wikipedia.org/wiki/Database) is a mechanism for persisti
 ### Visual
 ![DB Table](https://raw.githubusercontent.com/efournier92/Notes/master/Databases/Visuals/Table.png)
 
-### Table
-A set of data with consistent attributes. These attributes usually model an object, part of one object.
+### Tables
+A set of data with consistent attributes. These attributes usually model an object, or part of one object.
 
 #### Columns
-Represent one attribute.
+Represent one of the table's properties.
 
 #### Rows
-Represents one instance or the model.
+Represents one object instance, with properties on the table.
 
 #### Example
-The below statement will create a new table, defining data types on 4 properties, which will be mapped to the table's columns.
+The below statement will create a new table, defining data types on four object properties, to be mapped to the table's columns.
 ```sql
 CREATE TABLE Users (
-  ID int Primary Key,
-  LastName varchar(255),
-  FirstName varchar(255),
-  Birthday date,
+  Id        INT NOT NULL,
+  LastName  VARCHAR(255),
+  FirstName VARCHAR(255) NOT NULL,
+  Birthday  DATE,
 );
 ```
 
 ### [Schema](https://en.wikipedia.org/wiki/Database_schema)
-A 'database' refers to a collection of interrelated tables. Rules for a database, and the tables it contains, are defined within [schema](https://en.wikipedia.org/wiki/Database_schema). These rules are also written in [SQL](https://en.wikipedia.org/wiki/SQL), and serve to ensure data integrity, by defining [data types](https://www.w3schools.com/sql/sql_datatypes.asp), mandatory properties, rules around which users are allowed to read and write where, and more.
+Rules can be defined on a database, and on the tables it contains. These are defined in [schema](https://en.wikipedia.org/wiki/Database_schema). These rules are written in [SQL](https://en.wikipedia.org/wiki/SQL), and serve to ensure data integrity, by defining properties such as [data types](https://www.w3schools.com/sql/sql_datatypes.asp), mandatory properties, and user access rules. Above, we define some basic schema concerning the expected [data type](https://www.w3schools.com/sql/sql_datatypes.asp) for each property, and which columns cannot be [`NULL`](https://en.wikipedia.org/wiki/Null_(SQL)).
 
 ### Relationships
-Different tables can be linked together using relationships. The first property in each table will be a unique identifier: these IDs are used to facilitate these linkages. Relationships can be any of the following types.
+Different tables can be linked together using relationships. The first property in each table will be a unique identifier: these IDs are used to facilitate such linkages. Relationships can be any of the following.
 
 #### One-to-One
 Each table holds one (or no) reference to the primary key of the other table.
@@ -44,10 +56,10 @@ Each table holds one (or no) reference to the primary key of the other table.
 A parent table holds references to the primary keys of numerous child tables.
 
 #### Many-to-Many
-Each property in both tables can relate to any number of properties in the other table. This usually requires a third tables, to link the records together.
+Each property in both tables can relate to any number of properties in the other table. This usually requires a third table, to link the records together.
 
 ### [Stored Procedures](https://en.wikipedia.org/wiki/Stored_procedure)
-We use a [StoredProc](https://en.wikipedia.org/wiki/Stored_procedure) to automate [DB](https://en.wikipedia.org/wiki/Database) tasks to run on periodically, or when a certain event occurs. These are scripts written in [SQL](https://en.wikipedia.org/wiki/SQL), which can be written to the database, and used to run queries, to read or change [DB](https://en.wikipedia.org/wiki/Database) data.
+We use a [StoredProc](https://en.wikipedia.org/wiki/Stored_procedure) to automate [DB](https://en.wikipedia.org/wiki/Database) tasks to run periodically, or when a certain event occurs. These are scripts written in [SQL](https://en.wikipedia.org/wiki/SQL), which can be written to the database, and used to run queries that read or change [DB](https://en.wikipedia.org/wiki/Database) data.
 
 #### Example
 The below [SProc](https://en.wikipedia.org/wiki/Stored_procedure) will return all data from our `USERS` table.
@@ -82,7 +94,7 @@ Another [open source](https://en.wikipedia.org/wiki/Open_source) [SQL](https://e
 ## DB Actions
 
 ### Description
-To modifying data, [database](https://en.wikipedia.org/wiki/Database) systems rely on the four [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions.
+To modify data, [database](https://en.wikipedia.org/wiki/Database) systems rely on the four [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions.
 
 ### Create
 Add a new record to a table.
@@ -101,8 +113,8 @@ Delete one or more rows in a table.
 ### Description
 Given that [SQL](https://en.wikipedia.org/wiki/SQL) has been the norm for such a large portion of the computer industry's history, any [DB](https://en.wikipedia.org/wiki/Database) architecture that doesn't use it is called [NoSQL](https://en.wikipedia.org/wiki/NoSQL). In recent years, these have been gaining ground as better alternatives to [relational databases](https://en.wikipedia.org/wiki/Relational_database), which are notoriously brittle and prone to failure.
 
-### MongoDB
-The most common [NoSQL](https://en.wikipedia.org/wiki/NoSQL) database on the market, and is responsible for bring the [NoSQL](https://en.wikipedia.org/wiki/NoSQL) concept to public attention. Rather than tables, rows, and columns, [Mongo](https://en.wikipedia.org/wiki/MongoDB) uses [JSON-like](https://en.wikipedia.org/wiki/JSON), which are defined by [schema](https://en.wikipedia.org/wiki/Database_schema). Queries can be run [imperatively](https://en.wikipedia.org/wiki/Imperative_programming), using [JavaScript](https://en.wikipedia.org/wiki/JavaScript) and various extension [frameworks](https://en.wikipedia.org/wiki/Software_framework). Properly designed document structures can yield better performance than [SQL](https://en.wikipedia.org/wiki/SQL) databases.
+### [MongoDB](https://en.wikipedia.org/wiki/MongoDB)
+The most common [NoSQL](https://en.wikipedia.org/wiki/NoSQL) database on the market; responsible for bringing the [NoSQL](https://en.wikipedia.org/wiki/NoSQL) concept to public attention. Rather than tables, rows, and columns, [Mongo](https://en.wikipedia.org/wiki/MongoDB) uses [JSON-like](https://en.wikipedia.org/wiki/JSON), which are defined by [schema](https://en.wikipedia.org/wiki/Database_schema). Queries can be run [imperatively](https://en.wikipedia.org/wiki/Imperative_programming), using [JavaScript](https://en.wikipedia.org/wiki/JavaScript) and various extension [frameworks](https://en.wikipedia.org/wiki/Software_framework). Properly designed document structures can yield better performance than [SQL](https://en.wikipedia.org/wiki/SQL) databases.
 
 #### Visualization
 ![Document Visualization](https://raw.githubusercontent.com/efournier92/Notes/master/Databases/Visuals/MongoDoc.png)
