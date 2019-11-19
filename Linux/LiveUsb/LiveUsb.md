@@ -59,7 +59,7 @@ Getting the [ESP](https://en.wikipedia.org/wiki/ESP_system_partition) structure 
 #### Install [grub2](https://www.gnu.org/software/grub/manual/grub/grub.html)
 ```bash
 sudo su
-mkdir /mnt/USB && mount /dev/sdx1 /mnt/USB
+mkdir -p /mnt/USB && mkdir -p /mnt/USB/boot && mount /dev/sdx1 /mnt/USB
 grub-install --force --removable --boot-directory=/mnt/USB/boot /dev/sdx
 ```
 
