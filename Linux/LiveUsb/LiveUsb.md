@@ -34,7 +34,7 @@ Getting the [ESP](https://en.wikipedia.org/wiki/ESP_system_partition) structure 
 - Select `msdos`, then click `Apply`
 
 #### 1st Partition
-- Label: ESP
+- Label: EFI
 - Size: 100MiB
 - File System: fat32
 
@@ -59,8 +59,10 @@ Getting the [ESP](https://en.wikipedia.org/wiki/ESP_system_partition) structure 
 #### Install [grub2](https://www.gnu.org/software/grub/manual/grub/grub.html)
 ```bash
 sudo su
-mkdir -p /mnt/USB && mkdir -p /mnt/USB/boot && mount /dev/sdx1 /mnt/USB
-grub-install --force --removable --boot-directory=/mnt/USB/boot /dev/sdx
+mkdir -p /mnt/USB && mkdir -p /mnt/USB/boot && mkdir -p /mnt/USB/efi
+EFI=/mnt/USB
+mount /dev/sdx1 "$EFI"
+grub-install --force --removable --efi-directory="$EFI/efi" --boot-directory=$EFI/boot" /dev/sdx
 ```
 
 ### 3. Copy files to ESP
@@ -72,8 +74,10 @@ wget https://raw.githubusercontent.com/efournier92/Notes/master/Ubuntu/LiveUsb/E
 
 #### Copy Files
 ```bash
-cp grub.cnf {ESP}/boot/grub/
-cp efi/ {ESP}/
+mount /dev/sdx1 /mnt/USB
+EFI=/mnt/USB
+cp grub.cnf "$EFI/boot/grub"
+cp efi/ "$EFI"
 ```
 
 ### 4. Clone a preexisting [Clonezilla](https://www.clonezilla.org/) partition to the [flash drive](https://en.wikipedia.org/wiki/USB_flash_drive)
