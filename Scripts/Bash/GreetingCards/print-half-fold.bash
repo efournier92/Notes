@@ -2,8 +2,8 @@
 
 mkdir -p PNG
 
-for i in *.xcf; do
-  magick "$i" -flatten "PNG/${i/xcf/png}"
+for file in *.xcf; do
+  magick "$file" -flatten "PNG/${i/xcf/png}"
 done
 
 montage -tile 1x2 -label '' \
