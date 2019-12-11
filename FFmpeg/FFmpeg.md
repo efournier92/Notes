@@ -54,6 +54,21 @@ for i in *.mp4;
 done
 ```
 
+### TV Quality
+
+#### Description
+Another batch conversion; this one's my go-to for live-action TV shows, for which I favor smaller size over tremendous quality.
+
+#### Command
+```bash
+in_ext=".mkv"
+out_ext=".mp4"
+mkdir OUT
+for file in *; do
+  ffmpeg -i $file -c:v libx264 -map_metadata -1 -preset slow -crf 33 -c:a copy "OUT/${file/$in_ext/$out_ext}"
+done
+```
+
 ### Trim File Duration
 
 #### Description
