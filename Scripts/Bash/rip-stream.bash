@@ -8,6 +8,7 @@ in_format="v4l2"
 out_vid_codec="libx264"
 out_aud_codec="flac"
 out_format="mpegts"
+out_yadif="0:-1:0,nlmeans"
 out_format_ext="ts"
 out_standard="ntsc-dvd"
 out_tune="film"
@@ -51,11 +52,18 @@ done
 
 echo "Writing Output to `out_file`"
 
+# ffmpeg -f v4l2 -i /dev/video0 \
+#   -f alsa -i hw:2,0 \
+#   -c:v libx264 -crf 0 -tune film \
+#   -vf yadif -f mpegts - | \
+#   ffmpeg -i - -c copy "$out_name".ts \
+#     -c copy -f mpegts pipe:play | \
+#       ffplay -i pipe:play
+
 ffmpeg -f "$in_format" -i "$in_vid_stream" \
   -f alsa -i "$in_aud_stream" \
-  -c:v "$out_vid_codec" -crf "$out_crf" -tune "$out_tune" \
-  -f "$out_format" - | \
-    ffmpeg -i - -c copy `out_file` \
+  -c:v "$out_vid_codec" -crf 0 \
+  `out_file` \
     -c copy -f "$out_format" pipe:play | \
-      ffplay -i pipe:play
+     ffplay -i pipe:play -nodisp
 
