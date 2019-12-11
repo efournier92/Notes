@@ -53,9 +53,9 @@ echo "Writing Output to `out_file`"
 
 ffmpeg -f "$in_format" -i "$in_vid_stream" \
   -f alsa -i "$in_aud_stream" \
-  -c:v "$out_vid_codec" -crf 0 -tune "$out_tune" \
+  -c:v "$out_vid_codec" -crf "$out_crf" -tune "$out_tune" \
   -f "$out_format" - | \
     ffmpeg -i - -c copy `out_file` \
     -c copy -f "$out_format" pipe:play | \
-      ffplay -i pipe:play -nodisp
+      ffplay -i pipe:play
 
