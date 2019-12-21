@@ -1,4 +1,20 @@
-#j!/bin/bash
+#!/bin/bash
+
+# DEFAULTS
+# in_file="$1"
+# out_name="$2"
+# in_start_time="00:00:00"
+# out_end_time="04:00:00"
+# out_vid_codec="libx264"
+# out_dir="OUT"
+# out_crf="28"
+# out_tune="film"
+# out_preset="slow"
+# out_yadif=""
+# out_max_queue="400"
+# out_ext="mp4"
+# out_crop="600:440:20:20"
+# out_dimensions="720:540"
 
 in_file="$1"
 out_name="$2"
@@ -54,7 +70,7 @@ echo "Outputting as `out_file`"
 
 ffmpeg -i "$in_file" -ss "$in_start_time" \
   -c:v "$out_vid_codec" -crf "$out_crf" -tune "$out_tune" -preset "$out_preset" \
-  -vf "yadif ${out_yadif},crop=${out_crop}" \
+  -vf "yadif ${out_yadif},crop=${out_crop},scale=${out_dimensions}" \
   -profile:v baseline -level 3.0 -pix_fmt yuv420p \
   -c:a aac -ac 2 -b:a 128k \
   -t "$out_end_time" \
