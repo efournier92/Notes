@@ -1,12 +1,24 @@
 #!/bin/bash
 
-HOME=/root
-LOGNAME=root
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-LANG=en_US.UTF-8
-SHELL=/bin/sh
-PWD=/root
+sync_folder="/mnt/BNK/Sync"
+process="grive"
 
-cd /mnt/BNK/Sync
-grive
+function is_sync_dir_present {
+  echo CHECKING
+  [[ -d "$sync_folder" ]]
+}
+
+function is_grive_process_running {
+  if pgrep "$process" >/dev/null 2>&1; then
+    true
+  else
+    false
+  fi
+}
+
+if is_sync_dir_present && ! is_grive_process_running; then
+  echo "Syncing $sync_folder"
+  cd "$sync_folder"
+  grive
+fi
 
