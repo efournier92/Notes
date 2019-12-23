@@ -14,8 +14,45 @@ is_convert_complete=false
 
 shopt -s extglob
 
+while getopts "v:i:o" OPTION
+do
+	case $OPTION in
+		v)
+			echo "You set flag -v"
+			;;
+		o)
+			echo "The value of -o is $OPTARG"
+			MYOPTF=$OPTARG
+			;;
+		i)
+			echo "The value of -i is $OPTARG"
+			MYOPTF=$OPTARG
+			;;
+	esac
+done
+
+
+# while test $# -gt 0; do
+#   case "$1" in
+#     -v|--verbose)
+#       mode_verbose=true
+#       echo "VERBOSE ENABLED"
+#       shift
+#       ;;
+#     -i|--input)
+#       in_dir=
+#       echo "Perfect Enabled"
+#       shift
+#       ;;
+#     *)
+#       break
+#       ;;
+#   esac
+# done
+
 # Stop execution if either directory is invalid
 if [[ ! -d "$in_dir" || -z "$out_dir" ]]; then
+  [[ mode_verbose == true ]] && echo "You must supply both an input and an output directory"
   exit
 fi
 
