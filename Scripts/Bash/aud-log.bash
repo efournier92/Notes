@@ -2,11 +2,9 @@
 
 # AUDIO LOGGER
 # Converts .WAV
-# Meant for voice memos
+# Meant to transform voice memos from a raw to a compressed format, for longterm storage
 
 # ^ BEST READ FROM THE BOTTOM UP ^
-
-# sshopt -s nullglob
 
 in_dir=$1
 out_dir=$2
@@ -14,46 +12,29 @@ is_convert_complete=false
 
 shopt -s extglob
 
-while getopts "v:i:o" OPTION
+while getopts "vi:o:" OPTION
 do
 	case $OPTION in
 		v)
-			echo "You set flag -v"
-			;;
-		o)
-			echo "The value of -o is $OPTARG"
-			MYOPTF=$OPTARG
+      verbose=true
+			echo "VERBOSE OUTPUT ENABLED"
 			;;
 		i)
-			echo "The value of -i is $OPTARG"
-			MYOPTF=$OPTARG
+			in_dir=$OPTARG
+			;;
+		o)
+      out_dir=$OPTARG
 			;;
 	esac
 done
 
-
-# while test $# -gt 0; do
-#   case "$1" in
-#     -v|--verbose)
-#       mode_verbose=true
-#       echo "VERBOSE ENABLED"
-#       shift
-#       ;;
-#     -i|--input)
-#       in_dir=
-#       echo "Perfect Enabled"
-#       shift
-#       ;;
-#     *)
-#       break
-#       ;;
-#   esac
-# done
-
 # Stop execution if either directory is invalid
 if [[ ! -d "$in_dir" || -z "$out_dir" ]]; then
-  [[ mode_verbose == true ]] && echo "You must supply both an input and an output directory"
+  echo "Input and output directories expected (use -i and -o)"
   exit
+else
+  [[ $verbose = true ]] && echo "INPUT DIRECTORY: $in_dir"
+  [[ $verbose = true ]] && echo "OUTPUT DIRECTORY: $out_dir"
 fi
 
 # True if .WAV file is valid
@@ -67,18 +48,26 @@ is_valid_file_name() {
   eval_file=$1
   file_name="${eval_file##*/}"
   file_name="${file_name%%.*}"
-  [[ "$file_name" =~ ^[0-9]{2}-[0-9]{2}-[0-9]{2}_[0-9]{2}$ ]]
+  if [[ "$file_name" =~ ^[0-9]{2}-[0-9]{2}-[0-9]{2}_[0-9]{2}$ ]]; then
+    [[ $verbose = true ]] && echo "$file_name IS a valid file"
+    true
+  else
+    [[ $verbose = true ]] && echo "$file_name is NOT a valid file"
+    false
+  fi
 }
 
 # Play input file in VLC
 play_in_vlc() {
   eval_file="$1"
+  [[ $verbose = true ]] && echo "Opening $eval_file in VLC"
   vlc "$eval_file"
 }
 
 # Join files from the same date
 join_duplicates() {
   mkdir -p `join_dir`
+  [[ $verbose = true ]] && echo "Joining duplicates into `join_dir`"
   name_audio_files `join_dir` true
   convert_audio_files `join_dir`
 }
@@ -86,12 +75,15 @@ join_duplicates() {
 # Wait for FFmpeg to finish converting before joining files from the same date
 wait_for_ffmpeg_to_finish() {
   dir=$1
+  [[ $verbose = true ]] && echo "Started waiting for FFmpeg to finish"
   time_spent_waiting=0
   until [[ $is_convert_complete == true || $time_spent_waiting -gt 1000 ]]; do
     sleep 5
+    [[ $verbose = true ]] && echo "Spent $time_spent_waiting waiting ofr FFmpeg"
     time_spent_waiting=$((time_spent_waiting + 5))
     ffmpeg_windows=`tmux list-windows | grep -i 'ffmpeg'`
     if [[ $ffmpeg_windows == '' ]]; then
+      [[ $verbose = true ]] && echo "FFmpeg conversion complete"
       is_convert_complete=true
       join_duplicates
     fi
@@ -104,6 +96,7 @@ parse_date() {
   file_name="${eval_file##*/}"
   file_name="${file_name%%.*}"
   file_name="${file_name%%_*}"
+  [[ $verbose = true ]] && echo "Parsed file $eval_file to date $file_name"
   echo "$file_name"
 }
 
@@ -114,11 +107,23 @@ convert_file_with_ffmpeg() {
   mp3_file=`mp3_file $date`
   concat_file=`concat_file $date`
   source_dir="$in_dir"
+
+  if [[ $verbose = true ]]; then
+    echo "CONVERTING WITH FFMPEG"
+    echo "Convert File: $convert_file"
+    echo "Date: $date"
+    echo "MP3 File: $mp3_file"
+    echo "Concat File: $concat_file"
+    echo "Source Directory: $source_dir"
+  fi
+
   if [[ "$convert_file" =~ "_00" ]]; then
+    [[ $verbose = true ]] && echo "First File: $convert_file"
     if test -f `mp3_file $date`; then
       join_dir=`join_dir`
       source_dir="$join_dir"
       must_join_files=true
+      [[ $verbose = true ]] && echo "Moving $mp3_file from $source_dir to $join_dir/${date}_00.WAV for joining"
       mv "$mp3_file" "$join_dir/${date}_00.WAV"
       mp3_file="$join_dir/${date}_01.WAV"
     fi
@@ -138,6 +143,7 @@ convert_audio_files() {
   for convert_file in $source_dir/*; do
     [[ $convert_file = *.WAV ]] || continue
     if ! is_valid_file "$convert_file"; then
+      [[ $verbose = true ]] && echo "Skipping invalid file $convert_file"
       continue
     fi
     convert_file_with_ffmpeg "$convert_file"
@@ -151,6 +157,7 @@ clean_concat_file() {
   clean_date=`parse_date "$1"`
   file_to_clean=`concat_file "$clean_date"`
   mkdir -p `concat_dir`
+  [[ $verbose = true ]] && echo "Cleaning $file_to_clean in `concat_dir`"
   rm -f "$file_to_clean"
   touch "$file_to_clean"
 }
@@ -182,11 +189,11 @@ write_concat_file() {
   concat_file_dir="$2"
   file_to_write=`concat_file "$date"`
   clean_concat_file "$file_to_write"
+  [[ $verbose = true ]] && echo "Writing concat file $concat_file to $concat_file_dir"
   loops=9
   if [[ "$must_join_files" == true ]]; then
     loops=1
   fi
-
   for (( n=0; n < $loops; n++)); do
     echo "file '$concat_file_dir/${concat_date}_0${n}.WAV'" >> "$file_to_write"
   done
@@ -196,11 +203,9 @@ write_concat_file() {
 get_filename_input() {
   in_file="$1"
   dir="$2"
-
   if ! is_valid_file "$in_file"; then
     return
   fi
-
   new_file_name="$in_file"
   has_file_moved=false
   i=0
