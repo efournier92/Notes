@@ -10,8 +10,6 @@ in_dir=$1
 out_dir=$2
 is_convert_complete=false
 
-shopt -s extglob
-
 while getopts "vi:o:" OPTION
 do
 	case $OPTION in
