@@ -33,8 +33,10 @@ if [[ ! -d "$in_dir" || -z "$out_dir" ]]; then
   echo "Input and output directories expected (use -i and -o)"
   exit
 else
-  [[ $verbose = true ]] && echo "INPUT DIRECTORY: $in_dir"
-  [[ $verbose = true ]] && echo "OUTPUT DIRECTORY: $out_dir"
+  if [[ $verbose = true ]]; then
+    echo "INPUT DIRECTORY: $in_dir"
+    echo "OUTPUT DIRECTORY: $out_dir"
+  fi
 fi
 
 # True if .WAV file is valid
