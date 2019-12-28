@@ -6,8 +6,6 @@
 
 # ^ BEST READ FROM THE BOTTOM UP ^
 
-in_dir=$1
-out_dir=$2
 is_convert_complete=false
 
 while getopts "vi:o:" OPTION
@@ -96,13 +94,20 @@ parse_date() {
   file_name="${eval_file##*/}"
   file_name="${file_name%%.*}"
   file_name="${file_name%%_*}"
-  [[ $verbose = true ]] && echo "Parsed file $eval_file to date $file_name"
   echo "$file_name"
+}
+
+rename_file() {
+  mp3_file=$1
+  [[ $verbose = true ]] && echo "Moving $mp3_file from $source_dir to $join_dir/${date}_00.WAV for joining"
+  mv "$mp3_file" "$join_dir/${date}_00.WAV"
+  mp3_file="$join_dir/${date}_01.WAV"
 }
 
 # Open a new TMUX window and run FFmpeg convert command
 convert_file_with_ffmpeg() {
   convert_file="$1"
+  echo "CONVERT: $convert_file"
   date=`parse_date "$convert_file"`
   mp3_file=`mp3_file $date`
   concat_file=`concat_file $date`
@@ -117,15 +122,14 @@ convert_file_with_ffmpeg() {
     echo "Source Directory: $source_dir"
   fi
 
-  if [[ "$convert_file" =~ "_00" ]]; then
+  # if [[ "$convert_file" =~ "_00" ]]; then
     [[ $verbose = true ]] && echo "First File: $convert_file"
-    if test -f `mp3_file $date`; then
+    mp3_file=`mp3_file $date`
+    if test -f "$mp3_file"; then
       join_dir=`join_dir`
       source_dir="$join_dir"
       must_join_files=true
-      [[ $verbose = true ]] && echo "Moving $mp3_file from $source_dir to $join_dir/${date}_00.WAV for joining"
-      mv "$mp3_file" "$join_dir/${date}_00.WAV"
-      mp3_file="$join_dir/${date}_01.WAV"
+      rename_file "$mp3_file"
     fi
     if [[ "$must_join_files" == true ]]; then
       join_dir=`join_dir`
@@ -133,7 +137,7 @@ convert_file_with_ffmpeg() {
     fi
     write_concat_file "$date" "$source_dir"
     tmux new-window "ffmpeg -f concat -safe 0 -i $concat_file -c:a libmp3lame -ac 1 -q:a 15 $mp3_file"
-  fi
+  # fi
 }
 
 # 
@@ -192,9 +196,9 @@ write_concat_file() {
   [[ $verbose = true ]] && echo "Writing concat file $concat_file to $concat_file_dir"
   loops=9
   if [[ "$must_join_files" == true ]]; then
-    loops=1
+    loops=2
   fi
-  for (( n=0; n < $loops; n++)); do
+  for (( n=0; n < $loops; n++ )); do
     echo "file '$concat_file_dir/${concat_date}_0${n}.WAV'" >> "$file_to_write"
   done
 }
@@ -224,9 +228,8 @@ get_filename_input() {
         else
           wav_dir=$dir
         fi
-        break
         mkdir -p "$wav_dir"
-        mv "in_file" "$wav_dir/$new_file_name.WAV"
+        mv "$in_file" "$wav_dir/$new_file_nams.WAV"
         has_file_moved=true
         always_prompt=false
       fi
