@@ -201,13 +201,13 @@ function ask_to_delete_join_dir {
   done
 }
 
-function list_new_mp3_files {
-  # TODO: Show lengths
-}
+# function list_new_mp3_files {
+#   # TODO: Show lengths
+# }
 
-function prompt_to_delete_inputs {
-
-}
+# function prompt_to_delete_inputs {
+  
+# }
 
 # Stop execution if either directory is invalid
 function ensure_valid_directories {
