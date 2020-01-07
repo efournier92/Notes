@@ -7,7 +7,6 @@
 - [License](#license)
 - [Notes](#notes)
 
-
 ## Overview
 Whenever I do a project, I try to document my findings at the end. For the most part, this is as simple as annotating the commands I've used in a [Markdown] file. I keep these for my own future reference, with the added benefit of shareability. These notes can also be viewed on my website [efournier92.com](https://efournier92.com/notes/all).
 
