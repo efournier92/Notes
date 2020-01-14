@@ -1,4 +1,93 @@
 body {
-  background-color: black;
+  color: white;
+  /* background-color: black; */
 }
 
+h2 {
+  font-size: 1.4em;
+  color: #00E676;
+}
+
+.highlight {
+  color: #00E676;
+}
+
+.tag {
+  font-size: 0.9em;
+  margin-right: 2em;
+}
+
+.main-content-container {
+  margin-top: 2em;
+}
+
+.position-header {
+  font-size: 1.2em;
+}
+
+.position-subheader {
+  color: #00E676;
+  margin-top: -0.3em;
+}
+
+.position-info-container {
+  margin-left: 1em; 
+}
+
+.position-info {
+  font-size: 0.85em;
+  margin-top: -0.1em;
+}
+
+.line {
+  margin-top: 0.1em;
+  border: 0;
+  border-top: 0.1em solid #00E676;
+}
+
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.5em;
+  margin: 0.2em;
+}
+
+.sub-line {
+  margin: 0.5em 0;
+  border: 0;
+  border-top: 0.02em solid #00E676;
+}
+
+.strength {
+  margin-top: 0.5em; 
+}
+
+.circle {
+  margin: 0 0.3em;
+}
+
+.circle-full {
+  height: 1em;
+  width: 1em;
+  border-color: transparent !important;
+  background-color: #00E676;
+}
+
+.circle-empty {
+  height: 1em;
+  width: 1em;
+  border-width: 0.1em !important;
+  border-color: #00E676 !important;
+}
+
+.resume-container {
+  position: relative;
+  margin: 1in;
+  width: 8.5in;
+  height: 11in;
+  border: 1px solid #000000;
+  background-color: #303030;
+  background-image: url("https://www.transparenttextures.com/patterns/txture.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
