@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # crontab
-# * */2 * * * bash /home/misigno/scripts/Livestream/Livestream.bash
+# * * * * * bash /home/misigno/scripts/Livestream/Livestream.bash
 
 now_stamp=`date +'%Y-%m-%d-%H'`
 music_dir="/mnt/MD0/Audio/Music"
@@ -16,15 +16,22 @@ threads="0"
 bitrate="1000k" # constant bitrate (should be between 1000k - 3000k)
 quality_preset="ultrafast"
 audio_rate="44100"
-stream_repo="rtmp://live.twitch.tv/app/live_469920893_z2gwahibwBSrT7Jn6abyfZSDhjSt7Z"
+stream_server="live"
+stream_base_url="rtmp://${stream_server}.twitch.tv/app/"
+stream_repo="live_469920893_ZqDiWkgqq25jIsIgG23jEUjzY90wlI"
+stream_url="${stream_base_url}${stream_repo}"
+
+echo "$stream_url"
 
 killall ffmpeg
+
+sleep 1
 
 rm -rf "$livestream_dir/Playlists"
 mkdir -p "$livestream_dir/Playlists"
 touch "$playlist_file"
 
-find "$music_dir/." -name "*mp3" | sort -R | head -n 240 | while read file; do
+find "$music_dir/." -name "*mp3" | sort -R | head -n 40 | while read file; do
   if ! [[ "$file" == *"'"* ]]; then
    echo "file '$file'" >> "$playlist_file"
   fi
@@ -37,5 +44,5 @@ ffmpeg -re -s "$resolution" -i "$input_device" -f flv -r "$frames_per_second" \
   -b:v "$bitrate" -minrate "$bitrate" -maxrate "$bitrate" -pix_fmt yuv420p \
   -s "$resolution" -preset "$quality_preset" \
   -tune film -acodec libmp3lame -threads "$threads" -strict normal -tune zerolatency \
-  -bufsize "$bitrate" -t 01:59:57 -f flv "$stream_repo"
+  -bufsize "$bitrate" -t 01:00:00 -f flv "$stream_url"
 
