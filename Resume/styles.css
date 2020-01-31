@@ -82,12 +82,12 @@ h2 {
 }
 
 .resume-container {
-  position: relative;
-  margin: 1in;
-  width: 8.5in;
-  height: 11in;
-  border: 1px solid #000000;
-  background-color: #303030;
-  background-image: url("https://www.transparenttextures.com/patterns/txture.png");
+  /* position: relative; */
+  /* margin: 1in; */
+  /* width: 8.5in; */
+  /* height: 11in; */
+  /* border: 1px solid #000000; */
+  /* background-color: #303030; */
+  /* background-image: url("https://www.transparenttextures.com/patterns/txture.png"); */
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
