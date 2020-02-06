@@ -39,6 +39,7 @@ This project is provided under the [MIT](https://opensource.org/licenses/MIT) li
     - [UsbBenchmarks](https://github.com/efournier92/Notes/blob/master/Linux/LiveUsb/UsbBenchmarks.md)
 - [Lirc](https://github.com/efournier92/Notes/blob/master/Lirc/Lirc.md)
 - [Mac](https://github.com/efournier92/Notes/blob/master/Mac/Mac.md)
+- [Multiboot](https://github.com/efournier92/Notes/blob/master/Multiboot/Multiboot.md)
 - [PDFs](https://github.com/efournier92/Notes/blob/master/Pdfs/Pdfs.md)
 - [rclone](https://github.com/efournier92/Notes/blob/master/Rclone/Rclone.md)
 - [rEFInd](https://github.com/efournier92/Notes/blob/master/Refind/Refind.md)
