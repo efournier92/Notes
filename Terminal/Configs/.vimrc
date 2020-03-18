@@ -1,11 +1,23 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OS DEPENDENT OPTIONS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! IsWsl()
+  let os_env =  readfile("/proc/version")
+  if os_env[0] =~ "Microsoft"
+    return 1
+  else
+    return 0
+  endif
+endfunction
+
 if has('unix')
   if has('mac')
     " Mac
     set guifont=Menlo:h14 " font
     set clipboard=unnamed " clipboard
+  elseif IsWsl()
+    " WSL
   else
     " Linux
     set guifont=Monospace\ 11 " font
@@ -20,10 +32,7 @@ elseif has('win32') || has('win64')
   set guioptions -=m
   source $VIMRUNTIME/mswin.vim
 endif
-if !has("gui_running")
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-end
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LOAD
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -58,6 +67,7 @@ set gcr=n:blinkon0 " no blinking cursor
 set autoread " detect when a file is changed
 set backspace=indent,eol,start " fix backspace
 set ttyfast " faster redrawing
+autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
 " Color
 colorscheme solarized
@@ -127,11 +137,11 @@ map <leader>P :cclose<CR>
 
 " Cursor Shape
 if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
 else
-    let &t_SI = "\e[5 q"
-    let &t_EI = "\e[2 q"
+  let &t_SI = "\e[5 q"
+  let &t_EI = "\e[2 q"
 endif
 
 " Remove ^M Escapes
@@ -148,6 +158,12 @@ nnoremap <silent> k gk
 let g:NERDTreeQuitOnOpen=0 " close when file opened
 let NERDTreeShowHidden=1 " show hidden files
 
+" Open NerdTree if blank buffer in CLI mode
+if !has("gui_running")
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+end
+
 " CtrlP
 let g:ctrlp_working_path_mode = 2 " search nearest .git ancestor
 let g:ctrlp_map = '<c-p>'
@@ -155,13 +171,13 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_dotfiles=1
 let g:ctrlp_working_path_mode = 'cr'
 let g:ctrlp_prompt_mappings = {
-      \ 'AcceptSelection("h")': ['<c-i>'],
-      \ 'AcceptSelection("v")': ['<c-x>']
-      \ }
+  \ 'AcceptSelection("h")': ['<c-i>'],
+  \ 'AcceptSelection("v")': ['<c-x>']
+  \ }
 let g:ctrlp_custom_ignore = {
-        \ 'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$',
-        \ 'file': '\.exe$\|\.so$'
-        \ }
+  \ 'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$',
+  \ 'file': '\.exe$\|\.so$'
+  \ }
 map <leader>\ :CtrlPBuffer<CR>
 
 " Buffergator
@@ -171,5 +187,5 @@ nmap <leader>k  :BuffergatorMruCycleNext<cr>
 nmap <leader>bq :bp <BAR> bd #<cr>
 
 " Emmet HTML Helper
-let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_leader_key='<c-e>'
 
