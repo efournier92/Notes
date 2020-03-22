@@ -60,8 +60,10 @@ else
   START_DIR=$HOME
 fi
 
+cd $START_DIR
+
 # Run Tmux
-if [ -z "$TMUX" ]
+if [[ -z "$TMUX" ]]
   then (cd $START_DIR; tmux)
 fi
 
