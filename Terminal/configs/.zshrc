@@ -59,11 +59,11 @@ elif [[ "$os_env" == Wsl ]]; then
 else
   START_DIR=$HOME
 fi
-
-cd $START_DIR
+export START_DIR=$START_DIR
 
 # Run Tmux
-if [[ -z "$TMUX" ]]
-  then (cd $START_DIR; tmux)
+if [[ -z "$TMUX" ]]; then
+  cd $START_DIR
+  tmux attach || tmux new
 fi
 
