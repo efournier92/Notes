@@ -64,6 +64,6 @@ export START_DIR=$START_DIR
 # Run Tmux
 if [[ -z "$TMUX" ]]; then
   cd $START_DIR
-  tmux attach || tmux new
+  tmux new
 fi
 

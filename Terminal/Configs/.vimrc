@@ -96,6 +96,9 @@ hi! SpellBad cterm=underline ctermbg=none ctermfg=none
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd BufRead,BufNewFile *.txt setlocal spell
 
+map <leader>S :setlocal spell spelllang=en_gb<CR>
+map <leader>D :setlocal nospell<CR>
+
 " Tabs
 set expandtab " spaces for tabs 
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
