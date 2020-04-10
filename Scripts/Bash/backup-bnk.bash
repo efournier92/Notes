@@ -12,6 +12,6 @@ rm -rf "$zip_location"
 # Zip the sync directory
 zip -r --exclude=*Books* "$zip_location" "$sync_dir"
 
-# Clean trash folder
+# Clean trash directory
 rm -rf "$trash_dir"
 
