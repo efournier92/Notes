@@ -28,6 +28,11 @@ export EDITOR=vim
 # Load alias file
 [[ -f ~/.zsh-alias.sh ]] && source ~/.zsh-alias.sh
 
+# Always list contents when changing directory
+chpwd() {
+  ls
+}
+
 # Load MC Solarized Skin
 export MC_SKIN=$HOME/.mc/solarized.ini
 
