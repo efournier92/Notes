@@ -170,7 +170,7 @@ sudo apt-get install bleachbit
 ```bash
 sudo apt-get install git cmake build-essential libgcrypt11-dev libyajl-dev libboost-all-dev libcurl4-openssl-dev libexpat1-dev libcppunit-dev binutils-dev debhelper zlib1g-dev dpkg-dev pkg-config
 git clone https://github.com/vitalif/grive2
-dpkg-buildpackage -j4
+dpkg-buildpackage -j5
 mkdir build
 cd build
 cmake ..
@@ -218,7 +218,6 @@ firefox https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linu
 
 ### CopyQ
 ```bash
-sudo add-apt-repository ppa:hluk/copyq
 sudo apt update
 sudo apt install copyq
 ```

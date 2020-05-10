@@ -4,6 +4,7 @@
 - [Overview](#overview)
 - [Commands](#commands)
   - [Fix APFS](#fix-apfs)
+- [Configuration](#Configuration)
 - [EFI Structure](#efi-structure)
 - [Stable Version](#stable-version)
 
@@ -42,6 +43,14 @@ menuentry OSX {
   loader /{ GUID }/System/Library/CoreServices/boot.efi
 }
 ```
+
+## Configuration
+
+### Description
+`rEFInd` configuration is driven by the `refind.conf` file. The below file serves as a backup of my preferred settings.
+
+### refind.conf
+[Github](https://github.com/efournier92/Notes/blob/master/Refind/refind.conf)
 
 ## EFI Structure
 

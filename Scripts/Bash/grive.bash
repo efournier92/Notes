@@ -4,7 +4,6 @@ sync_folder="/mnt/BNK/Sync"
 process="grive"
 
 function is_sync_dir_present {
-  echo CHECKING
   [[ -d "$sync_folder" ]]
 }
 
