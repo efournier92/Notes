@@ -1,0 +1,45 @@
+#!/bin/zsh
+
+# SESSION
+# tmux new -s $SESSION_NAME -d "cd $BASE_DIR; zsh"
+
+# WINDOW
+# tmux new-window "cd $BASE_DIR; zsh"
+
+# SPLIT VERTICAL
+# tmux split-window -v "vim"
+
+# SPLIT HORIZONTAL
+# tmux split-window -h "vim"
+
+# SESSION
+BASE_DIR="$HOME"
+SESSION_NAME="Base"
+
+## 1ST WINDOW
+tmux new -s $SESSION_NAME -d "cd $BASE_DIR; zsh"
+
+## 2ND WINDOW 
+
+### LEFT PANE
+# tmux new-window ""
+
+### RIGHT PANE
+# tmux split-window -v ""
+
+## 3RD WINDOW
+
+### TOP PANE
+# tmux new-window ""
+
+### BOTTOM PANE
+# tmux split-window -v "vim"
+
+## 4TH WINDOW
+
+### FULL PANE
+# tmux new-window ""
+
+# ATTACH SESSION
+tmux attach -t $SESSION_NAME
+
