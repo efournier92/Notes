@@ -1,33 +1,55 @@
-# Theme
+# PLUGINS 
+
+## Oh-My-Zsh
+
+### Shell theme
 ZSH_THEME="avit"
 
-# Disable colors for `ls`
+### Disable highlighting for ls command
 DISABLE_LS_COLORS="true"
 
-# Load oh-my-zsh
+### Set base directory for oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
+
+### Load oh-my-zsh assets
 source $ZSH/oh-my-zsh.sh
+
+### Enable extension for syntax highlighting
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Default Shell
-export SHELL=zsh
+# PRIVACY
 
-# Default Editor
-export EDITOR=vim
+## History
 
-# Default Language
-export LANG=en_US.UTF-8
-
-# Display
-# export DISPLAY=localhost:0.0
-
-# History
+### Maximum history items in memory
 HISTSIZE=1000
+
+### Maximum history items persisted to file
 SAVEHIST=0
 
-# Always list contents when changing directory
+# INTERFACE
+
+## Defaults
+
+### Shell
+export SHELL=zsh
+
+### Editor
+export EDITOR=vim
+
+### Language
+export LANG=en_US.UTF-8
+
+## Overrides
+
+### Load alias file
+[[ -f ~/.zsh-alias.sh ]] && source ~/.zsh-alias.sh
+
+### Always list contents when changing directory
 chpwd() { ls }
 
-# Load alias file
-[[ -f ~/.zsh-alias.sh ]] && source ~/.zsh-alias.sh
+# TOGGLES
+
+# Attach to a local display host
+# export DISPLAY=localhost:0.0
 
