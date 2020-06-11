@@ -1,194 +1,200 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" OS DEPENDENT OPTIONS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SYSTEM
 
-function! IsWsl()
-  let os_env =  readfile("/proc/version")
-  if os_env[0] =~ "Microsoft"
-    return 1
-  else
-    return 0
-  endif
-endfunction
+"" Compatibility
 
-if has('unix')
-  if has('mac')
-    " Mac
-    set guifont=Menlo:h14 " font
-    set clipboard=unnamed " clipboard
-  elseif IsWsl()
-    " WSL
-  else
-    " Linux
-    set guifont=Monospace\ 11 " font
-    set guioptions -=T
-    set guioptions -=m
-    set clipboard=unnamed " clipboard
-  endif
-elseif has('win32') || has('win64')
-  " Windows
-  set guifont=Consolas:h13 " font
-  set guioptions -=T
-  set guioptions -=m
-  source $VIMRUNTIME/mswin.vim
-endif
+""" Disable Vi compatibility
+set nocompatible
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" LOAD
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off
-set nocompatible " not compatible with vi
-set directory^=$HOME/.vim/swp/ " swap files
-set undodir^=$HOME/.vim/undo/ " swap files
-set rtp+=$HOME/.vim/bundle/Vundle.vim "runtime includes Vundle
-call vundle#begin()
-  Plugin 'kien/ctrlp.vim'
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'jeetsukumaran/vim-buffergator'
-  Plugin 'xuyuanp/nerdtree-git-plugin'
-  Plugin 'ervandew/supertab'
-  Plugin 'mattn/emmet-vim'
-  Plugin 'valloric/MatchTagAlways'
-  Plugin 'tpope/vim-commentary'
-  Plugin 'groenewege/vim-less'
-  Plugin 'jelera/vim-javascript-syntax'
-  Plugin 'leafgarland/typescript-vim'
-call vundle#end()
-filetype plugin indent on
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SYSTEM 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Core
-let mapleader = '\'
-set cm=blowfish2 " encryption method
-set shortmess+=I " disable welcome
-set shortmess+=A " disable swp warnings
-set gcr=n:blinkon0 " no blinking cursor
-set autoread " detect when a file is changed
-set backspace=indent,eol,start " fix backspace
-set ttyfast " faster redrawing
-autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+"" Clipboard
 
-" Color
-colorscheme solarized
-filetype on
-syntax on
-let base16colorspace=256  " Access 256 colorspace
-set t_Co=256 " Support 256 colors
+""" Enable access to the system clipboard
+set clipboard=unnamed
+
+"" Files
+
+""" Detect changes to open files
+set autoread
+
+"" Privacy
+
+""" Disable swap files
+set noswapfile
+
+""" Disable persistent undo files
+set noundofile
+
+""" Encryption method
+set cm=blowfish2
+
+"" Fuzzy Find
+
+""" Find recursively from base directory
+set path+=**
+
+""" Show menu of found items on <Tab>
+set wildmenu
+
+" INTERFACE
+
+"" Layout
+
+""" Show line numbers on left of screen
+set number
+
+""" Always show the status line
+set laststatus=2
+
+""" Enable faster redrawing
+set ttyfast
+
+""" Disable the welcome message
+set shortmess+=I
+
+"" Colors
+
+""" Font
+set guifont=Courier:h13
+
+""" Global color scheme (from $HOME/.vim/colors)
+colorscheme hybrid_material
+
+""" Background color
 set background=dark
 
-" Formatting 
-filetype plugin indent on
-autocmd GUIEnter * set vb t_vb=
-set linespace=3
-set encoding=utf8
-set number
-set autoindent " automatically set indent of new line
-set smartindent
-set laststatus=2 " show the satus line all the time
-set visualbell 
-set colorcolumn=80 " indicate 80th column 
+""" Enable 256 colorspace support
+set t_Co=256
 
-" Spelling
-set dictionary-=/usr/share/dict/words dictionary+=/usr/share/dict/words
-set complete+=k
+""" Enable syntax coloring
+syntax on
+
+""" Highlight corresponding braces
+set showmatch
+
+"" Bell
+
+""" Disable audible and visual bell
+set belloff=all
+
+"" Indentation
+
+""" Copy indent level when inserting a new line
+set autoindent
+
+""" Auto-indent when inserting a new line
+set smartindent
+
+" SPELLING
+
+"" Dictionary
+
+""" Include dictionary words file
+set dictionary+=$HOME/.vim/dict/words
+
+""" Underline misspelled words
 hi! SpellBad cterm=underline ctermbg=none ctermfg=none
-autocmd BufRead,BufNewFile *.md setlocal spell
+
+"" Auto Enable Spell Checking for File Types
+
+""" Text files
 autocmd BufRead,BufNewFile *.txt setlocal spell
 
-map <leader>S :setlocal spell spelllang=en_gb<CR>
-map <leader>D :setlocal nospell<CR>
+""" Markdown files
+autocmd BufRead,BufNewFile *.md setlocal spell
 
-" Tabs
-set expandtab " spaces for tabs 
-set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set tabstop=2 " visible width of tabs
-set softtabstop=2 " edit as if the tabs are this width 
-set shiftwidth=2 " indent spaces 
-set shiftround " round indent to a multiple of 'shiftwidth'
-nnoremap <silent> <C-W>t :tabnew<CR>
+""" File with no an extension
+autocmd BufRead,BufNewFile * if expand('%:t') !~ '\.' | setlocal spell | endif
 
-" Search
-set ignorecase " case insensitive searching
-set smartcase " case-sensitive if expresson contains a capital letter
+"" Indentation
+
+""" Convert tabs into spaces
+set smarttab
+
+""" Spaces per <Tab>
+set tabstop=2
+
+""" Use appropriate number of spaces on <Tab> in Insert and Visual modes
+set expandtab
+
+""" Spaces per <Tab> when performing editing operations
+set softtabstop=2
+
+""" Space for auto indentation
+set shiftwidth=2
+
+""" Round indents to a multiple of $shiftwidth
+set shiftround
+
+"" Search
+
+""" Ignore case when search contains only lowercase letters
+set ignorecase
+
+""" Use case when search contains a capital letter
+set smartcase
+
+""" Highlight search matches
 set hlsearch
-set incsearch " set incremental search, like modern browsers
-set nolazyredraw " don't redraw while executing macros
-set magic " Set magic on, for regex
-set showmatch " show matching braces
-set mat=2 " how many tenths of a second to blink
 
-" Persistent Undo
-set undofile
-set undolevels=10000
-set undoreload=100000
+""" Search incrementally while typing
+set incsearch
 
-" Ruler
-set showcmd
-set ruler
-set rulerformat=%-1.(%l,%c%V%)
+""" Enable searching with regex expressions
+set magic
 
-" Folding
-set foldmethod=syntax " fold based on indent
-set foldnestmax=10 " deepest fold is 10 levels
-set nofoldenable " don't fold by default
-set foldlevel=1
+" GRAPHICAL VIM
 
-" Quickfix Menu	
-map <leader>p :copen<CR>
-map <leader>P :cclose<CR>
+"" When Using gVim
+if has("gui_running")
 
-" Cursor Shape
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
-else
-  let &t_SI = "\e[5 q"
-  let &t_EI = "\e[2 q"
+  """ Hide the menubar
+  set guioptions -=m
+
+  """ Hide the toolbar
+  set guioptions -=T
+
 endif
 
-" Remove ^M Escapes
-map <leader>m :%s/\r//g<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NerdTree
-map <silent> <C-\> :NERDTreeToggle<CR> 
-nmap \t :set ts=4 sts=4 sw=4 noet<cr>
-nmap \s :set ts=4 sts=4 sw=4 et<cr>
-nnoremap <silent> j gj
-nnoremap <silent> k gk
-let g:NERDTreeQuitOnOpen=0 " close when file opened
-let NERDTreeShowHidden=1 " show hidden files
 
-" Open NerdTree if blank buffer in CLI mode
-if !has("gui_running")
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-end
+"" Vundle
 
-" CtrlP
-let g:ctrlp_working_path_mode = 2 " search nearest .git ancestor
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_dotfiles=1
-let g:ctrlp_working_path_mode = 'cr'
-let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("h")': ['<c-i>'],
-  \ 'AcceptSelection("v")': ['<c-x>']
-  \ }
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\.git$\|node_modules$\|\.hg$\|\.svn$',
-  \ 'file': '\.exe$\|\.so$'
-  \ }
-map <leader>\ :CtrlPBuffer<CR>
+""" Add Vundle to the runtime path
+set rtp+=$HOME/.vim/bundle/Vundle.vim
 
-" Buffergator
-let g:buffergator_viewport_split_policy = 'L' 
-nmap <leader>j  :BuffergatorMruCyclePrev<cr>
-nmap <leader>k  :BuffergatorMruCycleNext<cr>
-nmap <leader>bq :bp <BAR> bd #<cr>
+""" Define Vundle plugins
+call vundle#begin()
 
-" Emmet HTML Helper
-let g:user_emmet_leader_key='<c-e>'
+  """" Display git indicators in left of screen
+  Plugin 'airblade/vim-gitgutter'
+
+call vundle#end()
+
+"" Netrw
+
+""" Hide the banner message
+let g:netrw_banner = 0
+
+""" Use tree view by default
+let g:netrw_liststyle = 3
+
+""" Set split width to n% of window width
+let g:netrw_winsize = 20
+
+" SHORTCUTS
+
+"" Leader Key
+let mapleader = '\'
+
+"" Tabs
+
+""" Create a new tab
+nnoremap <silent> <C-W>t :tabnew<CR>
+
+"" Spelling
+
+""" Enable spell checking in the current buffer
+nnoremap <leader>S :setlocal spell spelllang=en_gb<CR>
+
+""" Disable spell checking in the current buffer
+nnoremap <leader>D :setlocal nospell<CR>
 
