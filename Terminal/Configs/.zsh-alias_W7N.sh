@@ -1,2 +1,0 @@
-alias mc='mc -u'
-

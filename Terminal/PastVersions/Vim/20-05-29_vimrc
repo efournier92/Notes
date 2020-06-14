@@ -48,11 +48,11 @@ set directory^=$HOME/.vim/swp/ " swap files
 set undodir^=$HOME/.vim/undo/ " swap files
 set rtp+=$HOME/.vim/bundle/Vundle.vim "runtime includes Vundle
 call vundle#begin()
-  " Plugin 'kien/ctrlp.vim'
-  " Plugin 'scrooloose/nerdtree'
+  Plugin 'kien/ctrlp.vim'
+  Plugin 'scrooloose/nerdtree'
   Plugin 'jeetsukumaran/vim-buffergator'
   Plugin 'xuyuanp/nerdtree-git-plugin'
-  " Plugin 'ervandew/supertab'
+  Plugin 'ervandew/supertab'
   Plugin 'mattn/emmet-vim'
   Plugin 'valloric/MatchTagAlways'
   Plugin 'tpope/vim-commentary'
