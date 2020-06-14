@@ -41,6 +41,9 @@ set wildmenu
 """ Show line numbers on left of screen
 set number
 
+""" Display keystrokes while typing commands
+set showcmd
+
 """ Always show the status line
 set laststatus=2
 
@@ -144,7 +147,7 @@ set magic
 " GRAPHICAL VIM
 
 "" When Using gVim
-if has("gui_running")
+if has('gui_running')
 
   """ Hide the menubar
   set guioptions -=m
@@ -164,21 +167,30 @@ set rtp+=$HOME/.vim/bundle/Vundle.vim
 """ Define Vundle plugins
 call vundle#begin()
 
+  """" File explorer
+  Plugin 'scrooloose/nerdtree'
+
+  """" Display git info in file explorer
+  Plugin 'xuyuanp/nerdtree-git-plugin'
+
   """" Display git indicators in left of screen
   Plugin 'airblade/vim-gitgutter'
 
+  """" Comment & uncomment across file types
+  Plugin 'tpope/vim-commentary'
+
+  """" Smart autocompletion
+  Plugin 'ervandew/supertab'
+
 call vundle#end()
 
-"" Netrw
+"" NerdTree
 
-""" Hide the banner message
-let g:netrw_banner = 0
+""" Show hidden files
+let NERDTreeShowHidden=1
 
-""" Use tree view by default
-let g:netrw_liststyle = 3
-
-""" Set split width to n% of window width
-let g:netrw_winsize = 20
+""" Close explorer upon opening a file
+let g:NERDTreeQuitOnOpen=0
 
 " SHORTCUTS
 
@@ -197,4 +209,9 @@ nnoremap <leader>S :setlocal spell spelllang=en_gb<CR>
 
 """ Disable spell checking in the current buffer
 nnoremap <leader>D :setlocal nospell<CR>
+
+"" Navigation
+
+""" Toggle the file explorer
+map <silent> <C-\> :NERDTreeToggle<CR> 
 
