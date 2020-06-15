@@ -3,7 +3,7 @@
 search_url="https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Damazonfresh&field-keywords="
 homepage="https://www.amazon.com/AmazonFresh/"
 
-google-chrome --new-window $homepage \
+google-chrome-stable --new-window $homepage \
 -d "${search_url}lettuce" \
 -d "${search_url}potatoes" \
 -d "${search_url}bell+pepper" \

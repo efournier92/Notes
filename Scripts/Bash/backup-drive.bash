@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 source_drive="/mnt/$1"
 destination_drive="/mnt/$2"
@@ -19,11 +19,11 @@ should_backup() {
 }
 
 if should_backup; then
-  pkexec rclone sync "$source_drive" "$destination_drive" --verbose
+  rclone sync "$source_drive" "$destination_drive" --verbose
   echo " --------------------------"
   echo " DELETING EMPTY DIRECTORIES"
   echo " --------------------------"
-  pkexec find "$source_drive" -empty -type d -print -delete
-  pkexec find "$destination_drive" -empty -type d -print -delete
+  find "$source_drive" -empty -type d -print -delete
+  find "$destination_drive" -empty -type d -print -delete
 fi
 

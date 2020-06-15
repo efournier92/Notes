@@ -3,23 +3,23 @@
 out_file_name="$1"
 scan_dir="scan-$out_file_name"
 out_concat_file="$scan_dir/out_concat"
-out_final_file="$scan_dir/$out_file_name.pdf"
+out_final_file="$out_file_name.pdf"
 out_seq_id="scan"
 out_seq_name="$out_seq_id%d.tif"
 scanner=`scanimage --formatted-device-list=%d`
 
 function stop_execution {
-  echo "Exiting"
+  echo "EXITING"
   exit
 }
 
 if [[ -z "$scanner" ]]; then 
-  echo "No Scanner Found"
+  echo "NO SCANNER FOUND"
   stop_execution
 fi
 
 if [[ -d "$scan_dir" ]]; then 
-  echo "Directory $scan_dir already exists"
+  echo "DIRECTORY $scan_dir ALREADY EXISTS"
   stop_execution
 fi
 

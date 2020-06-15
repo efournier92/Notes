@@ -8,37 +8,20 @@ huawei_2019_id='BB8310193C000132'
 macbook_2015_id='C02639600FUGQ101K'
 mhub_id='C0715060AXMDKP2AQ'
 
+# Prevent UI scaling bugs
 sleep 1
-copyq &
-git config --global credential.helper "cache --timeout=1512000"
 
-function ssh_disable {
-  systemctl disable ssh;
-  systemctl stop ssh;
-}
-
-function ssh_enable {
-  systemctl enable ssh;
-  systemctl start ssh;
-}
-
-ssh_disable
-
-# Workhorse Laptop
+# Laptop
 if [[ $motherboard_id = $huawei_2019_id || $motherboard_id = $macbook_2015_id ]]; then
-  redshift -l 40.7:-73.9851 -t 5700:3800 -g 0.8 -m randr &
+  copyq &
+  copyq disable
   m_bnk
+  gnome-terminal --window --maximize
 
-# Media Machine
+# Media
 elif [[ $motherboard_id = $mhub_id ]]; then
-  ssh_enable
-  m_MD
+  m_md
   kodi -fs &
-  nohup pkexec /home/misigno/scripts/livestream/persist-stream.bash &>/home/misigno/scripts/livestream/livestream-output.txt
 
-# Other Machines
-else
-  redshift -l 40.7:-73.9851 -t 5700:3800 -g 0.8 -m randr &
-  
 fi
 

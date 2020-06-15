@@ -106,7 +106,6 @@ function convert_audio_files {
       continue
     fi
 
-    echo "CONVERT: $file_to_convert"
     date=`parse_date "$file_to_convert"`
     mp3_file=`mp3_file $date`
     concat_file=`concat_file $date`

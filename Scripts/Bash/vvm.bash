@@ -4,7 +4,7 @@ SESSION_NAME="note"
 BASE_DIR="/mnt/bnk/snc"
 
 # Create a detached session, if one doesn't exist
-tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR/Lg" "vim 2020.md; zsh"
+tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR/Lg" "vim; zsh"
 # Attach the session, if not already
 tmux attach -t "$SESSION_NAME"
 # Switch to note session
