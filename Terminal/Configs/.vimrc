@@ -55,9 +55,6 @@ set shortmess+=I
 
 "" Colors
 
-""" Font
-set guifont=Courier:h13
-
 """ Global color scheme (from $HOME/.vim/colors)
 colorscheme hybrid_material
 
@@ -85,6 +82,11 @@ set autoindent
 
 """ Auto-indent when inserting a new line
 set smartindent
+
+"" Backspace
+
+""" Fix backspace functionality
+set backspace=indent,eol,start
 
 " SPELLING
 
@@ -148,6 +150,9 @@ set magic
 
 "" When Using gVim
 if has('gui_running')
+
+  """ Font
+  set guifont=Consolas:h14
 
   """ Hide the menubar
   set guioptions -=m
