@@ -41,7 +41,7 @@ export EDITOR=vim
 export LANG=en_US.UTF-8
 
 ### Preserve natural sort order
-export LC_ALL=C 
+export LC_COLLATE=C
 
 ## Overrides
 
