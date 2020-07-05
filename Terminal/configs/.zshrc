@@ -40,10 +40,15 @@ export EDITOR=vim
 ### Language
 export LANG=en_US.UTF-8
 
+### Preserve natural sort order
+export LC_ALL=C 
+
 ## Overrides
 
-### Load alias file
-[[ -f ~/.zsh-alias.sh ]] && source ~/.zsh-alias.sh
+### Load alias files
+for file in ~/.zsh/aliases/*.zsh; do
+  source "$file"
+done
 
 ### Always list contents when changing directory
 chpwd() { ls }
