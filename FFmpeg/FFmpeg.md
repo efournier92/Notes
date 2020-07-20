@@ -149,7 +149,24 @@ Reduce the file size for a list of low quality recordings.
 #### Command
 ```bash
 ffmpeg -f concat -i /path/to/concat.txt \
--ac 1 -q:a 15 /path/to/out.mp3
+  -ac 1 -q:a 15 /path/to/out.mp3
+```
+
+### Single Photo Slideshow
+
+#### Description
+Creates a video from a single image and an audio input.
+
+#### Command
+```bash
+audio_duration="00:02:39.000"
+audio_file="in.wav"
+image_file="in.png"
+ffmpeg -loop 1 \
+  -i "$image_file" -i "$audio_file" \
+  -acodec aac -c:a libmp3lame -shortest \
+  -c:v libx264 -t "$audio_duration" -vf scale=720:240 -pix_fmt yuv420p \
+  out.mp4 
 ```
 
 ### Subtitles
