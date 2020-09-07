@@ -38,7 +38,7 @@ output_speed_preset="slow"
 output_audio_bitrate="128k"
 output_audio_channels="2"
 
-### Evaluate supplied argiments to override presets
+### Evaluate supplied arguments to override presets
 while getopts ":i:d:o:t:e:c:s:r:p:" OPTION
 do
   case $OPTION in

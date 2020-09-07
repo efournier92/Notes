@@ -80,6 +80,7 @@ done
 #### Video input device
 while [[ "${available_audio_devices[@]}" =~ "${input_video_device}" ]]; do
   detect_video_devices
+  echo "------\nSELECT VIDEO DEVICE\n------"
   select input_video_device in available_video_devices; do
     break
   done
@@ -88,6 +89,7 @@ done
 #### Audio input device
 while [[ "${available_audio_devices[@]}" -z "$input_audio_device" ]]; do
   detect_audio_devices
+  echo "------\nSELECT AUDIO DEVICE\n------"
   select input_audio_device in ${available_audio_devices}; do
     break
   done
