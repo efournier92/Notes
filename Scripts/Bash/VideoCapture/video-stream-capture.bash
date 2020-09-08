@@ -19,27 +19,27 @@ function output_file {
 ### Detects available video devices
 #### Sets array of devices to a global variable: $available_video_devices
 function detect_video_devices {
-  available_video_devices=($(ls -d /dev/video*))
+  available_video_devices=$(ls -d /dev/video*)
 }
 
 ### Detects available ALSA devices
 #### Sets array of devices to a global variable: $available_audio_devices
 function detect_audio_devices {
-  available_audio_devices=($(ls -d /dev/snd/pcmC*D*c))
-  available_audio_devices=(${available_audio_devices/pcmC/hw:})
-  available_audio_devices=(${available_audio_devices/c/})
-  available_audio_devices=(${available_audio_devices/D/,})
-  available_audio_devices=(${available_audio_devices##*/})
+  available_audio_devices="$(ls -d /dev/snd/pcmC*D*c)"
+  available_audio_devices="${available_audio_devices//pcmC/hw:}"
+  available_audio_devices="${available_audio_devices//c/}"
+  available_audio_devices="${available_audio_devices//D/,}"
+  available_audio_devices="${available_audio_devices//\/dev\/snd\//}"
 }
 
 ## Configurtion
 
 ### Presets
-output_file_name=$(date '+%y%m%d%H%M%S')
-output_duration="04:00:00"
-output_video_size="640x480"
+input_stream_standard="ntsc"
 input_video_format="v4l2"
 input_audio_format="alsa"
+output_file_name=$(date '+%y%m%d%H%M%S')
+output_video_size="640x480"
 output_video_codec="libx264"
 output_format="mpeg"
 output_file_extension="mp4"
@@ -47,6 +47,7 @@ output_tuning="zerolatency"
 output_constant_rate_factor="16"
 output_max_threads="512"
 output_speed_preset="fast"
+output_duration="04:00:00"
 
 ### Evaluate supplied argiments to override presets
 while getopts ":n:v:a:t:s:" OPTION
@@ -78,22 +79,22 @@ done
 ### Ensure required arguments are valid
 
 #### Video input device
-while [[ "${available_audio_devices[@]}" =~ "${input_video_device}" ]]; do
-  detect_video_devices
-  echo "------\nSELECT VIDEO DEVICE\n------"
-  select input_video_device in available_video_devices; do
+detect_video_devices
+if [[ -z "${input_video_device}" || ! "${available_video_devices}" =~ "${input_video_device}" ]]; then
+  echo -e "------\nSELECT VIDEO DEVICE\n------"
+  select input_video_device in "${available_video_devices}"; do
     break
   done
-done
+fi
 
 #### Audio input device
-while [[ "${available_audio_devices[@]}" -z "$input_audio_device" ]]; do
-  detect_audio_devices
-  echo "------\nSELECT AUDIO DEVICE\n------"
+detect_audio_devices
+if [[ -z "${input_audio_device}" || ! "${available_audio_devices}" =~ "${input_audio_device}" ]]; then
+  echo -e "------\nSELECT AUDIO DEVICE\n------"
   select input_audio_device in ${available_audio_devices}; do
     break
   done
-done
+fi
 
 ## Print debugging info
 echo "-------------------------"
@@ -103,6 +104,7 @@ echo "Max Duration            : ${output_duration}"
 echo "Output File Name        : ${output_file_name}"
 echo "Output Maximum Duration : ${output_duration}"
 echo "Output Video Dimensions : ${output_video_size}"
+echo "Output File Location    : $(output_file)"
 echo "-------------------------"
 
 ## Capture video from input stream
