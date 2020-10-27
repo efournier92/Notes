@@ -1,5 +1,8 @@
 " SYSTEM
 
+filetype plugin indent on
+set cursorline
+
 "" Compatibility
 
 """ Disable Vi compatibility
@@ -162,44 +165,9 @@ if has('gui_running')
 
 endif
 
-" PLUGINS 
-
-"" Vundle
-
-""" Add Vundle to the runtime path
-set rtp+=$HOME/.vim/bundle/Vundle.vim
-
-""" Define Vundle plugins
-call vundle#begin()
-
-  """" File explorer
-  Plugin 'scrooloose/nerdtree'
-
-  """" Display git info in file explorer
-  Plugin 'xuyuanp/nerdtree-git-plugin'
-
-  """" Display git indicators in left of screen
-  Plugin 'airblade/vim-gitgutter'
-
-  """" Comment & uncomment across file types
-  Plugin 'tpope/vim-commentary'
-
-  """" Smart autocompletion
-  Plugin 'ervandew/supertab'
-
-call vundle#end()
-
-"" NerdTree
-
-""" Show hidden files
-let NERDTreeShowHidden=1
-
-""" Close explorer upon opening a file
-let g:NERDTreeQuitOnOpen=0
-
 " SHORTCUTS
 
-"" Leader Key
+"" leader Key
 let mapleader = '\'
 
 "" Tabs
@@ -209,14 +177,31 @@ nnoremap <silent> <C-W>t :tabnew<CR>
 
 "" Spelling
 
-""" Enable spell checking in the current buffer
-nnoremap <leader>S :setlocal spell spelllang=en_gb<CR>
+""" Toggle spell checking in the current buffer
+nmap <Leader>s :setlocal spell! spelllang=en_gb<CR>
 
-""" Disable spell checking in the current buffer
-nnoremap <leader>D :setlocal nospell<CR>
+""" 
+nmap <Leader>g :vimgrep <C-R>=expand('<cword>')<CR> **/* <CR> :cw <CR>"
 
-"" Navigation
+"" Snippets
 
-""" Toggle the file explorer
-map <silent> <C-\> :NERDTreeToggle<CR> 
+""" HTML Skeleton
+noremap <Leader>html :-1read $HOME/.vim/snippets/html_skeleton.html<CR>5jf>a
+
+""" HTML Comment Line
+noremap <Leader>hcl I<!-- <ESC>A --><ESC>
+
+""" HTML Uncomment Line
+noremap <Leader>hucl ^df <ESC>$F D
+
+""" shUnit Test
+noremap <Leader>btest :-1read $HOME/.vim/snippets/bash_shunit_test.bash<CR>ea
+
+""" Bash Header
+noremap <Leader>bhead :-1read $HOME/.vim/snippets/bash_header.bash<CR>ea
+
+""" Bash Null Check
+noremap <Leader>bnull :-1read $HOME/.vim/snippets/bash_nullcheck.bash<CR>ea
+
+set complete=.,w,b,u,t,i,k
 
