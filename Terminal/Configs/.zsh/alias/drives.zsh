@@ -100,26 +100,26 @@ alias bk_snc=". $HOME/scripts/backup_snc /mnt/extA"
 alias bk_lg=". $HOME/scripts/backup_lg /mnt/extA"
 
 ### Backup extA to extB
-alias bk_extAB="$HOME/scripts/backup_drive /mnt/extA /mnt/extB"
+alias bk_extAB="$HOME/scripts/backup_dir /mnt/extA /mnt/extB"
 
 ### Backup extA to extC
-alias bk_extAC="$HOME/scripts/backup_drive /mnt/extA /mnt/extC"
+alias bk_extAC="$HOME/scripts/backup_dir /mnt/extA /mnt/extC"
 
 ### Backup extB to extC
-alias bk_extBC="$HOME/scripts/backup_drive /mnt/extB /mnt/extC"
+alias bk_extBC="$HOME/scripts/backup_dir /mnt/extB /mnt/extC"
 
 ### Backup extA to MD
-alias bk_extAMD="$HOME/scripts/backup_drive /mnt/extA/Media /mnt/md"
+alias bk_extAMD="$HOME/scripts/backup_dir /mnt/extA/Media /mnt/md"
 
 ### Backup extB to MD
-alias bk_extBMD="$HOME/scripts/backup_drive /mnt/extB/Media /mnt/md"
+alias bk_extBMD="$HOME/scripts/backup_dir /mnt/extB/Media /mnt/md"
 
 ### Backup bkA to bkB
-alias bk_bkAB="$HOME/scripts/backup_drive /mnt/bkA /mnt/bkB"
+alias bk_bkAB="$HOME/scripts/backup_dir /mnt/bkA /mnt/bkB"
 
 ### Backup bkA to bkC
-alias bk_bkAC="$HOME/scripts/backup_drive /mnt/bkA /mnt/bkC"
+alias bk_bkAC="$HOME/scripts/backup_dir /mnt/bkA /mnt/bkC"
 
 ### Backup bkB to bkC
-alias bk_bkBC="$HOME/scripts/backup_drive /mnt/bkB /mnt/bkC"
+alias bk_bkBC="$HOME/scripts/backup_dir /mnt/bkB /mnt/bkC"
 

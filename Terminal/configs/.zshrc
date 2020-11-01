@@ -34,6 +34,11 @@ HISTSIZE=1000
 ### Maximum history items persisted to file
 SAVEHIST=0
 
+## Git
+
+### Cache credentials for 24 hours
+git config --global credential.helper 'cache --timeout=86400'
+
 # Interface
 
 ## Defaults

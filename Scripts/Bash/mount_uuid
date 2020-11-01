@@ -25,12 +25,12 @@ is_mount_location_empty() {
     || echo "true"
 }
 
-is_uuid_connected() {
+is_uuid_missing() {
   local drive_uuid="$1"
 
   [[ -b /dev/disk/by-partuuid/$drive_uuid ]] \
-    && echo "true" \
-    || echo "false"
+    && echo "false" \
+    || echo "true"
 }
 
 should_mount() {
@@ -42,10 +42,18 @@ should_mount() {
   
   local mount_location_is_empty=`is_mount_location_empty "$mount_location"`
 
-  local uuid_is_connected=`is_uuid_connected "$drive_uuid"`
+  local uuid_is_missing=`is_uuid_missing "$drive_uuid"`
 
+  [[ "$args_are_empty" == "true" ]] \
+    && echo "ERROR: Required arguments are missing" >&2
 
-  [[ "$args_are_empty" == "false" && "$mount_location_is_empty" == "true" && "$uuid_is_connected" == "true" ]] \
+  [[ "$mount_location_is_empty" == "false" ]] \
+    && echo "ERROR: The supplied mount location is not empty" >&2
+
+  [[ "$uuid_is_missing" == "true" ]] \
+    && echo "ERROR: The supplied UUID is missing" >&2
+
+  [[ "$args_are_empty" == "false" && "$mount_location_is_empty" == "true" && "$uuid_is_missing" == "false" ]] \
     && echo "true" \
     || echo "false"
 }
@@ -65,8 +73,6 @@ main() {
 
   if [[ "$should_mount_drive" == "true" ]]; then
     mount_drive "$drive_uuid" "$mount_location"
-  else
-    echo "ERROR: Please ensure all args are supplied, the device is not already mounted, and the mount location exists"
   fi
 }
 
