@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+#----------------
+# Name          : note.session
+# Description   : Launches a tmux session configured for note
+# Author        : E Fournier
+# Dependencies  : tmux, zsh, vim
+#----------------
+
+## Session Attributes
+BASE_DIR="$1"
+SESSION_NAME="notes"
+
+[[ -z "$BASE_DIR" ]] && BASE_DIR="$HOME"
+
+## 1st Window
+
+### Full Pane
+tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR/Lg" "vim; zsh"
+
+## 2nd Window 
+
+### Full Pane
+tmux new-window -t "$SESSION_NAME" "vim"
+
+## Attach to session
+tmux attach -t "$SESSION_NAME"
+
+## Switch to session
+tmux switch-client -t "$SESSION_NAME" &
+

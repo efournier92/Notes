@@ -1,0 +1,40 @@
+#!/bin/bash
+
+#----------------
+# Name          : mount_sbfs
+# Description   : Mounts md drive with veracrypt
+# Author        : E Fournier
+# Dependencies  : veracrypt
+# Example Usage : ./mount_sbfs mount
+#----------------
+
+is_slot_already_mounted() {
+  local slot_dir="$1"
+
+  [[ $(ls -A "$slot_dir") ]] \
+    && echo "true" \
+    || echo "false"
+}
+
+mount_slot() {
+  local slot_dir="$1"
+
+  sshfs misigno@calypso.whatbox.ca:/home/misigno/ "$slot_dir"
+}
+
+navigate_to_slot_dir() {
+  local slot_dir="$1"
+
+  cd "$slot_dir"
+}
+
+main() {
+  local slot_dir="$1"
+
+  [[ `is_slot_already_mounted $slot_dir` == "false" ]] && mount_slot "$slot_dir"
+
+  navigate_to_slot_dir "$slot_dir"
+}
+
+main "$@"
+

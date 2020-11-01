@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+#----------------
+# Name          : base.session
+# Description   : Launches a tmux session configured for base
+# Author        : E Fournier
+# Dependencies  : tmux, zsh
+#----------------
+
+## Create Base Session
+SESSION_NAME="base"
+BASE_DIR="$HOME"
+
+## Read arguments
+while getopts "d:" OPTION
+do
+  case $OPTION in
+    d)
+      START_DIR=$OPTARG
+      ;;
+  esac
+done
+
+## Set Starting Directory
+[[ -z $START_DIR ]] && START_DIR="$HOME"
+
+## 1st Window
+
+### Full Pane
+tmux new -s $SESSION_NAME -d "cd $START_DIR; zsh"
+
+## Attach session
+tmux attach -t $SESSION_NAME
+

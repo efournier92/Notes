@@ -1,0 +1,63 @@
+#!/bin/zsh
+
+#----------------
+# Name          : sb.session
+# Description   : Launches a tmux session configured for seedbox
+# Author        : E Fournier
+# Dependencies  : tmux, zsh
+#----------------
+
+## Sample Commands
+
+## Session
+
+### tmux new -s $SESSION_NAME -d "cd $BASE_DIR; zsh"
+
+## Window
+
+### tmux new-window "cd $BASE_DIR; zsh"
+
+## Splits
+
+### Vertical
+
+#### tmux split-window -v "vim"
+
+### Horizontal
+
+#### tmux split-window -h "vim"
+
+## Session Config
+SESSION_NAME=""
+BASE_DIR="$HOME"
+
+## 1st Window
+tmux new -s $SESSION_NAME -d "cd $BASE_DIR; zsh"
+
+## 2nd Window 
+
+### Left Pane
+# tmux new-window ""
+
+### Right Pane
+# tmux split-window -v ""
+
+## 3rd Window
+
+### Top Pane
+# tmux new-window ""
+
+### Bottom Pane
+# tmux split-window -v "vim"
+
+## 4th Window
+
+### Full Pane
+# tmux new-window ""
+
+## Attach to session
+tmux attach -t "$SESSION_NAME"
+
+## Switch to session
+tmux switch-client -t "$SESSION_NAME"
+

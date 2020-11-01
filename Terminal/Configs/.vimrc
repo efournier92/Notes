@@ -1,4 +1,11 @@
-" SYSTEM
+"----------------
+" Name          : .vimrc
+" Description   : Main VIM configuration file
+" Author        : E Fournier
+" Dependencies  : vim
+"----------------
+
+" System
 
 filetype plugin indent on
 set cursorline
@@ -37,7 +44,7 @@ set path+=**
 """ Show menu of found items on <Tab>
 set wildmenu
 
-" INTERFACE
+" Interface
 
 "" Layout
 
@@ -91,7 +98,7 @@ set smartindent
 """ Fix backspace functionality
 set backspace=indent,eol,start
 
-" SPELLING
+" Spelling
 
 "" Dictionary
 
@@ -149,7 +156,7 @@ set incsearch
 """ Enable searching with regex expressions
 set magic
 
-" GRAPHICAL VIM
+" Graphical Vim
 
 "" When Using gVim
 if has('gui_running')
@@ -165,9 +172,9 @@ if has('gui_running')
 
 endif
 
-" SHORTCUTS
+" Shortcuts
 
-"" leader Key
+"" Leader Key
 let mapleader = '\'
 
 "" Tabs
@@ -180,27 +187,32 @@ nnoremap <silent> <C-W>t :tabnew<CR>
 """ Toggle spell checking in the current buffer
 nmap <Leader>s :setlocal spell! spelllang=en_gb<CR>
 
-""" 
+""" Globally search for the word under the cursor
 nmap <Leader>g :vimgrep <C-R>=expand('<cword>')<CR> **/* <CR> :cw <CR>"
+
+"" Directories
+
+""" Change PWD to directory of the current buffer
+nnoremap <leader>cd :cd %:p:h<CR>
 
 "" Snippets
 
-""" HTML Skeleton
+""" HTML skeleton
 noremap <Leader>html :-1read $HOME/.vim/snippets/html_skeleton.html<CR>5jf>a
 
-""" HTML Comment Line
+""" HTML comment line
 noremap <Leader>hcl I<!-- <ESC>A --><ESC>
 
-""" HTML Uncomment Line
+""" HTML uncomment line
 noremap <Leader>hucl ^df <ESC>$F D
 
-""" shUnit Test
+""" shUnit test
 noremap <Leader>btest :-1read $HOME/.vim/snippets/bash_shunit_test.bash<CR>ea
 
-""" Bash Header
+""" Bash header
 noremap <Leader>bhead :-1read $HOME/.vim/snippets/bash_header.bash<CR>ea
 
-""" Bash Null Check
+""" Bash null check
 noremap <Leader>bnull :-1read $HOME/.vim/snippets/bash_nullcheck.bash<CR>ea
 
 set complete=.,w,b,u,t,i,k

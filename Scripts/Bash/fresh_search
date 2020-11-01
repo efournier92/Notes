@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#----------------
+# Name          : fresh_search
+# Description   : Launches a Chrome window with tabs searching Amazon Fresh
+# Author        : E Fournier
+# Dependencies  : google-chrome-stable
+# Example Usage : ./fresh_search
+#----------------
+
+SEARCH_URL="https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Damazonfresh&field-keywords="
+HOMEPAGE="https://www.amazon.com/AmazonFresh/"
+
+open_tabs_in_chrome_window() {
+  google-chrome-stable --new-window $HOMEPAGE \
+    -d "${SEARCH_URL}lettuce" \
+    -d "${SEARCH_URL}potatoes" \
+    -d "${SEARCH_URL}bell+pepper" \
+    -d "${SEARCH_URL}kraft+dressing" \
+    -d "${SEARCH_URL}blackberries" \
+    -d "${SEARCH_URL}croutons" \
+    -d "${SEARCH_URL}cashews" \
+    -d "${SEARCH_URL}tortilla+chips" \
+    -d "${SEARCH_URL}salsa" \
+    -d "${SEARCH_URL}kerrygold+cheese" \
+    -d "${SEARCH_URL}cabot+shredded" \
+    -d "${SEARCH_URL}whacky+mac" \
+    -d "${SEARCH_URL}dried+fruit" \
+    -d "${SEARCH_URL}water+320" \
+    -d $HOMEPAGE
+}
+
+main() {
+  open_tabs_in_chrome_window
+}
+
+main "$@"
+

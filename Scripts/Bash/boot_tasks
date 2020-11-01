@@ -1,0 +1,70 @@
+#!/bin/bash
+
+#----------------
+# Name          : boot_tasks
+# Description   : Run boot-time tasks depending on the executing machine
+# Author        : E Fournier
+# Dependencies  : pkexec, dmidecode, kodi
+# Example Usage : ./boot laptop
+#----------------
+
+alias_dir="$HOME/.zsh/alias"
+shopt -s expand_aliases
+source "$alias_dir/drives.zsh"
+
+validate_machine_type() {
+  local machine_type="$1"
+
+  if [[ "$machine_type" != "laptop" && "$machine_type" != "media" ]]; then
+    echo "ERROR: Must supply valid a valid machine type"
+    exit 1
+  fi
+}
+
+load_alias_files() {
+  local alias_dir="$HOME/.zsh/alias"
+
+  shopt -s expand_aliases
+
+  source "$alias_dir/drives.zsh"
+}
+
+delay_to_prevent_ui_bugs() {
+  local delay_time=0.2
+
+  sleep "$delay_time"
+}
+
+run_laptop_tasks() {
+  touchscreen_id="SYNA2393:00 06CB:19AC"
+
+  xinput disable "$touchscreen_id"
+  copyq &
+  copyq disable
+  m_bnk
+  gnome-terminal --window --maximize
+}
+
+run_media_tasks() {
+  m_md
+  kodi -fs &
+}
+
+main() {
+  local machine_type="$1"
+
+  load_alias
+
+  validate_machine_type "$machine_type"
+
+  load_alias_files
+
+  delay_to_prevent_ui_bugs
+  
+  [[ "$machine_type" == "laptop" ]] && run_laptop_tasks
+
+  [[ "$machine_type" == "media" ]]  && run_media_tasks
+}
+
+main "$@"
+

@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#----------------
+# Name          : sync_gdrive
+# Description   : Sync a Google Drive folder using rsinc
+# Author        : E Fournier
+# Dependencies  : rsinc, pgrep
+# Example Usage : ./sync_gdrive $sync_dir
+#----------------
+
+exit_on_invalid_args() {
+  local sync_dir="$1"
+
+  if [[ -z "$sync_dir" ]]; then
+    echo "ERROR: Must supply valid directory as 1st parameter"
+    exit 1
+  fi
+
+}
+
+exit_on_dir_not_found() {
+  local sync_dir="$1"
+
+  if [[ ! -d "$sync_dir" ]]; then
+    echo "ERROR: Supplied directory does not exist"
+    exit 1
+  fi
+}
+
+validate_args() {
+  local sync_dir="$1"
+
+  exit_on_invalid_args  "$sync_dir"
+  exit_on_dir_not_found "$sync_dir"
+}
+
+exit_if_already_running() {
+  local process_name="$1"
+
+  if pgrep "$process_name" >/dev/null 2>&1; then
+    echo "ERROR: $process_name is already running"
+    exit 1
+  fi
+}
+
+run_sync_gdrive() {
+  rsinc --default --auto --recover --dry
+}
+
+main() {
+  local sync_dir="$1"
+  local rclonesync="/home/misigno/scripts/rclonesync.py"
+  local process_name="rsinc"
+
+  validate_args "$sync_dir"
+
+  exit_if_already_running "$process_name"
+
+  run_sync_gdrive
+}
+
+main "$@"
+

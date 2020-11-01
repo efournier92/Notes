@@ -1,0 +1,56 @@
+#!/bin/bash
+
+#----------------
+# Name          : sync_unison
+# Description   : Syncs local directory to remote using Unison
+# Author        : E Fournier
+# Dependencies  : unison
+# Example Usage : ./sync_unison 
+#----------------
+
+validate_args() {
+  local address="$1"
+  local user="$2"
+  local local_dir="$3"
+  local remote_dir="$4"
+  local remote_bin_dir="$5"
+
+  if [[ \
+       -z "$address" \
+    || -z "$user" \
+    || -z "$local_dir" \
+    || -z "$remote_dir" \
+    || -z "$remote_bin_dir" \
+  ]]; then
+    echo "ERROR: Arguments not supplied correctly"
+    echo "USAGE: $ sync_unison $address $user $local_dir $remote_dir $remote_bin_dir"
+    exit 1
+  fi
+}
+
+run_unison() {
+  local address="$1"
+  local user="$2"
+  local local_dir="$3"
+  local remote_dir="$4"
+  local remote_bin_dir="$5"
+
+  unison -batch -force newer -perms 0 \
+    -servercmd "$remote_bin_dir/unison" \
+      "$local_dir" \
+      "ssh://$user@$address/$remote_dir"
+}
+
+main() {
+  local address="$1"
+  local user="$2"
+  local local_dir="$3"
+  local remote_dir="$4"
+  local remote_bin_dir="$5"
+  
+  validate_args "$address" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir" 
+  run_unison "$address" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir" 
+}
+
+main "$@"
+

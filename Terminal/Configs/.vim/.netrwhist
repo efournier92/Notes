@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/misigno/scripts/greeting_cards'
+let g:netrw_dirhist_8='/home/misigno/.zsh/alias'
+let g:netrw_dirhist_7='/home/misigno/.zsh'
+let g:netrw_dirhist_6='/home/misigno/.config/autostart'
+let g:netrw_dirhist_5='/home/misigno/.zsh/alias'
+let g:netrw_dirhist_4='/home/misigno/.zsh'
+let g:netrw_dirhist_3='/home/misigno/.tmux'
+let g:netrw_dirhist_2='/home/misigno'
+let g:netrw_dirhist_1='/home/misigno/.vim'
+let g:netrw_dirhist_0='/home/misigno/.zsh/aliases'

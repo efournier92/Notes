@@ -1,4 +1,11 @@
-# PLUGINS 
+#----------------
+# Name          : .zshrc
+# Description   : Main ZSH configuration file
+# Author        : E Fournier
+# Dependencies  : zsh, oh-my-zsh
+#----------------
+
+# Plugins 
 
 ## Oh-My-Zsh
 
@@ -17,7 +24,7 @@ source $ZSH/oh-my-zsh.sh
 ### Enable extension for syntax highlighting
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# PRIVACY
+# Privacy
 
 ## History
 
@@ -27,7 +34,7 @@ HISTSIZE=1000
 ### Maximum history items persisted to file
 SAVEHIST=0
 
-# INTERFACE
+# Interface
 
 ## Defaults
 
@@ -46,15 +53,20 @@ export LC_COLLATE=C
 ## Overrides
 
 ### Load alias files
-for file in ~/.zsh/aliases/*.zsh; do
-  source "$file"
-done
+ALIAS_DIR="$HOME/.zsh/alias"
+source "$ALIAS_DIR/drives.zsh"
+source "$ALIAS_DIR/sb.zsh"
+source "$ALIAS_DIR/tmux.zsh"
+source "$ALIAS_DIR/tools.zsh"
+#source "$ALIAS_DIR/windows.zsh"
 
 ### Always list contents when changing directory
 chpwd() { ls }
 
-# TOGGLES
+# Toggles
 
-# Attach to a local display host
+## For WSL
+
+### Attach to a local display host
 # export DISPLAY=localhost:0.0
 

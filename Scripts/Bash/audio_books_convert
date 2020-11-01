@@ -1,0 +1,62 @@
+#!/bin/bash
+
+#----------------
+# Name          : audio_books_convert
+# Description   : Binds a series of audio files as an MP4 audiobook
+# Author        : E Fournier
+# Dependencies  : m4b-tool
+# Example Usage : ./audio_books_convert ./robinson-crusoe "Robinson Cruso"
+#----------------
+
+shopt -s extglob
+shopt -s nocaseglob
+
+validate_args() {
+  local in_dir="$1"
+  local book_name="$2"
+
+  if [[ -z "$in_dir" || -z "$book_name" ]]; then
+    echo "ERROR: Not all arguments were supplied"
+    echo "USAGE: ./audio_books_convert ./robinson-crusoe 'Robinson Crusoe'"
+    exit 1
+  fi
+}
+
+rename_files_as_chapters() {
+  local in_dir="$1"
+
+  local index=1
+  for file in "$in_dir"/*+(mp3|wav|ogg|flac|aiff|vox); do
+    echo $file
+    local print_num=`printf "%02d" $index`
+    local chapter_name="Part $print_num.mp3"
+    if [ ! -f "$in_dir/$chapter_name" ]; then
+      mv "$file" "$in_dir/$chapter_name"
+      index=$((index + 1))
+    fi
+  done
+}
+
+merge_chapters_as_m4b() {
+  local in_dir="$1"
+  local book_name="$2"
+
+  m4b-tool \
+    merge "$in_dir" \
+    --audio-channels 1 --audio-bitrate 64k \
+    --use-filenames-as-chapters --no-chapter-reindexing \
+    --jobs=4 --verbose \
+    --output-file="$book_name.m4b"
+}
+
+main() {
+  local in_dir="$1"
+  local book_name="$2"
+
+  validate_args "$in_dir" "$book_name"
+  rename_files_as_chapters "$in_dir"
+  merge_chapters_as_m4b "$in_dir" "$book_name"
+}
+
+main "$@"
+
