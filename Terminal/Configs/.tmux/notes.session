@@ -13,15 +13,17 @@ SESSION_NAME="notes"
 
 [[ -z "$BASE_DIR" ]] && BASE_DIR="$HOME"
 
-## 1st Window
+## Check if session already exists
+tmux has-session -t "$SESSION_NAME" 2>/dev/null
 
-### Full Pane
-tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR/Lg" "vim; zsh"
-
-## 2nd Window 
-
-### Full Pane
-tmux new-window -t "$SESSION_NAME" "vim"
+## New Window | Full Pane
+if [ "$?" -eq 1 ] ; then
+  ### Create in new session if one does not exist
+  tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR" "vim"
+else
+  ### Create in existing session if one already exists
+  tmux new-window -t "$SESSION_NAME" -c "$BASE_DIR" "vim"
+fi
 
 ## Attach to session
 tmux attach -t "$SESSION_NAME"
