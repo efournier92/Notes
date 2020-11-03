@@ -31,7 +31,7 @@ source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ### Maximum history items in memory
 HISTSIZE=1000
 
-### Maximum history items persisted to file
+### Do not persist history to file
 SAVEHIST=0
 
 ## Git
@@ -57,18 +57,18 @@ export LC_COLLATE=C
 
 ## Overrides
 
-### Load alias files
+### Always list contents when changing directory
+chpwd() { ls }
+
+# Toggles
+
+## Alias files
 ALIAS_DIR="$HOME/.zsh/alias"
 source "$ALIAS_DIR/drives.zsh"
 source "$ALIAS_DIR/sb.zsh"
 source "$ALIAS_DIR/tmux.zsh"
 source "$ALIAS_DIR/tools.zsh"
 #source "$ALIAS_DIR/windows.zsh"
-
-### Always list contents when changing directory
-chpwd() { ls }
-
-# Toggles
 
 ## For WSL
 
