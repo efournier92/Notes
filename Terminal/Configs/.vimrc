@@ -18,7 +18,7 @@ set nocompatible
 "" Clipboard
 
 """ Enable access to the system clipboard
-set clipboard=unnamed
+"set clipboard=unnamed
 
 "" Files
 
@@ -30,8 +30,8 @@ set autoread
 """ Disable swap files
 set noswapfile
 
-""" Disable persistent undo files
-set noundofile
+""" Disable persistent undo files (OFF by default)
+"set noundofile
 
 """ Encryption method
 set cm=blowfish2
@@ -156,28 +156,36 @@ set incsearch
 """ Enable searching with regex expressions
 set magic
 
-" Graphical Vim
+" File Tree (netrw)
 
-"" When Using gVim
-if has('gui_running')
+"" Hide banner
+let g:netrw_banner = 0
 
-  """ Font
-  set guifont=Consolas:h14
-
-  """ Hide the menubar
-  set guioptions -=m
-
-  """ Hide the toolbar
-  set guioptions -=T
-
+"" Opening files
+if winnr('$') ==# '1'
+  """ Open in current window if no splits
+  let g:netrw_browse_split = 0
+else
+  """ Open in previous window if any splits
+  let g:netrw_browse_split = 4
 endif
+
+"" List files without expandable directories
+let g:netrw_liststyle = 4
+
+"" Apply narrow width for window
+let g:netrw_winsize = 20
 
 " Shortcuts
 
 "" Leader Key
 let mapleader = '\'
 
+
 "" Tabs
+
+"" Toggle file tree
+nnoremap <silent> <Leader>e :Lexplore<cr>
 
 """ Create a new tab
 nnoremap <silent> <C-W>t :tabnew<CR>
