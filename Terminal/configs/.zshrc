@@ -7,6 +7,9 @@
 
 # Plugins 
 
+## Environment Configs
+source "$HOME/.zsh/env/env.zsh"
+
 ## Oh-My-Zsh
 
 ### Shell theme
@@ -15,14 +18,11 @@ ZSH_THEME="avit"
 ### Disable highlighting for ls command
 DISABLE_LS_COLORS="true"
 
-### Set base directory for oh-my-zsh
-export ZSH=$HOME/.oh-my-zsh
-
 ### Load oh-my-zsh assets
-source $ZSH/oh-my-zsh.sh
+source "$ENV_OHMYZSH/oh-my-zsh.sh"
 
 ### Enable extension for syntax highlighting
-source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$ENV_ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Privacy
 
@@ -39,39 +39,8 @@ SAVEHIST=0
 ### Cache credentials for 24 hours
 git config --global credential.helper 'cache --timeout=86400'
 
-# Interface
-
-## Defaults
-
-### Shell
-export SHELL=zsh
-
-### Editor
-export EDITOR=vim
-
-### Language
-export LANG=en_US.UTF-8
-
-### Preserve natural sort order
-export LC_COLLATE=C
-
-## Overrides
+## Method Overrides
 
 ### Always list contents when changing directory
 chpwd() { ls }
-
-# Toggles
-
-## Alias files
-ALIAS_DIR="$HOME/.zsh/alias"
-source "$ALIAS_DIR/drives.zsh"
-source "$ALIAS_DIR/sb.zsh"
-source "$ALIAS_DIR/tmux.zsh"
-source "$ALIAS_DIR/tools.zsh"
-#source "$ALIAS_DIR/windows.zsh"
-
-## For WSL
-
-### Attach to a local display host
-# export DISPLAY=localhost:0.0
 

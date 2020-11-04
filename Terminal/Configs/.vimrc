@@ -206,7 +206,7 @@ nnoremap <leader>cd :cd %:p:h<CR>
 "" Snippets
 
 """ HTML skeleton
-noremap <Leader>html :-1read $HOME/.vim/snippets/html_skeleton.html<CR>5jf>a
+noremap <Leader>html :-1read $ENV_SNIPS/html_skeleton.html<CR>5jf>a
 
 """ HTML comment line
 noremap <Leader>hcl I<!-- <ESC>A --><ESC>
@@ -215,13 +215,13 @@ noremap <Leader>hcl I<!-- <ESC>A --><ESC>
 noremap <Leader>hucl ^df <ESC>$F D
 
 """ shUnit test
-noremap <Leader>btest :-1read $HOME/.vim/snippets/bash_shunit_test.bash<CR>ea
+noremap <Leader>btest :-1read $ENV_SNIPS/bash_shunit_test.bash<CR>ea
 
 """ Bash header
-noremap <Leader>bhead :-1read $HOME/.vim/snippets/bash_header.bash<CR>ea
+noremap <Leader>bhead :-1read $ENV_SNIPS/bash_header.bash<CR>ea
 
 """ Bash null check
-noremap <Leader>bnull :-1read $HOME/.vim/snippets/bash_nullcheck.bash<CR>ea
+noremap <Leader>bnull :-1read $ENV_SNIPS/bash_nullcheck.bash<CR>ea
 
 set complete=.,w,b,u,t,i,k
 
