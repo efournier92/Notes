@@ -11,7 +11,7 @@
 
 ## Session
 
-### tmux new -s $SESSION_NAME -d "cd $BASE_DIR; zsh"
+### tmux new -s "$SESSION_NAME" -d "cd $BASE_DIR; zsh"
 
 ## Window
 

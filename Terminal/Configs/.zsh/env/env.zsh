@@ -55,8 +55,11 @@ if [[ "$ENV_NAME" == "Linux" ]]; then
 
   ### Snc
   
+  #### Snc desktop directory
+  export ENV_START="/mnt/bnk"
+
   #### Snc root directory
-  export ENV_SNC="/mnt/bnk/snc"
+  export ENV_SNC="$ENV_START/snc"
 
   #### Snc desktop directory
   export ENV_DESKTOP="$ENV_SNC/Desktop"
@@ -80,8 +83,11 @@ elif [[ "$ENV_NAME" == "Windows" ]]; then
 
   ### Snc
 
+  #### Snc desktop directory
+  export ENV_START="$HOME/snc"
+
   #### Snc root directory
-  export ENV_SNC="$HOME/snc"
+  export ENV_SNC="$ENV_START"
 
   #### Snc desktop directory
   export ENV_DESKTOP="$ENV_SNC/Desktop"
