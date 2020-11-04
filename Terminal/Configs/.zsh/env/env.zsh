@@ -7,8 +7,8 @@
 # Dependencies  : zsh
 #----------------
 
-ENV_NAME="Linux"
-#ENV_NAME="Windows"
+#ENV_NAME="Linux"
+ENV_NAME="Windows"
 
 ## Common
 
@@ -78,6 +78,11 @@ if [[ "$ENV_NAME" == "Linux" ]]; then
   #### SB aliases
   source "$ENV_ALIAS/sb.zsh"
 
+  ### System
+
+  ### Hosts file
+  export ENV_HOSTS="/etc/hosts"
+
 ## Windows
 elif [[ "$ENV_NAME" == "Windows" ]]; then
 
@@ -92,14 +97,20 @@ elif [[ "$ENV_NAME" == "Windows" ]]; then
   #### Snc desktop directory
   export ENV_DESKTOP="$ENV_SNC/Desktop"
 
+  ### System
+  
+  ### Clipboard Server
+
+  #### Set localhost for clipboard support
+  export DISPLAY=localhost:0.0
+
+  ### Hosts file
+  export ENV_HOSTS="/c/Windows/System32/drivers/etc/hosts"
+
   ### Alias
 
   #### Windows aliases
   source "$ENV_ALIAS/windows.zsh"
 
-  ### Clipboard Server
-
-  #### Set localhost for clipboard support
-  export DISPLAY=localhost:0.0
 fi
 

@@ -1,4 +1,3 @@
-
 // To view the default settings, hold "alt" while clicking on the "Settings" button.
 // For documentation on these settings, see: https://aka.ms/terminal-documentation
 
@@ -17,13 +16,14 @@
     [
       {
         "name": "Ubuntu",
+        "suppressApplicationTitle": true,
         "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
         "acrylicOpacity" : 0.75,
         "closeOnExit" : true,
-        "colorScheme" : "Solarized Dark",
-        "commandline" : "wsl.exe -d Ubuntu-18.04",
-        "cursorColor" : "#D3D3D3",
-        "cursorShape" : "filledBox",
+        "colorScheme" : "Material",
+        "commandline" : "wsl.exe -d Ubuntu-18.04 -e zsh /c/Users/efournier/.tmux/base.session",
+        "cursorColor" : "#C3C7D1",
+        "cursorShape" : "emptyBox",
         "fontFace" : "Source Code Pro For Powerline",
         "fontSize" : 12,
         "historySize" : 9001,
@@ -73,7 +73,29 @@
   },
 
   // Add custom color schemes to this array
-  "schemes": [],
+  "schemes": [
+    {
+      "name": "Material",
+      "background": "#212121",
+      "foreground": "#C3C7D1",
+      "black": "#073641",
+      "blue": "#80CBC3",
+      "brightBlack": "#757575",
+      "brightBlue": "#7DC6BF",
+      "brightCyan": "#34434D",
+      "brightGreen": "#C3E88D",
+      "brightPurple": "#6C71C3",
+      "brightRed": "#EB606B",
+      "brightWhite": "#FFFFFF",
+      "brightYellow": "#F7EB95",
+      "cyan": "#AEDDFF",
+      "green": "#C3E88D",
+      "purple": "#FF2490",
+      "red": "#EB606B",
+      "white": "#FFFFFF",
+      "yellow": "#F7EB95"
+    } 
+  ],
 
   // Add any keybinding overrides to this array.
   // To unbind a default keybinding, set the command to "unbound"

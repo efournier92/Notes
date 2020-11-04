@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/c/Users/efournier/.zsh'
+let g:netrw_dirhist_2='/c/Users/efournier/.zsh/env'
+let g:netrw_dirhist_3='/c/Users/efournier/.zsh'
+let g:netrw_dirhist_4='/c/Users/efournier/.zsh/env'
+let g:netrw_dirhist_5='/c/Users/efournier/.zsh'
+let g:netrw_dirhist_6='/c/Users/efournier/.zsh/env'
+let g:netrw_dirhist_7='/c/Users/efournier'

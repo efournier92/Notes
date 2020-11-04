@@ -19,7 +19,8 @@ ZSH_THEME="avit"
 DISABLE_LS_COLORS="true"
 
 ### Load oh-my-zsh assets
-source "$ENV_OHMYZSH/oh-my-zsh.sh"
+ZSH="$ENV_OHMYZSH"
+source "$ZSH/oh-my-zsh.sh"
 
 ### Enable extension for syntax highlighting
 source "$ENV_ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

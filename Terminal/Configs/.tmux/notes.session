@@ -7,6 +7,9 @@
 # Dependencies  : tmux, zsh, vim
 #----------------
 
+## Load ZSH configuration
+source "$HOME/.zshrc"
+
 ## Session Attributes
 BASE_DIR="$ENV_DESKTOP"
 SESSION_NAME="notes"
