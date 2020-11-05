@@ -7,8 +7,8 @@
 # Dependencies  : zsh
 #----------------
 
-#ENV_NAME="Linux"
-ENV_NAME="Windows"
+ENV_NAME="Linux"
+#ENV_NAME="Windows"
 
 ## Common
 

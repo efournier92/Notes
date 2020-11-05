@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 #----------------
 # Name          : base.session
@@ -8,7 +8,7 @@
 #----------------
 
 ## Load ZSH configuration
-source "$HOME/.zshrc"
+source "$HOME/.zsh/env/env.zsh"
 
 ## Create Base Session
 SESSION_NAME="base"
@@ -19,6 +19,8 @@ BASE_DIR="$ENV_START"
 ### Full Pane
 tmux new -s "$SESSION_NAME" -d "cd $BASE_DIR; zsh"
 
-## Attach session
+## Session
+
+## Attach
 tmux attach -t "$SESSION_NAME"
 
