@@ -2,8 +2,7 @@
 
 #----------------
 # Name          : windows.zsh
-# Description   : Aliases for WSL enviroment
-# Author        : E Fournier
+# Description   : Aliases for WSL enviroment # Author        : E Fournier
 # Dependencies  : zsh
 #----------------
 
@@ -28,25 +27,22 @@ alias m_tfs!="sudo umount /mnt/tfs"
 ### System Edit
 alias hostedit="vim $ENV_HOSTS"
 
-## Shortcuts
+### Edit Files
 
-### Sync Directory
-alias sbooks="$HOME/snc/Books"
-alias sdesk="$HOME/snc/Desktop"
-alias sdocs="$HOME/snc/Documents"
-alias slg="$HOME/snc/Lg"
-alias spics="$HOME/snc/Pictures"
-alias sshots="$HOME/snc/Pictures/screenshots"
-alias swork="$HOME/snc/Work"
-alias sstories="$HOME/snc/Work/Stories/"
-
-### File Edit
+#### Spectrum Paths
 alias spectrumpaths="vim ~/snc/Work/SpectrumPaths.md"
 
 ### Logs
-alias logs="/c/Logs-Raw/"
-alias exceptions="/c/Logs-Raw/Exceptions/SpectrumPaths"
+
+#### Logs root
+alias LOGS="/c/Logs-Raw/"
+alias logs="cd $LOGS"
+
+#### Exceptions
+alias EXCEPTIONS="$LOGS/Exceptions"
+alias exceptions="cd $EXCEPTIONS"
 
 ### Mounts
-alias tfs="cd /mnt/tfs"
+alias TFS="/mnt/tfs"
+alias tfs="cd $TFS"
 

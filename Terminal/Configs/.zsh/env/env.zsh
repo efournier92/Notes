@@ -50,6 +50,12 @@ export ENV_SNIPS="$ENV_VIM/snippets"
 #### Tmux root directory
 export ENV_TMUX="$HOME/.tmux"
 
+#### Tmux session directory
+export ENV_TMUX_SESSIONS="$ENV_TMUX/sessions"
+
+#### Tmux scripts directory
+export ENV_TMUX_SCRIPTS="$ENV_TMUX/scripts"
+
 ## Linux
 if [[ "$ENV_NAME" == "Linux" ]]; then
 
@@ -64,6 +70,11 @@ if [[ "$ENV_NAME" == "Linux" ]]; then
   #### Snc desktop directory
   export ENV_DESKTOP="$ENV_SNC/Desktop"
 
+  ### System
+
+  ### Hosts file
+  export ENV_HOSTS="/etc/hosts"
+
   ### Alias
 
   #### Drives aliases
@@ -75,13 +86,14 @@ if [[ "$ENV_NAME" == "Linux" ]]; then
   #### Tmux aliases
   source "$ENV_ALIAS/tmux.zsh"
 
-  #### SB aliases
+  #### Sb aliases
   source "$ENV_ALIAS/sb.zsh"
 
-  ### System
+  #### Snc aliases
+  source "$ENV_ALIAS/snc.zsh"
 
-  ### Hosts file
-  export ENV_HOSTS="/etc/hosts"
+  #### Snc aliases
+  source "$ENV_ALIAS/externals.zsh"
 
 ## Windows
 elif [[ "$ENV_NAME" == "Windows" ]]; then
@@ -111,6 +123,9 @@ elif [[ "$ENV_NAME" == "Windows" ]]; then
 
   #### Windows aliases
   source "$ENV_ALIAS/windows.zsh"
+
+  #### Snc aliases
+  source "$ENV_ALIAS/snc.zsh"
 
 fi
 
