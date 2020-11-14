@@ -8,14 +8,14 @@
 # Example Usage : ./mount_uuid_veracrypt $drive_uuid $mount_location $slot_num
 #----------------
 
-has_empty_args() {
+has_all_args() {
   local drive_uuid="$1"
   local mount_location="$2"
   local slot_num="$3"
 
   [[ -z "$drive_uuid" || -z "$mount_location" || -z "$slot_num" ]] \
-    && echo "true" \
-    || echo "false"
+    && echo "false" \
+    || echo "true"
 }
 
 is_mount_location_empty() {
@@ -39,14 +39,16 @@ should_mount() {
   local mount_location="$2"
   local slot_num="$3"
 
-  local args_are_empty=`has_empty_args "$drive_uuid" "$mount_location" "$slot_num"`
+  local args_are_supplied=`has_all_args "$drive_uuid" "$mount_location" "$slot_num"`
+  [[ "$args_are_supplied" == "false" ]] && echo "ERROR: Arguments missing" >&2
   
   local mount_location_is_empty=`is_mount_location_empty "$mount_location"`
+  [[ "$mount_location_is_empty" == "false" ]] && echo "ERROR: Mount location is not empty" >&2
 
   local uuid_is_connected=`is_uuid_connected "$drive_uuid"`
+  [[ "$uuid_is_connected" == "false" ]] && echo "ERROR: Drive is already mounted" >&2
 
-
-  [[ "$args_are_empty" == "false" && "$mount_location_is_empty" == "true" && "$uuid_is_connected" == "true" ]] \
+  [[ "$args_are_supplied" == "true" && "$mount_location_is_empty" == "true" && "$uuid_is_connected" == "true" ]] \
     && echo "true" \
     || echo "false"
 }
@@ -63,14 +65,14 @@ main() {
   local drive_uuid="$1"
   local mount_location="$2"
   local slot_num="$3"
-  
+
   local should_mount_drive=`should_mount "$drive_uuid" "$mount_location" "$slot_num"`
   
   if [[ "$should_mount_drive" == "true" ]]; then
+    echo "Mounting $drive_uuid to $mount_location"
     mount_drive "$drive_uuid" "$mount_location" "$slot_num"
   else
-    echo "ERROR: Please ensure all args are supplied, the device is not already mounted, and the mount location exists"
-    exit 1
+    echo "Not mounting $drive_uuid to $mount_location"
   fi
 }
 
