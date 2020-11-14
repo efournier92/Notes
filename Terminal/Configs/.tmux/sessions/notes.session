@@ -8,10 +8,10 @@
 #----------------
 
 ## Load ZSH configuration
-source "$HOME/.zshrc"
+#source "$HOME/.zshrc"
 
 ## Session Attributes
-BASE_DIR="$ENV_DESKTOP"
+BASE_DIR="$SDESKTOP"
 SESSION_NAME="notes"
 
 ## Check if session already exists

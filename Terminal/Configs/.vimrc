@@ -114,7 +114,7 @@ set guioptions -=T
 "" Dictionary
 
 """ Include dictionary words file
-set dictionary+=$ENV_VIM/dict/words
+set dictionary+=$VIM/dict/words
 
 """ Underline misspelled words
 hi! SpellBad cterm=underline ctermbg=none ctermfg=none
@@ -187,6 +187,9 @@ let g:netrw_liststyle = 4
 "" Apply narrow width for window
 let g:netrw_winsize = 20
 
+"" Prevent history file creation
+let g:netrw_dirhistmax = 0
+
 " Shortcuts
 
 "" Leader Key
@@ -213,6 +216,21 @@ nmap <Leader>g :vimgrep <C-R>=expand('<cword>')<CR> **/* <CR> :cw <CR>"
 """ Open font-picker menu for graphical vim
 nnoremap <leader>f :set guifont=*<CR>
 
+"" Format
+
+""" Format JSON
+nnoremap <leader>json :%!python -m json.tool<CR>
+
+"" Encoding
+
+""" Base64
+
+"""" Encode
+vnoremap <leader>e64 :'<,'>!python -m base64 -e<CR>
+
+"""" Decode
+vnoremap <leader>d64 :'<,'>!python -m base64 -d<CR>
+
 "" Directories
 
 """ Change PWD to directory of the current buffer
@@ -221,7 +239,7 @@ nnoremap <leader>cd :cd %:p:h<CR>
 "" Snippets
 
 """ HTML skeleton
-noremap <Leader>html :-1read $ENV_SNIPS/html_skeleton.html<CR>5jf>a
+noremap <Leader>html :-1read $VSNIPS/html_skeleton.html<CR>5jf>a
 
 """ HTML comment line
 noremap <Leader>hcl I<!-- <ESC>A --><ESC>
@@ -230,11 +248,11 @@ noremap <Leader>hcl I<!-- <ESC>A --><ESC>
 noremap <Leader>hucl ^df <ESC>$F D
 
 """ shUnit test
-noremap <Leader>btest :-1read $ENV_SNIPS/bash_shunit_test.bash<CR>ea
+noremap <Leader>btest :-1read $VSNIPS/bash_shunit_test.bash<CR>ea
 
 """ Bash header
-noremap <Leader>bhead :-1read $ENV_SNIPS/bash_header.bash<CR>ea
+noremap <Leader>bhead :-1read $VSNIPS/bash_header.bash<CR>ea
 
 """ Bash null check
-noremap <Leader>bnull :-1read $ENV_SNIPS/bash_nullcheck.bash<CR>ea
+noremap <Leader>bnull :-1read $VSNIPS/bash_nullcheck.bash<CR>ea
 

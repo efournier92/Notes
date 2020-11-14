@@ -12,7 +12,7 @@ source "$HOME/.zsh/env/env.zsh"
 
 ## Create Base Session
 SESSION_NAME="base"
-BASE_DIR="$ENV_START"
+BASE_DIR="$START"
 
 ## 1st Window
 

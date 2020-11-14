@@ -10,25 +10,32 @@
 ## Files
 
 ### Open Budget Spreadsheet
-alias budget='libreoffice /mnt/bnk/snc/Documents/Fin/Budget_2020.xls'
+alias budget="libreoffice $SDOCS/Fin/Budget_2020.xls"
 
 ## Sync
 
+### SB 
+
 ### Sync with Unison
-alias uni='~/scripts/sync_unison calypso.whatbox.ca misigno /mnt/bnk/snc /home/misigno/snc /home/misigno/bin'
+alias uni="$HSCRIPTS/sync_unison calypso.whatbox.ca misigno $SNC $SBROOT/snc $SBROOT/bin"
 
 ## Audio
 
 ### Run Audio-Log Script
-alias aud_log='~/scripts/audio_log -i /mnt/rc/RECORD -o /mnt/extA/Lg/Audio'
+alias aud_log="$HSCRIPTS/audio_log -i $RC/RECORD -o $EXTA/Lg/Audio"
 
 ## Browser
 
 ### Launch Tor
-alias tor='GTK_THEME=Adwaita:light torbrowser-launcher'
+alias tor="GTK_THEME=Adwaita:light torbrowser-launcher"
 
-## Locational
+## Location
 
 ### Whereami
-alias whereami='curl ipinfo.io'
+alias whereami="curl ipinfo.io"
+
+## Cleanup
+
+### Delete `._` Files
+alias rmdotunder="find . -type f -name '._*' -print"
 

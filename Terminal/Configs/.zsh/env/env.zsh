@@ -7,8 +7,8 @@
 # Dependencies  : zsh
 #----------------
 
-ENV_NAME="Linux"
-#ENV_NAME="Windows"
+ENV="Linux"
+#ENV="Windows"
 
 ## Common
 
@@ -29,85 +29,123 @@ export LC_COLLATE="C"
 ### Zsh
 
 #### Zsh root directory
-export ENV_ZSH="$HOME/.zsh"
+export ZZSH="$HOME/.zsh"
 
 #### Oh-My-Zsh directory
-export ENV_OHMYZSH="$HOME/.oh-my-zsh"
+export ZOHMYZSH="$HOME/.oh-my-zsh"
 
 #### Zsh alias directory
-export ENV_ALIAS="$ENV_ZSH/alias"
+export ZALIAS="$ZZSH/alias"
+
+#### Zsh plugins directory
+export ZPLUGINS="$ZZSH/plugins"
+
+#### Zsh alias directory
+export ZENV="$ZZSH/env"
+
 
 ### Vim
 
 #### Vim root directory
-export ENV_VIM="$HOME/.vim"
+export VVIM="$HOME/.vim"
 
 #### Vim snippets directory
-export ENV_SNIPS="$ENV_VIM/snippets"
+export VSNIPS="$VIM/snippets"
 
 ### Tmux
 
 #### Tmux root directory
-export ENV_TMUX="$HOME/.tmux"
+export TTMUX="$HOME/.tmux"
 
 #### Tmux session directory
-export ENV_TMUX_SESSIONS="$ENV_TMUX/sessions"
+export TSESSIONS="$TTMUX/sessions"
 
 #### Tmux scripts directory
-export ENV_TMUX_SCRIPTS="$ENV_TMUX/scripts"
+export TSCRIPTS="$TTMUX/scripts"
+
+### Home
+
+#### DESKTOP
+export HDESK="$HOME/Desktop"
+
+#### Documents
+export HDOCS="$HOME/Documents"
+
+#### Scripts
+export HSCRIPTS="$HOME/scripts"
 
 ## Linux
-if [[ "$ENV_NAME" == "Linux" ]]; then
+if [[ "$ENV" == "Linux" ]]; then
 
   ### Snc
   
   #### Snc desktop directory
-  export ENV_START="/mnt/bnk"
+  export START="/mnt/bnk"
 
   #### Snc root directory
-  export ENV_SNC="$ENV_START/snc"
+  export SNC="$START/snc"
 
-  #### Snc desktop directory
-  export ENV_DESKTOP="$ENV_SNC/Desktop"
+  ### Cs
+
+  #### Cs base directory
+  export CS="$START/cs"
+
+  ### Hle
+
+  #### Hle directory
+  export HLE="$START/hle"
 
   ### System
 
-  ### Hosts file
-  export ENV_HOSTS="/etc/hosts"
+  #### Hosts file
+  export HOSTS="/etc/hosts"
+
+  ### Sb
+  
+  #### Sb root directory
+  export SB="$HOME/sbfs"
+
+  #### Sb root directory
+  export SBROOT="/home/misigno"
 
   ### Alias
 
   #### Drives aliases
-  source "$ENV_ALIAS/drives.zsh"
+  source "$ZALIAS/drives.zsh"
 
   #### Tools aliases
-  source "$ENV_ALIAS/tools.zsh"
+  source "$ZALIAS/tools.zsh"
 
   #### Tmux aliases
-  source "$ENV_ALIAS/tmux.zsh"
+  source "$ZALIAS/tmux.zsh"
 
   #### Sb aliases
-  source "$ENV_ALIAS/sb.zsh"
+  source "$ZALIAS/sb.zsh"
 
   #### Snc aliases
-  source "$ENV_ALIAS/snc.zsh"
+  source "$ZALIAS/snc.zsh"
 
   #### Snc aliases
-  source "$ENV_ALIAS/externals.zsh"
+  source "$ZALIAS/externals.zsh"
 
 ## Windows
-elif [[ "$ENV_NAME" == "Windows" ]]; then
+elif [[ "$ENV" == "Windows" ]]; then
 
   ### Snc
 
   #### Snc desktop directory
-  export ENV_START="$HOME/snc"
+  export START="$HOME/snc"
 
   #### Snc root directory
-  export ENV_SNC="$ENV_START"
+  export SNC="$START"
 
   #### Snc desktop directory
-  export ENV_DESKTOP="$ENV_SNC/Desktop"
+  export SDESKTOP="$SNC/Desktop"
+
+  ### Cs
+
+  #### Cs directory
+  export CS="$HOME/cs"
 
   ### System
   
@@ -117,15 +155,15 @@ elif [[ "$ENV_NAME" == "Windows" ]]; then
   export DISPLAY=localhost:0.0
 
   ### Hosts file
-  export ENV_HOSTS="/c/Windows/System32/drivers/etc/hosts"
+  export HOSTS="/c/Windows/System32/drivers/etc/hosts"
 
   ### Alias
 
   #### Windows aliases
-  source "$ENV_ALIAS/windows.zsh"
+  source "$ZALIAS/windows.zsh"
 
   #### Snc aliases
-  source "$ENV_ALIAS/snc.zsh"
+  source "$ZALIAS/snc.zsh"
 
 fi
 

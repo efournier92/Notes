@@ -12,26 +12,27 @@
 ## Directory Shortcuts
 
 ### Books
-export SBOOKS="$ENV_SNC/Books"
+export SBOOKS="$SNC/Books"
 
 ### Desktop
-export SDESK="$ENV_SNC/Desktop"
+export SDESK="$SNC/Desktop"
 
 ### Documents
-export SDOCS="$ENV_SNC/Documents"
+export SDOCS="$SNC/Documents"
 
 ### Lg
-export SLG="$ENV_SNC/Lg"
+export SLG="$SNC/Lg"
 
 ### Pictures
-export SPHO="$ENV_SNC/Pictures"
+export SPHO="$SNC/Pictures"
 
 ### Screenshots
-export SSHOTS="$ENV_SNC/Pictures/screenshots"
+export SSHOTS="$SNC/Pictures/screenshots"
 
 ### Work
-export SWORK="$ENV_SNC/Work"
+export SWORK="$SNC/Work"
 
 ### Stories
 export SSTORIES="$SWORK/Stories"
+
 

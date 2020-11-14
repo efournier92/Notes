@@ -8,7 +8,7 @@
 #----------------
 
 # Session Attributes
-BASE_DIR="/mnt/bnk/cs/efournier92"
+BASE_DIR="$BNK/cs/efournier92"
 SESSION_NAME="efournier92"
 
 ## 1st Window

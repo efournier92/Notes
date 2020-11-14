@@ -8,8 +8,8 @@
 #----------------
 
 ## Configuration
-server_name='calypso'
-server_domain='whatbox.ca'
+server_name="calypso"
+server_domain="whatbox.ca"
 
 ## SSH
 
@@ -27,8 +27,8 @@ alias sbvpn!="sudo killall openvpn"
 ## Local Filesystem
 
 ### Mount slot to local filesystem
-alias sbfs=". ~/scripts/mount_sbfs $HOME/sbfs"
+alias sbfs=". $HSCRIPTS/mount_sbfs $SB"
 
 ### Unmount slot from local filesystem
-alias sbfs!="fusermount -u /home/misigno/sbfs"
+alias sbfs!="fusermount -u $SB"
 

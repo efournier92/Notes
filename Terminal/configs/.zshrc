@@ -19,11 +19,11 @@ ZSH_THEME="avit"
 DISABLE_LS_COLORS="true"
 
 ### Load oh-my-zsh assets
-ZSH="$ENV_OHMYZSH"
+ZSH="$ZOHMYZSH"
 source "$ZSH/oh-my-zsh.sh"
 
 ### Enable extension for syntax highlighting
-source "$ENV_ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$ZPLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Privacy
 
