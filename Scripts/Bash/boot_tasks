@@ -39,8 +39,6 @@ run_laptop_tasks() {
   touchscreen_id="SYNA2393:00 06CB:19AC"
 
   xinput disable "$touchscreen_id"
-  copyq &
-  copyq disable
   m_bnk
   gnome-terminal --window --maximize
 }
