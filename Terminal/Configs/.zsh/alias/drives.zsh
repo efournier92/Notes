@@ -42,10 +42,10 @@ alias rcls="ls $RC"
 export BNK="/mnt/bnk"
 
 #### Mount
-alias bnk=". $HSCRIPTS/mount_uuid_veracrypt $uuid_bnk $BNK 33"
+alias m_bnk=". $HSCRIPTS/mount_uuid_veracrypt $uuid_bnk $BNK 33"
 
 #### Unmount
-alias bnk!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_bnk"
+alias m_bnk!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_bnk"
 
 ### /mnt/extA
 
@@ -53,10 +53,10 @@ alias bnk!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_bnk"
 export EXTA="/mnt/extA"
 
 #### Mount
-alias extA="$HSCRIPTS/mount_uuid_veracrypt $uuid_extA $EXTA 8"
+alias m_extA="$HSCRIPTS/mount_uuid_veracrypt $uuid_extA $EXTA 8"
 
 #### Unmount
-alias extA!="$HSCRIPTS/umount_uuid_veracrypt $uuid_extA"
+alias m_extA!="$HSCRIPTS/umount_uuid_veracrypt $uuid_extA"
 
 ### /mnt/extB
 
@@ -64,10 +64,10 @@ alias extA!="$HSCRIPTS/umount_uuid_veracrypt $uuid_extA"
 export EXTB="/mnt/extB"
 
 #### Mount
-alias extB=". $HSCRIPTS/mount_uuid_veracrypt $uuid_extB $EXTB 12"
+alias m_extB=". $HSCRIPTS/mount_uuid_veracrypt $uuid_extB $EXTB 12"
 
 #### Unmount
-alias extB!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_extB"
+alias m_extB!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_extB"
 
 ### /mnt/extC
 
@@ -75,10 +75,10 @@ alias extB!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_extB"
 export EXTC="/mnt/extC"
 
 #### Mount
-alias extC=". $HSCRIPTS/mount_uuid_veracrypt $uuid_extC $EXTC 16"
+alias m_extC=". $HSCRIPTS/mount_uuid_veracrypt $uuid_extC $EXTC 16"
 
 #### Unmount
-alias extC!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_extC"
+alias m_extC!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_extC"
 
 ### /mnt/bkA
 
@@ -86,10 +86,10 @@ alias extC!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_extC"
 export BKA="/mnt/bkA"
 
 #### Mount
-alias bkA=". $HSCRIPTS/mount_uuid $uuid_bkA $BKA"
+alias m_bkA=". $HSCRIPTS/mount_uuid $uuid_bkA $BKA"
 
 #### Unmount
-alias bkA!=". $HSCRIPTS/umount_uuid $uuid_bkA"
+alias m_bkA!=". $HSCRIPTS/umount_uuid $uuid_bkA"
 
 ### /mnt/bkB
 
@@ -97,10 +97,10 @@ alias bkA!=". $HSCRIPTS/umount_uuid $uuid_bkA"
 export BKB="/mnt/bkB"
 
 #### Mount
-alias bkB=". $HSCRIPTS/mount_uuid $uuid_bkB $BKB"
+alias m_bkB=". $HSCRIPTS/mount_uuid $uuid_bkB $BKB"
 
 #### Unmount
-alias bkB!=". $HSCRIPTS/umount_uuid $uuid_bkB"
+alias m_bkB!=". $HSCRIPTS/umount_uuid $uuid_bkB"
 
 ### /mnt/bkC
 
@@ -108,10 +108,10 @@ alias bkB!=". $HSCRIPTS/umount_uuid $uuid_bkB"
 export BKC="/mnt/bkC"
 
 #### Mount
-alias bkC=". $HSCRIPTS/mount_uuid $uuid_bkC $BKC"
+alias m_bkC=". $HSCRIPTS/mount_uuid $uuid_bkC $BKC"
 
 #### Umount
-alias bkC!=". $HSCRIPTS/umount_uuid $uuid_bkC"
+alias m_bkC!=". $HSCRIPTS/umount_uuid $uuid_bkC"
 
 ### /mnt/md
 
@@ -119,10 +119,10 @@ alias bkC!=". $HSCRIPTS/umount_uuid $uuid_bkC"
 export MD="/mnt/md"
 
 #### Mount
-alias md=". $HSCRIPTS/mount_uuid_veracrypt $uuid_md $MD 16"
+alias m_md=". $HSCRIPTS/mount_uuid_veracrypt $uuid_md $MD 16"
 
 #### Unmount
-alias md!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_md"
+alias m_md!=". $HSCRIPTS/umount_uuid_veracrypt $uuid_md"
 
 ## Backups
 

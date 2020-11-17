@@ -139,9 +139,6 @@ elif [[ "$ENV" == "Windows" ]]; then
   #### Snc root directory
   export SNC="$START"
 
-  #### Snc desktop directory
-  export SDESKTOP="$SNC/Desktop"
-
   ### Cs
 
   #### Cs directory

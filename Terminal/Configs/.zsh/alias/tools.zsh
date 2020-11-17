@@ -21,8 +21,8 @@ alias uni="$HSCRIPTS/sync_unison calypso.whatbox.ca misigno $SNC $SBROOT/snc $SB
 
 ## Audio
 
-### Run Audio-Log Script
-alias aud_log="$HSCRIPTS/audio_log -i $RC/RECORD -o $EXTA/Lg/Audio"
+### Run Audio-Lg Script
+alias aud_lg="$HSCRIPTS/audio_lg -i $RC/RECORD -o $EXTA/Lg/Audio"
 
 ## Browser
 
