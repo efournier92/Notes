@@ -17,7 +17,7 @@ alias budget="libreoffice $SDOCS/Fin/Budget_2020.xls"
 ### SB 
 
 ### Sync with Unison
-alias uni="$HSCRIPTS/sync_unison calypso.whatbox.ca misigno $SNC $SBROOT/snc $SBROOT/bin"
+alias uni=". $HSCRIPTS/sync_unison calypso.whatbox.ca misigno $SNC $SBROOT/snc $SBROOT/bin"
 
 ## Audio
 

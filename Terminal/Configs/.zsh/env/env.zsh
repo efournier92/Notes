@@ -7,8 +7,8 @@
 # Dependencies  : zsh
 #----------------
 
-ENV="Linux"
-#ENV="Windows"
+#ENV="Linux"
+ENV="Windows"
 
 ## Common
 
@@ -43,7 +43,6 @@ export ZPLUGINS="$ZZSH/plugins"
 #### Zsh alias directory
 export ZENV="$ZZSH/env"
 
-
 ### Vim
 
 #### Vim root directory
@@ -62,6 +61,11 @@ export TSESSIONS="$TTMUX/sessions"
 
 #### Tmux scripts directory
 export TSCRIPTS="$TTMUX/scripts"
+
+### Sb
+
+#### Sb root directory
+export SBROOT="/home/misigno"
 
 ### Home
 
@@ -104,9 +108,6 @@ if [[ "$ENV" == "Linux" ]]; then
   
   #### Sb root directory
   export SB="$HOME/sbfs"
-
-  #### Sb root directory
-  export SBROOT="/home/misigno"
 
   ### Alias
 
@@ -153,7 +154,6 @@ elif [[ "$ENV" == "Windows" ]]; then
 
   ### Hosts file
   export HOSTS="/c/Windows/System32/drivers/etc/hosts"
-
   ### Alias
 
   #### Windows aliases
@@ -161,6 +161,9 @@ elif [[ "$ENV" == "Windows" ]]; then
 
   #### Snc aliases
   source "$ZALIAS/snc.zsh"
+
+  #### Tools aliases
+  source "$ZALIAS/tools.zsh"
 
 fi
 
