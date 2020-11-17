@@ -9,15 +9,11 @@
 
 ## Detect Operating System
 if grep -q Microsoft /proc/version; then
-
   ### Windows environent
   export ENV="Windows"
-
 else
-
   ### Linux environemtn
   export ENV="Linux"
-
 fi
 
 ## Common

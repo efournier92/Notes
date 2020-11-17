@@ -29,6 +29,11 @@ alias aud_lg="$HSCRIPTS/audio_lg -i $RC/RECORD -o $EXTA/Lg/Audio"
 ### Launch Tor
 alias tor="GTK_THEME=Adwaita:light torbrowser-launcher"
 
+## List
+
+### List Block Devices with UUIDs
+alias lsuuid="lsblk -o NAME,FSTYPE,PARTLABEL,UUID,PARTUUID"
+
 ## Location
 
 ### Whereami
