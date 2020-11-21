@@ -25,16 +25,16 @@ uuid_md="42e96f42-a1df-4606-9c10-ee746a9e2f66"
 export RC="/mnt/rc"
 
 #### Mount
-alias rc="mount /dev/disk/by-uuid/0000-006F"
+alias m_rc="mount /dev/disk/by-uuid/0000-006F"
 
 #### Unmount
-alias rc!="umount $RC"
+alias m_rc!="umount $RC"
 
 #### Remove WAV files
-alias rcrm="rm $RC"
+alias rcrm="rm $RC/RECORD/*.WAV"
 
 #### Remove WAV files
-alias rcls="ls $RC"
+alias rcls="ls $RC/RECORD"
 
 ### /mnt/bnk
 

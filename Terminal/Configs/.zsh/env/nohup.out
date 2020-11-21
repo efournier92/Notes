@@ -1,0 +1,21 @@
+Setting up watches.  Beware: since -r was given, this may take a while!
+Watches established.
+Terminated
+Contacting server...
+Connected [//calypso.whatbox.ca//mnt/mpathn/misigno/snc -> //misigno//mnt/bnk/snc]
+Looking for changes
+/ Books/Code Complete.pdf                           Waiting for changes from server
+Reconciling changes
+Nothing to do: replicas have not changed since last sync.
+Contacting server...
+Connected [//calypso.whatbox.ca//mnt/mpathn/misigno/snc -> //misigno//mnt/bnk/snc]
+Looking for changes
+- Books/Code Complete.pdf                           Waiting for changes from server
+Reconciling changes
+Nothing to do: replicas have not changed since last sync.
+Contacting server...
+Connected [//calypso.whatbox.ca//mnt/mpathn/misigno/snc -> //misigno//mnt/bnk/snc]
+Looking for changes
+\ Books/Code Complete.pdf                           Waiting for changes from server
+Reconciling changes
+Nothing to do: replicas have not changed since last sync.

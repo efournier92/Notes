@@ -49,6 +49,9 @@ export ZPLUGINS="$ZZSH/plugins"
 #### Zsh alias directory
 export ZENV="$ZZSH/env"
 
+#### Zsh scripts directory
+export ZSCRIPTS="$ZZSH/scripts"
+
 ### Vim
 
 #### Vim root directory
