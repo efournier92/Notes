@@ -1,0 +1,20 @@
+[:f050565b-55d7-41b6-8214-22c70c3ceef9]
+allow-bold=true
+audible-bell=false
+background-color='rgb(33,33,33)'
+bold-color='#C3C3C7C7D1D1'
+bold-color-same-as-fg=true
+cursor-colors-set=false
+custom-command='zsh /home/misigno/.tmux/sessions/base.session'
+exit-action='restart'
+font='Hack 11'
+foreground-color='#C3C3C7C7D1D1'
+highlight-background-color='#'
+highlight-colors-set=false
+highlight-foreground-color='#'
+palette=['rgb(7,54,65)', 'rgb(235,96,107)', 'rgb(195,232,141)', 'rgb(247,235,149)', 'rgb(128,203,195)', 'rgb(255,36,144)', 'rgb(174,221,255)', 'rgb(255,255,255)', 'rgb(0,43,54)', 'rgb(235,96,107)', 'rgb(195,232,141)', 'rgb(247,235,149)', 'rgb(125,198,191)', 'rgb(108,113,195)', 'rgb(52,67,77)', 'rgb(255,255,255)']
+use-custom-command=true
+use-theme-background=false
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='Material'
