@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bash "$HSCRIPTS/sync_unison" "calypso.whatbox.ca" "misigno" "$SNC" "$SBROOT/snc" "$SBROOT/bin"
+

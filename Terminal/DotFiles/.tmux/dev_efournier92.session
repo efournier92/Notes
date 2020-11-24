@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+#----------------
+# Name          : dev_efournier92.session
+# Description   : Launches a tmux session configured for seedbox
+# Author        : E Fournier
+# Dependencies  : tmux, zsh
+#----------------
+
+# Session Attributes
+BASE_DIR="/mnt/bnk/cs/efournier92"
+SESSION_NAME="efournier92"
+
+## 1st Window
+
+### Left Pane
+tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR" "zsh && ng serve"
+
+### Right Pane
+tmux split-window -t "$SESSION_NAME:0.0" -c "$BASE_DIR" -h "zsh && ng test efournier92"
+
+## 2nd Window 
+
+tmux new-window -t "$SESSION_NAME:1" -c "$BASE_DIR" "code ."
+
+## 3rd Window
+
+### Full Pane
+tmux new-window -t "$SESSION_NAME:2" -c "$BASE_DIR"
+
+## Select Starting Window
+tmux select-window -t "$SESSION_NAME:2"
+
+## Attach and switch to session
+tmux attach -t "$SESSION_NAME"
+tmux switch-client -t "$SESSION_NAME"
+
