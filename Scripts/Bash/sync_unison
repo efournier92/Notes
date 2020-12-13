@@ -35,7 +35,17 @@ run_unison() {
   local remote_dir="$4"
   local remote_bin_dir="$5"
 
+  local log_dir="$HOME/.unison/logs"
+  local log_file_name="unison.log"
+  local log_file_path="$log_dir/$log_file_name"
+
+  mkdir -p "$log_dir"
+
+  local vers='$VERSION'
   unison -batch -force newer -perms 0 \
+    -logfile "$log_file_path" \
+    -backup 'Name *' -backuplocation 'central' -backupdir '/home/misigno/backups/snc' \
+    -backupprefix '' -backupsuffix '_$VERSION'"_$(date +%y%m%d%H%M%S)" \
     -servercmd "$remote_bin_dir/unison" \
       "$local_dir" \
       "ssh://$user@$address/$remote_dir"

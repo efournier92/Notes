@@ -10,29 +10,28 @@
 
 alias_dir="$HOME/.zsh/alias"
 shopt -s expand_aliases
+source "$HOME/.zsh/env/env.zsh"
 source "$alias_dir/drives.zsh"
 
-validate_machine_type() {
+is_validate_machine_type() {
   local machine_type="$1"
 
-  if [[ "$machine_type" != "laptop" && "$machine_type" != "media" ]]; then
-    echo "ERROR: Must supply valid a valid machine type"
-    exit 1
-  fi
-}
-
-load_alias_files() {
-  local alias_dir="$HOME/.zsh/alias"
-
-  shopt -s expand_aliases
-
-  source "$alias_dir/drives.zsh"
+  [[ "$machine_type" != "laptop" && "$machine_type" != "media" ]] \
+    && echo "false" \
+    || echo "true"
 }
 
 delay_to_prevent_ui_bugs() {
-  local delay_time=0.2
+  local delay_time=0.5
 
   sleep "$delay_time"
+}
+
+start_unison_snc() {
+  local watch_script="$HSCRIPTS/watch_for_change"
+
+  [[ -z `pgrep inotifywait` && -f "$watch_script" ]] \
+    && nohup "$watch_script" "$SNC" "$ZSCRIPTS/uni" >/dev/null 2>&1&
 }
 
 run_laptop_tasks() {
@@ -40,6 +39,8 @@ run_laptop_tasks() {
 
   xinput disable "$touchscreen_id"
   m_bnk
+  start_unison_snc
+
   gnome-terminal --window --maximize
 }
 
@@ -51,11 +52,11 @@ run_media_tasks() {
 main() {
   local machine_type="$1"
 
-  load_alias
-
-  validate_machine_type "$machine_type"
-
-  load_alias_files
+  local machine_is_valid=`is_validate_machine_type "$machine_type"`
+  if [[ "$machine_is_valid" == "false" ]]; then
+    echo "ERROR: Must supply valid a valid machine type"
+    exit 1
+  fi
 
   delay_to_prevent_ui_bugs
   

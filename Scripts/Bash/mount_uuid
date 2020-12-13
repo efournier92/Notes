@@ -1,8 +1,7 @@
 #!/bin/bash
 
 #----------------
-# Name          : mount_uuid
-# Description   : Mounts md drive with veracrypt
+# Name          : mount_uuid # Description   : Mounts md drive with veracrypt
 # Author        : E Fournier
 # Dependencies  : veracrypt
 # Example Usage : ./mount_uuid $uuid $mount_location
@@ -72,6 +71,7 @@ main() {
   local should_mount_drive=`should_mount "$drive_uuid" "$mount_location"`
 
   if [[ "$should_mount_drive" == "true" ]]; then
+    echo "Mounting $drive_uuid to $mount_location..."
     mount_drive "$drive_uuid" "$mount_location"
   fi
 }

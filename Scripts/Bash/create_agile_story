@@ -1,0 +1,40 @@
+#!/bin/bash
+
+get_story_contents() {
+  local name="$1"
+cat << EOF
+# [$name]()
+
+## Background
+
+## Terminology
+
+## Requirements
+
+## Technical Implementation Notes
+ 
+## Acceptance Criteria
+
+## Capacity
+
+## Approvers
+
+## UAT Audience
+
+EOF
+}
+
+main() {
+  local name="$1"
+  local dir="$(pwd)"
+  
+  mkdir -p "${dir}/${name}"
+
+  local file="${dir}/${name}/${name}.md"
+  touch "$file"
+
+  get_story_contents "$name" >> "$file"
+}
+
+main "$@"
+

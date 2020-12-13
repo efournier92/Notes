@@ -46,7 +46,7 @@ should_mount() {
   [[ "$mount_location_is_empty" == "false" ]] && echo "ERROR: Mount location is not empty" >&2
 
   local uuid_is_connected=`is_uuid_connected "$drive_uuid"`
-  [[ "$uuid_is_connected" == "false" ]] && echo "ERROR: Drive is already mounted" >&2
+  [[ "$uuid_is_connected" == "false" ]] && echo "ERROR: Drive is not connected" >&2
 
   [[ "$args_are_supplied" == "true" && "$mount_location_is_empty" == "true" && "$uuid_is_connected" == "true" ]] \
     && echo "true" \

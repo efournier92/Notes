@@ -2,7 +2,7 @@
 
 #----------------
 # Name          : backup_dir
-# Description   : Backs up one drive to another using rclone
+# Description   : Backs up one directory to another using rclone
 # Author        : E Fournier
 # Dependencies  : rclone, ls, cat
 # Example Usage : ./backup_dir /dev/extA /dev/extB
@@ -46,29 +46,28 @@ should_backup() {
 }
 
 print_deleting_message() {
-  local source_location="$1"
-  local destination_location="$2"
+  local dir_location="$1"
 
   cat << EOF
 ________
-DELETING empty directories
+DELETING empty directories from $dir_location
 
 EOF
 }
 
-delete_empty_dir() {
+delete_empty_dirs() {
   local dir_location="$1"
 
+  print_deleting_message "$dir_location"
   find "$dir_location" -empty -type d -print -delete
 }
 
-delete_empty_dirs() {
+delete_all_empty_dirs() {
   local source_location="$1"
   local destination_location="$2"
 
-  print_deleting_message
-  delete_empty_dir "$source_location"
-  delete_empty_dir "$destination_location"
+  delete_empty_dirs "$source_location"
+  delete_empty_dirs "$destination_location"
 }
 
 print_backup_message() {
@@ -87,7 +86,7 @@ run_backup() {
   local destination_location="$2"
 
   print_backup_message "$source_location" "$destination_location"
-  rclone sync "$source_location" "$destination_location" --verbose
+  sudo rclone sync "$source_location" "$destination_location" --verbose
 }
 
 main() {
@@ -98,7 +97,7 @@ main() {
 
   if [[ "$should_run_backup" == "true" ]]; then
     run_backup "$source_location" "$destination_location"
-    delete_empty_dirs "$source_location" "$destination_location"
+    delete_all_empty_dirs "$source_location" "$destination_location"
   fi
 }
 

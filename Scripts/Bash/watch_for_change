@@ -1,0 +1,21 @@
+#!/bin/bash
+
+watch_for_change() {
+  local dir_to_observe="$1"
+
+  inotifywait --recursive \
+    --event modify,move,create,delete \
+    $dir_to_observe
+}
+
+main() {
+  local dir_to_observe="$1"
+  local script_to_run="$2"
+
+  while watch_for_change $dir_to_observe; do
+    bash "$script_to_run"
+  done
+}
+
+main "$@"
+
