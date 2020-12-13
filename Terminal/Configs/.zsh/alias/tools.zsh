@@ -12,6 +12,9 @@
 ### Open Budget Spreadsheet
 alias budget="libreoffice $SDOCS/Fin/Budget_2020.xls"
 
+### Create a new agile story directory and file
+alias story="$HOME/scripts/create_agile_story"
+
 ## Sync
 
 ### SB 
@@ -41,6 +44,9 @@ alias whereami="curl ipinfo.io"
 
 ## Cleanup
 
+### List `._` Files
+alias dotunderls="find . -name '._*' -print"
+
 ### Delete `._` Files
-alias rmdotunder="find . -type f -name '._*' -print"
+alias dotunderrm="find . -name '._*' -delete -print"
 

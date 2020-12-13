@@ -8,7 +8,7 @@
 #----------------
 
 ## Configuration
-server_name="calypso"
+server_name="Calypso"
 server_domain="whatbox.ca"
 
 ## SSH

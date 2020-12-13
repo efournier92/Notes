@@ -9,15 +9,7 @@
 
 # Snc Aliases
 
-local this_year=`date +"%Y"`
-
-local watch_script="$HSCRIPTS/watch_for_change"
-[[ -z `pgrep inotifywait` && -f "$watch_script" ]] \
-  && nohup "$watch_script" "$SNC" "$ZSCRIPTS/uni" >/dev/null 2>&1&
-
-#/dev/null &>/dev/null &
- 
-#"$ZSCRIPTS/uni" &>/dev/null &
+this_year=`date +"%Y"`
 
 ## Directory Shortcuts
 
