@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#----------------
+# Name          : connect_vpn_persistently
+# Description   : Continuously attempts to connect a VPN client in Gnome 
+# Author        : E Fournier
+# Dependencies  : nmcli
+# Example Usage : ./connect_vpn_persistently
+#----------------
+
+while true; do
+  [[ -z `ip tuntap show` ]] && nmcli con up id Calypso
+  sleep 60
+done
+
