@@ -8,28 +8,62 @@
 # Example Usage : ./sync_unison 
 #----------------
 
+source "$HOME/.zsh/env/env.zsh"
+
 validate_args() {
-  local address="$1"
+  local server="$1"
   local user="$2"
   local local_dir="$3"
   local remote_dir="$4"
   local remote_bin_dir="$5"
 
   if [[ \
-       -z "$address" \
+       -z "$server" \
     || -z "$user" \
     || -z "$local_dir" \
     || -z "$remote_dir" \
     || -z "$remote_bin_dir" \
   ]]; then
     echo "ERROR: Arguments not supplied correctly"
-    echo "USAGE: $ sync_unison $address $user $local_dir $remote_dir $remote_bin_dir"
+    echo "USAGE: $ sync_unison $server $user $local_dir $remote_dir $remote_bin_dir"
     exit 1
   fi
 }
 
-run_unison() {
-  local address="$1"
+should_start_sync_watcher() {
+  [[ "$SYNC_ENABLED" == "true" && -z `pgrep inotifywait` ]] \
+    && echo "true" \
+    || echo "false"
+}
+
+watch_for_change() {
+  local dir_to_watch="$1"
+
+  [[ -z "$SYNC_TIMEOUT" ]] && SYNC_TIMEOUT="3600"
+
+  inotifywait --recursive \
+    --event modify,move,create,delete \
+    --timeout $SYNC_TIMEOUT \
+    $dir_to_watch
+}
+
+run_unison_command() {
+  local server="$1"
+  local user="$2"
+  local local_dir="$3"
+  local remote_dir="$4"
+  local remote_bin_dir="$5"
+
+  unison -batch -force newer -perms 0 \
+    -backup 'Name *' \
+    -backupprefix '' -backupsuffix '_$VERSION'"_$(date +%y%m%d%H%M%S)" \
+    -servercmd "$remote_bin_dir/unison" \
+      "$local_dir" \
+      "ssh://$user@$server/$remote_dir"
+}
+
+start_sync_watcher() {
+  local server="$1"
   local user="$2"
   local local_dir="$3"
   local remote_dir="$4"
@@ -41,25 +75,28 @@ run_unison() {
 
   mkdir -p "$log_dir"
 
-  local vers='$VERSION'
-  unison -batch -force newer -perms 0 \
-    -logfile "$log_file_path" \
-    -backup 'Name *' -backuplocation 'central' -backupdir '/home/misigno/backups/snc' \
-    -backupprefix '' -backupsuffix '_$VERSION'"_$(date +%y%m%d%H%M%S)" \
-    -servercmd "$remote_bin_dir/unison" \
-      "$local_dir" \
-      "ssh://$user@$address/$remote_dir"
+  while watch_for_change "$local_dir"; do
+    run_unison_command "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
+  done
 }
 
 main() {
-  local address="$1"
+  local server="$1"
   local user="$2"
   local local_dir="$3"
   local remote_dir="$4"
   local remote_bin_dir="$5"
-  
-  validate_args "$address" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir" 
-  run_unison "$address" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir" 
+  local mode="$6"
+
+  validate_args "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir" 
+  if [[ "$mode" == "watch" ]]; then
+    [[ `should_start_sync_watcher` = "true" ]] && \
+      start_sync_watcher "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir" >& /dev/null &
+
+  else
+    run_unison_command "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
+
+  fi
 }
 
 main "$@"

@@ -1,4 +1,23 @@
 #!/bin/bash
 
-bash "$HSCRIPTS/sync_unison" "calypso.whatbox.ca" "misigno" "$SNC" "$SBROOT/snc" "$SBROOT/bin"
+#----------------
+# Name          : uni
+# Description   : Starts the unison sync process
+# Author        : E Fournier
+# Dependencies  : nohup
+# Example Usage : ./uni
+#----------------
 
+source "$HOME/.zsh/env/env.zsh"
+
+main() {
+  local mode="$1"
+
+  if [[ "$mode" == "watch" ]]; then
+    nohup "$HSCRIPTS/sync_unison" "calypso.whatbox.ca" "misigno" "$SNC" "$SBROOT/snc" "$SBROOT/bin" "watch" >/dev/null 2>&1&
+  else
+    "$HSCRIPTS/sync_unison" "calypso.whatbox.ca" "misigno" "$SNC" "$SBROOT/snc" "$SBROOT/bin"
+  fi
+}
+
+main "$@"

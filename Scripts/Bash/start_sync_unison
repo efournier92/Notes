@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#----------------
+# Name          : start_sync_unison
+# Description   : Conditionally start the Unison sync process
+# Author        : E Fournier
+# Dependencies  : nohup, pgrep, unison
+#----------------
+
+start_unison_snc() {
+  local watch_script="$HSCRIPTS/watch_for_change"
+
+  [[ "$ENABLE_SYNC" == "true" \
+    && -z `pgrep inotifywait` \
+    && -f "$watch_script"     \
+  ]] \
+    && nohup "$watch_script" "$SNC" "$ZSCRIPTS/uni" >/dev/null 2>&1&
+}
+
+start_unison_snc
+

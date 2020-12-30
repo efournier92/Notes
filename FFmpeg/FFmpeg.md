@@ -120,6 +120,16 @@ Crop a video's edges according by dimension.
 ffmpeg -i in.mp4 -filter:v "crop=out_w:out_h:x:y" out.mp4
 ```
 
+### Capture Sample Screenshot
+
+#### Description
+Capture a single frame from a video file. Use for determining dimensions to crop.
+
+#### Command
+```bash
+ffmpeg -ss 00:00:01 -i in.mp4 -vframes 1 -q:v 2 sample-frame.jpg
+```
+
 ### CRF Quality Reduction
 
 #### Description
