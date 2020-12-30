@@ -7,8 +7,11 @@
 
 # Plugins 
 
-## Environment Configs
+## Source environment configs
 source "$HOME/.zsh/env/env.zsh"
+
+## Conditionally start the unison sync process
+$ZSCRIPTS/uni watch
 
 ## Oh-My-Zsh
 
@@ -18,12 +21,20 @@ ZSH_THEME="avit"
 ### Disable highlighting for ls command
 DISABLE_LS_COLORS="true"
 
+### Disable annoying update prompts
+DISABLE_AUTO_UPDATE=true
+
 ### Load oh-my-zsh assets
 ZSH="$ZOHMYZSH"
 source "$ZSH/oh-my-zsh.sh"
 
 ### Enable extension for syntax highlighting
 source "$ZPLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# Display
+
+## Prevent partial-line %
+unsetopt PROMPT_SP
 
 # Privacy
 
