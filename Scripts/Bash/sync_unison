@@ -54,7 +54,12 @@ run_unison_command() {
   local remote_dir="$4"
   local remote_bin_dir="$5"
 
+  local log_dir="$HOME/.unison/logs"
+  local log_file_name="unison.log"
+  local log_file_path="$log_dir/$log_file_name"
+
   unison -batch -force newer -perms 0 \
+    -logfile "$log_file_path" \
     -backup 'Name *' \
     -backupprefix '' -backupsuffix '_$VERSION'"_$(date +%y%m%d%H%M%S)" \
     -servercmd "$remote_bin_dir/unison" \

@@ -13,7 +13,7 @@ shopt -s expand_aliases
 source "$HOME/.zsh/env/env.zsh"
 source "$alias_dir/drives.zsh"
 
-is_validate_machine_type() {
+is_valid_machine_type() {
   local machine_type="$1"
 
   [[ "$machine_type" != "laptop" && "$machine_type" != "media" ]] \
@@ -35,11 +35,13 @@ start_unison_snc() {
 }
 
 run_laptop_tasks() {
-  touchscreen_id="SYNA2393:00 06CB:19AC"
+  local touchscreen_id="SYNA2393:00 06CB:19AC"
 
   xinput disable "$touchscreen_id"
+
+  #start_unison_snc
+
   m_bnk
-  start_unison_snc
 
   gnome-terminal --window --maximize
 }
@@ -52,7 +54,7 @@ run_media_tasks() {
 main() {
   local machine_type="$1"
 
-  local machine_is_valid=`is_validate_machine_type "$machine_type"`
+  local machine_is_valid=`is_valid_machine_type "$machine_type"`
   if [[ "$machine_is_valid" == "false" ]]; then
     echo "ERROR: Must supply valid a valid machine type"
     exit 1
