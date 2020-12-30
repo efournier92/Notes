@@ -98,6 +98,14 @@ if [[ "$ENV" == "Linux" ]]; then
   #### Snc root directory
   export SNC="$START/snc"
 
+  ### Sync
+
+  #### Enable the sync process
+  export SYNC_ENABLED="true"
+
+  #### Enable the sync process
+  export SYNC_TIMEOUT="600"
+
   ### Cs
 
   #### Cs base directory
@@ -148,6 +156,14 @@ elif [[ "$ENV" == "Windows" ]]; then
 
   #### Snc root directory
   export SNC="$START"
+
+  ### Sync
+
+  #### Enable the sync process
+  export SYNC_ENABLED="true"
+
+  #### Enable the sync process
+  export SYNC_TIMEOUT="3600"
 
   ### Cs
 
