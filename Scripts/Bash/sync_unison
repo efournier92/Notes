@@ -39,11 +39,8 @@ should_start_sync_watcher() {
 watch_for_change() {
   local dir_to_watch="$1"
 
-  [[ -z "$SYNC_TIMEOUT" ]] && SYNC_TIMEOUT="3600"
-
   inotifywait --recursive \
     --event modify,move,create,delete \
-    --timeout $SYNC_TIMEOUT \
     $dir_to_watch
 }
 

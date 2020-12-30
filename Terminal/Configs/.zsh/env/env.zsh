@@ -103,9 +103,6 @@ if [[ "$ENV" == "Linux" ]]; then
   #### Enable the sync process
   export SYNC_ENABLED="true"
 
-  #### Enable the sync process
-  export SYNC_TIMEOUT="600"
-
   ### Cs
 
   #### Cs base directory
@@ -161,9 +158,6 @@ elif [[ "$ENV" == "Windows" ]]; then
 
   #### Enable the sync process
   export SYNC_ENABLED="true"
-
-  #### Enable the sync process
-  export SYNC_TIMEOUT="3600"
 
   ### Cs
 
