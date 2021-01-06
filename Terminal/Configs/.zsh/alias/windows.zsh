@@ -27,6 +27,9 @@ alias m_tfs!="sudo umount $TFS"
 ### System Edit
 alias hostedit="vim $HOSTS"
 
+### System Cleanup
+alias tempclean="rm -rf $HOME/AppData/Local/Temp/*"
+
 ### Edit Files
 
 #### Spectrum Paths
