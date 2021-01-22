@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#----------------
+# Name          : podcast_find_missing_episodes
+# Description   : Finds missing episodes from a series of podcast files
+# Author        : E Fournier
+# Dependencies  : plain old bash
+# Example Usage : ./podcast_find_missing_episodes mp3 .
+#----------------
+
+main() {
+  local extension="$1"
+  local dir="$2"
+
+  [[ -z "$dir" ]] && local dir="$(pwd)"
+
+  local index=1
+  for file in $dir/*.$extension; do
+    local index_formatted=`printf "%03d" $index`
+    if [[ ! "$file" =~ "$index_formatted" ]]; then
+      echo "$index_formatted Not Found"
+      index="$(( index + 2 ))"
+    else
+      index="$(( index + 1 ))"
+    fi
+  done
+}
+
+main "$@"
+
