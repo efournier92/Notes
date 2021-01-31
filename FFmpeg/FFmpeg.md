@@ -72,13 +72,15 @@ ffmpeg -i "$IN_FILE" \
 ```bash
 ext_in=".mkv"
 ext_out=".mp4"
-mkdir OUT
+out_dir="_OUT"
+mkdir "$out_dir"
 for file in *$ext_in; do
   ffmpeg -i $file \
     -c:v libx264 -pix_fmt yuv420p -crf 28 \
+    -preset slow \
     -acodec aac -c:a libmp3lame \
     -map_metadata -1 -strict -2 \
-    "OUT/${file/$ext_in/$ext_out}"
+    "$out_dir/${file/$ext_in/$ext_out}"
 done
 ```
 
