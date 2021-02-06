@@ -1,6 +1,6 @@
 @echo off
 
-:: Name:        ZipBackup_Photos
+:: Name:        ZipBackup_Pictures
 :: Description: Backs up Pictures directory to a 7z archive
 :: Autor:       E Fournier
 
@@ -11,13 +11,14 @@ set LOGDIR="C:\Users\FournierDesktop\Sync\Logs\Pictures"
 set ZIPDIR="F:\Zips\Pictures"
 set ZIPEXE="C:\Program Files\7-Zip\7z.exe"
 set HOMEDIR="C:\Users\FournierDesktop"
+set DATADIR="D:"
 
 if not exist "%LOGDIR%" mkdir "%LOGDIR%"
 if not exist "%ZIPDIR%" mkdir "%ZIPDIR%"
 
 >"%LOGDIR%\%TIMESTAMP%.log" (
-  "%ZIPEXE%" a^
+  %ZIPEXE% a^
   -t7z "%ZIPDIR%\%TIMESTAMP%.7z"^
-  "D:\Pictures"
+  "%DATADIR%\Pictures"
 )
 

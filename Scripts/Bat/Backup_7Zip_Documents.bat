@@ -11,18 +11,19 @@ set ZIPEXE="C:\Program Files\7-Zip\7z.exe"
 set LOGDIR="C:\Users\FournierDesktop\Sync\Logs\Documents"
 set ZIPDIR="F:\Zips\Documents"
 set HOMEDIR="C:\Users\FournierDesktop"
+set DATADIR="D:"
 
 if not exist "%LOGDIR%" mkdir "%LOGDIR%"
 if not exist "%ZIPDIR%" mkdir "%ZIPDIR%"
 
 >"%LOGDIR%\%TIMESTAMP%.log" (
-  "%ZIPEXE%" a^
+  %ZIPEXE% a^
   -t7z "%ZIPDIR%\%TIMESTAMP%.7z"^
   "%HOMEDIR%\Contacts"^
-  "%HOMEDIR%\Documents"^
   "%HOMEDIR%\Desktop"^
-  "%HOMEDIR%\Downloads"^
-  "%HOMEDIR%\Scans"^
-  "%HOMEDIR%\Sync"
+  "%DATADIR%\Documents"^
+  "%DATADIR%\Downloads"^
+  "%DATADIR%\Scans"^
+  "%DATADIR%\Sync"
 )
 
