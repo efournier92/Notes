@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+main() {
+  local length_cutoff_in_minutes=$1
+  local dir="$2"
+
+  [[ -z "$length_cutoff_in_minutes" ]] && local length_cutoff_in_minutes="20"
+  [[ -z "$dir" ]] && local dir="$(pwd)"
+
+  local length_cutoff_in_seconds="$(( $length_cutoff_in_minutes * 60 ))"
+  
+  local long_dir_name="_Long"
+  local short_dir_name="_Short"
+
+  mkdir -p "$long_dir_name"
+  mkdir -p "$short_dir_name"
+
+  for file in *.(mp4|mkv|avi|webm|mp3|wav|flac); do
+    echo "$file"
+    local length_in_seconds=`ffprobe -i "$file" -show_entries format=duration -v quiet -of csv="p=0"`
+    echo $length_in_seconds 
+   # [[ $length_in_seconds -lt $length_cutoff_in_seconds ]] \
+   #   && echo true \
+   #   || echo false
+    [[ $length_in_seconds -lt $length_cutoff_in_seconds ]] \
+      && mv "$file" "$short_dir_name" \
+      || mv "$file" "$long_dir_name"
+  done
+}
+
+main "$@"
+

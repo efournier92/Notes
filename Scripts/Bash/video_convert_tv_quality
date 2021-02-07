@@ -1,0 +1,53 @@
+#!/bin/zsh
+
+print_info() {
+  local in_file="$1"
+  local out_file="$2"
+
+  echo "__________" >&2
+  echo "Converting: $in_file >> $out_file" >&2
+  echo "" >&2
+}
+
+run_ffmpeg_command() {
+  local in_file="$1"
+  local out_file="$2"
+  local crf="$3"
+
+  ffmpeg -i $in_file \
+    -c:v libx264 -pix_fmt yuv420p -crf $crf \
+    -preset slow \
+    -acodec aac -c:a libmp3lame \
+    -map_metadata -1 -strict -2 \
+    "$out_file"
+}
+
+main() {
+  local crf=$1
+  local ext_in="$2"
+  local working_dir="$3"
+
+  [[ -z "$crf" ]] && local crf=30
+  [[ -z "$ext_in" ]] && local ext_in="(mp4|mkv|avi|webm)"
+  [[ -z "$working_dir" ]] && local working_dir="$(pwd)"
+  
+  local ext_out="mp4"
+  local out_dir="_OUT_${crf}"
+
+  cd "$working_dir"
+
+  mkdir -p "$working_dir/$out_dir"
+
+  for in_file in *.(mp4|mkv|avi|webm); do
+    local in_file_ext="${in_file##*.}"
+    echo "IN FILE EXT >> $in_file_ext"
+    local out_file="$out_dir/${in_file/$in_file_ext/$ext_out}"
+    
+    print_info "$in_file" "$out_file"
+    
+    run_ffmpeg_command "$in_file" "$out_file" "$crf"
+  done
+  }
+
+main "$@"
+
