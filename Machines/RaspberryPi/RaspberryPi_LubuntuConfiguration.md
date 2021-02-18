@@ -387,4 +387,17 @@ User=pi
 1. Boot up a `Clonezilla Live` image
 2. Select `device-image`
 3. Select `local_dev`
+4. Wait for all necessary devices to be recognized, then press `Ctrl-C`
+5. Select the directory where we want the backup image to be stored, then select `<Done>`
+6. Choose `Beginner` mode for the wizard
+7. Select `savedisk`
+8. Input a name for our image
+9. Choose the SD card as the disk we want to back up
+10. Select `Skip checking/repairing the file system`
+11. Select `Yes, check the saved image`
+12. Select `Encrpyt the image`
+13. Select `Shutdown` as the action once everything is finished
+14. Enter our password for recovering the backup later
+15. Accept all subsequent prompts
+16. Wait for the backup process to complete and our machine to power off
 
