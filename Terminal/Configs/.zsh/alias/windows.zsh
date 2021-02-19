@@ -14,8 +14,12 @@ alias vvm="bash $HSCRIPTS/vvm.bash $SNC"
 
 ## Explorer
 alias explore="start explorer"
+alias excel="start excel"
+alias word="start winword"
+alias powerpoint="start powerpnt"
 alias qdir="start \"$HDOCS\\Q-Dir_State.qdr\""
 alias screens="explore \"%USERPROFILE%\\snc\\Pictures\\Screenshots\""
+alias mdrender="start \"C:\\Users\\efournier\\AppData\\Local\\Chromium\\Application\\chrome.exe\""
 
 ## System
 
