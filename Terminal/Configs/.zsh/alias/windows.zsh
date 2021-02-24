@@ -39,6 +39,9 @@ alias tempclean="rm -rf $HOME/AppData/Local/Temp/*"
 #### Spectrum Paths
 alias spectrumpaths="vim $SNC/Work/SpectrumPaths.md"
 
+#### Blue Jeans Rooms
+alias bj="vim $SWORK/BlueJeansRooms.md"
+
 ### Logs
 
 #### Logs root
