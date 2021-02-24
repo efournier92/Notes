@@ -36,6 +36,11 @@ source "$ZPLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 ## Prevent partial-line %
 unsetopt PROMPT_SP
 
+# Sound
+
+## Disable console beeping
+unsetopt beep
+
 # Privacy
 
 ## History
