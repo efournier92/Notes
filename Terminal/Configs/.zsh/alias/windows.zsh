@@ -20,7 +20,7 @@ alias powerpoint="start powerpnt"
 alias qdir="start \"$HDOCS\\Q-Dir_State.qdr\""
 alias screens="explore \"%USERPROFILE%\\snc\\Pictures\\Screenshots\""
 alias mdrender="start \"C:\\Users\\efournier\\AppData\\Local\\Chromium\\Application\\chrome.exe\""
-
+alias nplus="start notepad++"
 ## System
 
 ### Mount
@@ -45,7 +45,7 @@ alias bj="vim $SWORK/BlueJeansRooms.md"
 ### Logs
 
 #### Logs root
-export LOGS="/c/Logs-Raw/"
+export LOGS="/e/Logs-Raw/"
 alias logs="cd $LOGS"
 
 #### Exceptions
