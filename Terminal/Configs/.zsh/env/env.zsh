@@ -32,6 +32,9 @@ export LANG="en_US.UTF-8"
 #### Preserve natural sort order
 export LC_COLLATE="C"
 
+#### The current year
+export THIS_YEAR=`date +"%Y"`
+
 ### Zsh
 
 #### Zsh root directory
@@ -123,6 +126,26 @@ if [[ "$ENV" == "Linux" ]]; then
   #### Sb root directory
   export SB="$HOME/sbfs"
 
+  ### Program Types
+
+  #### Explorer
+  export OPEN_EXPLORER="nautilus"
+
+  #### Spreadsheet
+  export OPEN_SPREADSHEET="libreoffice"
+
+  #### Word Processing
+  export OPEN_WORDPROCESS="libreoffice"
+
+  #### Presentation
+  export OPEN_PRESENTATION="libreoffice"
+
+  #### Markdown
+  export OPEN_MARKDOWN="chromium"
+
+  #### PDF
+  export OPEN_PDF="evince"
+
   ### Alias
 
   #### Drives aliases
@@ -173,6 +196,27 @@ elif [[ "$ENV" == "Windows" ]]; then
 
   ### Hosts file
   export HOSTS="/c/Windows/System32/drivers/etc/hosts"
+
+  ### Program Types
+
+  #### Explorer
+  export OPEN_EXPLORER="start explorer"
+
+  #### Spreadsheet
+  export OPEN_SPREADSHEET="start excel"
+
+  #### Word Processing
+  export OPEN_WORDPROCESS="start winword"
+
+  #### Presentation
+  export OPEN_PRESENTATION="start powerpnt"
+
+  #### Markdown
+  export OPEN_MARKDOWN="\"C:\\Users\\efournier\\AppData\\Local\\Chromium\\Application\\chrome.exe\""
+
+  #### PDF
+  export OPEN_PDF=""
+
   ### Alias
 
   #### Windows aliases

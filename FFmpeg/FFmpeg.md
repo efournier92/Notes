@@ -54,7 +54,7 @@ for i in *.mp4;
 done
 ```
 
-### TV Quality
+### CRF Quality
 
 #### Description
 My go-to for live-action TV shows, for which I favor smaller size over the greatest quality.
@@ -149,8 +149,19 @@ ffmpeg -i in.mp4 -c:v libx264 \
 Reduce file size for spoken audio files, like stand-up comedy.
 
 #### Command
+
+##### Single
 ```bash
 ffmpeg -i in.mp4 -c:a libmp3lame -b:a 128k -ac 1 out.mp3
+```
+
+##### Batch
+```bash
+out_dir="_OUT"
+mkdir -p "$out_dir"
+for file in *.mp4; do 
+  ffmpeg -i "$file" -c:a libmp3lame -b:a 128k -ac 1 "${out_dir}/${file}"
+done
 ```
 
 ### Low Quality Audio
