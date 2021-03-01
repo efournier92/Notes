@@ -12,8 +12,8 @@
 
 ## Prepare the SD Card
 1. Using a piece of black duct tape, fold around the top of the card to form a tail
-  - This is critical for easy retrieval from the Pi's slot
-    - Improper retrieval can easily break the card
+    - This is critical for easy retrieval from the Pi's slot
+      - Improper retrieval can easily break the card
 2. Cut the tail to a reasonable length
 
 ## Download `Raspberry Pi Imager`
@@ -44,6 +44,13 @@
 2. Ensure the following custom configurations are present
     - `gpu_mem=512`
     - `disable_overscan=1`
+    - `hdmi_force_edid_audio=1`
+    - `hdmi_drive=2`
+    - `disable_splash=1`
+    - `boot_delay=0`
+    - `disable_fw_kms_setup=1`
+    - `force_turbo=1`
+
 3. Reboot
 
 ### Install `Lubuntu`
@@ -63,7 +70,7 @@
 
 #### Delete Gnome Packages
 1. Run the following commands to delete all packages pre-installed for Gnome
-  - This essentially reverts to a minimal build (_not offered for Pi as of 2021_)
+    - This essentially reverts to a minimal build (_not offered for Pi as of 2021_)
 
 ```bash
 sudo apt purge --auto-remove \
@@ -103,6 +110,7 @@ sudo apt purge --auto-remove \
   transmission-gtk \
   ubuntu-web-launchers \
   uno-libs3 \
+  update-notifier \
   usb-creator-gtk \
   vino \
   zeitgeist-core
@@ -172,8 +180,8 @@ sudo apt purge --auto-remove \
 2. Use the following as guidelines for suggested panel configuration
 
 ### Panel
-- `Size` : `32px`
-- `Icon Size` : `22px`
+- `Size` : `26px`
+- `Icon Size` : `20px`
 - `Length` : `100%`
 - `Rows` : `1`
 - `Alignment` : `Left`
@@ -198,8 +206,9 @@ sudo apt purge --auto-remove \
     - `When a device is connected` : `Do nothing`
 
 #### Configure `Volume control`
-1. From the main panel, right click the audio icon, then select `Configure "Volume control"`
-2. In the `Volume Control Settings` window, configure the following
+1. Select `Removable Media`
+2. Select the gear icon from the right-hand panel
+3. In the `Volume Control Settings` window, configure the following
     - `Device to control` : `PulseAudio` : `Built-in Audio Stereo`
     - `Mute on middle click` : `enabled`
     - `Show on mouse click` : `enabled`
@@ -210,7 +219,7 @@ sudo apt purge --auto-remove \
     - `External Mixer` : `pavucontrol-qt`
 
 #### Configure `PulseAudio Volume Control`
-1. From the `Application Menu`, open `Sound & Video > PulseAudio Volume Control`
+1. Open `Application Menu`, open `Sound & Video > PulseAudio Volume Control`
 2. Click the `Output Devices` tab
 3. Find the section with port named `Analog Output`
 4. Select `Set as fallback` in the `Analog Output` section
@@ -220,10 +229,10 @@ sudo apt purge --auto-remove \
 2. In the `Desktop Notifications` window, configure the following
 
 ##### Basic Settings
-- `Position on screen` : `Top left`
+- `Position on screen` : `<top right>`
 
 ##### Advanced Settings
-- `Default Duration` : `1 sec`
+- `Default Duration` : `3 sec`
 - `Width` : `300 px`
 - `Spacing` : `6 px`
 - `How many to save` : `0`
@@ -240,14 +249,19 @@ sudo apt purge --auto-remove \
     - `git clone https://github.com/efournier92/Notes`
     - `cd Notes/Terminal/Configs`
     - `cp tmux* vim* zsh* ~`
-4. Load `Material` profile
+4. Create a `dconf` entry for our `gnome-terminal` profile
+    - Load `gnome-terminal` via command
+    - Right click anywhere in the terminal, then click `preferences`
+    - Select the only item under `Profiles`
+    - Change any configuration value
+5. Load `Material` profile
     - `git clone https://github.com/efournier92/Notes`
     - `cd Notes/Terminal/Colors`
     - Find the UUID of default profile via the following command
       - `dconf dump /org/gnome/terminal/legacy/profiles:/`
     - Load the saved profile to the existing default profile via the following command
-      - `dconf load /org/gnome/terminal/legacy/profiles:/$UUID < material-dark-profile.conf`
-5. Finish configuration
+      - `dconf load /org/gnome/terminal/legacy/profiles:/$UUID/ < material-dark-profile.conf`
+6. Finish configuration
     - Launch `gnome-terminal`
     - Right click the terminal
     - Select `Preferences`
@@ -275,6 +289,45 @@ Session=Lubuntu.desktop
 User=pi
 ```
 
+## Add Gnome-Terminal to `Applications Menu`
+1. Create a new `desktop` item via the following command
+    - `sudo vim /usr/share/applications/gterminal.desktop`
+2. Add the following contents in the new file
+
+```txt
+[Desktop Entry]
+Type=Application
+Categories=System
+Name=GTerminal
+Icon=utilities-terminal
+Exec=gnome-terminal
+```
+
+## Add autoboot file
+
+```txt
+[Desktop Entry]
+Type=Application
+Name=boot
+Exec=/home/${user}/scripts/boot_tasks pi_media
+```
+
+## Boot Script
+1. TODO
+2. TODO
+
+```bash
+run_pi_media_tasks() {
+  $HOME/scripts/connect_vpn_persistently &
+  $HOME/scripts/connect_vnc_server_persistently &
+  setxkbmap -option caps:escape
+  pacmd set-default-sink alsa_output.platform-bcm2835_audio.stereo-fallback
+  m_md
+  kodi -fs &
+  gnome-terminal --window --maximize &
+}
+```
+
 ## Shortcuts
 
 ### Open `Shortcut Keys` Settings
@@ -291,7 +344,7 @@ User=pi
 1. Locate and select the shortcut with description `Web browser`
 2. In the right-hand menu, select `Modify...`
 3. Enter the following in the `Description` field
-    - `Launch web browser`
+    - `Launch Browser`
 4. Enter the following in the `Command` field
     - `firefox`
 5. Select `OK`
@@ -344,12 +397,13 @@ User=pi
 3. `sudo mv arc-openbox Arc-Openbox`
 
 ##### Enable the `Arc-Openbox` Theme
-1. From the `Application Launcher`, open `Menu > Preferences > LXQt settings > Openbox Settings > Theme`
-2. Select `Install a new theme...`
-3. Navigate to `/usr/share/themes/Arc-Openbox`
+1. From the `Application Launcher`, open `Menu > Preferences > LXQt settings > Openbox Settings`
+2. Select the `Theme` tab
+3. Select `Install a new theme...`
+4. Navigate to `/usr/share/themes/Arc-Openbox`
     - Select `arc-dark.obt`
     - Click `Open`
-4. Back in the menu, select `Arc-Dark`, then click `Close`
+5. Back in the menu, select `Arc-Dark`, then click `Close`
 
 ## Fix Choppy Audio
 1. Open the `PulseAudio` default configuration file
@@ -400,4 +454,57 @@ User=pi
 14. Enter our password for recovering the backup later
 15. Accept all subsequent prompts
 16. Wait for the backup process to complete and our machine to power off
+
+## Configure VPN
+
+###
+
+###
+
+### View VPN Configuration File
+1. Run the following command to view the contents of our VPN configuration
+    - `sudo vim /etc/NetworkManager/system-connections/Calypso.nmconnection`
+
+## Configure VNC Server
+
+### 
+
+###
+
+## Disable Update Notifications
+
+### Disable Auto Starting `upgNotifier`
+1. Open `Application Menu > Preferences > LXQt settings > Session Settings`
+2. Select the `Autostart` tab
+3. Uncheck `upgNotifier`
+
+### Minimize System Update Notifications
+1. Open `Application Menu > Preferences > Software & Updates`
+2. Select the `Updates` tab
+3. Configure the following
+    - `For other packages, subscribe to` : `Security updates only`
+    - `Automatically check for updates` : `Never`
+    - `When there are security updates` : `<empty>`
+    - `When there are other updates` : `<empty>`
+    - `Notify me of a new Ubuntu version` : `Never`
+
+
+### Fix Slow Kodi?
+
+```txt
+add
+usbhid.mousepoll=0
+
+to /boot/cmdline.txt
+in the same line separated from the other stuff by spaces
+```
+
+### Default to HDMI
+
+`/etc/pulse/default.pa`
+
+`sudo vim /usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones.conf`
+`pactl list sinks`
+
+
 
