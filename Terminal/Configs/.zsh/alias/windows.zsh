@@ -13,13 +13,8 @@ alias start="cmd.exe /C start"
 alias vvm="bash $HSCRIPTS/vvm.bash $SNC"
 
 ## Programs
-alias explore="$OPEN_EXPLORER"
-alias excel="$START_SPREADSHEET"
-alias word="$START_WORDPROCESS"
-alias powerpoint="$START_PRESENTATION"
 alias qdir="start \"$HDOCS\\Q-Dir_State.qdr\""
 alias screens="explore \"%USERPROFILE%\\snc\\Pictures\\Screenshots\""
-alias mdrender="start \"C:\\Users\\efournier\\AppData\\Local\\Chromium\\Application\\chrome.exe\""
 alias nplus="start notepad++"
 
 ## System

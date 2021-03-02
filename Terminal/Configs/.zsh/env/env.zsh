@@ -131,20 +131,23 @@ if [[ "$ENV" == "Linux" ]]; then
   #### Explorer
   export OPEN_EXPLORER="nautilus"
 
+  #### Explore
+  explore() { nautilus "$1" }
+
   #### Spreadsheet
-  export OPEN_SPREADSHEET="libreoffice"
+  spreadsheet() { libreoffice "$1" }
 
   #### Word Processing
-  export OPEN_WORDPROCESS="libreoffice"
+  word() { libreoffice "$1" }
 
   #### Presentation
-  export OPEN_PRESENTATION="libreoffice"
+  presentation() { libreoffice "$1" }
 
   #### Markdown
-  export OPEN_MARKDOWN="chromium"
+  markdown() { chromium "$1" }
 
   #### PDF
-  export OPEN_PDF="evince"
+  pdf() { evince "$1" }
 
   ### Alias
 
@@ -198,24 +201,24 @@ elif [[ "$ENV" == "Windows" ]]; then
   export HOSTS="/c/Windows/System32/drivers/etc/hosts"
 
   ### Program Types
-
+ 
   #### Explorer
-  export OPEN_EXPLORER="start explorer"
+  explore() { cmd.exe /C start "explorer" "$(wslpath -w $1)"; }
 
   #### Spreadsheet
-  export OPEN_SPREADSHEET="start excel"
+  spreadsheet() { cmd.exe /C start "excel" "$(wslpath -w $1)"; }
 
   #### Word Processing
-  export OPEN_WORDPROCESS="start winword"
+  word() { cmd.exe /C start "winword" "$(wslpath -w $1)"; }
 
   #### Presentation
-  export OPEN_PRESENTATION="start powerpnt"
+  presentation() { cmd.exe /C start "powerpnt" "$(wslpath -w $1)"; }
 
   #### Markdown
-  export OPEN_MARKDOWN="\"C:\\Users\\efournier\\AppData\\Local\\Chromium\\Application\\chrome.exe\""
+  markdown() { cmd.exe /C start 'C:\Users\efournier\AppData\Local\Chromium\Application\chrome.exe' "$(wslpath -w $1)" }
 
   #### PDF
-  export OPEN_PDF=""
+  pdf() { cmd.exe /C start "$(wslpath -w $1)" }
 
   ### Alias
 
