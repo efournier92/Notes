@@ -10,10 +10,13 @@
 ## Files
 
 ### Open Budget Spreadsheet
-alias budget="libreoffice $SDOCS/Fin/Budget_2020.xls"
+alias budget="$OPEN_SPREADSHEET $SDOCS/Fin/Budget_${THIS_YEAR}.xls"
 
 ### Create a new agile story directory and file
 alias story="$HOME/scripts/create_agile_story"
+
+### Open Weight Spreadsheet
+alias weight="$OPEN_SPREADSHEET $SDOCS/Hlt/Weight_${THIS_YEAR}.xlsx"
 
 ## Sync
 

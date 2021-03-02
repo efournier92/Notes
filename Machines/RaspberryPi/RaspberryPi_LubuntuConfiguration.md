@@ -506,5 +506,3 @@ in the same line separated from the other stuff by spaces
 `sudo vim /usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones.conf`
 `pactl list sinks`
 
-
-
