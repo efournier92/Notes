@@ -10,13 +10,13 @@
 ## Files
 
 ### Open Budget Spreadsheet
-alias budget="$OPEN_SPREADSHEET $SDOCS/Fin/Budget_${THIS_YEAR}.xls"
+alias budget="spreadsheet $SDOCS/Fin/Budget_${THIS_YEAR}.xls"
 
 ### Create a new agile story directory and file
 alias story="$HOME/scripts/create_agile_story"
 
 ### Open Weight Spreadsheet
-alias weight="$OPEN_SPREADSHEET $SDOCS/Hlt/Weight_${THIS_YEAR}.xlsx"
+alias weight="spreadsheet $SDOCS/Hlt/Weight_${THIS_YEAR}.xlsx"
 
 ## Sync
 

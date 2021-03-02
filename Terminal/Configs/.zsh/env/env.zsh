@@ -128,26 +128,23 @@ if [[ "$ENV" == "Linux" ]]; then
 
   ### Program Types
 
-  #### Explorer
-  export OPEN_EXPLORER="nautilus"
-
   #### Explore
-  explore() { nautilus "$1" }
+  explore() { nautilus "$1"; }
 
   #### Spreadsheet
-  spreadsheet() { libreoffice "$1" }
+  spreadsheet() { libreoffice "$1"; }
 
   #### Word Processing
-  word() { libreoffice "$1" }
+  word() { libreoffice "$1"; }
 
   #### Presentation
-  presentation() { libreoffice "$1" }
+  presentation() { libreoffice "$1"; }
 
   #### Markdown
-  markdown() { chromium "$1" }
+  markdown() { chromium "$1"; }
 
   #### PDF
-  pdf() { evince "$1" }
+  pdf() { evince "$1"; }
 
   ### Alias
 
@@ -202,7 +199,7 @@ elif [[ "$ENV" == "Windows" ]]; then
 
   ### Program Types
  
-  #### Explorer
+  #### Explore
   explore() { cmd.exe /C start "explorer" "$(wslpath -w $1)"; }
 
   #### Spreadsheet
@@ -215,10 +212,10 @@ elif [[ "$ENV" == "Windows" ]]; then
   presentation() { cmd.exe /C start "powerpnt" "$(wslpath -w $1)"; }
 
   #### Markdown
-  markdown() { cmd.exe /C start 'C:\Users\efournier\AppData\Local\Chromium\Application\chrome.exe' "$(wslpath -w $1)" }
+  markdown() { cmd.exe /C start 'C:\Users\efournier\AppData\Local\Chromium\Application\chrome.exe' "$(wslpath -w $1)"; }
 
   #### PDF
-  pdf() { cmd.exe /C start "$(wslpath -w $1)" }
+  pdf() { cmd.exe /C start "$(wslpath -w $1)"; }
 
   ### Alias
 
