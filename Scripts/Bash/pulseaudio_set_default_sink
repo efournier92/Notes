@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+main() {
+  local index=0
+  pactl list sinks |
+    grep "alsa.name" |
+      while read line; do 
+        [[ "$line" =~ "HDMI" ]] \
+          && hdmi_sink_index=$index
+        local index=$((index + 1))
+      done;
+  
+  if [[ ! -z $hdmi_sink_index ]]; then
+    echo "HDMI Sink Index: $hdmi_sink_index"
+    pacmd set-default-sink $hdmi_sink_index
+  else
+    echo "Failed to detect HDMI sink"
+  fi
+}
+
+main "$@"
+
