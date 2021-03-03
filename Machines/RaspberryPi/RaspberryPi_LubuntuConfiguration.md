@@ -23,10 +23,10 @@
   - The same can also be accomplished via the command line, albeit more tediously
 
 ### Ubuntu
-- `sudo apt install rpi-imager`
+- `$ sudo apt install rpi-imager`
 
 ### Manjaro
-- `sudo pamac build rpi-imager`
+- `$ sudo pamac build rpi-imager`
 
 ## Install Ubuntu
 
@@ -40,7 +40,7 @@
 
 ### Configure `config.txt`
 1. Open `config.txt` via the following command
-    - `sudo vim /boot/firmware/config.txt`
+    - `$ sudo vim /boot/firmware/config.txt`
 2. Ensure the following custom configurations are present
     - `gpu_mem=512`
     - `disable_overscan=1`
@@ -50,12 +50,11 @@
     - `boot_delay=0`
     - `disable_fw_kms_setup=1`
     - `force_turbo=1`
-
 3. Reboot
 
 ### Install `Lubuntu`
 1. Install `Lubuntu` via the following command
-    - `sudo apt install lubuntu`
+    - `$ sudo apt install lubuntu`
 
 ### Launch `Lubuntu`
 1. Log out of the default `Gnome` shell
@@ -64,7 +63,7 @@
 4. Launch a terminal instance
 
 ### Update `apt`
-- `sudo apt update`
+- `$ sudo apt update`
 
 ### Delete Extraneous Packages
 
@@ -122,53 +121,59 @@ sudo apt purge --auto-remove \
     - Uninstall them individually via `sudo apt purge`
 
 #### Run `apt` Cleanup Commands
-1. `sudo apt autoremove`
-2. `sudo apt remove`
-3. `sudo apt autoclean`
-4. `sudo apt clean`
-5. `sudo apt update`
+1. `$ sudo apt autoremove`
+2. `$ sudo apt remove`
+3. `$ sudo apt autoclean`
+4. `$ sudo apt clean`
+5. `$ sudo apt update`
 
 ## Install Additional Packages
 
 ### Kodi
-- `sudo apt install kodi`
+- `$ sudo apt install kodi`
 
 ### Veracrypt
-- `sudo add-apt-repository ppa:unit193/encryption`
-- `sudo apt install veracrypt`
+- `$ sudo add-apt-repository ppa:unit193/encryption`
+- `$ sudo apt install veracrypt`
 
 ### VLC
-- `sudo apt install bleachbit`
+- `$ sudo apt install bleachbit`
 
 ### BleachBit
-- `sudo apt install bleachbit`
+- `$ sudo apt install bleachbit`
 
 ### Firefox
-- `sudo apt install firefox`
+- `$ sudo apt install firefox`
 
 ### Remmina
-- `sudo apt install remmina`
+- `$ sudo apt install remmina`
 
 ### Curl
-- `sudo apt install curl`
+- `$ sudo apt install curl`
 
 ### Progress
-- `sudo apt install progress`
+- `$ sudo apt install progress`
 
 ### Eog
-- `sudo apt install eog`
+- `$ sudo apt install eog`
 
 ### Vim
-- `sudo apt install vim-gtk3`
+- `$ sudo apt install vim-gtk3`
 
 ### Tmux
-- `sudo apt install tmux`
+- `$ sudo apt install tmux`
 
 ### Zsh
-- `sudo apt install zsh`
+- `$ sudo apt install zsh`
+
+### OpenVPN
+- `$ sudo apt install openvpn`
+
+### TigerVNC
+- `$ sudo apt install tigervnc-scraping-server`
 
 ### Oh-My-Zsh
-- `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+- `$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 
 ## Configure Monitor Settings
 1. `Application Menu > Preferences > LXQt settings > Monitor settings`
@@ -237,31 +242,38 @@ sudo apt purge --auto-remove \
 - `Spacing` : `6 px`
 - `How many to save` : `0`
 
-## Configure Terminal
+## Configure Terminal 
+
+### Rpi User
 1. Install `gnome-terminal`
-    - `sudo apt install gnome-terminal`
+    - `$ sudo apt install gnome-terminal`
 2. Set `gnome-terminal` as default
     - `Application Menu > Preferences > LXQt settings > Session Settings`
     - Select `default Applications`
       - Next to `terminal Emulation` selection `Search`
       - Locate and select `/usr/bin/gnome-terminal`
 3. Add config files from the following location
-    - `git clone https://github.com/efournier92/Notes`
-    - `cd Notes/Terminal/Configs`
-    - `cp tmux* vim* zsh* ~`
-4. Create a `dconf` entry for our `gnome-terminal` profile
+    - `$ mkdir ~/cs`
+    - `$ git clone https://github.com/efournier92/Notes`
+    - `$ cd ~/cs/Notes`
+    - `$ cd Notes/Terminal/Configs`
+    - `$ cp tmux* vim* zsh* ~`
+4. Use `zsh` as the default shell
+  - `$ chsh`
+    - `$ /bin/zsh`
+5. Create a `dconf` entry for our `gnome-terminal` profile
     - Load `gnome-terminal` via command
     - Right click anywhere in the terminal, then click `preferences`
     - Select the only item under `Profiles`
     - Change any configuration value
-5. Load `Material` profile
-    - `git clone https://github.com/efournier92/Notes`
-    - `cd Notes/Terminal/Colors`
+6. Load `Material` profile
+    - `$ git clone https://github.com/efournier92/Notes`
+    - `$ cd Notes/Terminal/Colors`
     - Find the UUID of default profile via the following command
-      - `dconf dump /org/gnome/terminal/legacy/profiles:/`
+      - `$ dconf dump /org/gnome/terminal/legacy/profiles:/`
     - Load the saved profile to the existing default profile via the following command
-      - `dconf load /org/gnome/terminal/legacy/profiles:/$UUID/ < material-dark-profile.conf`
-6. Finish configuration
+      - `$ dconf load /org/gnome/terminal/legacy/profiles:/$UUID/ < material-dark-profile.conf`
+7. Finish configuration
     - Launch `gnome-terminal`
     - Right click the terminal
     - Select `Preferences`
@@ -278,9 +290,21 @@ sudo apt purge --auto-remove \
       - `Preserve working directory` : `Shell only`
       - `When command exits` : `Restart the command`
 
+### Root User
+1. Start a session as root
+    - `$ sudo su`
+2. Add config files from the following location
+    - `$ cd /home/rpi/cs/Terminal/Configs`
+    - `$ cp tmux* vim* zsh* ~`
+3. Install `Oh-My-Zsh`
+    - `$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+4. Use `zsh` as the default shell
+  - `$ chsh`
+    - `$ /bin/zsh`
+
 ## Automatic Login
 1. Create or edit file `/etc/sddm.conf`
-    - `sudo vim /etc/sddm.conf`
+    - `$ sudo vim /etc/sddm.conf`
 2. Add the following contents to that file
 
 ```txt
@@ -303,18 +327,17 @@ Icon=utilities-terminal
 Exec=gnome-terminal
 ```
 
-## Add autoboot file
-
-```txt
-[Desktop Entry]
-Type=Application
-Name=boot
-Exec=/home/${user}/scripts/boot_tasks pi_media
-```
-
 ## Boot Script
-1. TODO
-2. TODO
+
+### Purpose
+- I like to use a script to run a set of boot tasks when my system starts up. This file can be configured in any way, but an example of mine is available at the following location.
+  - [boot_tasks](https://raw.githubusercontent.com/efournier92/Notes/master/Scripts/Bash/boot_tasks)
+
+### Create Boot Script
+1. Copy the `boot_tasks` file from the repository we created above to our `scripts` directory
+    - `$ mkdir -p ~/scripts`
+    - `$ cp ~/cs/Notes/Scripts/Bash/boot_tasks ~/scripts`
+2. Regardless of how we choose to configure this file, the block pertinent to a Lubuntu build on Raspberry Pi goes as follows.
 
 ```bash
 run_pi_media_tasks() {
@@ -327,6 +350,91 @@ run_pi_media_tasks() {
   gnome-terminal --window --maximize &
 }
 ```
+
+### Run Script on Boot
+1. Create a new `desktop` file in `autostart`
+    - `$ vim ~/.config/autostart/boot.desktop`
+2. Paste the following block into that file
+
+```txt
+[Desktop Entry]
+Type=Application
+Name=boot
+Exec=/home/${user}/scripts/boot_tasks pi_media
+```
+
+### VPN-Server Configuration
+
+#### Purpose
+- Having an active VNC server is useful for remoting into this machine's shell from elsewhere.
+  - Enable this with discretion and be sure to have a strong password!
+
+#### Start OpenVPN on Boot
+1. Copy the `connect_vpn_persistly` file from the repository we created above to our `scripts` directory
+    - `$ cp ~/cs/Notes/Scripts/Bash/connect_vpn_persistently ~/scripts`
+2. Open `boot-tasks`
+    - `$ vim ~/scripts/boot_tasks`
+3. Ensure the following line is present in the `run_pi_media_tasks` function
+    - `$HOME/scripts/connect_vpn_persistently &`
+
+#### Add a VPN Connection
+1. Download a `.ovpn` file for our host
+    - Save file anywhere temporarily
+2. Open `Application Menu > Preferences > Advanced Network Configuration`
+    - Select the `+` icon in the bottom-left corner
+    - Select `Import a saved VPN configuration` under `Connection Type`
+    - Select `Create...`
+    - Input username and password in the next dialog
+    - Select `People` icon next to the password field
+      - Select `Store the password for all users`
+    - Select `Save`
+
+#### View/Edit VPN Connection Details
+1. Run the following command to view the contents of our VPN configuration
+    - `$ sudo vim /etc/NetworkManager/system-connections/Calypso.nmconnection`
+
+### VNC-Server Configuration
+
+#### Purpose
+- Having an active VNC server is useful for remoting into this machine's GUI from elsewhere.
+
+#### Start TigerVNC Server on Boot
+1. Copy the `connect_vnc_persistently` file from the repository we created above to our `scripts` directory
+    - `$ cp ~/cs/Notes/Scripts/Bash/connect_vnc_persistently ~/scripts`
+2. Open `boot-tasks`
+    - `$ vim ~/scripts/boot_tasks`
+3. Ensure the following line is present in the `run_pi_media_tasks` function
+    - `$HOME/scripts/connect_vnc_persistently &`
+
+### Fix HDMI Audio
+
+#### Purpose
+- Because the Raspberry pie has both HDMI and headphone-jack outputs, PulseAudio tends to be inconsistent with which index it loads assigns to each, which leads to a frustrating experience of not having audio after boot 50% of the time. I choose to address this with a script I wrote, available in the same repository we cloned above, to be executed once at boot time.
+
+#### Detect PulseAudio HDMI Sink on Boot
+1. Copy the `connect_vnc_persistently` file from the repository we created above to our `scripts` directory
+    - `$ cp ~/cs/Notes/Scripts/Bash/pulseaudio_set_default_sink ~/scripts`
+2. Open `boot-tasks`
+    - `$ vim ~/scripts/boot_tasks`
+3. Ensure the following line is present in the `run_pi_media_tasks` function
+    - `$HOME/scripts/pulseaudio_set_default_sink &`
+
+#### Useful PulseAudio Commands
+
+##### Edit the default configuration at system level
+- `$ sudo vim /etc/pulse/default.pa`
+
+##### Edit the default configuration for user
+- `$ cp /etc/pulse/default.pa ~/.config/pulse/`
+- `$ vim ~/.config/pulse/default.pa`
+
+##### List all sinks
+- `$ pactl list sinks`
+- `$ pactl list short sinks`
+- `$ pacmd list-sinks`
+
+##### Edit a Sound Profile
+- `$ sudo vim /usr/share/pulseaudio/alsa-mixer/paths/...`
 
 ## Shortcuts
 
@@ -364,7 +472,7 @@ run_pi_media_tasks() {
 
 ### Install Theme Packages
 1. Install `Arc`, `Papirus`, and `Breeze` via the following command
-    - `sudo apt install arc-theme papirus-icon-them breeze-cursor-theme`
+    - `$ sudo apt install arc-theme papirus-icon-them breeze-cursor-theme`
 
 ### Change the Main Theme
 1. Open `Application Menu > Preferences > LXQt settings > Appearance`
@@ -407,34 +515,34 @@ run_pi_media_tasks() {
 
 ## Fix Choppy Audio
 1. Open the `PulseAudio` default configuration file
-    - `sudo vim /etc/pulse/default.pa`
+    - `$ sudo vim /etc/pulse/default.pa`
 2. Find the following line
-    - `Load-module module-udev-detect`
+    - `$ load-module module-udev-detect`
 3. Modify the above line to the below
-    - `load-module module-udev-detect tsched=0`
+    - `$ load-module module-udev-detect tsched=0`
 
 ## Change User Properties
 1. Run `User and Group Settings` as root via the following command
-    - `sudo lxqt-admin-user`
+    - `$ sudo lxqt-admin-user`
 2. Use to GUI tools to alter basic user properties
 
 ### Change a User's Name
 1. Launch `User and Group Settings` as root via the following command
-    - `sudo lxqt-admin-user`
+    - `$ sudo lxqt-admin-user`
 2. Use to the GUI tools to create a new user
     - Name the user `alt`
 3. Disable auto login
-    - `sudo vim /etc/sddm.conf`
+    - `$ sudo vim /etc/sddm.conf`
     - Comment out all lines in `/etc/sddm.conf`
 4. Reboot
 5. Login as `alt`
-6. `sudo lxqt-admin-user`
+6. `$ sudo lxqt-admin-user`
 7. Change the original user's name
 8. Move the user's `home` directory to match the new name
-    - `sudo mv /home/${ORIGINAL_NAME} /home/${NEW_NAME}`
+    - `$ sudo mv /home/${ORIGINAL_NAME} /home/${NEW_NAME}`
 9. Reboot
 10. Login as the under the new username
-11. `sudo lxqt-admin-user`
+11. `$ sudo lxqt-admin-user`
 12. Use to the GUI tools to delete the `alt` user
 
 ## Backup via `Clonezilla`
@@ -455,22 +563,6 @@ run_pi_media_tasks() {
 15. Accept all subsequent prompts
 16. Wait for the backup process to complete and our machine to power off
 
-## Configure VPN
-
-###
-
-###
-
-### View VPN Configuration File
-1. Run the following command to view the contents of our VPN configuration
-    - `sudo vim /etc/NetworkManager/system-connections/Calypso.nmconnection`
-
-## Configure VNC Server
-
-### 
-
-###
-
 ## Disable Update Notifications
 
 ### Disable Auto Starting `upgNotifier`
@@ -487,22 +579,4 @@ run_pi_media_tasks() {
     - `When there are security updates` : `<empty>`
     - `When there are other updates` : `<empty>`
     - `Notify me of a new Ubuntu version` : `Never`
-
-
-### Fix Slow Kodi?
-
-```txt
-add
-usbhid.mousepoll=0
-
-to /boot/cmdline.txt
-in the same line separated from the other stuff by spaces
-```
-
-### Default to HDMI
-
-`/etc/pulse/default.pa`
-
-`sudo vim /usr/share/pulseaudio/alsa-mixer/paths/analog-output-headphones.conf`
-`pactl list sinks`
 
