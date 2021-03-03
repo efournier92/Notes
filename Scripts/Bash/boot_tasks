@@ -13,17 +13,6 @@ shopt -s expand_aliases
 source "$HOME/.zsh/env/env.zsh"
 source "$alias_dir/drives.zsh"
 
-is_valid_machine_type() {
-  local machine_type="$1"
-
-  [[ "$machine_type" != "laptop" \
-    && "$machine_type" != "mac_media" \
-    && "$machine_type" != "pi_media" \
-  ]] \
-    && echo "false" \
-    || echo "true"
-}
-
 delay_to_prevent_ui_bugs() {
   local delay_time=0.5
 
@@ -42,8 +31,7 @@ run_laptop_tasks() {
 
   setxkbmap -option caps:escape
   xinput disable "$touchscreen_id"
-
-  #start_unison_snc
+  start_unison_snc
   m_bnk
   gnome-terminal --window --maximize
 }
@@ -58,6 +46,7 @@ run_mac_media_tasks() {
 run_pi_media_tasks() {
   $HOME/scripts/connect_vpn_persistently &
   $HOME/scripts/connect_vnc_persistently &
+  $HOME/scripts/pulseaudio_set_default_sink &
   setxkbmap -option caps:escape
   pacmd set-default-sink alsa_output.platform-bcm2835_audio.stereo-fallback
   m_md
@@ -65,22 +54,41 @@ run_pi_media_tasks() {
   gnome-terminal --window --maximize &
 }
 
-main() {
+is_valid_machine_type() {
+  local machine_type="$1"
+
+  [[ "$machine_type" != "laptop" \
+    && "$machine_type" != "mac_media" \
+    && "$machine_type" != "pi_media" \
+  ]] \
+    && echo "false" \
+    || echo "true"
+}
+
+validate_machine_type() {
   local machine_type="$1"
 
   local machine_is_valid=`is_valid_machine_type "$machine_type"`
   if [[ "$machine_is_valid" == "false" ]]; then
-    echo "ERROR: Must supply valid a valid machine type"
+    echo "ERROR: Must supply valid a valid machine type" >&2
     exit 1
   fi
+}
+
+main() {
+  local machine_type="$1"
+
+  validate_machine_type "$machine_type"
 
   delay_to_prevent_ui_bugs
   
-  [[ "$machine_type" == "laptop" ]] && run_laptop_tasks
-
-  [[ "$machine_type" == "mac_media" ]]  && run_mac_media_tasks
-
-  [[ "$machine_type" == "pi_media" ]]  && run_pi_media_tasks
+  if [[ "$machine_type" == "laptop" ]] then
+    run_laptop_tasks
+  elif [[ "$machine_type" == "mac_media" ]] then
+    run_mac_media_tasks
+  elif [[ "$machine_type" == "pi_media" ]] then
+    run_pi_media_tasks
+  fi
 }
 
 main "$@"

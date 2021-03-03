@@ -1,16 +1,25 @@
 #!/bin/bash
 
 #----------------
-# Name          : connect_vpn_persistently
-# Description   : Continuously attempts to connect a VPN client in Gnome 
+# Name          : connect_vnc_persistently
+# Description   : Continuously attempts to connect a TigerVNC 
 # Author        : E Fournier
-# Dependencies  : nmcli
-# Example Usage : ./connect_vpn_persistently
+# Dependencies  : x0vncserver, nohup
+# Example Usage : ./connect_vnc_persistently 60
 #----------------
 
-while true; do
-  [[ -z `pgrep x0vncserver` ]] \
-    && nohup x0vncserver -PasswordFile "$HOME/.vnc/passwd"
-  sleep 60
-done
+main() {
+  local timeout_seconds=$1
+
+  [[ -z "$timeout" ]] && local timeout_seconds=60
+
+  while true; do
+    [[ -z `pgrep x0vncserver` ]] \
+      && nohup x0vncserver -PasswordFile "$HOME/.vnc/passwd"
+
+    sleep $timeout_seconds
+  done
+}
+
+main "$@"
 

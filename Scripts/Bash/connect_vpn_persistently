@@ -2,14 +2,30 @@
 
 #----------------
 # Name          : connect_vpn_persistently
-# Description   : Continuously attempts to connect a VPN client in Gnome 
+# Description   : Continuously attempts to connect a VPN client
 # Author        : E Fournier
 # Dependencies  : nmcli
-# Example Usage : ./connect_vpn_persistently
+# Example Usage : ./connect_vpn_persistently "Calypso" 60
 #----------------
 
-while true; do
-  [[ -z `ip tuntap show` ]] && nmcli con up id Calypso
-  sleep 60
-done
+main() {
+  local vpn_server_id="$1"
+  local timeout_seconds=$2
+
+  if [[ -z "$vpn_server_id" ]]; then
+    echo "ERROR: Must supply VPN Server ID as first argument."
+    exit
+  fi
+
+  [[ -z "$timeout" ]] && local timeout_seconds=60
+
+  while true; do
+    [[ -z `ip tuntap show` ]] \
+      && nmcli con up id "$vpn_server_id"
+
+    sleep $timeout_seconds
+  done
+}
+
+main "$@"
 
