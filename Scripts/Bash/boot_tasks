@@ -43,10 +43,10 @@ run_mac_media_tasks() {
   kodi -fs &
 }
 
-run_pi_media_tasks() {
-  $HOME/scripts/connect_vpn_persistently &
-  $HOME/scripts/connect_vnc_persistently &
-  $HOME/scripts/pulseaudio_set_default_sink &
+run_rpi_media_tasks() {
+  $HOME/scripts/connect_vpn_persistently "Calypso" 60 &
+  $HOME/scripts/connect_vnc_persistently 60 &
+  $HOME/scripts/pulseaudio_set_default_sink "alsa.name" "HDMI" &
   setxkbmap -option caps:escape
   pacmd set-default-sink alsa_output.platform-bcm2835_audio.stereo-fallback
   m_md
@@ -59,7 +59,7 @@ is_valid_machine_type() {
 
   [[ "$machine_type" != "laptop" \
     && "$machine_type" != "mac_media" \
-    && "$machine_type" != "pi_media" \
+    && "$machine_type" != "rpi_media" \
   ]] \
     && echo "false" \
     || echo "true"
@@ -82,12 +82,12 @@ main() {
 
   delay_to_prevent_ui_bugs
   
-  if [[ "$machine_type" == "laptop" ]] then
+  if [[ "$machine_type" == "laptop" ]]; then
     run_laptop_tasks
-  elif [[ "$machine_type" == "mac_media" ]] then
+  elif [[ "$machine_type" == "mac_media" ]]; then
     run_mac_media_tasks
-  elif [[ "$machine_type" == "pi_media" ]] then
-    run_pi_media_tasks
+  elif [[ "$machine_type" == "rpi_media" ]]; then
+    run_rpi_media_tasks
   fi
 }
 
