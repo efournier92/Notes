@@ -15,7 +15,7 @@ uuid_extC="b790dcd2-3998-4f51-9365-397149e38f97"
 uuid_bkA="9ecb85bd-62f3-4f24-9801-8b3c2839903d"
 uuid_bkB="d416cfe4-9b86-42da-9c33-4b3814a164de"
 uuid_bkC="e6210770-ba18-4162-9be5-cbc647e229ce"
-uuid_md="42e96f42-a1df-4606-9c10-ee746a9e2f66"
+uuid_md="557302aa-ac1b-4cff-b7f0-3f8cf4db290b"
 
 ## Mountpoints
 
@@ -135,6 +135,9 @@ alias bk_lg=". $HSCRIPTS/backup_lg $EXTA"
 ### Backup extA to extB
 alias bk_extAB=". $HSCRIPTS/backup_dir $EXTA $EXTB"
 
+### Backup extA to extB
+alias bk_extBA=". $HSCRIPTS/backup_dir $EXTB $EXTA"
+
 ### Backup extA to extC
 alias bk_extAC=". $HSCRIPTS/backup_dir $EXTA $EXTC"
 
@@ -149,6 +152,9 @@ alias bk_extBMD=". $HSCRIPTS/backup_dir $EXTB/Media $MD"
 
 ### Backup bkA to bkB
 alias bk_bkAB=". $HSCRIPTS/backup_dir $BKA $BKB"
+
+### Backup bkA to bkB
+alias bk_bkBA=". $HSCRIPTS/backup_dir $BKB $BKA"
 
 ### Backup bkA to bkC
 alias bk_bkAC=". $HSCRIPTS/backup_dir $BKA $BKC"
