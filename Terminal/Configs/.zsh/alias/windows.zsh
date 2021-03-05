@@ -13,9 +13,9 @@ alias start="cmd.exe /C start"
 alias vvm="bash $HSCRIPTS/vvm.bash $SNC"
 
 ## Programs
-alias qdir="start \"$HDOCS\\Q-Dir_State.qdr\""
-alias screens="explore \"%USERPROFILE%\\snc\\Pictures\\Screenshots\""
+alias screens="explore $SNC/Pictures/Screenshots"
 alias nplus="start notepad++"
+qdir() { cmd.exe /C start "$(wslpath -w $HDOCS/Q-Dir_State.qdr)"; }
 
 ## System
 
