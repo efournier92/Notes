@@ -1,0 +1,25 @@
+#!/bin/bash
+
+shopt -s extglob
+
+main() {
+  local fade_duration=$1
+
+  [[ -z "$fade_duration" ]] && local fade_duration=2
+
+  local out_dir="_OUT_FADES"
+  mkdir -p "$out_dir"
+
+  for file in *.+(mp3|wav|flac); do
+    local duration=$(ffprobe -loglevel error -show_entries format=duration -of default=nk=1:nw=1 "$file")
+    local offset=$(bc -l <<< "$duration"-$fade_duration)
+    ffmpeg \
+      -i "$file" \
+      -c:a libmp3lame -b:a 192k -ac 2 \
+      -af "afade=t=in:st=0:d=$fade_duration,afade=t=out:st=$offset:d=$fade_duration" \
+      "$out_dir/${file%%.*}.mp3"
+  done
+}
+
+main "$@"
+
