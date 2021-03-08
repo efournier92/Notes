@@ -1,7 +1,4 @@
-[core]
-	autocrlf = input
 [credential]
-	useHttpPath = true
+  helper = store
 [user]
 	name = efournier92
-	email = efournier92@gmail.com
