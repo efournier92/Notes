@@ -14,7 +14,7 @@
 1. Using a piece of black duct tape, fold around the top of the card to form a tail
     - This is critical for easy retrieval from the Pi's slot
       - Improper retrieval can easily break the card
-2. Cut the tail to a reasonable length
+1. Cut the tail to a reasonable length
 
 ## Download `Raspberry Pi Imager`
 
@@ -41,7 +41,7 @@
 ### Configure `config.txt`
 1. Open `config.txt` via the following command
     - `$ sudo vim /boot/firmware/config.txt`
-2. Ensure the following custom configurations are present
+1. Ensure the following custom configurations are present
     - `gpu_mem=512`
     - `disable_overscan=1`
     - `hdmi_force_edid_audio=1`
@@ -50,7 +50,7 @@
     - `boot_delay=0`
     - `disable_fw_kms_setup=1`
     - `force_turbo=1`
-3. Reboot
+1. Reboot
 
 ### Install `Lubuntu`
 1. Install `Lubuntu` via the following command
@@ -58,9 +58,9 @@
 
 ### Launch `Lubuntu`
 1. Log out of the default `Gnome` shell
-2. From the `gdm` display manager, select the gear icon, then `Lubuntu`
-3. Enter passwords to boot into `Lubuntu`
-4. Launch a terminal instance
+1. From the `gdm` display manager, select the gear icon, then `Lubuntu`
+1. Enter passwords to boot into `Lubuntu`
+1. Launch a terminal instance
 
 ### Update `apt`
 - `$ sudo apt update`
@@ -90,6 +90,8 @@ sudo apt purge --auto-remove \
   k3b \
   librhythmbox-core10 \
   libtotem0 \
+  lxqt-powermanagement \
+  lxqt-powermanagement-l10n \
   mythes-en-us \
   rhythmbox \
   rhythmbox-data \
@@ -117,15 +119,15 @@ sudo apt purge --auto-remove \
 
 #### Hunt Down Even More Extraneous Packages
 1. Open the `Applications Menu`
-2. Locate any other unnecessary packages
+1. Locate any other unnecessary packages
     - Uninstall them individually via `sudo apt purge`
 
 #### Run `apt` Cleanup Commands
 1. `$ sudo apt autoremove`
-2. `$ sudo apt remove`
-3. `$ sudo apt autoclean`
-4. `$ sudo apt clean`
-5. `$ sudo apt update`
+1. `$ sudo apt remove`
+1. `$ sudo apt autoclean`
+1. `$ sudo apt clean`
+1. `$ sudo apt update`
 
 ## Install Additional Packages
 
@@ -175,14 +177,17 @@ sudo apt purge --auto-remove \
 ### Oh-My-Zsh
 - `$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 
+### Power Manager
+- `$ sudo apt install xfce4-power-manager`
+
 ## Configure Monitor Settings
 1. `Application Menu > Preferences > LXQt settings > Monitor settings`
-2. In the `Setup` tab, configure the following
+1. In the `Setup` tab, configure the following
     - `Resolution` : `1920x1080`
 
 ## Configure the Main Panel
 1. Right click the main panel
-2. Use the following as guidelines for suggested panel configuration
+1. Use the following as guidelines for suggested panel configuration
 
 ### Panel
 - `Size` : `26px`
@@ -206,14 +211,14 @@ sudo apt purge --auto-remove \
 
 #### Configure `Removable Media`
 1. Select `Removable Media`
-2. Select the gear icon from the right-hand panel
-3. In the `Removable Media Settings` window
+1. Select the gear icon from the right-hand panel
+1. In the `Removable Media Settings` window
     - `When a device is connected` : `Do nothing`
 
 #### Configure `Volume control`
 1. Select `Removable Media`
-2. Select the gear icon from the right-hand panel
-3. In the `Volume Control Settings` window, configure the following
+1. Select the gear icon from the right-hand panel
+1. In the `Volume Control Settings` window, configure the following
     - `Device to control` : `PulseAudio` : `Built-in Audio Stereo`
     - `Mute on middle click` : `enabled`
     - `Show on mouse click` : `enabled`
@@ -225,13 +230,13 @@ sudo apt purge --auto-remove \
 
 #### Configure `PulseAudio Volume Control`
 1. Open `Application Menu`, open `Sound & Video > PulseAudio Volume Control`
-2. Click the `Output Devices` tab
-3. Find the section with port named `Analog Output`
-4. Select `Set as fallback` in the `Analog Output` section
+1. Click the `Output Devices` tab
+1. Find the section with port named `Analog Output`
+1. Select `Set as fallback` in the `Analog Output` section
 
 #### Configure `Desktop Notifications`
 1. `Application Menu > Preferences > LXQt settings > Destop Notifications`
-2. In the `Desktop Notifications` window, configure the following
+1. In the `Desktop Notifications` window, configure the following
 
 ##### Basic Settings
 - `Position on screen` : `<top right>`
@@ -247,33 +252,33 @@ sudo apt purge --auto-remove \
 ### Rpi User
 1. Install `gnome-terminal`
     - `$ sudo apt install gnome-terminal`
-2. Set `gnome-terminal` as default
+1. Set `gnome-terminal` as default
     - `Application Menu > Preferences > LXQt settings > Session Settings`
     - Select `default Applications`
       - Next to `terminal Emulation` selection `Search`
       - Locate and select `/usr/bin/gnome-terminal`
-3. Add config files from the following location
+1. Add config files from the following location
     - `$ mkdir ~/cs`
     - `$ git clone https://github.com/efournier92/Notes`
     - `$ cd ~/cs/Notes`
     - `$ cd Notes/Terminal/Configs`
     - `$ cp tmux* vim* zsh* ~`
-4. Use `zsh` as the default shell
-  - `$ chsh`
-    - `$ /bin/zsh`
-5. Create a `dconf` entry for our `gnome-terminal` profile
+1. Use `zsh` as the default shell
+    - `$ chsh`
+      - `$ /bin/zsh`
+1. Create a `dconf` entry for our `gnome-terminal` profile
     - Load `gnome-terminal` via command
     - Right click anywhere in the terminal, then click `preferences`
     - Select the only item under `Profiles`
     - Change any configuration value
-6. Load `Material` profile
+1. Load `Material` profile
     - `$ git clone https://github.com/efournier92/Notes`
     - `$ cd Notes/Terminal/Colors`
     - Find the UUID of default profile via the following command
       - `$ dconf dump /org/gnome/terminal/legacy/profiles:/`
     - Load the saved profile to the existing default profile via the following command
       - `$ dconf load /org/gnome/terminal/legacy/profiles:/$UUID/ < material-dark-profile.conf`
-7. Finish configuration
+1. Finish configuration
     - Launch `gnome-terminal`
     - Right click the terminal
     - Select `Preferences`
@@ -293,19 +298,19 @@ sudo apt purge --auto-remove \
 ### Root User
 1. Start a session as root
     - `$ sudo su`
-2. Add config files from the following location
+1. Add config files from the following location
     - `$ cd /home/rpi/cs/Terminal/Configs`
     - `$ cp tmux* vim* zsh* ~`
-3. Install `Oh-My-Zsh`
+1. Install `Oh-My-Zsh`
     - `$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-4. Use `zsh` as the default shell
+1. Use `zsh` as the default shell
   - `$ chsh`
     - `$ /bin/zsh`
 
 ## Automatic Login
 1. Create or edit file `/etc/sddm.conf`
     - `$ sudo vim /etc/sddm.conf`
-2. Add the following contents to that file
+1. Add the following contents to that file
 
 ```txt
 [Autologin]
@@ -316,7 +321,7 @@ User=pi
 ## Add Gnome-Terminal to `Applications Menu`
 1. Create a new `desktop` item via the following command
     - `sudo vim /usr/share/applications/gterminal.desktop`
-2. Add the following contents in the new file
+1. Add the following contents in the new file
 
 ```txt
 [Desktop Entry]
@@ -337,7 +342,7 @@ Exec=gnome-terminal
 1. Copy the `boot_tasks` file from the repository we created above to our `scripts` directory
     - `$ mkdir -p ~/scripts`
     - `$ cp ~/cs/Notes/Scripts/Bash/boot_tasks ~/scripts`
-2. Regardless of how we choose to configure this file, the block pertinent to a Lubuntu build on Raspberry Pi goes as follows.
+1. Regardless of how we choose to configure this file, the block pertinent to a Lubuntu build on Raspberry Pi goes as follows.
 
 ```bash
 run_pi_media_tasks() {
@@ -354,7 +359,7 @@ run_pi_media_tasks() {
 ### Run Script on Boot
 1. Create a new `desktop` file in `autostart`
     - `$ vim ~/.config/autostart/boot.desktop`
-2. Paste the following block into that file
+1. Paste the following block into that file
 
 ```txt
 [Desktop Entry]
@@ -372,15 +377,15 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 #### Start OpenVPN on Boot
 1. Copy the `connect_vpn_persistly` file from the repository we created above to our `scripts` directory
     - `$ cp ~/cs/Notes/Scripts/Bash/connect_vpn_persistently ~/scripts`
-2. Open `boot-tasks`
+1. Open `boot-tasks`
     - `$ vim ~/scripts/boot_tasks`
-3. Ensure the following line is present in the `run_pi_media_tasks` function
+1. Ensure the following line is present in the `run_pi_media_tasks` function
     - `$HOME/scripts/connect_vpn_persistently &`
 
 #### Add a VPN Connection
 1. Download a `.ovpn` file for our host
     - Save file anywhere temporarily
-2. Open `Application Menu > Preferences > Advanced Network Configuration`
+1. Open `Application Menu > Preferences > Advanced Network Configuration`
     - Select the `+` icon in the bottom-left corner
     - Select `Import a saved VPN configuration` under `Connection Type`
     - Select `Create...`
@@ -401,9 +406,9 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 #### Start TigerVNC Server on Boot
 1. Copy the `connect_vnc_persistently` file from the repository we created above to our `scripts` directory
     - `$ cp ~/cs/Notes/Scripts/Bash/connect_vnc_persistently ~/scripts`
-2. Open `boot-tasks`
+1. Open `boot-tasks`
     - `$ vim ~/scripts/boot_tasks`
-3. Ensure the following line is present in the `run_pi_media_tasks` function
+1. Ensure the following line is present in the `run_pi_media_tasks` function
     - `$HOME/scripts/connect_vnc_persistently &`
 
 ### Fix HDMI Audio
@@ -414,9 +419,9 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 #### Detect PulseAudio HDMI Sink on Boot
 1. Copy the `connect_vnc_persistently` file from the repository we created above to our `scripts` directory
     - `$ cp ~/cs/Notes/Scripts/Bash/pulseaudio_set_default_sink ~/scripts`
-2. Open `boot-tasks`
+1. Open `boot-tasks`
     - `$ vim ~/scripts/boot_tasks`
-3. Ensure the following line is present in the `run_pi_media_tasks` function
+1. Ensure the following line is present in the `run_pi_media_tasks` function
     - `$HOME/scripts/pulseaudio_set_default_sink &`
 
 #### Useful PulseAudio Commands
@@ -443,26 +448,26 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 
 ### Terminal
 1. Locate and select the shortcut with description `Launch Terminal`
-2. In the right-hand menu, select `Modify...`
-3. Enter the following in the `Command` field
+1. In the right-hand menu, select `Modify...`
+1. Enter the following in the `Command` field
     - `gnome-terminal --window --maximize`
-4. Select `OK`
+1. Select `OK`
 
 ### Web Browser
 1. Locate and select the shortcut with description `Web browser`
-2. In the right-hand menu, select `Modify...`
-3. Enter the following in the `Description` field
+1. In the right-hand menu, select `Modify...`
+1. Enter the following in the `Description` field
     - `Launch Browser`
-4. Enter the following in the `Command` field
+1. Enter the following in the `Command` field
     - `firefox`
-5. Select `OK`
+1. Select `OK`
 
 ### Kodi
 1. In the right-hand menu, click `Add...`
-2. Select the `Shortcut` field, then press `Control+Alt+K`
-3. Enter the following in the `Description` field
+1. Select the `Shortcut` field, then press `Control+Alt+K`
+1. Enter the following in the `Description` field
     - `Launch Kodi`
-4. Enter the following in the `Command` field
+1. Enter the following in the `Command` field
     - `kodi -fs`
 
 ## Theming
@@ -476,107 +481,120 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 
 ### Change the Main Theme
 1. Open `Application Menu > Preferences > LXQt settings > Appearance`
-2. Select `Widget Style`
+1. Select `Widget Style`
     - Select `Breeze` for `Qt Style`
     - Select `Arc-Dark` for `GTK 2 Theme`
     - Select `Arc-Dark` for `GTK 3 Theme`
-3. Select `Icons Theme`
+1. Select `Icons Theme`
     - Select `Papirus-Dark`
-4. Select `Cursor`
+1. Select `Cursor`
     - Select `Breeze`
-5. In the main window, select `Apply`
-6. In the main window, select `Close`
+1. In the main window, select `Apply`
+1. In the main window, select `Close`
 
 #### Change the `Application Menu` Icon
 1. Right click the `Application Menu` in main bottom panel
-2. Select `Manage Widgets`
-3. Select `Appliction Menu`, then click the right-hand gear icon for settings
-4. Select the checkbox next to `Icon`
-5. Click the folder icon, then navigate to the following file
+1. Select `Manage Widgets`
+1. Select `Appliction Menu`, then click the right-hand gear icon for settings
+1. Select the checkbox next to `Icon`
+1. Click the folder icon, then navigate to the following file
     - `/usr/share/icons/Papirus-Dark/22x22/actions/application-menu.svg`
-6. Select open
-7. Close the `Main Menu settings` window
+1. Select open
+1. Close the `Main Menu settings` window
 
 #### OpenBox
 
 ##### Install the `Arc-Openbox` Theme
 1. `cd /usr/share/themes`
-2. `sudo git clone https://github.com/dglava/arc-openbox`
-3. `sudo mv arc-openbox Arc-Openbox`
+1. `sudo git clone https://github.com/dglava/arc-openbox`
+1. `sudo mv arc-openbox Arc-Openbox`
 
 ##### Enable the `Arc-Openbox` Theme
 1. From the `Application Launcher`, open `Menu > Preferences > LXQt settings > Openbox Settings`
-2. Select the `Theme` tab
-3. Select `Install a new theme...`
-4. Navigate to `/usr/share/themes/Arc-Openbox`
+1. Select the `Theme` tab
+1. Select `Install a new theme...`
+1. Navigate to `/usr/share/themes/Arc-Openbox`
     - Select `arc-dark.obt`
     - Click `Open`
-5. Back in the menu, select `Arc-Dark`, then click `Close`
+1. Back in the menu, select `Arc-Dark`, then click `Close`
+
+## Power Settings
+
+### Enable Sleep On Idle
+1. Open `Application Menu > Preferences > Power Manager`
+1. Select the `Display` tab
+1. Configure the following
+    - `Blank after` : `<60 minutes>`
+    - `Put to sleep after` : `<60 minutes>`
+    - `Switch off after` : `<60 minutes>`
 
 ## Fix Choppy Audio
 1. Open the `PulseAudio` default configuration file
     - `$ sudo vim /etc/pulse/default.pa`
-2. Find the following line
+1. Find the following line
     - `$ load-module module-udev-detect`
-3. Modify the above line to the below
+1. Modify the above line to the below
     - `$ load-module module-udev-detect tsched=0`
 
 ## Change User Properties
 1. Run `User and Group Settings` as root via the following command
     - `$ sudo lxqt-admin-user`
-2. Use to GUI tools to alter basic user properties
+1. Use to GUI tools to alter basic user properties
 
 ### Change a User's Name
 1. Launch `User and Group Settings` as root via the following command
     - `$ sudo lxqt-admin-user`
-2. Use to the GUI tools to create a new user
+1. Use to the GUI tools to create a new user
     - Name the user `alt`
-3. Disable auto login
+1. Disable auto login
     - `$ sudo vim /etc/sddm.conf`
     - Comment out all lines in `/etc/sddm.conf`
-4. Reboot
-5. Login as `alt`
-6. `$ sudo lxqt-admin-user`
-7. Change the original user's name
-8. Move the user's `home` directory to match the new name
+1. Reboot
+1. Login as `alt`
+1. `$ sudo lxqt-admin-user`
+1. Change the original user's name
+1. Move the user's `home` directory to match the new name
     - `$ sudo mv /home/${ORIGINAL_NAME} /home/${NEW_NAME}`
-9. Reboot
-10. Login as the under the new username
-11. `$ sudo lxqt-admin-user`
-12. Use to the GUI tools to delete the `alt` user
+1. Reboot
+1. Login as the under the new username
+1. `$ sudo lxqt-admin-user`
+1. Use to the GUI tools to delete the `alt` user
 
 ## Backup via `Clonezilla`
 1. Boot up a `Clonezilla Live` image
-2. Select `device-image`
-3. Select `local_dev`
-4. Wait for all necessary devices to be recognized, then press `Ctrl-C`
-5. Select the directory where we want the backup image to be stored, then select `<Done>`
-6. Choose `Beginner` mode for the wizard
-7. Select `savedisk`
-8. Input a name for our image
-9. Choose the SD card as the disk we want to back up
-10. Select `Skip checking/repairing the file system`
-11. Select `Yes, check the saved image`
-12. Select `Encrpyt the image`
-13. Select `Shutdown` as the action once everything is finished
-14. Enter our password for recovering the backup later
-15. Accept all subsequent prompts
-16. Wait for the backup process to complete and our machine to power off
+1. Select `device-image`
+1. Select `local_dev`
+1. Wait for all necessary devices to be recognized, then press `Ctrl-C`
+1. Select the directory where we want the backup image to be stored, then select `<Done>`
+1. Choose `Beginner` mode for the wizard
+1. Select `savedisk`
+1. Input a name for our image
+1. Choose the SD card as the disk we want to back up
+1. Select `Skip checking/repairing the file system`
+1. Select `Yes, check the saved image`
+1. Select `Encrpyt the image`
+1. Select `Shutdown` as the action once everything is finished
+1. Enter our password for recovering the backup later
+1. Accept all subsequent prompts
+1. Wait for the backup process to complete and our machine to power off
 
 ## Disable Update Notifications
 
 ### Disable Auto Starting `upgNotifier`
 1. Open `Application Menu > Preferences > LXQt settings > Session Settings`
-2. Select the `Autostart` tab
-3. Uncheck `upgNotifier`
+1. Select the `Autostart` tab
+1. Uncheck `upgNotifier`
 
 ### Minimize System Update Notifications
 1. Open `Application Menu > Preferences > Software & Updates`
-2. Select the `Updates` tab
-3. Configure the following
+1. Select the `Updates` tab
+1. Configure the following
     - `For other packages, subscribe to` : `Security updates only`
     - `Automatically check for updates` : `Never`
     - `When there are security updates` : `<empty>`
     - `When there are other updates` : `<empty>`
     - `Notify me of a new Ubuntu version` : `Never`
+
+
+
 
