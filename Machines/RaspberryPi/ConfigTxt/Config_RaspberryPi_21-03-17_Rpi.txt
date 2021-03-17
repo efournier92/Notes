@@ -1,0 +1,36 @@
+# RPI SETTINGS
+
+## System
+max_framebuffers=1
+arm_64bit=1
+kernel=vmlinuz
+cmdline=cmdline.txt
+initramfs initrd.img followkernel
+
+## Performance
+gpu_mem=512
+start_x=1
+
+## Graphics
+dtoverlay=vc4-fkms-v3d
+
+## Display
+disable_overscan=1
+
+## Video
+hdmi_drive=2
+#hdmi_group=2
+#hdmi_mode=82
+
+## Audio
+dtparam=audio=on
+dtparam=i2c_arm=on
+dtparam=spi=on
+#hdmi_force_edid_audio=1
+
+## Fast Boot
+disable_splash=1
+boot_delay=0
+disable_fw_kms_setup=1
+force_turbo=1
+
