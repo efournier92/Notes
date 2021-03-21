@@ -13,8 +13,8 @@ shopt -s expand_aliases
 source "$HOME/.zsh/env/env.zsh"
 source "$alias_dir/drives.zsh"
 
-delay_to_prevent_ui_bugs() {
-  local delay_time=0.5
+delay_to_prevent_bugs() {
+  local delay_time=1
 
   sleep "$delay_time"
 }
@@ -44,11 +44,12 @@ run_mac_media_tasks() {
 }
 
 run_rpi_media_tasks() {
+  delay_to_prevent_bugs
+  $HOME/scripts/pulseaudio_set_default_sink "alsa.name" "HDMI" &
   $HOME/scripts/connect_vpn_persistently "Calypso" 60 &
   $HOME/scripts/connect_vnc_persistently 60 &
-  $HOME/scripts/pulseaudio_set_default_sink "alsa.name" "HDMI" &
+  xfce4-power-manager &
   setxkbmap -option caps:escape
-  pacmd set-default-sink alsa_output.platform-bcm2835_audio.stereo-fallback
   m_md
   kodi -fs &
   gnome-terminal --window --maximize &
@@ -80,7 +81,7 @@ main() {
 
   validate_machine_type "$machine_type"
 
-  delay_to_prevent_ui_bugs
+  delay_to_prevent_bugs
   
   if [[ "$machine_type" == "laptop" ]]; then
     run_laptop_tasks
