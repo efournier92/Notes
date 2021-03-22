@@ -32,12 +32,14 @@ set_default_sink_to_target() {
 main() {
   local property_name="$1"
   local target_pattern="$2"
-  
+ 
+  local first_sink_number=`pactl list short sinks | cut -c1-1`;
   local hdmi_sink_index=`get_target_sink_index "$property_name" "$target_pattern"`
+  local hdmi_sink_number=$(( first_sink_number + hdmi_sink_index ))
   
-  if [[ ! -z $hdmi_sink_index ]]; then
-    echo "HDMI Sink Index: $hdmi_sink_index" >&2
-    set_default_sink_to_target $hdmi_sink_index
+  if [[ ! -z $hdmi_sink_number ]]; then
+    echo "HDMI Sink Number: $hdmi_sink_number" >&2
+    set_default_sink_to_target $hdmi_sink_number
   else
     echo "Failed to detect HDMI sink" >&2
   fi
