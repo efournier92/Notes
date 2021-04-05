@@ -1,4 +1,4 @@
-[credential]
-  helper = store
 [user]
 	name = efournier92
+[credential]
+  helper = store

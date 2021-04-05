@@ -36,11 +36,6 @@ source "$ZPLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 ## Prevent partial-line %
 unsetopt PROMPT_SP
 
-# Sound
-
-## Disable console beeping
-unsetopt beep
-
 # Privacy
 
 ## History
@@ -50,11 +45,6 @@ HISTSIZE=1000
 
 ### Do not persist history to file
 SAVEHIST=0
-
-## Git
-
-### Cache credentials for 24 hours
-git config --global credential.helper 'cache --timeout=86400'
 
 ## Method Overrides
 
