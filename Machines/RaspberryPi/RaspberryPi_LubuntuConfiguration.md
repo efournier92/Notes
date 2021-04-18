@@ -90,6 +90,7 @@ sudo apt purge --auto-remove \
   k3b \
   librhythmbox-core10 \
   libtotem0 \
+  lxqt-notificationd \
   lxqt-powermanagement \
   lxqt-powermanagement-l10n \
   mythes-en-us \
