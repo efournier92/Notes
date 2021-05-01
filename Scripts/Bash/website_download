@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#----------------
+# Name          : website_download
+# Description   : 
+# Author        : E Fournier
+# Dependencies  : wget
+# Example Usage : ./website_download "www.linuxjournal.com" "/content/downloading-entire-web-site-wget"
+#----------------
+
+main() {
+  local domain="$1"
+  local path="$2"
+
+  local full_path="${domain}${path}"
+  
+  echo "PATH: $full_path"
+
+  wget \
+    --recursive \
+    --page-requisites \
+    --adjust-extension \
+    --span-hosts \
+    --convert-links \
+    --restrict-file-names=windows \
+    --domains "$domain" \
+    --no-parent \
+      "${domain}${path}"
+}
+
+main "$@"
+
