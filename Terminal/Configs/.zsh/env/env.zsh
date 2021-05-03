@@ -74,6 +74,11 @@ export TSESSIONS="$TTMUX/sessions"
 #### Tmux scripts directory
 export TSCRIPTS="$TTMUX/scripts"
 
+### Unison
+
+#### Unique machine host name
+export UNISONLOCALHOSTNAME=`lsblk -nro SERIAL`
+
 ### Sb
 
 #### Sb root directory
