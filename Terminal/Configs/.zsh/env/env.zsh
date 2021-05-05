@@ -76,8 +76,8 @@ export TSCRIPTS="$TTMUX/scripts"
 
 ### Unison
 
-#### Unique machine host name
-export UNISONLOCALHOSTNAME=`lsblk -nro SERIAL`
+#### Ensure unique host name per machine
+export UNISONLOCALHOSTNAME=`cat /etc/machine-id`
 
 ### Sb
 
