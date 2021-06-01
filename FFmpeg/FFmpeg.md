@@ -25,6 +25,7 @@
   - [Image Sequence](#image-sequence)
   - [Images from Video](#images-from-video)
   - [Extract Audio](#extract-audio)
+  - [Amplify Audio Volume](#amplify-audio-volume)
   - [`wav` to `mp3` ](#wav-to-mp3)
   - [Combine Video with Audio](#combine-video-with-audio)
   - [`avi` to `flv`](#avi-to-flv)
@@ -120,6 +121,18 @@ Crop a video's edges according by dimension.
 #### Command
 ```bash
 ffmpeg -i in.mp4 -filter:v "crop=out_w:out_h:x:y" out.mp4
+```
+
+### Change Aspect Ratio
+
+#### Description
+Adjust a video's aspect ratio based on defined width and height.
+
+#### Command
+```bash
+width=640
+height=480
+ffmpeg -i in.mp4 -vf scale=$width:$height -aspect $width:$height out.mp4
 ```
 
 ### Capture Sample Screenshot
@@ -337,6 +350,16 @@ Output the sound from a video as an audio file.
 #### Command
 ```bash
 ffmpeg -i in.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 out.mp3
+```
+
+### Amplify Audio Volume
+
+#### Description
+Increase or decrease the audio amplification statically across a media file.
+
+#### Command
+```bash
+ffmpeg -i in.mp4 -filter:a "volume=0.5" out.mp4
 ```
 
 ### `wav` to `mp3` 
