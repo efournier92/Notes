@@ -1,0 +1,52 @@
+#!/bin/bash
+
+print_help() {
+cat << EOF
+USAGE: ./pacman_cache {count,usage,rm,rm_uninstalled} num_versions_to_keep
+EOF
+}
+
+count_cached_packages() {
+  printf "________\nCOUNTING CACHED PACKAGES\n\n"
+  sudo ls /var/cache/pacman/pkg/ | wc -l
+}
+
+calculate_disk_usage() {
+  printf "___________\nCALCULATING DISK USAGE\n\n"
+  du -sh /var/cache/pacman/pkg/
+}
+
+remove_all_uninstalled_packages() {
+  printf "________\nREMOVING ALL UNINSTALLED PACKAGES\n\n"
+  sudo pacman -Sc
+}
+
+remove_keeping_num_versions() {
+  local num_versions_to_keep=$1
+
+  [[ -z "$num_versions_to_keep" ]] && local num_versions_to_keep=3
+  
+  printf "________\nREMOVING ALL BUT THE LATEST $num_versions_to_keep VERSIONS FROM PACKAGE CACHE\n\n"
+
+  sudo paccache -rk $num_versions_to_keep
+}
+
+main() {
+  local mode="$1"
+  local number=$2
+
+  if [[ "$mode" == "count" ]]; then
+    count_cached_packages
+  elif [[ "$mode" == "usage" ]]; then
+    calculate_disk_usage
+  elif [[ "$mode" == "rm_uninstalled" ]]; then
+    remove_all_uninstalled_packages
+  elif [[ "$mode" == "rm" ]]; then
+   remove_keeping_num_versions $number
+  else
+    print_help
+  fi
+}
+
+main "$@"
+
