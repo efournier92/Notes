@@ -13,8 +13,8 @@ shopt -s expand_aliases
 source "$HOME/.zsh/env/env.zsh"
 source "$alias_dir/drives.zsh"
 
-delay_to_prevent_bugs() {
-  local delay_time=1
+delay_to_prevent_ui_bugs() {
+  local delay_time=0.5
 
   sleep "$delay_time"
 }
@@ -26,41 +26,12 @@ start_unison_snc() {
     && nohup "$watch_script" "$SNC" "$ZSCRIPTS/uni" >/dev/null 2>&1&
 }
 
-run_laptop_tasks() {
-  local touchscreen_id="SYNA2393:00 06CB:19AC"
-
-  setxkbmap -option caps:escape
-  xinput disable "$touchscreen_id"
-  start_unison_snc
-  m_bnk
-  gnome-terminal --window --maximize
-}
-
-run_mac_media_tasks() {
-  setxkbmap -option caps:escape
-  m_md
-  gnome-terminal --window --maximize &
-  kodi -fs &
-}
-
-run_rpi_media_tasks() {
-  delay_to_prevent_bugs
-  $HOME/scripts/pulseaudio_set_default_sink "alsa.name" "HDMI" &
-  $HOME/scripts/connect_vpn_persistently "Calypso" 60 &
-  $HOME/scripts/connect_vnc_persistently 60 &
-  xfce4-power-manager &
-  setxkbmap -option caps:escape
-  m_md
-  kodi -fs &
-  gnome-terminal --window --maximize &
-}
-
 is_valid_machine_type() {
   local machine_type="$1"
 
-  [[ "$machine_type" != "laptop" \
-    && "$machine_type" != "mac_media" \
-    && "$machine_type" != "rpi_media" \
+  [[ "$machine_type" != "manjaro_general" \
+    && "$machine_type" != "manjaro_media" \
+    && "$machine_type" != "lubuntu_media" \
   ]] \
     && echo "false" \
     || echo "true"
@@ -76,19 +47,62 @@ validate_machine_type() {
   fi
 }
 
+run_lubuntu_media_tasks() {
+  $HOME/scripts/connect_vpn_persistently "Calypso" 60 &
+  $HOME/scripts/connect_vnc_persistently 60 &
+  $HOME/scripts/pulseaudio_set_default_sink "alsa.name" "HDMI" &
+
+  setxkbmap -option caps:escape
+  pacmd set-default-sink alsa_output.platform-bcm2835_audio.stereo-fallback
+
+  m_md
+  kodi -fs &
+  gnome-terminal --window --maximize &
+}
+
+run_manjaro_media_tasks() {
+  $HOME/scripts/connect_vpn_persistently "Calypso" 60 &
+  $HOME/scripts/connect_vnc_persistently 60 &
+
+  setxkbmap -option caps:escape
+
+  gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "suspend"
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 5400
+
+  m_md
+  gnome-terminal --window --maximize &
+  kodi -fs &
+}
+
+run_manjaro_general_tasks() {
+  local touchscreen_id="SYNA2393:00 06CB:19AC"
+
+  xinput disable "$touchscreen_id"
+  setxkbmap -option caps:escape
+
+  gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend true
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "nothing"
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 10000
+
+  start_unison_snc
+  m_bnk
+  gnome-terminal --window --maximize
+}
+
 main() {
   local machine_type="$1"
 
   validate_machine_type "$machine_type"
 
-  delay_to_prevent_bugs
+  delay_to_prevent_ui_bugs
   
-  if [[ "$machine_type" == "laptop" ]]; then
-    run_laptop_tasks
-  elif [[ "$machine_type" == "mac_media" ]]; then
-    run_mac_media_tasks
-  elif [[ "$machine_type" == "rpi_media" ]]; then
-    run_rpi_media_tasks
+  if [[ "$machine_type" == "manjaro_general" ]]; then
+    run_manjaro_general_tasks
+  elif [[ "$machine_type" == "manjaro_media" ]]; then
+    run_manjaro_media_tasks
+  elif [[ "$machine_type" == "lubuntu_media" ]]; then
+    run_lubuntu_media_tasks
   fi
 }
 
