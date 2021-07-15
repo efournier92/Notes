@@ -14,7 +14,9 @@ source "$HOME/.zsh/env/env.zsh"
 source "$alias_dir/drives.zsh"
 
 delay_to_prevent_ui_bugs() {
-  local delay_time=0.5
+  local delay_time=$1
+
+  [[ -z $delay_time ]] && local delay_time=0.5
 
   sleep "$delay_time"
 }
@@ -70,7 +72,10 @@ run_manjaro_media_tasks() {
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "suspend"
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 5400
 
+  delay_to_prevent_ui_bugs 2
+  xdotool key Escape  
   m_md
+
   gnome-terminal --window --maximize &
   kodi -fs &
 }
@@ -80,13 +85,17 @@ run_manjaro_general_tasks() {
 
   xinput disable "$touchscreen_id"
   setxkbmap -option caps:escape
-
+  
   gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend true
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "nothing"
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 10000
 
   start_unison_snc
+
+  delay_to_prevent_ui_bugs 2
+  xdotool key Escape  
   m_bnk
+
   gnome-terminal --window --maximize
 }
 
