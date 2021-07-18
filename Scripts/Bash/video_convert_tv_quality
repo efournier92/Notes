@@ -25,7 +25,6 @@ run_ffmpeg_command() {
   ffmpeg -i $in_file \
     -c:v libx264 -pix_fmt yuv420p -crf $crf \
     -preset slow \
-    -vf yadif=0:0:0 \
     -acodec aac -c:a libmp3lame \
     -map_metadata -1 -strict -2 \
     "$out_file"
@@ -38,6 +37,7 @@ run_ffmpeg_command_with_deinterlacing() {
 
   ffmpeg -i $in_file \
     -c:v libx264 -pix_fmt yuv420p -crf $crf \
+    -vf yadif=0:0:0 \
     -preset slow \
     -acodec aac -c:a libmp3lame \
     -map_metadata -1 -strict -2 \
