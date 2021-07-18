@@ -1,5 +1,13 @@
 #!/bin/zsh
 
+#----------------
+# Name          : video_convert_tv_quality
+# Description   : Converts videos in a directory to standard quality output
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./video_convert_tv_quality 30 false (mp4|mkv) $(pwd)
+#----------------
+
 print_info() {
   local in_file="$1"
   local out_file="$2"
@@ -17,6 +25,20 @@ run_ffmpeg_command() {
   ffmpeg -i $in_file \
     -c:v libx264 -pix_fmt yuv420p -crf $crf \
     -preset slow \
+    -vf yadif=0:0:0 \
+    -acodec aac -c:a libmp3lame \
+    -map_metadata -1 -strict -2 \
+    "$out_file"
+}
+
+run_ffmpeg_command_with_deinterlacing() {
+  local in_file="$1"
+  local out_file="$2"
+  local crf="$3"
+
+  ffmpeg -i $in_file \
+    -c:v libx264 -pix_fmt yuv420p -crf $crf \
+    -preset slow \
     -acodec aac -c:a libmp3lame \
     -map_metadata -1 -strict -2 \
     "$out_file"
@@ -24,8 +46,9 @@ run_ffmpeg_command() {
 
 main() {
   local crf=$1
-  local ext_in="$2"
-  local working_dir="$3"
+  local deinterlace="$2"
+  local ext_in="$3"
+  local working_dir="$4"
 
   [[ -z "$crf" ]] && local crf=30
   [[ -z "$ext_in" ]] && local ext_in="(mp4|mkv|avi|webm)"
@@ -45,7 +68,11 @@ main() {
     
     print_info "$in_file" "$out_file"
     
-    run_ffmpeg_command "$in_file" "$out_file" "$crf"
+    if [[ deinterlace == "true" ]]; then
+      run_ffmpeg_command_with_deinterlacing "$in_file" "$out_file" "$crf"
+    else
+      run_ffmpeg_command "$in_file" "$out_file" "$crf"
+    fi
   done
   }
 
