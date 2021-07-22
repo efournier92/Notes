@@ -175,9 +175,15 @@ if [[ "$ENV" == "Linux" ]]; then
 elif [[ "$ENV" == "Windows" ]]; then
 
   ### Snc
+  
+  #### Windows home directory
+  export WHOME="/mnt/c/User/efournier"
+
+  #### Data partition
+  export DATA="/mnt/d"
 
   #### Snc desktop directory
-  export START="$HOME/snc"
+  export START="$DATA/snc"
 
   #### Snc root directory
   export SNC="$START"
@@ -190,7 +196,7 @@ elif [[ "$ENV" == "Windows" ]]; then
   ### Cs
 
   #### Cs directory
-  export CS="$HOME/cs"
+  export CS="$DATA/cs"
 
   ### System
   
@@ -200,7 +206,7 @@ elif [[ "$ENV" == "Windows" ]]; then
   export DISPLAY=localhost:0.0
 
   ### Hosts file
-  export HOSTS="/c/Windows/System32/drivers/etc/hosts"
+  export HOSTS="/mnt/c/Windows/System32/drivers/etc/hosts"
 
   ### Program Types
  
