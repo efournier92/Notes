@@ -5,6 +5,8 @@ get_story_contents() {
 cat << EOF
 # [$name]()
 
+## Summary
+
 ## Background
 
 ## Terminology
