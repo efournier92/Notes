@@ -176,22 +176,35 @@ elif [[ "$ENV" == "Windows" ]]; then
 
   ### Snc
   
-  #### Windows home directory
-  export WHOME="/mnt/c/User/efournier"
+  #### POSIX Windows Directories
+ 
+  ##### Home
+  export WHOME_WIN='C:\\Users\\efournier'
+
+  ##### AppData
+  export WHOME_APPDATA="$WHOME_WIN\\AppData"
+
+  ##### AppData\Local
+  export WHOME_APPDATA_LOCAL="$WHOME_APPDATA\\Local"
+
+  #### UNIX Windows Directories
+  
+  ##### Home
+  export WHOME=$(wslpath $WHOME_WIN)
 
   #### Data partition
   export DATA="/mnt/d"
 
-  #### Snc desktop directory
+  ##### Snc desktop directory
   export START="$DATA/snc"
 
-  #### Snc root directory
+  ##### Snc root directory
   export SNC="$START"
 
   ### Sync
 
   #### Enable the sync process
-  export SYNC_ENABLED="true"
+  export SYNC_ENABLED="false"
 
   ### Cs
 
@@ -210,20 +223,45 @@ elif [[ "$ENV" == "Windows" ]]; then
 
   ### Program Types
  
+  open_windows_app() {
+    local app_name="$1"
+    local file_path="$2"
+    
+    [[ -z $file_path ]] \
+      && cmd.exe /C start "$app_name" > /dev/null 2>&1 \
+      || cmd.exe /C start "$app_name" "$(wslpath -w $file_path)" > /dev/null 2>&1
+  }
+
   #### Explore
-  explore() { cmd.exe /C start "explorer" "$(wslpath -w $1)"; }
+  explore() { open_windows_app "explorer" "$1"; }
 
   #### Spreadsheet
-  spreadsheet() { cmd.exe /C start "excel" "$(wslpath -w $1)"; }
+  spreadsheet() { open_windows_app "excel" "$1"; }
 
   #### Word Processing
-  word() { cmd.exe /C start "winword" "$(wslpath -w $1)"; }
+  word() { open_windows_app "winword" "$1"; }
 
   #### Presentation
-  presentation() { cmd.exe /C start "powerpnt" "$(wslpath -w $1)"; }
+  presentation() { open_windows_app "powerpnt" "$1"; }
 
   #### Markdown
-  markdown() { cmd.exe /C start 'C:\Users\efournier\AppData\Local\Chromium\Application\chrome.exe' "$(wslpath -w $1)"; }
+  
+  ##### Open with Canary
+  markdown_app="$WHOME_APPDATA_LOCAL\\Google\\Chrome SxS\\Application\\chrome.exe"
+
+  ##### Open with Chromium
+  # markdown_app='C:\\Users\\efournier\\AppData\\Local\\Chromium\\Application\\chrome.exe'
+
+  ##### Open with Chrome
+  # markdown_app='C:\Program Files\Google\Chrome\Application\chrome.exe'
+
+  markdown() { 
+    local file_path="$1"
+    
+    [[ -z $file_path ]] \
+      && echo "ERROR: Must supply a markdown file or directory to open." \
+      || cmd.exe /C $markdown_app "$(wslpath -w $1)" > /dev/null 2>&1; 
+  }
 
   #### PDF
   pdf() { cmd.exe /C start "$(wslpath -w $1)"; }
