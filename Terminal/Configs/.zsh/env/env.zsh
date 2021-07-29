@@ -245,22 +245,32 @@ elif [[ "$ENV" == "Windows" ]]; then
   presentation() { open_windows_app "powerpnt" "$1"; }
 
   #### Markdown
+
+  export APP_NAME_CANARY="canary"
+  export APP_NAME_CHROMIUM="chromium"
+  export APP_NAME_CHROME="chrome"
+
+  export APP_PATH_CANARY="$WHOME_APPDATA_LOCAL\\Google\\Chrome SxS\\Application\\chrome.exe"
+  export APP_PATH_CHROMIUM="$WHOME_APPDATA_LOCAL\\Chromium\\Application\\chrome.exe"
+  export APP_PATH_CHROME="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+
+  export MD_OPENER_NAME="$APP_NAME_CANARY"
   
   ##### Open with Canary
-  markdown_app="$WHOME_APPDATA_LOCAL\\Google\\Chrome SxS\\Application\\chrome.exe"
-
-  ##### Open with Chromium
-  # markdown_app='C:\\Users\\efournier\\AppData\\Local\\Chromium\\Application\\chrome.exe'
-
-  ##### Open with Chrome
-  # markdown_app='C:\Program Files\Google\Chrome\Application\chrome.exe'
+  if [[ "$MD_OPENER_NAME" = "$APP_NAME_CANARY" ]]; then
+    MD_OPENER_PATH="$APP_PATH_CANARY"
+  elif [[ "$MD_OPENER_NAME" = "$APP_NAME_CHROMIUM" ]]; then
+    MD_OPENER_PATH="$APP_PATH_CHROMIUM"
+  else
+    MD_OPENER_PATH="$APP_PATH_CHROME"
+  fi
 
   markdown() { 
     local file_path="$1"
     
     [[ -z $file_path ]] \
       && echo "ERROR: Must supply a markdown file or directory to open." \
-      || cmd.exe /C $markdown_app "$(wslpath -w $1)" > /dev/null 2>&1; 
+      || cmd.exe /C $MD_OPENER_PATH "$(wslpath -w $1)" > /dev/null 2>&1; 
   }
 
   #### PDF
