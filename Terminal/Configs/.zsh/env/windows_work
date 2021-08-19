@@ -1,0 +1,69 @@
+#!/bin/zsh
+
+#----------------
+# Name          : windows_work
+# Description   : Shell-environment configuration for Work build on Windows (WSL) system
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## File system
+
+### User home directory
+export UHOME="/mnt/c/Users/efournier"
+
+### Data directory
+export DATA="/mnt/d"
+
+### Bnk directory
+export BNK="$DATA/bnk"
+
+### Start directory
+export START="$BNK/snc"
+
+### Hosts file
+export HOSTS="/mnt/c/Windows/System32/drivers/etc/hosts"
+
+## Tools
+
+### Sync
+
+#### Enable unison
+export SYNC_ENABLED=true
+
+### Clipboard Server
+
+#### Set localhost for clipboard support
+export DISPLAY=localhost:0.0
+
+## Sources
+
+### Snc aliases
+source "$ZALIAS/snc"
+
+### Tools aliases
+source "$ZALIAS/tools"
+
+### Windows aliases
+source "$ZALIAS/windows"
+
+## GUI Launchers
+
+### Explore
+explore() { cmd.exe /C start "explorer" "$(wslpath -w $1)"; }
+
+### Spreadsheet
+spreadsheet() { cmd.exe /C start "excel" "$(wslpath -w $1)"; }
+
+### Word Processing
+word() { cmd.exe /C start "winword" "$(wslpath -w $1)"; }
+
+### Presentation
+presentation() { cmd.exe /C start "powerpnt" "$(wslpath -w $1)"; }
+
+### Markdown
+markdown() { cmd.exe /C start 'C:\Users\efournier\AppData\Local\Chromium\Application\chrome.exe' "$(wslpath -w $1)"; }
+
+### PDF
+pdf() { cmd.exe /C start "$(wslpath -w $1)"; }
+

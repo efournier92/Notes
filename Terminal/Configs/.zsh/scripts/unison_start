@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#----------------
+# Name          : unison_start
+# Description   : Starts the unison sync process
+# Author        : E Fournier
+# Dependencies  : nohup
+# Example Usage : ./uni
+#----------------
+
+#source "$HOME/.zsh/env/common"
+
+main() {
+  local mode="$1"
+
+  if ! command -v unison &> /dev/null; then
+    echo "ERROR: Unison is not installed"
+    exit
+  fi
+  
+  local sync_file_location="$ZSCRIPTS/unison_sync"
+  local server_domain="calypso.whatbox.ca"
+  local user="misigno"
+  local local_sync_dir="$SNC"
+  local server_sync_dir="$SBROOT/snc"
+  local server_bin_dir="$SBROOT/bin"
+
+  if [[ "$mode" == "watch" ]]; then
+    nohup "$sync_file_location" "$server_domain" "$user" "$local_sync_dir" "$server_sync_dir" "$server_bin_dir" "watch" >/dev/null 2>&1&
+  else
+    "$sync_file_location" "$server_domain" "$user" "$local_sync_dir" "$server_sync_dir" "$server_bin_dir"
+  fi
+}
+
+main "$@"
+

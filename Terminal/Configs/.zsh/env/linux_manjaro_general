@@ -1,0 +1,51 @@
+#!/bin/zsh
+
+#----------------
+# Name          : linux_manjaro_general
+# Description   : Shell-environment configuration for General build on Linux Manjaro
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## File system
+
+### Bnk directory
+export BNK="/mnt/bnk"
+
+### Start directory
+export START="$BNK"
+
+## Tools
+
+### Sync
+
+#### Enable unison
+export SYNC_ENABLED=true
+
+## Resources
+
+### Linux common
+source "$ZENV/linux_common"
+
+## Boot
+
+### Tasks
+run_boot_tasks() {
+  local touchscreen_id="SYNA2393:00 06CB:19AC"
+
+  xinput disable "$touchscreen_id"
+  setxkbmap -option caps:escape
+  
+  gsettings set org.gnome.desktop.screensaver lock-enabled true
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "nothing"
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 10000
+
+  start_unison_snc
+
+  delay_for_ui 2
+  xdotool key Escape
+
+  m_bnk
+  gnome-terminal --window --maximize
+}
+

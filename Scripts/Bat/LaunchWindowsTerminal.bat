@@ -6,9 +6,9 @@
 @echo off
 CLS
 ECHO.
-ECHO =============================
-ECHO Running Admin shell
-ECHO =============================
+::ECHO =============================
+::ECHO Running Admin shell
+::ECHO =============================
 
 :init
 setlocal DisableDelayedExpansion
@@ -26,9 +26,9 @@ if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges )
 :getPrivileges
 if '%1'=='ELEV' (echo ELEV & shift /1 & goto gotPrivileges)
 ECHO.
-ECHO **************************************
-ECHO Invoking UAC for Privilege Escalation
-ECHO **************************************
+::ECHO **************************************
+::ECHO Invoking UAC for Privilege Escalation
+::ECHO **************************************
 
 ECHO Set UAC = CreateObject^("Shell.Application"^) > "%vbsGetPrivileges%"
 ECHO args = "ELEV " >> "%vbsGetPrivileges%"
@@ -57,6 +57,6 @@ if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
 ::START
 ::::::::::::::::::::::::::::
 REM
-start /b %USERPROFILE%\AppData\Local\Microsoft\WindowsApps\wt.exe
+start /b /max %USERPROFILE%\AppData\Local\Microsoft\WindowsApps\wt.exe
 exit
 

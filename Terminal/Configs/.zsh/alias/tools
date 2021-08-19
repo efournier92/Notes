@@ -1,0 +1,67 @@
+#!/bin/zsh
+
+#----------------
+# Name          : tools.zsh
+# Description   : Aliases for miscellaneous tools
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## Files
+
+### Bookmarks
+alias bookmarks="vim $SDOCS/bck/bookmarks.md"
+
+### Open Budget spreadsheet
+alias budget="spreadsheet $SDOCS/Fin/Budget_${THIS_YEAR}.xls"
+
+### Open financial tabs in Chrome
+alias banking="$SDOCS/Fin/browser_tabs_banking"
+
+### Open Amazon Fresh tabs in Chrome
+alias fresh="$SDOCS/Hlt/browser_tabs_fresh"
+
+### Create a new agile story directory and file
+alias story="$SCRIPTS/create_agile_story"
+
+### Open Weight Spreadsheet
+alias weight="spreadsheet $SDOCS/Hlt/Weight_${THIS_YEAR}.xlsx"
+
+### Open Jeopardy Spreadsheet
+alias jeps="spreadsheet $SDOCS/Gme/Jeopardy.xlsx"
+
+## Sync
+
+### SB 
+
+### Sync with Unison
+alias uni=". $ZSCRIPTS/unison_start"
+
+## Audio
+
+### Run Audio-Lg Script
+alias aud_lg="$SCRIPTS/audio_lg -i $RC/RECORD -o $EXTA/Lg/Audio"
+
+## Browser
+
+### Launch Tor
+alias tor="GTK_THEME=Adwaita:light torbrowser-launcher"
+
+## List
+
+### List Block Devices with UUIDs
+alias lsuuid="lsblk -o NAME,FSTYPE,PARTLABEL,UUID,PARTUUID"
+
+## Location
+
+### Whereami
+alias whereami="curl ipinfo.io"
+
+## Cleanup
+
+### List `._` Files
+alias dotunderls="find . -name '._*' -print"
+
+### Delete `._` Files
+alias dotunderrm="find . -name '._*' -delete -print"
+
