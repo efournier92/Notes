@@ -52,10 +52,10 @@ export HLE="$BNK/hle"
 export SNC="$BNK/snc"
 
 #### Scripts
-export SCRIPTS="$BNK/scripts"
+export SCRIPTS="$HOME/.scripts"
 
-#### Ensure bnk directories exist
-mkdir -p "$BNK" "$SNC" "$CS" "$HLE" "$SCRIPTS"
+#### Ensure relevant directories exist
+mkdir -p "$BNK" "$SNC" "$CS" "$HLE"
 
 ### Zsh
 

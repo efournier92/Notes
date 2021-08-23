@@ -27,8 +27,8 @@ alias sbvpn!="sudo killall openvpn"
 ## Local Filesystem
 
 ### Mount slot to local filesystem
-alias sbfs=". $SCRIPTS/mount_sbfs $SB"
+alias sbfs=". $SCRIPTS/mount_sbfs $SBFS"
 
 ### Unmount slot from local filesystem
-alias sbfs!="fusermount -u $SB"
+alias sbfs!="fusermount -u $SBFS"
 

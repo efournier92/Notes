@@ -18,7 +18,13 @@ export HOSTS="/etc/hosts"
 ## Directories
 
 ### Sb mount point
-export SB="$BNK/sbfs"
+export SBFS="$BNK/sbfs"
+
+### Sb root directory
+export SBROOT="/home/misigno"
+
+#### Ensure relevant directories exist
+mkdir -p "$SBFS"
 
 ## Sources
 

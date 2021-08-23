@@ -24,7 +24,7 @@ tmux new-window -t "$SESSION_NAME:1" "ssh misigno@calypso.whatbox.ca"
 ## 3rd Window
 
 ### Full Pane
-tmux new-window -t "$SESSION_NAME:2" ". ~/scripts/mount_sbfs ~/sbfs; cd ~/sbfs; zsh"
+tmux new-window -t "$SESSION_NAME:2" ". $SCRIPTS/mount_sbfs $SBFS; cd $SBFS; zsh"
 
 ## Select Starting Window
 tmux select-window -t "$SESSION_NAME:0"
