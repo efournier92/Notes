@@ -40,23 +40,6 @@ export UDOCS="$UHOME/Documents"
 #### Documents
 export UPICS="$UHOME/Pictures"
 
-### Bnk
-
-#### Cs
-export CS="$BNK/cs"
-
-#### Hle
-export HLE="$BNK/hle"
-
-#### Snc
-export SNC="$BNK/snc"
-
-#### Scripts
-export SCRIPTS="$HOME/.scripts"
-
-#### Ensure relevant directories exist
-mkdir -p "$BNK" "$SNC" "$CS" "$HLE"
-
 ### Zsh
 
 #### Zsh root directory
@@ -76,6 +59,33 @@ export ZENV="$ZZSH/env"
 
 #### Zsh scripts directory
 export ZSCRIPTS="$ZZSH/scripts"
+
+### SB
+
+#### SB root directory
+export SBROOT="/home/misigno"
+
+## Environment
+
+### Load environment-specific configuration
+source "$ZENV/$ENV_NAME"
+
+### Bnk
+
+#### Cs
+export CS="$BNK/cs"
+
+#### Hle
+export HLE="$BNK/hle"
+
+#### Snc
+export SNC="$BNK/snc"
+
+#### Scripts
+export SCRIPTS="$HOME/.scripts"
+
+#### Ensure relevant directories exist
+mkdir -p "$BNK" "$SNC" "$CS" "$HLE"
 
 ### Vim
 
@@ -115,11 +125,6 @@ SAVEHIST=0
 
 ### Always list directory contents on change
 chpwd() { ls }
-
-## Environment
-
-### Load environment-specific configuration
-. "$ZENV/$ENV_NAME"
 
 ## Tools
 

@@ -16,7 +16,7 @@ alias vvm="bash $SCRIPTS/vvm.bash $SNC"
 ## Programs
 alias qdir="start \"$HDOCS\\Q-Dir_State.qdr\""
 alias screens="explore \"%USERPROFILE%\\snc\\Pictures\\Screenshots\""
-alias nplus="start notepad++"
+alias nplus="/mnt/c/Program\ Files\ \(x86\)/Notepad++/notepad++.exe"
 
 ## System
 
@@ -26,7 +26,7 @@ alias m_tfs="sudo mount -t drvfs '\\\\tfs\\TeamCityBuilds' $TFS"
 alias m_tfs!="sudo umount $TFS"
 
 ### System Edit
-alias hostedit="vim $HOSTS"
+alias hostedit="nplus 'C:\Windows\System32\drivers\etc\hosts'"
 
 ### System Cleanup
 alias tempclean="rm -rf $HOME/AppData/Local/Temp/*"

@@ -15,13 +15,10 @@ export UHOME="$HOME"
 ### Hosts file
 export HOSTS="/etc/hosts"
 
-## Directories
+### SB
 
-### Sb mount point
+#### SB mount point
 export SBFS="$BNK/sbfs"
-
-### Sb root directory
-export SBROOT="/home/misigno"
 
 #### Ensure relevant directories exist
 mkdir -p "$SBFS"

@@ -4,7 +4,7 @@
 # Name          : unison_sync
 # Description   : Syncs local directory to remote using Unison
 # Author        : E Fournier
-# Dependencies  : unison
+# Dependencies  : unison, inotifywait, pgrep
 # Example Usage : ./sync_unison 
 #----------------
 
