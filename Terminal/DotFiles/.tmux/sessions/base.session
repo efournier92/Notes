@@ -8,7 +8,7 @@
 #----------------
 
 ## Load ZSH configuration
-source "$HOME/.zsh/env/env.zsh"
+source "$HOME/.zsh/env/common"
 
 ## Create Base Session
 SESSION_NAME="base"

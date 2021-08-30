@@ -12,15 +12,17 @@ source "$HOME/.zshrc"
 
 ## Create Base Session
 SESSION_NAME="base"
-BASE_DIR="$ENV_START"
+BASE_DIR="$START"
 
 ## 1st Window
 
 while true; do
-### Full Pane
-tmux new -s "$SESSION_NAME" -d "cd $BASE_DIR; zsh"
 
-## Attach session
-tmux attach -t "$SESSION_NAME"
+  ### Full Pane
+  tmux new -s "$SESSION_NAME" -d "cd $BASE_DIR; zsh"
+
+  ## Attach session
+  tmux attach -t "$SESSION_NAME"
+
 done
 

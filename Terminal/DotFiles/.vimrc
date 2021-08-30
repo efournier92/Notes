@@ -221,6 +221,11 @@ nnoremap <leader>f :set guifont=*<CR>
 """ Format JSON
 nnoremap <leader>json :%!python -m json.tool<CR>
 
+"" Rename
+
+""" Rename selection
+vnoremap <Leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
+
 "" Encoding
 
 """ Base64
@@ -236,16 +241,27 @@ vnoremap <leader>d64 :'<,'>!python -m base64 -d<CR>
 """ Change PWD to directory of the current buffer
 nnoremap <leader>cd :cd %:p:h<CR>
 
+"" HTML
+
+""" Create tag
+noremap <Leader>hcl I<!-- <ESC>A --><ESC>
+
+""" Comment line
+noremap <Leader>hcl I<!-- <ESC>A --><ESC>
+
+""" Uncomment line
+noremap <Leader>hul ^df <ESC>$F D
+
+""" Comment tag
+noremap <Leader>hct vat<ESC>`<I<!--<ESC>`>A--><ESC>
+
+""" Uncomment tag
+noremap <Leader>hut vat<ESC>`<^xxxx`>$xxx<ESC>
+
 "" Snippets
 
 """ HTML skeleton
 noremap <Leader>html :-1read $VSNIPS/html_skeleton.html<CR>5jf>a
-
-""" HTML comment line
-noremap <Leader>hcl I<!-- <ESC>A --><ESC>
-
-""" HTML uncomment line
-noremap <Leader>hucl ^df <ESC>$F D
 
 """ shUnit test
 noremap <Leader>btest :-1read $VSNIPS/bash_shunit_test.bash<CR>ea

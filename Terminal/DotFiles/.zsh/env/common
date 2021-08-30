@@ -1,0 +1,138 @@
+#!/bin/zsh
+
+#----------------
+# Name          : common
+# Description   : Environment-specific configuration for ZSH
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## System
+
+### Shell
+export SHELL="zsh"
+
+### Editor
+export EDITOR="vim"
+
+### Language
+export LANG="en_US.UTF-8"
+
+### Preserve natural sort order
+export LC_COLLATE="C"
+
+### The current year
+export THIS_YEAR=`date +"%Y"`
+
+## File System
+
+### Home
+
+#### Desktop
+export UDESK="$UHOME/Desktop"
+
+#### Desktop
+export UDOWN="$UHOME/Downloads"
+
+#### Documents
+export UDOCS="$UHOME/Documents"
+
+#### Documents
+export UPICS="$UHOME/Pictures"
+
+### Zsh
+
+#### Zsh root directory
+export ZZSH="$HOME/.zsh"
+
+#### Oh-My-Zsh directory
+export ZOHMYZSH="$HOME/.oh-my-zsh"
+
+#### Zsh alias directory
+export ZALIAS="$ZZSH/alias"
+
+#### Zsh plugins directory
+export ZPLUGINS="$ZZSH/plugins"
+
+#### Zsh alias directory
+export ZENV="$ZZSH/env"
+
+#### Zsh scripts directory
+export ZSCRIPTS="$ZZSH/scripts"
+
+### SB
+
+#### SB root directory
+export SBROOT="/home/misigno"
+
+## Environment
+
+### Load environment-specific configuration
+source "$ZENV/$ENV_NAME"
+
+### Bnk
+
+#### Cs
+export CS="$BNK/cs"
+
+#### Hle
+export HLE="$BNK/hle"
+
+#### Snc
+export SNC="$BNK/snc"
+
+#### Scripts
+export SCRIPTS="$HOME/.scripts"
+
+#### Ensure relevant directories exist
+mkdir -p "$BNK" "$SNC" "$CS" "$HLE"
+
+### Vim
+
+#### Vim root directory
+export VVIM="$HOME/.vim"
+
+#### Vim snippets directory
+export VSNIPS="$VIM/snippets"
+
+### Tmux
+
+##### Tmux root directory
+export TTMUX="$HOME/.tmux"
+
+##### Tmux session directory
+export TSESSIONS="$TTMUX/sessions"
+
+##### Tmux scripts directory
+export TSCRIPTS="$TTMUX/scripts"
+
+## Display
+
+### Prevent partial-line %
+unsetopt PROMPT_SP
+
+## Privacy
+
+### History
+
+#### Maximum history items in memory
+HISTSIZE=1000
+
+#### Do not persist history to file
+SAVEHIST=0
+
+## Tweaks
+
+### Always list directory contents on change
+chpwd() { ls }
+
+## Tools
+
+### Unison
+
+#### Ensure unique host name per machine
+export UNISONLOCALHOSTNAME=`cat /etc/machine-id`
+
+#### Conditionally start the unison sync process
+$SYNC_ENABLED && $ZSCRIPTS/unison_start watch
+

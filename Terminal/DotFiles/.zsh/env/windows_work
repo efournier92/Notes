@@ -1,0 +1,113 @@
+#!/bin/zsh
+
+#----------------
+# Name          : windows_work
+# Description   : Shell-environment configuration for Work build on Windows (WSL) system
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## File system
+
+### User home directory
+export UHOME="/mnt/c/Users/efournier"
+
+### Data directory
+export DATA="/mnt/d"
+
+### Bnk directory
+export BNK="$DATA/bnk"
+
+### Start directory
+export START="$BNK/snc"
+
+### Hosts file
+export HOSTS="/mnt/c/Windows/System32/drivers/etc/hosts"
+
+## Tools
+
+### Sync
+
+#### Enable unison
+export SYNC_ENABLED=true
+
+### Clipboard Server
+
+#### Set localhost for clipboard support
+export DISPLAY=localhost:0.0
+
+## Sources
+
+### Snc aliases
+source "$ZALIAS/snc"
+
+### Tools aliases
+source "$ZALIAS/tools"
+
+### Windows aliases
+source "$ZALIAS/windows"
+
+## GUI Launchers
+
+get_directory_or_default() {
+  [[ -z "$1" ]] \
+    && local explore_path="." \
+    || local explore_path="$1"
+  echo "$explore_path"
+}
+
+open_app() {
+  local app_location="$1"
+  [[ -z "$1" ]] \
+    && "$app_location" \
+    || "$app_location" "`wslpath -w $1`"
+}
+
+### Explore
+explore() {
+  local explore_path=`get_directory_or_default $1`
+  "/mnt/c/Windows/explorer.exe" "`wslpath -w $explore_path`"
+}
+
+### Spreadsheet
+spreadsheet() { 
+  local app_location="/mnt/c/Program Files (x86)/Microsoft Office/root/Office16/EXCEL.EXE"
+  [[ -z "$1" ]] \
+    && "$app_location" \
+    || "$app_location" "`wslpath -w $1`"
+}
+
+### Word Processing
+word() { 
+  local app_location="/mnt/c/Program Files (x86)/Microsoft Office/root/Office16/WINWORD.EXE"
+  [[ -z "$1" ]] \
+    && "$app_location" \
+    || "$app_location" "`wslpath -w $1`"
+}
+
+### Presentation
+presentation() { 
+  local app_location="/mnt/c/Program Files (x86)/Microsoft Office/root/Office16/POWERPNT.EXE"
+  [[ -z "$1" ]] \
+    && "$app_location" \
+    || "$app_location" "`wslpath -w $1`"
+}
+
+### Markdown
+markdown() { 
+  local app_location="/mnt/c/Users/efournier/AppData/Local/Google/Chrome SxS/Application/chrome.exe"
+
+  [[ -z "$1" ]] \
+    && echo "ERROR: Must supply path" \
+    || "$app_location" "`wslpath -w $1`"
+}
+
+### PDF
+pdf() { 
+  local app_location="/mnt/c/Program Files (x86)/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe"
+
+  [[ -z "$1" ]] \
+    && echo "ERROR: Must a supply path as an argument" \
+    || "$app_location" "`wslpath -w $1`"
+}
+
