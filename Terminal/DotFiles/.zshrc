@@ -7,9 +7,6 @@
 
 ## Environment
 
-### Load common configuration
-source "$HOME/.zsh/env/common"
-
 ### Oh-My-Zsh
 
 #### Shell theme
@@ -30,4 +27,7 @@ export LS_COLORS="di=31:tw=31:ow=31:fi=32:su=32:sg=32:ex=32:so=36:pi=36:bd=36:cd
 
 #### Use same highlighting for completion as for the `ls` command
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+### Load common configuration
+source "$HOME/.zsh/env/common"
 

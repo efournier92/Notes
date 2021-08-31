@@ -26,7 +26,10 @@ set autoread
 set noswapfile
 
 """ Disable persistent undo files (OFF by default)
-"set noundofile
+set noundofile
+
+""" Disable vim-info file
+set viminfofile=NONE
 
 """ Encryption method
 set cm=blowfish2

@@ -41,7 +41,7 @@ export UDOCS="$UHOME/Documents"
 export UPICS="$UHOME/Pictures"
 
 ### Zsh
-
+ 
 #### Zsh root directory
 export ZZSH="$HOME/.zsh"
 
@@ -59,6 +59,9 @@ export ZENV="$ZZSH/env"
 
 #### Zsh scripts directory
 export ZSCRIPTS="$ZZSH/scripts"
+
+#### Zsh cache directory
+export ZSH_COMPDUMP="${HOME}/.cache/.zcompdump-${ZSH_VERSION}"
 
 ### SB
 
@@ -106,6 +109,10 @@ export TSESSIONS="$TTMUX/sessions"
 ##### Tmux scripts directory
 export TSCRIPTS="$TTMUX/scripts"
 
+### Git
+git config --global diff.tool vimdiff
+git config --global difftool.prompt false
+
 ## Display
 
 ### Prevent partial-line %
@@ -120,6 +127,9 @@ HISTSIZE=1000
 
 #### Do not persist history to file
 SAVEHIST=0
+
+#### Unset history file location
+HISTFILE=""
 
 ## Tweaks
 
