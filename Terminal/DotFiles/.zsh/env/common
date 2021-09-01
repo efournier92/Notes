@@ -114,7 +114,7 @@ export SNC="$BNK/snc"
 export SCRIPTS="$HOME/.scripts"
 
 #### Ensure relevant directories exist
-mkdir -p "$BNK" "$SNC" "$CS" "$HLE"
+mkdir -p "$BNK" "$SNC" "$CS" "$HLE" > /dev/null 2>&1
 
 ### Vim
 
