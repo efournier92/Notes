@@ -104,13 +104,13 @@ set complete=.,w,b,u,t,i,k
 "" Graphical Vim
 
 """ Font
-set guifont=Hack
+"set guifont=Hack
 
 """ Hide the menubar
-set guioptions -=m
+"set guioptions -=m
 
 """ Hide the toolbar
-set guioptions -=T
+"set guioptions -=T
 
 " Spelling
 

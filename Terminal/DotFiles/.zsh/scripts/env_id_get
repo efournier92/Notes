@@ -1,0 +1,33 @@
+#!/bin/bash
+
+create_env_id_file() {
+  local env_name_file="$HOME/.env_name"
+  local env_name="$(head -n 1 $env_name_file)"
+
+  local uuid=`uuidgen`
+  local uuid_short="${uuid%%-*}"
+
+  local env_id="${env_name}_${uuid_short}"
+
+  echo "$env_id" > $HOME/.env_id
+}
+
+get_env_id() {
+  local env_id_file="$1"
+  local env_id="$(head -n 1 $env_id_file)"
+
+  [[ -f "$env_id_file" && ! -z "$env_id" ]] \
+    && echo "$(head -n 1 $env_id_file)" \
+    || echo ""
+}
+
+main() {
+  local env_id_file="$HOME/.env_id"
+
+  [[ ! -f "$env_id_file" ]] && create_env_id_file
+
+  echo `get_env_id "$env_id_file"`
+}
+
+main "$@"
+

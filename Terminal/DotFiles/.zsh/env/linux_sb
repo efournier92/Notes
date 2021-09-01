@@ -7,15 +7,10 @@
 # Dependencies  : zsh
 #----------------
 
-## Environment
-
-### Override Oh-My-Zsh theme
-ZSH_THEME="jonathan"
-
 ## File system
 
 ### Bnk directory
-export BNK="/mnt/bnk"
+export BNK="$HOME/bnk"
 
 ### Start directory
 export START="$BNK"

@@ -32,6 +32,9 @@ export ZSCRIPTS="$ZZSH/scripts"
 #### Zsh cache directory
 export ZSH_COMPDUMP="${HOME}/.cache/.zcompdump-${ZSH_VERSION}"
 
+### Create env_id file
+export ENV_ID="$($ZSCRIPTS/env_id_get)"
+
 ### Load environment-specific configuration
 source "$ZENV/$ENV_NAME"
 
@@ -133,7 +136,13 @@ export TSESSIONS="$TTMUX/sessions"
 export TSCRIPTS="$TTMUX/scripts"
 
 ### Git
+
+#### Diff tool
+
+##### Use vim for diffing
 git config --global diff.tool vimdiff
+
+##### Disable the prompt before diffing
 git config --global difftool.prompt false
 
 ## Display
@@ -164,7 +173,7 @@ chpwd() { ls }
 ### Unison
 
 #### Ensure unique host name per machine
-export UNISONLOCALHOSTNAME=`cat /etc/machine-id`
+export UNISONLOCALHOSTNAME="$ENV_ID"
 
 #### Conditionally start the unison sync process
 $SYNC_ENABLED && $ZSCRIPTS/unison_start watch
