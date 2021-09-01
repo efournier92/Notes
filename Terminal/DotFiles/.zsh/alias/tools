@@ -30,6 +30,14 @@ alias weight="spreadsheet $SDOCS/Hlt/Weight_${THIS_YEAR}.xlsx"
 ### Open Jeopardy Spreadsheet
 alias jeps="spreadsheet $SDOCS/Gme/Jeopardy.xlsx"
 
+### Dot files
+
+#### Copy from current directory to $HOME
+alias dot_files_to_home="cp -r .tmux .tmux.conf .vim .vimrc .zsh .zshrc $HOME"
+
+#### Copy from $HOME to current directory
+alias dot_files_from_home="cp -rv ~/.tmux ~/.tmux.conf ~/.vim ~/.vimrc ~/.zsh ~/.zshrc ."
+
 ## Sync
 
 ### SB 

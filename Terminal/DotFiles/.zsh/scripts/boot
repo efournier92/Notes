@@ -26,11 +26,11 @@ start_unison_snc() {
 }
 
 main() {
-  export ENV_NAME="$1"
+  local env_name="$(head -n 1 ~/.env_name)"
 
   . "$HOME/.zsh/env/common"
   . "$HOME/.zsh/alias/drives"
-  . "$ZENV/$ENV_NAME"
+  . "$ZENV/$env_name"
 
   delay_for_ui 0.5
 

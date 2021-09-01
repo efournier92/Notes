@@ -6,6 +6,57 @@
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------
+ 
+## Environment
+
+### Zsh
+ 
+#### Zsh root directory
+export ZZSH="$HOME/.zsh"
+
+#### Oh-My-Zsh directory
+export ZOHMYZSH="$HOME/.oh-my-zsh"
+
+#### Zsh alias directory
+export ZALIAS="$ZZSH/alias"
+
+#### Zsh plugins directory
+export ZPLUGINS="$ZZSH/plugins"
+
+#### Zsh alias directory
+export ZENV="$ZZSH/env"
+
+#### Zsh scripts directory
+export ZSCRIPTS="$ZZSH/scripts"
+
+#### Zsh cache directory
+export ZSH_COMPDUMP="${HOME}/.cache/.zcompdump-${ZSH_VERSION}"
+
+### Load environment-specific configuration
+source "$ZENV/$ENV_NAME"
+
+### Oh-My-Zsh
+
+#### Shell theme
+[[ -z $ZSH_THEME ]] && ZSH_THEME="avit"
+
+#### Disable update prompts
+DISABLE_AUTO_UPDATE=true
+
+DISABLE_AUTO_TITLE=true
+
+#### Load oh-my-zsh assets
+ZSH="$ZOHMYZSH"
+source "$ZSH/oh-my-zsh.sh"
+
+#### Enable extension for syntax highlighting
+source "$ZPLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+#### Set custom highlighting for the `ls` command
+export LS_COLORS="di=31:tw=31:ow=31:fi=32:su=32:sg=32:ex=32:so=36:pi=36:bd=36:cd=36:ln=36:"
+
+#### Use same highlighting for completion as for the `ls` command
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 ## System
 
@@ -40,38 +91,10 @@ export UDOCS="$UHOME/Documents"
 #### Documents
 export UPICS="$UHOME/Pictures"
 
-### Zsh
- 
-#### Zsh root directory
-export ZZSH="$HOME/.zsh"
-
-#### Oh-My-Zsh directory
-export ZOHMYZSH="$HOME/.oh-my-zsh"
-
-#### Zsh alias directory
-export ZALIAS="$ZZSH/alias"
-
-#### Zsh plugins directory
-export ZPLUGINS="$ZZSH/plugins"
-
-#### Zsh alias directory
-export ZENV="$ZZSH/env"
-
-#### Zsh scripts directory
-export ZSCRIPTS="$ZZSH/scripts"
-
-#### Zsh cache directory
-export ZSH_COMPDUMP="${HOME}/.cache/.zcompdump-${ZSH_VERSION}"
-
 ### SB
 
 #### SB root directory
 export SBROOT="/home/misigno"
-
-## Environment
-
-### Load environment-specific configuration
-source "$ZENV/$ENV_NAME"
 
 ### Bnk
 
