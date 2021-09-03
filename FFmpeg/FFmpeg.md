@@ -32,7 +32,7 @@
   - [`avi` to `divx`](#avi-to-divx)
   - [Install in OsX ](#install-in-osx )
   - [Install in Debian](#install-in-debian)
-  - [Image Sequence to GIF](#install-in-debian)
+  - [Image Sequence to MP4](#image-sequence-to-mp4)
   - [Image Sequence to GIF](#image-sequence-to-gif)
   - [Compile From Source](#compile-from-source)
 
@@ -412,12 +412,8 @@ Build and install `ffmpeg` on a Mac via [homebrew](https://brew.sh/)
 brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-fontconfig --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-openssl --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools --with-x265 --with-faac --with-lame --with-x264 --with-xvid
 ```
 
-### Install in Debian
+### Image Sequence to MP4
 
-#### Description
-Compile and install `ffmpeg` on Debian-based Linux systems via `apt`.
-
-### Image Sequence to GIF
 ```bash
 #!/bin/bash
 
@@ -433,22 +429,61 @@ ffmpeg \
   -loop 1 -t 5 -i IMG_000.jpg \
   -filter_complex \
   "[1]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+1/TB[f0]; \
-  [2]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+3/TB[f1]; \
-  [3]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+5/TB[f2]; \
-  [4]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+7/TB[f3]; \
-  [5]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+9/TB[f4]; \
-  [6]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+11/TB[f5]; \
-  [7]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+13/TB[f6]; \
-  [8]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+15/TB[f7]; \
-  [0][f0]overlay[bg1]; \
-  [bg1][f1]overlay[bg2]; \
-  [bg2][f2]overlay[bg3]; \
-  [bg3][f3]overlay[bg4]; \
-  [bg4][f4]overlay[bg5]; \
-  [bg5][f5]overlay[bg6]; \
-  [bg6][f6]overlay[bg7]; \
-  [bg7][f7]overlay,format=yuv420p[v]" -map "[v]" -movflags +faststart out.gif
+   [2]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+3/TB[f1]; \
+   [3]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+5/TB[f2]; \
+   [4]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+7/TB[f3]; \
+   [5]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+9/TB[f4]; \
+   [6]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+11/TB[f5]; \
+   [7]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+13/TB[f6]; \
+   [8]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+15/TB[f7]; \
+   [0][f0]overlay[bg1]; \
+   [bg1][f1]overlay[bg2]; \
+   [bg2][f2]overlay[bg3]; \
+   [bg3][f3]overlay[bg4]; \
+   [bg4][f4]overlay[bg5]; \
+   [bg5][f5]overlay[bg6]; \
+   [bg6][f6]overlay[bg7]; \
+   [bg7][f7]overlay,format=yuv420p[v]" -map "[v]" -movflags +faststart out.gif
 ```
+
+### Image Sequence to GIF
+
+```bash
+#!/bin/bash
+
+ffmpeg \
+  -loop 1 -t 5 -i IMG_000.jpg \
+  -loop 1 -t 5 -i IMG_001.jpg \
+  -loop 1 -t 5 -i IMG_002.jpg \
+  -loop 1 -t 5 -i IMG_003.jpg \
+  -loop 1 -t 5 -i IMG_004.jpg \
+  -loop 1 -t 5 -i IMG_005.jpg \
+  -loop 1 -t 5 -i IMG_006.jpg \
+  -loop 1 -t 5 -i IMG_007.jpg \
+  -loop 1 -t 5 -i IMG_000.jpg \
+  -filter_complex \
+  "[1]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+1/TB[f0]; \
+   [2]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+3/TB[f1]; \
+   [3]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+5/TB[f2]; \
+   [4]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+7/TB[f3]; \
+   [5]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+9/TB[f4]; \
+   [6]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+11/TB[f5]; \
+   [7]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+13/TB[f6]; \
+   [8]format=yuva444p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+15/TB[f7]; \
+   [0][f0]overlay[bg1]; \
+   [bg1][f1]overlay[bg2]; \
+   [bg2][f2]overlay[bg3]; \
+   [bg3][f3]overlay[bg4]; \
+   [bg4][f4]overlay[bg5]; \
+   [bg5][f5]overlay[bg6]; \
+   [bg6][f6]overlay[bg7]; \
+   [bg7][f7]overlay,format=yuv420p[v]" -map "[v]" -movflags +faststart out.gif
+```
+
+### Install in Debian
+
+#### Description
+Compile and install `ffmpeg` on Debian-based Linux systems via `apt`.
 
 ### Compile From Source
 ```bash
