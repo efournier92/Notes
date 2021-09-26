@@ -22,7 +22,7 @@ alias banking="$SDOCS/Fin/browser_tabs_banking"
 alias fresh="$SDOCS/Hlt/browser_tabs_fresh"
 
 ### Create a new agile story directory and file
-alias story="$SCRIPTS/create_agile_story"
+alias story="$USCRIPTS/create_agile_story"
 
 ### Open Weight Spreadsheet
 alias weight="spreadsheet $SDOCS/Hlt/Weight_${THIS_YEAR}.xlsx"
@@ -48,7 +48,7 @@ alias uni=". $ZSCRIPTS/unison_start"
 ## Audio
 
 ### Run Audio-Lg Script
-alias aud_lg="$SCRIPTS/audio_lg -i $RC/RECORD -o $EXTA/Lg/Audio"
+alias aud_lg="$USCRIPTS/audio_lg -i $RC/RECORD -o $EXTA/Lg/Audio"
 
 ## Browser
 

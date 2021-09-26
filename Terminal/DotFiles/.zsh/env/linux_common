@@ -21,7 +21,7 @@ export HOSTS="/etc/hosts"
 export SBFS="$BNK/sbfs"
 
 #### Ensure relevant directories exist
-mkdir -p "$SBFS"
+mkdir -p "$SBFS" > /dev/null 2>&1
 
 ## Sources
 

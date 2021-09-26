@@ -19,7 +19,7 @@ delay_for_ui() {
 }
 
 start_unison_snc() {
-  local watch_script="$SCRIPTS/watch_for_change"
+  local watch_script="$USCRIPTS/watch_for_change"
 
   [[ -z `pgrep inotifywait` && -f "$watch_script" ]] \
     && nohup "$watch_script" "$SNC" "$ZSCRIPTS/uni" >/dev/null 2>&1&

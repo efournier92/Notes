@@ -42,10 +42,10 @@ alias rcls="ls $RC/RECORD"
 export BNK="$BNK"
 
 #### Mount
-alias m_bnk=". $SCRIPTS/mount_uuid_veracrypt $uuid_bnk $BNK 33"
+alias m_bnk=". $USCRIPTS/mount_uuid_veracrypt $uuid_bnk $BNK 33"
 
 #### Unmount
-alias m_bnk!=". $SCRIPTS/umount_uuid_veracrypt $uuid_bnk"
+alias m_bnk!=". $USCRIPTS/umount_uuid_veracrypt $uuid_bnk"
 
 ### /mnt/extA
 
@@ -53,10 +53,10 @@ alias m_bnk!=". $SCRIPTS/umount_uuid_veracrypt $uuid_bnk"
 export EXTA="/mnt/extA"
 
 #### Mount
-alias m_extA="$SCRIPTS/mount_uuid_veracrypt $uuid_extA $EXTA 8"
+alias m_extA="$USCRIPTS/mount_uuid_veracrypt $uuid_extA $EXTA 8"
 
 #### Unmount
-alias m_extA!="$SCRIPTS/umount_uuid_veracrypt $uuid_extA"
+alias m_extA!="$USCRIPTS/umount_uuid_veracrypt $uuid_extA"
 
 ### /mnt/extB
 
@@ -64,10 +64,10 @@ alias m_extA!="$SCRIPTS/umount_uuid_veracrypt $uuid_extA"
 export EXTB="/mnt/extB"
 
 #### Mount
-alias m_extB=". $SCRIPTS/mount_uuid_veracrypt $uuid_extB $EXTB 12"
+alias m_extB=". $USCRIPTS/mount_uuid_veracrypt $uuid_extB $EXTB 12"
 
 #### Unmount
-alias m_extB!=". $SCRIPTS/umount_uuid_veracrypt $uuid_extB"
+alias m_extB!=". $USCRIPTS/umount_uuid_veracrypt $uuid_extB"
 
 ### /mnt/extC
 
@@ -75,10 +75,10 @@ alias m_extB!=". $SCRIPTS/umount_uuid_veracrypt $uuid_extB"
 export EXTC="/mnt/extC"
 
 #### Mount
-alias m_extC=". $SCRIPTS/mount_uuid_veracrypt $uuid_extC $EXTC 16"
+alias m_extC=". $USCRIPTS/mount_uuid_veracrypt $uuid_extC $EXTC 16"
 
 #### Unmount
-alias m_extC!=". $SCRIPTS/umount_uuid_veracrypt $uuid_extC"
+alias m_extC!=". $USCRIPTS/umount_uuid_veracrypt $uuid_extC"
 
 ### /mnt/bkA
 
@@ -86,10 +86,10 @@ alias m_extC!=". $SCRIPTS/umount_uuid_veracrypt $uuid_extC"
 export BKA="/mnt/bkA"
 
 #### Mount
-alias m_bkA=". $SCRIPTS/mount_uuid $uuid_bkA $BKA"
+alias m_bkA=". $USCRIPTS/mount_uuid $uuid_bkA $BKA"
 
 #### Unmount
-alias m_bkA!=". $SCRIPTS/umount_uuid $uuid_bkA"
+alias m_bkA!=". $USCRIPTS/umount_uuid $uuid_bkA"
 
 ### /mnt/bkB
 
@@ -97,10 +97,10 @@ alias m_bkA!=". $SCRIPTS/umount_uuid $uuid_bkA"
 export BKB="/mnt/bkB"
 
 #### Mount
-alias m_bkB=". $SCRIPTS/mount_uuid $uuid_bkB $BKB"
+alias m_bkB=". $USCRIPTS/mount_uuid $uuid_bkB $BKB"
 
 #### Unmount
-alias m_bkB!=". $SCRIPTS/umount_uuid $uuid_bkB"
+alias m_bkB!=". $USCRIPTS/umount_uuid $uuid_bkB"
 
 ### /mnt/bkC
 
@@ -108,10 +108,10 @@ alias m_bkB!=". $SCRIPTS/umount_uuid $uuid_bkB"
 export BKC="/mnt/bkC"
 
 #### Mount
-alias m_bkC=". $SCRIPTS/mount_uuid $uuid_bkC $BKC"
+alias m_bkC=". $USCRIPTS/mount_uuid $uuid_bkC $BKC"
 
 #### Umount
-alias m_bkC!=". $SCRIPTS/umount_uuid $uuid_bkC"
+alias m_bkC!=". $USCRIPTS/umount_uuid $uuid_bkC"
 
 ### /mnt/md
 
@@ -119,46 +119,46 @@ alias m_bkC!=". $SCRIPTS/umount_uuid $uuid_bkC"
 export MD="/mnt/md"
 
 #### Mount
-alias m_md=". $SCRIPTS/mount_uuid_veracrypt $uuid_md $MD 16"
+alias m_md=". $USCRIPTS/mount_uuid_veracrypt $uuid_md $MD 16"
 
 #### Unmount
-alias m_md!=". $SCRIPTS/umount_uuid_veracrypt $uuid_md"
+alias m_md!=". $USCRIPTS/umount_uuid_veracrypt $uuid_md"
 
 ## Backups
 
 ### Create a zip backup of snc directory
-alias bk_snc=". $SCRIPTS/backup_snc $EXTA"
+alias bk_snc=". $USCRIPTS/backup_snc $EXTA"
 
 ### Create a zip backup of lg directory
-alias bk_lg=". $SCRIPTS/backup_lg $EXTA"
+alias bk_lg=". $USCRIPTS/backup_lg $EXTA"
 
 ### Backup extA to extB
-alias bk_extAB=". $SCRIPTS/backup_dir $EXTA $EXTB"
+alias bk_extAB=". $USCRIPTS/backup_dir $EXTA $EXTB"
 
 ### Backup extA to extB
-alias bk_extBA=". $SCRIPTS/backup_dir $EXTB $EXTA"
+alias bk_extBA=". $USCRIPTS/backup_dir $EXTB $EXTA"
 
 ### Backup extA to extC
-alias bk_extAC=". $SCRIPTS/backup_dir $EXTA $EXTC"
+alias bk_extAC=". $USCRIPTS/backup_dir $EXTA $EXTC"
 
 ### Backup extB to extC
-alias bk_extBC=". $SCRIPTS/backup_dir $EXTB $EXTC"
+alias bk_extBC=". $USCRIPTS/backup_dir $EXTB $EXTC"
 
 ### Backup extA to MD
-alias bk_extAMD=". $SCRIPTS/backup_dir $EXTA/Media $MD"
+alias bk_extAMD=". $USCRIPTS/backup_dir $EXTA/Media $MD"
 
 ### Backup extB to MD
-alias bk_extBMD=". $SCRIPTS/backup_dir $EXTB/Media $MD"
+alias bk_extBMD=". $USCRIPTS/backup_dir $EXTB/Media $MD"
 
 ### Backup bkA to bkB
-alias bk_bkAB=". $SCRIPTS/backup_dir $BKA $BKB"
+alias bk_bkAB=". $USCRIPTS/backup_dir $BKA $BKB"
 
 ### Backup bkA to bkB
-alias bk_bkBA=". $SCRIPTS/backup_dir $BKB $BKA"
+alias bk_bkBA=". $USCRIPTS/backup_dir $BKB $BKA"
 
 ### Backup bkA to bkC
-alias bk_bkAC=". $SCRIPTS/backup_dir $BKA $BKC"
+alias bk_bkAC=". $USCRIPTS/backup_dir $BKA $BKC"
 
 ### Backup bkB to bkC
-alias bk_bkBC=". $SCRIPTS/backup_dir $BKB $BKC"
+alias bk_bkBC=". $USCRIPTS/backup_dir $BKB $BKC"
 

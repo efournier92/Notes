@@ -11,7 +11,7 @@
 
 ## Utilities
 alias start="cmd.exe /C start"
-alias vvm="bash $SCRIPTS/vvm.bash $SNC"
+alias vvm="bash $USCRIPTS/vvm.bash $SNC"
 
 ## Programs
 alias qdir="start \"$HDOCS\\Q-Dir_State.qdr\""

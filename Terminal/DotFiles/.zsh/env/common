@@ -111,7 +111,7 @@ export HLE="$BNK/hle"
 export SNC="$BNK/snc"
 
 #### Scripts
-export SCRIPTS="$HOME/.scripts"
+export USCRIPTS="$HOME/.scripts"
 
 #### Ensure relevant directories exist
 mkdir -p "$BNK" "$SNC" "$CS" "$HLE" > /dev/null 2>&1
