@@ -55,10 +55,12 @@ run_unison_command() {
   local log_file_name="unison.log"
   local log_file_path="$log_dir/$log_file_name"
 
-  unison -batch -force newer -perms 0 \
+  unison \
+    -batch -force newer -perms 0 \
     -logfile "$log_file_path" \
     -backup 'Name *' \
     -backupprefix '' -backupsuffix '_$VERSION'"_$(date +%y%m%d%H%M%S)" \
+    -sshargs '-o PasswordAuthentication=no' \
     -servercmd "$remote_bin_dir/unison" \
       "$local_dir" \
       "ssh://$user@$server/$remote_dir"
