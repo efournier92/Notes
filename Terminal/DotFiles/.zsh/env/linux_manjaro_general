@@ -40,8 +40,6 @@ run_boot_tasks() {
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "nothing"
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 10000
 
-  start_unison_snc
-
   delay_for_ui 2
   xdotool key Escape
 

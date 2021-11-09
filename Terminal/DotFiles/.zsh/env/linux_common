@@ -46,20 +46,20 @@ source "$ZALIAS/tmux"
 ## GUI Launchers
 
 ### Explore
-explore() { nautilus "$1"; }
+explore() { nohup nautilus "$1" >/dev/null 2>&1 &; }
 
 ### Spreadsheet
-spreadsheet() { libreoffice "$1"; }
+spreadsheet() { nohup libreoffice "$1" >/dev/null 2>&1 &; }
 
 ### Word Processing
-word() { libreoffice "$1"; }
+word() { nohup libreoffice "$1" >/dev/null 2>&1 &; }
 
 ### Presentation
-presentation() { libreoffice "$1"; }
+presentation() { nohup libreoffice "$1" >/dev/null 2>&1 &; }
 
 ### Markdown
-markdown() { chromium "$1"; }
+markdown() { nohup chromium $1 >/dev/null 2>&1 &; }
 
 ### PDF
-pdf() { evince "$1"; }
+presentation() { nohup evince "$1" >/dev/null 2>&1 &; }
 

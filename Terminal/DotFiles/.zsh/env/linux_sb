@@ -15,6 +15,9 @@ export BNK="$HOME/bnk"
 ### Start directory
 export START="$BNK"
 
+### Add ~/bin to PATH                                                                                                                                            
+export PATH="$HOME/bin:$PATH"    
+
 ## Tools
 
 ### Sync

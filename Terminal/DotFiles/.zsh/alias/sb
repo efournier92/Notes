@@ -19,15 +19,17 @@ alias sbssh="ssh misigno@${server_name}.${server_domain}"
 ## VPN
 
 ### Connect to VPN
-alias sbvpn="sudo openvpn --daemon --config /etc/openvpn/keys/${server_name}.ovpn"
+alias sbvpn="nmcli con up id $server_name"
+#alias sbvpn="sudo openvpn --daemon --config /etc/openvpn/keys/${server_name}.ovpn"
 
 ### Disconnect from VPN
-alias sbvpn!="sudo killall openvpn"
+alias sbvpn!="nmcli con down id $server_name"
+#alias sbvpn!="sudo killall openvpn"
 
 ## Local Filesystem
 
 ### Mount slot to local filesystem
-alias sbfs=". $SCRIPTS/mount_sbfs $SBFS"
+alias sbfs=". $USCRIPTS/mount_sbfs $SBFS"
 
 ### Unmount slot from local filesystem
 alias sbfs!="fusermount -u $SBFS"
