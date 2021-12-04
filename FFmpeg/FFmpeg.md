@@ -47,6 +47,7 @@
 Leverage native `bash` loop functionality to encode a series of files.
 
 #### Command
+
 ```bash
 for i in *.mp4;
   do name=`echo $i | cut -d'.' -f1`;
@@ -61,6 +62,7 @@ done
 My go-to for live-action TV shows, for which I favor smaller size over the greatest quality.
 
 #### Single
+
 ```bash
 ffmpeg -i "$IN_FILE" \
   -c:v libx264 -pix_fmt yuv420p -crf 28 \
@@ -70,6 +72,7 @@ ffmpeg -i "$IN_FILE" \
 ```
 
 #### Batch
+
 ```bash
 ext_in=".mkv"
 ext_out=".mp4"
@@ -91,6 +94,7 @@ done
 Trim a file, from start time `-ss` to duration  `-t`.
 
 #### Command
+
 ```bash
 ffmpeg -ss 00:00:00.000 -i in.mp4 \
 -t 00:00:00.000 -c copy out.mp4
@@ -102,11 +106,13 @@ ffmpeg -ss 00:00:00.000 -i in.mp4 \
 Join multiple media sources into one. The list is fed from a `txt` concat file.
 
 #### Command
+
 ```bash
 ffmpeg -safe 0 -f concat -i path/to/concat.txt -c copy out.mp4
 ```
 
 #### Concat File
+
 ```text
 file '/path/to/video1.mp4'
 file '/path/to/video2.mp4'
@@ -119,6 +125,7 @@ file '/path/to/video3.mp4'
 Crop a video's edges according by dimension.
 
 #### Command
+
 ```bash
 ffmpeg -i in.mp4 -filter:v "crop=out_w:out_h:x:y" out.mp4
 ```
@@ -129,6 +136,7 @@ ffmpeg -i in.mp4 -filter:v "crop=out_w:out_h:x:y" out.mp4
 Adjust a video's aspect ratio based on defined width and height.
 
 #### Command
+
 ```bash
 width=640
 height=480
@@ -141,6 +149,7 @@ ffmpeg -i in.mp4 -vf scale=$width:$height -aspect $width:$height out.mp4
 Capture a single frame from a video file. Use for determining dimensions to crop.
 
 #### Command
+
 ```bash
 ffmpeg -ss 00:00:01 -i in.mp4 -vframes 1 -q:v 2 sample-frame.jpg
 ```
@@ -151,6 +160,7 @@ ffmpeg -ss 00:00:01 -i in.mp4 -vframes 1 -q:v 2 sample-frame.jpg
 Control video quality by applying a constant rate factor.
 
 #### Command
+
 ```bash
 ffmpeg -i in.mp4 -c:v libx264 \
 -preset slow -crf 24 -c:a copy out.mp4
@@ -164,11 +174,13 @@ Reduce file size for spoken audio files, like stand-up comedy.
 #### Command
 
 ##### Single
+
 ```bash
 ffmpeg -i in.mp4 -c:a libmp3lame -b:a 128k -ac 1 out.mp3
 ```
 
 ##### Batch
+
 ```bash
 out_dir="_OUT"
 mkdir -p "$out_dir"
@@ -183,6 +195,7 @@ done
 Reduce the file size for a list of low quality recordings.
 
 #### Command
+
 ```bash
 ffmpeg -f concat -i /path/to/concat.txt \
   -ac 1 -q:a 15 /path/to/out.mp3
@@ -194,6 +207,7 @@ ffmpeg -f concat -i /path/to/concat.txt \
 Creates a video from a single image and an audio input.
 
 #### Command
+
 ```bash
 audio_duration="00:02:39.000"
 audio_file="in.wav"
@@ -211,6 +225,7 @@ ffmpeg -loop 1 \
 Hard-code subtitles file on a video.
 
 #### Command
+
 ```bash
 ffmpeg -i in.mkv -vf subtitles=in.srt out.mkv
 ```
@@ -221,6 +236,7 @@ ffmpeg -i in.mkv -vf subtitles=in.srt out.mkv
 Output series of segments from a single input file.
 
 #### Command
+
 ```bash
 ffmpeg -i in.mp3 -f segment -segment_time {seconds} -c copy out%03d.mp3
 ```
@@ -231,6 +247,7 @@ ffmpeg -i in.mp3 -f segment -segment_time {seconds} -c copy out%03d.mp3
 Convert a video file into a `gif`.
 
 #### Command
+
 ```bash
 ffmpeg -i in.mp4 -r 6 \
 -filter:v "crop=256:576:2:2" -vf scale=270:580 \
@@ -243,6 +260,7 @@ out.gif
 Create a fade-in video bumper.
 
 #### Command
+
 ```bash
 ffmpeg -loop 1 -i in.jpg -c:v libx264 -t 6 \
 -vf "scale=720:480,fade=in:0:70" \
@@ -255,6 +273,7 @@ out.mp4
 Create a waveform pattern from an audio file.
 
 #### Command
+
 ```bash
 ffmpeg -i in.mp3 
 -filter_complex "[0:a]showwaves=s=1280x720:mode=line:rate=25,format=yuv420p[vid]" \
@@ -269,6 +288,7 @@ out.mp4
 Superimpose dynamic text over video.
 
 #### Command
+
 ```bash
 ffmpeg -i in.mp4 \
 -vf "scale=720:480, \
@@ -284,6 +304,7 @@ ffmpeg -i in.mp4 \
 Convert a whole directory to a consistent `mpeg`, usually as an intermediary before concatenation.
 
 #### Command
+
 ```bash
 for i in *.*;
 do name=`echo $i | cut -d'.' -f1`;
@@ -308,6 +329,7 @@ done
 Convert a `webm` file to mp4, without losing quality.
 
 #### Command
+
 ```bash
 ffmpeg -i "in.webm" -qscale 0 "out.mp4"
 ```
@@ -318,6 +340,7 @@ ffmpeg -i "in.webm" -qscale 0 "out.mp4"
 Output metadata information about a media file.
 
 #### Command
+
 ```bash
 ffmpeg -i in.avi
 ```
@@ -328,6 +351,7 @@ ffmpeg -i in.avi
 Encode a series of images as a video.
 
 #### Command
+
 ```bash
 ffmpeg -f inImage2 -i inImage%d.jpg out.mpg
 ```
@@ -338,6 +362,7 @@ ffmpeg -f inImage2 -i inImage%d.jpg out.mpg
 Convert a video into a series of images.
 
 #### Command
+
 ```bash
 ffmpeg -i in.mpg out%d.jpg
 ```
@@ -348,6 +373,7 @@ ffmpeg -i in.mpg out%d.jpg
 Output the sound from a video as an audio file.
 
 #### Command
+
 ```bash
 ffmpeg -i in.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 out.mp3
 ```
@@ -358,6 +384,7 @@ ffmpeg -i in.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 out.mp3
 Increase or decrease the audio amplification statically across a media file.
 
 #### Command
+
 ```bash
 ffmpeg -i in.mp4 -filter:a "volume=0.5" out.mp4
 ```
@@ -368,6 +395,7 @@ ffmpeg -i in.mp4 -filter:a "volume=0.5" out.mp4
 Convert a `wav` audio file into an `mp3`.
 
 #### Command
+
 ```bash
 ffmpeg -i in.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 out.mp3
 ```
@@ -378,6 +406,7 @@ ffmpeg -i in.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 out.mp3
 Use an audio file as the soundtrack to a video.
 
 #### Command
+
 ```bash
 ffmpeg -i in.wav -i in.avi out.mpg
 ```
@@ -388,6 +417,7 @@ ffmpeg -i in.wav -i in.avi out.mpg
 Convert an `avi` to an `flv` for the web.
 
 #### Command
+
 ```bash
 ffmpeg -i in.avi -ab 56 -ar 44100 -b 200 -r 15 -s 320x240 -f flv out.flv
 ```
@@ -398,6 +428,7 @@ ffmpeg -i in.avi -ab 56 -ar 44100 -b 200 -r 15 -s 320x240 -f flv out.flv
 Convert an `avi` to `divx` for some reason.
 
 #### Command
+
 ```bash
 ffmpeg -i in.avi -s 320x240 -vcodec msmpeg4v2 out.avi
 ```
@@ -408,6 +439,7 @@ ffmpeg -i in.avi -s 320x240 -vcodec msmpeg4v2 out.avi
 Build and install `ffmpeg` on a Mac via [homebrew](https://brew.sh/)
 
 #### Command
+
 ```bash
 brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-fontconfig --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-openssl --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools --with-x265 --with-faac --with-lame --with-x264 --with-xvid
 ```
@@ -486,6 +518,7 @@ ffmpeg \
 Compile and install `ffmpeg` on Debian-based Linux systems via `apt`.
 
 ### Compile From Source
+
 ```bash
 #/bin/bash
 
