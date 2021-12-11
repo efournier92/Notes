@@ -13,7 +13,7 @@ main() {
   local target_pattern="$2"
   local timeout_seconds=$3
 
-  [[ -z "$timeout" ]] && local timeout_seconds=600
+  [[ -z "$timeout" ]] && local timeout_seconds=60
 
   while true; do
     $USCRIPTS/pulseaudio_set_default_sink "$property_name" "$target_pattern" &
