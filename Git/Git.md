@@ -10,6 +10,23 @@
 ## Overview
 [Git](https://en.wikipedia.org/wiki/Git), like [Linux](https://www.linux.org/), was created by [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds). It was originally meant as a means of [version control](https://en.wikipedia.org/wiki/Version_control) for the [Linux kernel](https://en.wikipedia.org/wiki/Linux_kernel). It's come to be the most common [Distributed version control](https://en.wikipedia.org/wiki/Distributed_version_control) in the world, and is my [source control](https://en.wikipedia.org/wiki/Version_control) mechanism of choice.
 
+## Commits
+
+### Purpose
+- Since 2020, GitHub has deprecated password authentication in favor of more secure methodologies. Since then, I prefer to use `ssh` as my means of authentication.
+- Once `ssh` has been configured locally for use with `git`, the following commands are useful for interacting with GitHub repositories.
+
+### Cloning with `ssh`
+
+#### Overview
+
+#### Command
+```bash
+local username=""
+local repo=""
+git clone git@github.com:${username}/${repo}
+```
+
 ## [ReadMes](https://en.wikipedia.org/wiki/README)
 
 ### Description
