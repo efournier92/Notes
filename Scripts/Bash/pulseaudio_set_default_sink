@@ -48,7 +48,6 @@ main() {
   local hdmi_sink_number=$(( first_sink_number + hdmi_sink_index ))
   
   if [[ ! -z $hdmi_sink_number ]]; then
-    echo "HDMI Sink Number: $hdmi_sink_number" >&2
     set_default_sink_to_target $hdmi_sink_number
     set_active_sinks $hdmi_sink_number
   else

@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #----------------
-# Name          : connect_vnc_persistently
-# Description   : Continuously attempts to connect a TigerVNC 
+# Name          : connect_audio_persistently
+# Description   : Continuously attempts to resolve PulseAudio issues pertaining to connections to the wrong sink
 # Author        : E Fournier
-# Dependencies  : x0vncserver, nohup
-# Example Usage : ./connect_vnc_persistently 60
+# Dependencies  : 
+# Example Usage : ./connect_audio_persistently "alsa.name" "HDMI" 60
 #----------------
 
 main() {
