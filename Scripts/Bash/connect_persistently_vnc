@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #----------------
-# Name          : connect_vnc_persistently
+# Name          : connect_persistently_vnc
 # Description   : Continuously attempts to connect a TigerVNC 
 # Author        : E Fournier
 # Dependencies  : x0vncserver, nohup
-# Example Usage : ./connect_vnc_persistently 60
+# Example Usage : ./connect_persistently_vnc $timeout_seconds
 #----------------
 
 main() {

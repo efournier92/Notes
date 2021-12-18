@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #----------------
-# Name          : connect_vpn_persistently
-# Description   : Continuously attempts to connect a VPN client
+# Name          : connect_persistently_sound_profile
+# Description   : Continuously attempts to connect the correct sound profile
 # Author        : E Fournier
 # Dependencies  : pulseaudio
-# Example Usage : ./connect_sound_profile_persistently "alsa_card.pci-0000_00_1b.0" "output:hdmi-stereo-extra2+input:iec958-stereo" "hdmi"
+# Example Usage : ./connect_persistently_sound_profile "alsa_card.pci-0000_00_1b.0" "output:hdmi-stereo-extra2+input:iec958-stereo" "hdmi"
 #----------------
 
 main() {
