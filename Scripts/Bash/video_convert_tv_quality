@@ -25,16 +25,26 @@ print_info() {
   echo "" >&2
 }
 
+get_deinterlacing_command() {
+  local is_deinterlacing_enabled="$1"
+
+  [[ "$is_deinterlacing_enabled" == "true" ]] \
+    && echo "-vf yadif=0:0:0" \
+    || echo ""
+}
+
 run_ffmpeg_command() {
   local in_file="$1"
   local out_file="$2"
   local crf="$3"
-
+  local is_deinterlacing_enabled="$4"
+  
   ffmpeg -i $in_file \
     -c:a aac -ac 2 -b:a 128k \
     -c:v libx264 -crf $crf -tune film -preset slow \
     -profile:v baseline -level 3.0 -pix_fmt yuv420p \
     -max_muxing_queue_size 400 \
+    `get_deinterlacing_command "$is_deinterlacing_enabled"` \
     -movflags faststart \
     -map_metadata -1 -strict -2 \
     "$out_file"
@@ -58,7 +68,7 @@ run_ffmpeg_command_with_deinterlacing() {
 
 main() {
   local crf=$1
-  local deinterlace="$2"
+  local is_deinterlacing_enabled="$2"
   local working_dir="$4"
 
   [[ -z "$crf" ]] && local crf=30
@@ -71,19 +81,13 @@ main() {
 
   mkdir -p "$working_dir/$out_dir"
 
-  echo "FILES: `list_video_files`"
-
   for in_file in `list_video_files`; do
     local in_file_ext="${in_file##*.}"
     local out_file="$out_dir/${in_file/$in_file_ext/$ext_out}"
     
     print_info "$in_file" "$out_file"
     
-    if [[ deinterlace == "true" ]]; then
-      run_ffmpeg_command_with_deinterlacing "$in_file" "$out_file" "$crf"
-    else
-      run_ffmpeg_command "$in_file" "$out_file" "$crf"
-    fi
+    run_ffmpeg_command "$in_file" "$out_file" "$crf" "$is_deinterlacing_enabled"
   done
   }
 
