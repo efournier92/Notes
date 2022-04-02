@@ -24,7 +24,7 @@
 ```bash
 local username=""
 local repo=""
-git clone git@github.com:${username}/${repo}
+git clone ssh://git@github.com:${username}/${repo}
 ```
 
 ## [ReadMes](https://en.wikipedia.org/wiki/README)
