@@ -39,9 +39,9 @@ run_ffmpeg_command() {
   local crf="$3"
   local is_deinterlacing_enabled="$4"
   
-  ffmpeg -i $in_file \
+  ffmpeg -i "$in_file" \
     -c:a aac -ac 2 -b:a 128k \
-    -c:v libx264 -crf $crf -tune film -preset slow \
+    -c:v libx264 -crf "$crf" -tune film -preset slow \
     -profile:v baseline -level 3.0 -pix_fmt yuv420p \
     -max_muxing_queue_size 400 \
     `get_deinterlacing_command "$is_deinterlacing_enabled"` \
