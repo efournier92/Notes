@@ -4,7 +4,7 @@
 # Name          : linux_manjaro_media
 # Description   : Shell-environment configuration for General build on Linux Manjaro
 # Author        : E Fournier
-# Dependencies  : zsh
+# Dependencies  : zsh, xdotool, kodi, gnome, gnome-terminal
 #----------------
 
 ## File System
