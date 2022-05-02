@@ -41,11 +41,11 @@ run_boot_tasks() {
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "suspend"
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 5400
 
+  delay_for_ui 4
   xdotool key Escape  
-  delay_for_ui 2
   m_md
 
   gnome-terminal --window --maximize &
-  kodi -fs &
+  kodi -fs >/dev/null 2>&1 &
 }
 

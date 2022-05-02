@@ -119,6 +119,21 @@ file '/path/to/video2.mp4'
 file '/path/to/video3.mp4'
 ```
 
+#### Standard Video Command
+
+```bash
+crf=28
+ffmpeg -safe "0" -f "concat" -i "concat.txt" \
+  -c:a "aac" -ac "2" -b:a "128k" \
+  -c:v "libx264" -crf "$crf" -tune "film" -preset "slow" \
+  -profile:v "baseline" -level "3.0" -pix_fmt "yuv420p" \
+  -max_muxing_queue_size "400" \
+  -vf "yadif=0:0:0" \
+  -movflags "faststart" \
+  -map_metadata "-1" -strict "-2" \
+  "out.mp4"
+```
+
 ### Crop Edges
 
 #### Description
