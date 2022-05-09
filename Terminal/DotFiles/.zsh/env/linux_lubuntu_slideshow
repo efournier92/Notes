@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 #----------------
-# Name          : linux_lubuntu_media
-# Description   : Shell-environment configuration for Media build on Linux Lubuntu
+# Name          : linux_lubuntu_slideshow
+# Description   : Shell-environment configuration for Media-Slideshow build on Linux Lubuntu
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------
@@ -31,16 +31,14 @@ source "$ZENV/linux_common"
 
 ### Tasks
 run_boot_tasks() {
-  $USCRIPTS/connect_vpn_persistently "Calypso" 60 &
-  $USCRIPTS/connect_vnc_persistently 60 &
+  #$USCRIPTS/connect_vpn_persistently "Calypso" 60 &
+  #$USCRIPTS/connect_vnc_persistently 60 &
   $USCRIPTS/pulseaudio_set_default_sink "alsa.name" "HDMI" &
 
   setxkbmap -option caps:escape
   pacmd set-default-sink alsa_output.platform-bcm2835_audio.stereo-fallback
 
-  delay_for_ui 2
   xdotool key Escape  
-  m_md
 
   gnome-terminal --window --maximize &
   kodi -fs >/dev/null 2>&1 &

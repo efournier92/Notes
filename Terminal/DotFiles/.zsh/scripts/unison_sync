@@ -60,7 +60,7 @@ run_unison_command() {
     -logfile "$log_file_path" \
     -backup 'Name *' \
     -backupprefix '' -backupsuffix '_$VERSION'"_$(date +%y%m%d%H%M%S)" \
-    -sshargs '-o PasswordAuthentication=no -o AddressFamily=inet' \
+    -sshargs '-o PasswordAuthentication=no' \
     -servercmd "$remote_bin_dir/unison" \
       "$local_dir" \
       "ssh://$user@$server/$remote_dir"

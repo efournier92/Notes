@@ -546,6 +546,7 @@ sudo apt-get update && sudo apt-get -y install \
   cmake \
   git-core \
   libass-dev \
+  libcdio \
   libfreetype6-dev \
   libsdl2-dev \
   libtool \

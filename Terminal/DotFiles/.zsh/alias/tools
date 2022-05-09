@@ -25,22 +25,36 @@ alias fresh="$SDOCS/Hlt/browser_tabs_fresh"
 alias story="$USCRIPTS/create_agile_story"
 
 ### Open Weight spreadsheet
-alias weight="spreadsheet $SDOCS/Hlt/Weight_${THIS_YEAR}.xlsx"
+alias weight="spreadsheet $SDOCS/Hlt/Weight.xlsx"
 
 ### Open Jeopardy spreadsheet
-alias jeps="spreadsheet $SDOCS/Gme/Jeopardy_03.xlsx"
+alias jeopardy_games="spreadsheet $(ls $SDOCS/Gme/Jeopardy_[0-9]*.xlsx | sort -V | tail -n 1)"
+
+### Open Jeopardy-download page in browser
+alias jeopardy_download="/mnt/bnk/snc/Documents/Gme/browser_tab_jeopardy"
 
 ### Open Chords markdown file
 chords_file="$SDOCS/Mus/Chords.md"
 alias chords="markdown $chords_file > /dev/null & vim $chords_file"
 
+### Open music-practice spreadsheet
+alias music_practice="libreoffice $SDOCS/Mus/Practice/Music_Practice.xlsx"
+
 ### Dot files
+
+#### Command to open a URL in a fresh browser session
+alias open_browser_url="google-chrome-stable --new-window"
 
 #### Copy from current directory to $HOME
 alias dot_files_to_home="cp -r .tmux .tmux.conf .vim .vimrc .zsh .zshrc $HOME"
 
 #### Copy from $HOME to current directory
 alias dot_files_from_home="cp -rv ~/.tmux ~/.tmux.conf ~/.vim ~/.vimrc ~/.zsh ~/.zshrc ."
+
+## Web
+
+### Material-Color-Picker Web Utility
+alias material_colors="open_browser_url https://materialui.co/colors"
 
 ## Sync
 
@@ -58,6 +72,9 @@ alias aud_lg="$USCRIPTS/audio_lg -i $RC/RECORD -o $EXTA/Lg/Audio"
 
 ### Launch Tor
 alias tor="GTK_THEME=Adwaita:light torbrowser-launcher"
+
+### Torr
+alias torr="$USCRIPTS/torr"
 
 ## List
 
