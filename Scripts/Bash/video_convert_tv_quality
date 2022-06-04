@@ -8,13 +8,8 @@
 # Example Usage : ./video_convert_tv_quality 30 false $(pwd)
 #----------------
 
-get_video_extensions_regex() {
-  echo "mp4|mkv|avi|webm|mpeg|mpg|wav|wmv|mov|flv|f4v|swf|vob"
-}
-
-list_video_files() {
-  echo $(ls | egrep -i `get_video_extensions_regex`)
-}
+shopt -s extglob
+shopt -s nullglob
 
 print_info() {
   local in_file="$1"
@@ -38,7 +33,7 @@ run_ffmpeg_command() {
   local out_file="$2"
   local crf="$3"
   local is_deinterlacing_enabled="$4"
-  
+
   ffmpeg -i "$in_file" \
     -c:a aac -ac 2 -b:a 128k \
     -c:v libx264 -crf "$crf" -tune film -preset slow \
@@ -50,28 +45,12 @@ run_ffmpeg_command() {
     "$out_file"
 }
 
-run_ffmpeg_command_with_deinterlacing() {
-  local in_file="$1"
-  local out_file="$2"
-  local crf="$3"
-
-  ffmpeg -i $in_file \
-    -c:a aac -ac 2 -b:a 128k \
-    -c:v libx264 -crf $crf -tune film -preset slow \
-    -profile:v baseline -level 3.0 -pix_fmt yuv420p \
-    -max_muxing_queue_size 400 \
-    -vf yadif=0:0:0 \
-    -movflags faststart \
-    -map_metadata -1 -strict -2 \
-    "$out_file"
-}
-
 main() {
-  local crf=$1
+  local crf="$1"
   local is_deinterlacing_enabled="$2"
-  local working_dir="$4"
+  local working_dir="$3"
 
-  [[ -z "$crf" ]] && local crf=30
+  [[ -z "$crf" ]] && local crf="30"
   [[ -z "$working_dir" ]] && local working_dir="$(pwd)"
   
   local ext_out="mp4"
@@ -81,7 +60,7 @@ main() {
 
   mkdir -p "$working_dir/$out_dir"
 
-  for in_file in `list_video_files`; do
+  for in_file in *.{mp4,mkv,avi,webm,mpeg,mpg,wav,wmv,mov,flv,f4v,swf,vob}; do
     local in_file_ext="${in_file##*.}"
     local out_file="$out_dir/${in_file/$in_file_ext/$ext_out}"
     
@@ -89,7 +68,7 @@ main() {
     
     run_ffmpeg_command "$in_file" "$out_file" "$crf" "$is_deinterlacing_enabled"
   done
-  }
+}
 
 main "$@"
 

@@ -88,6 +88,39 @@ for file in *$ext_in; do
 done
 ```
 
+#### Concatenate
+
+```bash
+concat_file="concat.txt"
+out_file="out.mp4"
+ffmpeg -safe 0 -f concat -i "$concat_file" \
+  -c:a aac -ac 2 -b:a 128k \
+  -c:v libx264 -crf 30 -tune film -preset slow \
+  -profile:v baseline -level 3.0 -pix_fmt yuv420p \
+  -max_muxing_queue_size 400 \
+  -movflags faststart \
+  -map_metadata -1 -strict -2 \
+  "$out_file"
+```
+
+#### Concatenate and Trim
+
+```bash
+file_in="in.mp4"
+file_out="out.mp4"
+time_start="00:00:00.000"
+time_end="00:00:00.000"
+ffmpeg -ss "$time_start" -i "$file_in" \
+  -c:a aac -ac 2 -b:a 128k \
+  -t "$time_end" \
+  -c:v libx264 -crf "28" -tune film -preset slow \
+  -profile:v baseline -level 3.0 -pix_fmt yuv420p \
+  -max_muxing_queue_size 400 \
+  -movflags faststart \
+  -map_metadata -1 -strict -2 \
+  "$file_out"
+```
+
 ### Trim File Duration
 
 #### Description
