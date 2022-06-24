@@ -1,0 +1,418 @@
+#!/bin/bash
+
+get_video_dimensions() {
+  echo "1280x720"
+}
+
+get_start_image_name() {
+  echo "+++BLACK.jpg"
+}
+
+get_end_image_name() {
+  echo "zzzBLACK.png"
+}
+
+create_black_image() {
+  local image_dir="$1"
+  local image_name="$2"
+
+  convert -size `get_video_dimensions` xc:black "$image_dir/$image_name"
+}
+
+create_bookend_images() {
+  local image_dir="$1"
+
+  create_black_image "$image_dir" `get_start_image_name`
+  create_black_image "$image_dir" `get_end_image_name`
+}
+
+delete_black_image() {
+  local image_dir="$1"
+  local image_name="$2"
+
+  rm "$image_dir/$image_name"
+}
+
+delete_bookend_images() {
+  local image_dir="$1"
+
+  delete_black_image "$image_dir" `get_start_image_name`
+  delete_black_image "$image_dir" `get_end_image_name`
+}
+
+get_scale_filter() {
+  echo "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:\(ow-iw\)/2:\(oh-ih\)/2:color=black,setsar=1"
+}
+
+is_first_file() {
+  local index="$1"
+
+  [[ "$index" == "0" ]] \
+    && echo "true" \
+    || echo "false"
+}
+
+get_start_point() {
+  local index="$1"
+  local current_start_point="$2"
+
+  if [[ "$index" -lt "2" ]]; then \
+    echo "1"
+  else
+    echo "$current_start_point"
+  fi
+}
+
+should_update_filter_commands() {
+  local index="$1"
+
+  if ! `is_first_file "$index"`; then
+    echo "true"
+  else
+    echo "false"
+  fi
+}
+
+get_fade_filter() {
+  local image_fade_seconds="$1"
+
+  echo "fade=d=$image_fade_seconds:t=in:alpha=1,"
+}
+
+get_title_text_filter() {
+  local video="$1"
+  local title_font_size="$2"
+  local should_show_titles="$3"
+
+  local font_size="$title_font_size"
+
+  local video_text="${video%%.*}"
+  local video_text="${video_text##*/}"
+  local video_text="${video_text//\'/’}"
+  local video_text="${video_text//\"/”}"
+  local video_text="${video_text//\`/’}"
+
+  [[ ! "$should_show_titles" =~ "true" || "$video_text" =~ "notitle" || `get_start_image_name` =~ "$video_text" || `get_end_image_name` =~ "$video_text" ]] \
+    && echo "" \
+    || echo "drawtext=text='\"$video_text\"':fontcolor=white:fontsize=$font_size:x=\(w-tw\)/2:y=h-th-20," 
+}
+
+get_zoompan_filter() {
+  local seconds_per_image="$1"
+
+  echo "zoompan=d=$seconds_per_image:s=`get_video_dimensions`"
+}
+
+get_set_pts_filter() {
+  local start_point="$1"
+
+  echo "setpts=PTS-STARTPTS+$start_point/TB"
+}
+
+update_filter_command() {
+  local index="$1"
+  local start_point="$2"
+  local image_fade_seconds="$3"
+  local filter_complex_command="$4"
+  local file="$5"
+  local seconds_per_image="$6"
+  local title_font_size="$7"
+  local should_show_titles="$8"
+
+  echo "$filter_complex_command [$index]`get_scale_filter`,`get_fade_filter $image_fade_seconds``get_title_text_filter "$file" "$title_font_size" "$should_show_titles"``get_set_pts_filter "$start_point"`[f$(( index - 1 ))];"
+}
+
+update_overlay_command() {
+  local index="$1"
+  local total_files="$2"
+  local overlay_command="$3"
+  
+  if [[ $index -eq $(( total_files - 1)) ]]; then
+    local overlay_command="$overlay_command [bg$(( index - 1))][f$(( index - 1 ))]overlay=\(W-w\)/2:\(H-h\)/2[v];"
+  elif [[ $index -lt $(( total_files - 2)) ]]; then
+    local overlay_command="$overlay_command [bg$index][f$index]overlay=\(W-w\)/2:\(H-h\)/2[bg$(( index + 1 ))];"
+  fi
+
+  echo "$overlay_command"
+}
+
+get_ffmpeg_command_prefix() {
+  echo "ffmpeg -y"
+}
+
+get_filter_command_prefix() {
+  echo ""
+}
+
+get_overlay_command_prefix() {
+  echo "[0][f0]overlay,`get_scale_filter`[bg1];"
+}
+
+remove_trailing_semicolon() {
+  local string="$1"
+
+  echo "${string::-1}"
+}
+
+ffmpeg_command_add_image() {
+  local file="$1"
+  local seconds_per_image="$2" 
+  local ffmpeg_command="$3"
+
+  echo "$ffmpeg_command -loop 1 -t $seconds_per_image -i \"$file\""
+}
+
+increment_number() {
+  local number="$1"
+
+  echo "$(( index + 1 ))"
+}
+
+update_start_point() {
+  local current_start_point="$1"
+  local seconds_per_image="$2"
+  local image_fade_seconds="$3"
+
+  echo "$(( start_point + (seconds_per_image - (image_fade_seconds / 2)) ))"
+}
+
+get_full_video_command() {
+  local output_file="$1" 
+  local ffmpeg_command="$2"
+  local filter_complex_command="$3"
+  local overlay_command="$4"
+
+  echo "$ffmpeg_command -filter_complex '${filter_complex_command/-filter_complex/} $overlay_command' -map '[v]' -movflags +faststart \"$output_file\""
+}
+
+get_total_images() {
+  local image_dir="$1" 
+
+  echo "`ls $image_dir/*.{jpg,png} | wc -l`"
+}
+
+get_first_index() {
+  echo "0"
+}
+
+get_first_start_point() {
+  echo "0"
+}
+
+get_ffmpeg_video_command() {
+  local image_dir="$1"
+  local seconds_per_image="$2"
+  local image_fade_seconds="$3"
+  local output_file="$4"
+  local title_font_size="$5"
+  local should_show_titles="$6"
+
+  local ffmpeg_command=`get_ffmpeg_command_prefix`
+  local filter_complex_command=`get_filter_command_prefix`
+  local overlay_command=`get_overlay_command_prefix`
+
+  local index=`get_first_index`
+  local start_point=`get_first_start_point`
+  local total_files=`get_total_images "$image_dir"`
+
+  for file in "$image_dir"/*.{jpg,png}; do
+    local ffmpeg_command=`ffmpeg_command_add_image "$file" "$seconds_per_image" "$ffmpeg_command"`
+
+    if `should_update_filter_commands "$index"`; then
+      local start_point=`get_start_point "$index" "$start_point"`
+      local filter_complex_command=`update_filter_command "$index" "$start_point" "$image_fade_seconds" "$filter_complex_command" "$file" "$seconds_per_image" "$title_font_size" "$should_show_titles"`
+      local overlay_command=`update_overlay_command "$index" "$total_files" "$overlay_command"`
+    fi
+
+    local index=`increment_number "$index"`
+    local start_point=`update_start_point "$start_point" "$seconds_per_image" "$image_fade_seconds"`
+  done
+  
+  local overlay_command=`remove_trailing_semicolon "$overlay_command"`
+
+  echo `get_full_video_command "$output_file" "$ffmpeg_command" "$filter_complex_command" "$overlay_command"`
+}
+
+get_filter_command_prefix() {
+  echo "-filter_complex"
+}
+
+create_concat_file() {
+  local audio_dir="$1"
+  local temp_concat_file="$2"
+
+  for file in "$audio_dir"/*; do
+    local file_name_safe="${file//\ /\\ }"
+    local file_name_safe="${file_name_safe//\'/\\\'}"
+    echo "file ../${file_name_safe}" >> "$temp_concat_file"
+  done
+}
+
+join_audio() {
+  local audio_dir="$1"
+  local temp_audio_file="$2"
+  local temp_concat_file="$3"
+  
+  create_concat_file "$audio_dir" "$temp_concat_file"
+  
+  echo "ffmpeg -f concat -safe 0 -i \"$temp_concat_file\" -c:a aac -ac 2 -b:a 128k \"$temp_audio_file\""
+}
+
+join_audio_video_files() {
+  local temp_audio_file="$1"
+  local temp_video_file="$2"
+  local output_file="$3"
+  
+  local fade="4"
+  local duration=`ffprobe -v error -select_streams v:0 -show_entries stream=duration -of csv=p=0 "$temp_video_file"`
+  echo "ffmpeg -i $temp_video_file -i $temp_audio_file -filter_complex "afade=t=in:st=0:d=$fade,afade=t=out:st=$(bc <<< "$duration-$fade"):d=$(( fade ))" -shortest \"$output_file\""
+}
+
+delete_temp_dir() {
+  local temp_dir="$1"
+  local output_file="$2"
+
+  rm -rf "$temp_dir" "$output_file"
+}
+
+create_temp_dir() {
+  local temp_dir="$1"
+
+  mkdir "$temp_dir"
+}
+
+reinitialize_temp_dir() {
+  local temp_dir="$1"
+  local output_file="$2"
+  
+  delete_temp_dir "$temp_dir" "$output_file"
+  create_temp_dir "$temp_dir"
+}
+
+throw_hard_error() {
+  echo 'USE COMMAND: video_slideshow -i Photos -a Audio -o output_file -s 8 -f 2 -t -ts 40' >&2
+
+  exit
+}
+
+default_seconds_per_image() {
+  echo "8"
+}
+
+default_image_fade_seconds() {
+  echo "2"
+}
+
+default_title_font_size() {
+  echo "50"
+}
+
+read_config() {
+  while [[ "$1" != "" ]]; do
+    case $1 in
+
+      -i | --image_dir )
+        shift
+        local image_dir="$1"
+        ;;
+
+      -a | --audio_dir )
+        shift
+        local audio_dir="$1"
+        ;;
+
+      -o | --output_file )
+        shift
+        local output_file="$1"
+        ;;
+
+      -s | --seconds_per_image )
+        shift
+        local seconds_per_image="$1"
+        ;;
+
+      -f | --image_fade_seconds )
+        shift
+        local image_fade_seconds="$1"
+        ;;
+
+      -t | --should_show_titles )
+        local should_show_titles="true"
+        ;;
+
+      -ts | --title_font_size )
+        shift
+        local title_font_size="$1"
+        ;;
+
+    esac
+    shift
+  done
+
+  [[ -z "$image_dir" ]] && throw_hard_error
+  [[ -z "$audio_dir" ]] && local audio_dir="false"
+  [[ -z "$output_file" ]] && throw_hard_error
+  [[ -z "$seconds_per_image" ]] && local seconds_per_image=`default_seconds_per_image`
+  [[ -z "$image_fade_seconds" ]] && local image_fade_seconds=`default_image_fade_seconds`
+  [[ -z "$should_show_titles" ]] && local should_show_titles="false"
+  [[ -z "$title_font_size" ]] && local title_font_size=`default_title_font_size`
+
+  echo "$image_dir" "$output_file" "$audio_dir" "$seconds_per_image" "$image_fade_seconds" "$should_show_titles" "$title_font_size"
+}
+
+validate_arguments() {
+  local image_dir="$1"
+  local output_file="$2"
+
+  local number_of_images=`ls $image_dir/*.{jpg,png} | wc -l`
+
+  [[ -z "$output_file" || -z "$image_dir" || "$number_of_images" -lt 4 ]] \
+    && echo "false" \
+    || echo "true"
+}
+
+create_slideshow() {
+  local image_dir="$1"
+  local output_file="$2"
+  local audio_dir="$3"
+  local seconds_per_image="$4"
+  local image_fade_seconds="$5"
+  local should_show_titles="$6"
+  local title_font_size="$7"
+
+  local output_file="${output_file%.*}.mp4"
+
+  local is_valid=`validate_arguments "$image_dir" "$output_file"`
+  [[ "$is_valid" == "false" ]] && exit
+
+  local temp_dir="$(pwd)/.temp_slideshow_${output_file%.*}"
+  local temp_audio_file="${temp_dir}/audio.aac"
+  local temp_video_file="${temp_dir}/video.mp4"
+  local temp_concat_file="${temp_dir}/concat.txt"
+
+  reinitialize_temp_dir "$temp_dir" "$output_file"
+  
+  create_bookend_images "$image_dir"
+
+  eval `get_ffmpeg_video_command "$image_dir" "$seconds_per_image" "$image_fade_seconds" "$temp_video_file" "$title_font_size" $should_show_titles`
+
+  if [[ "$audio_dir" != "false" ]]; then
+    eval `join_audio "$audio_dir" "$temp_audio_file" "$temp_concat_file"`
+    eval `join_audio_video_files "$temp_audio_file" "$temp_video_file" "$output_file"`
+  else
+    cp "$temp_video_file" "$output_file"
+  fi
+
+  delete_bookend_images "$image_dir"
+
+  delete_temp_dir "$temp_dir"
+}
+
+main() {
+  create_slideshow `read_config "$@"`
+}
+
+#shopt -s nullglob
+
+main "$@"
+
