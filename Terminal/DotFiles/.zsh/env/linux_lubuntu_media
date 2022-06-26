@@ -31,15 +31,15 @@ source "$ZENV/linux_common"
 
 ### Tasks
 run_boot_tasks() {
-  $USCRIPTS/connect_vpn_persistently "Calypso" 60 &
-  $USCRIPTS/connect_vnc_persistently 60 &
-  $USCRIPTS/pulseaudio_set_default_sink "alsa.name" "HDMI" &
+  export SYS_NAME="linux_lubuntu_media"
+  $USCRIPTS/connect_persistently_audio_sink 60 "alsa.name" "HDMI" &
+  #$USCRIPTS/connect_persistently_vnc 60 &
+  #$USCRIPTS/connect_persistently_wifi 60 "FW-East-5G" "FW-FamilyRoom" &
+  #$USCRIPTS/connect_persistently_vpn 60 "Calypso" &
 
-  setxkbmap -option caps:escape
-  pacmd set-default-sink alsa_output.platform-bcm2835_audio.stereo-fallback
+  xfce4-power-manager &
+  setxkbmap -option caps:escape &
 
-  delay_for_ui 2
-  xdotool key Escape  
   m_md
 
   gnome-terminal --window --maximize &
