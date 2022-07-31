@@ -37,7 +37,7 @@
   - [Compile From Source](#compile-from-source)
 
 ## Overview
-[FFmpeg](https://www.ffmpeg.org/) is the coolest and most obscurely ubiquitous tool I've ever happened upon. It's the engine running behind the vast majority of open-source tools for video editing and encoding. Clever [CLI](https://en.wikipedia.org/wiki/Command-line_interface) commands can invoke virtually any video editing process. Below are some of the commands I use most often.
+[FFmpeg](https://www.ffmpeg.org/) is the coolest and most obscurely-ubiquitous tool I've ever happened upon. It's the engine running behind the vast majority of open-source tools for video editing and encoding. Clever [CLI](https://en.wikipedia.org/wiki/Command-line_interface) commands can invoke virtually any video editing process. Below are some of the commands I use most often.
 
 ## Commands
 
@@ -90,6 +90,19 @@ done
 
 #### Concatenate
 
+##### Without Re-Encoding
+
+```bash
+concat_file="concat.txt"
+out_file="CONCAT.mp4"
+ffmpeg -safe 0 -f concat -i "$concat_file" \
+  -c copy \
+  -map_metadata -1 -strict -2 \
+  "$out_file"
+```
+
+##### Re-Encode
+
 ```bash
 concat_file="concat.txt"
 out_file="out.mp4"
@@ -103,7 +116,7 @@ ffmpeg -safe 0 -f concat -i "$concat_file" \
   "$out_file"
 ```
 
-#### Concatenate and Trim
+#### Re-Encode and Trim
 
 ```bash
 file_in="in.mp4"
@@ -119,6 +132,16 @@ ffmpeg -ss "$time_start" -i "$file_in" \
   -movflags faststart \
   -map_metadata -1 -strict -2 \
   "$file_out"
+```
+
+#### Intermediate File to Resolve Audio-Sync Issues
+
+```bash
+out_dir_name="TS"
+mkdir -p "$out_dir_name"
+for file in *.mp4; do
+  ffmpeg -i "$file" -q 0 "$out_dir_name/${file/.mp4/.MTS}"
+done
 ```
 
 ### Trim File Duration
