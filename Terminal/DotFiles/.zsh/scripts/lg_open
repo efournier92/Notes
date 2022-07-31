@@ -1,0 +1,12 @@
+#!/bin/bash
+
+main() {
+  $ZSCRIPTS/lg_mount
+  
+  cd "$SLG"
+
+  vim -O "$@"
+}
+
+main "$@"
+

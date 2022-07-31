@@ -1,0 +1,15 @@
+#!/bin/bash
+
+main() {
+  local parent_dir="$SNC"
+  local file_name="$parent_dir/Lg.vc"
+  local mount_point="$parent_dir/Lg"
+
+  [[ ! -n "$(ls -A $SLG)" ]] && \
+    veracrypt -t --pim=0 --keyfiles="" --protect-hidden=no "$file_name" "$mount_point"
+
+  cd "$SLG"
+}
+
+main "$@"
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+main() {
+  local download_url="$1"
+
+  yt-dlp -f 'ba' -x --audio-format mp3 "$download_url"
+}
+
+main "$@"
+

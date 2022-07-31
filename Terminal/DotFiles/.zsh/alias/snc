@@ -39,17 +39,21 @@ export SNOTES="$SNC/Notes"
 ## Vim Files
 
 ### Open Lg for this Year
-alias lgyr="vim $SLG/${THIS_YEAR}.md"
+alias lgyr="$ZSCRIPTS/lg_open $SLG/${THIS_YEAR}.md"
 
 ### Open Do & Lg notes split vertically
-alias nlog="vim -O $SNOTES/Do.md $SNOTES/Lg.md"
+alias nlog="$ZSCRIPTS/lg_open $SLG/Do.md $SLG/Lg.md"
 
 ### Open Do Notes
-alias ndo="vim $SNOTES/Do.md"
+alias ndo="$ZSCRIPTS/lg_open $SLG/Do.md"
 
 ### Open Lg Notes
-alias nlg="vim $SNOTES/Lg.md"
+alias nlg="$ZSCRIPTS/lg_open $SLG/Lg.md"
 
 ### Open Xy Notes
-alias nxy="vim $SNOTES/Xy.md"
+alias nxy="$ZSCRIPTS/lg_open $SLG/Xy.md"
+
+alias lg_dm="$ZSCRIPTS/lg_dismount"
+
+alias lg_m="$ZSCRIPTS/lg_mount $SNC"
 

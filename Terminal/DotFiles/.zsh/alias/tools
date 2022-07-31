@@ -27,11 +27,11 @@ alias story="$USCRIPTS/create_agile_story"
 ### Open Weight spreadsheet
 alias weight="spreadsheet $SDOCS/Hlt/Weight.xlsx"
 
-### Open Jeopardy spreadsheet
-alias jeopardy_games="spreadsheet $(ls $SDOCS/Gme/Jeopardy_[0-9]*.xlsx | sort -V | tail -n 1)"
-
 ### Open Jeopardy-download page in browser
-alias jeopardy_download="/mnt/bnk/snc/Documents/Gme/browser_tab_jeopardy"
+alias jeopardy_episodes="$SDOCS/Gme/Scripts/jeopardy_episodes"
+
+### Open Jeopardy spreadsheet
+alias jeopardy_games="$SDOCS/Gme/Scripts/jeopardy_games"
 
 ### Open Chords markdown file
 chords_file="$SDOCS/Mus/Chords.md"
@@ -39,6 +39,9 @@ alias chords="markdown $chords_file > /dev/null & vim $chords_file"
 
 ### Open music-practice spreadsheet
 alias music_practice="libreoffice $SDOCS/Mus/Practice/Music_Practice.xlsx"
+
+### Open Nautilus in a detached process nohup process
+nnautilus() { nohup nautilus "$1" </dev/null >/dev/null 2>&1 &! }
 
 ### Dot files
 
@@ -56,6 +59,9 @@ alias dot_files_from_home="cp -rv ~/.tmux ~/.tmux.conf ~/.vim ~/.vimrc ~/.zsh ~/
 ### Material-Color-Picker Web Utility
 alias material_colors="open_browser_url https://materialui.co/colors"
 
+### Download YouTube Audio
+yt_audio() { "$ZSCRIPTS/yt_audio" "$1"; }
+
 ## Sync
 
 ### SB 
@@ -63,9 +69,16 @@ alias material_colors="open_browser_url https://materialui.co/colors"
 ### Sync with Unison
 alias uni=". $ZSCRIPTS/unison_start"
 
-## Audio
+## Lg
 
-### Run Audio-Lg Script
+### Text
+
+#### Mount Lg Container
+alias m_lg="$USCRIPTS/m_lg"
+
+### Audio
+
+#### Run Audio-Lg Script
 alias aud_lg="$USCRIPTS/audio_lg -i $RC/RECORD -o $EXTA/Lg/Audio"
 
 ## Browser

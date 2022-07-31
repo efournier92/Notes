@@ -1,0 +1,8 @@
+#!/bin/bash
+
+main() {
+  veracrypt -t -d "$SNC/Lg"
+}
+
+main "$@"
+
