@@ -39,21 +39,40 @@ export SNOTES="$SNC/Notes"
 ## Vim Files
 
 ### Open Lg for this Year
-alias lgyr="$ZSCRIPTS/lg_open $SLG/${THIS_YEAR}.md"
+alias lgyr="vim $SLG/${THIS_YEAR}.md"
 
 ### Open Do & Lg notes split vertically
-alias nlog="$ZSCRIPTS/lg_open $SLG/Do.md $SLG/Lg.md"
+alias nlog="vim -O $SLG/Do.md $SLG/Lg.md"
 
 ### Open Do Notes
-alias ndo="$ZSCRIPTS/lg_open $SLG/Do.md"
+alias ndo="vim $SLG/Do.md"
 
 ### Open Lg Notes
-alias nlg="$ZSCRIPTS/lg_open $SLG/Lg.md"
+alias nlg="vim $SLG/Lg.md"
 
 ### Open Xy Notes
-alias nxy="$ZSCRIPTS/lg_open $SLG/Xy.md"
+alias nxy="vim $SLG/Xy.md"
 
-alias lg_dm="$ZSCRIPTS/lg_dismount"
+## Lg Container
 
-alias lg_m="$ZSCRIPTS/lg_mount $SNC"
+### Open Lg for this Year
+#alias lgyr="$ZSCRIPTS/lg_open $SLG/${THIS_YEAR}.md"
+
+### Open Do & Lg notes split vertically
+#alias nlog="$ZSCRIPTS/lg_open $SLG/Do.md $SLG/Lg.md"
+
+### Open Do Notes
+#alias ndo="$ZSCRIPTS/lg_open $SLG/Do.md"
+
+### Open Lg Notes
+#alias nlg="$ZSCRIPTS/lg_open $SLG/Lg.md"
+
+### Open Xy Notes
+#alias nxy="$ZSCRIPTS/lg_open $SLG/Xy.md"
+
+### Mount Lg container
+#alias lg_dm="$ZSCRIPTS/lg_dismount"
+
+### Dismount Lg container
+#alias lg_m="$ZSCRIPTS/lg_mount $SNC"
 
