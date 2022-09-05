@@ -59,36 +59,61 @@ done
 ### CRF Quality
 
 #### Description
-My go-to for live-action TV shows, for which I favor smaller size over the greatest quality.
+My go-to choice for live-action TV shows, for which I favor smaller size over the greatest quality.
 
 #### Single
 
 ```bash
-ffmpeg -i "$IN_FILE" \
-  -c:v libx264 -pix_fmt yuv420p -crf 28 \
-  -acodec aac -c:a libmp3lame \
+crf="28"
+in_file=""
+out_file="OUTPUT_$crf.mp4"
+ffmpeg -i "$in_file" \
+  -c:a aac -ac 2 -b:a 128k \
+  -c:v libx264 -crf "$crf" -tune film -preset slow \
+  -profile:v baseline -level 3.0 -pix_fmt yuv420p \
+  -max_muxing_queue_size 400 \
+  -movflags faststart \
   -map_metadata -1 -strict -2 \
-  "OUT/$OUT_FILE"
+  "$out_file"
 ```
 
 #### Batch
 
 ```bash
+crf="28"
 ext_in=".mkv"
 ext_out=".mp4"
-out_dir="_OUT"
+out_dir="_OUTPUT_$crf"
 mkdir "$out_dir"
 for file in *$ext_in; do
-  ffmpeg -i $file \
-    -c:v libx264 -pix_fmt yuv420p -crf 28 \
-    -preset slow \
-    -acodec aac -c:a libmp3lame \
+  ffmpeg -i "$file" \
+    -c:a aac -ac 2 -b:a 128k \
+    -c:v libx264 -crf "$crf" -tune film -preset slow \
+    -profile:v baseline -level 3.0 -pix_fmt yuv420p \
+    -max_muxing_queue_size 400 \
+    -movflags faststart \
     -map_metadata -1 -strict -2 \
     "$out_dir/${file/$ext_in/$ext_out}"
 done
 ```
 
 #### Concatenate
+
+##### Re-Encode
+
+```bash
+crf="28"
+concat_file="concat.txt"
+out_file="CONCAT_$crf.mp4"
+ffmpeg -safe 0 -f concat -i "$concat_file" \
+  -c:a aac -ac 2 -b:a 128k \
+  -c:v libx264 -crf "$crf" -tune film -preset slow \
+  -profile:v baseline -level 3.0 -pix_fmt yuv420p \
+  -max_muxing_queue_size 400 \
+  -movflags faststart \
+  -map_metadata -1 -strict -2 \
+  "$out_file"
+```
 
 ##### Without Re-Encoding
 
@@ -101,14 +126,18 @@ ffmpeg -safe 0 -f concat -i "$concat_file" \
   "$out_file"
 ```
 
-##### Re-Encode
+#### Re-Encode and Trim
 
 ```bash
+crf="28"
 concat_file="concat.txt"
-out_file="out.mp4"
-ffmpeg -safe 0 -f concat -i "$concat_file" \
+out_file="CONCAT+TRIM_$crf.mp4"
+time_start="00:00:00.000"
+time_end="00:00:00.000"
+ffmpeg -ss "$time_start" -i "$concat_file" \
   -c:a aac -ac 2 -b:a 128k \
-  -c:v libx264 -crf 30 -tune film -preset slow \
+  -t "$time_end" \
+  -c:v libx264 -crf "$crf" -tune film -preset slow \
   -profile:v baseline -level 3.0 -pix_fmt yuv420p \
   -max_muxing_queue_size 400 \
   -movflags faststart \
@@ -116,25 +145,7 @@ ffmpeg -safe 0 -f concat -i "$concat_file" \
   "$out_file"
 ```
 
-#### Re-Encode and Trim
-
-```bash
-file_in="in.mp4"
-file_out="out.mp4"
-time_start="00:00:00.000"
-time_end="00:00:00.000"
-ffmpeg -ss "$time_start" -i "$file_in" \
-  -c:a aac -ac 2 -b:a 128k \
-  -t "$time_end" \
-  -c:v libx264 -crf "28" -tune film -preset slow \
-  -profile:v baseline -level 3.0 -pix_fmt yuv420p \
-  -max_muxing_queue_size 400 \
-  -movflags faststart \
-  -map_metadata -1 -strict -2 \
-  "$file_out"
-```
-
-#### Intermediate File to Resolve Audio-Sync Issues
+#### Create an Intermediate File to Mitigate Audio-Sync Issues
 
 ```bash
 out_dir_name="TS"

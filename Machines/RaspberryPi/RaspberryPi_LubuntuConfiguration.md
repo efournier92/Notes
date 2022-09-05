@@ -596,6 +596,3 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
     - `When there are other updates` : `<empty>`
     - `Notify me of a new Ubuntu version` : `Never`
 
-
-
-
