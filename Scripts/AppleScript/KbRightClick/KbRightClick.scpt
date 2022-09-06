@@ -1,1 +1,0 @@
-set mouseToolsPath to "/Users/Misigno/Library/Assistants/KbRightClick/MouseTools"set {x, y} to paragraphs of (do shell script quoted form of POSIX path of mouseToolsPath & " -location")do shell script quoted form of POSIX path of mouseToolsPath & " -x " & (x as text) & " -y " & (y as text) & " -rightClick"
