@@ -8,7 +8,7 @@ main() {
   while true; do
     local timestamp=`date +'%y%m%d-%H%M%S'`
 
-    scrot "${timestamp}.png" -e 'echo $n'
+    scrot "${timestamp}.png" --silent -e 'echo $n'
 
     sleep $interval_in_seconds
   done

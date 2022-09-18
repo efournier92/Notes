@@ -1,0 +1,43 @@
+#!/bin/bash
+
+get_new_file_name() {
+  local_file_name="$1"
+
+  if [[ "$file_name" =~ [0-9]{2}-[0-9]{2}-[0-9]{2} ]]; then
+    local date_unformatted="${BASH_REMATCH[0]}"
+    local day="${date_unformatted:3:2}"
+    local month="${date_unformatted:0:2}"
+    local year_2_digit="${date_unformatted:6:2}"
+    local year_2_digit_starts_with="${year_2_digit:0:1}"
+
+    if [[ $year_2_digit_starts_with -lt 5 ]]; then
+      local year_full="20${year_2_digit}"
+    else
+      local year_full="19${year_2_digit}"
+    fi
+
+    echo "${year_full}-${month}-${day} - $file_name"
+
+  elif [[ "$file_name" =~ [0-9]{4} ]]; then
+    local year_full="${BASH_REMATCH[0]}"
+
+    echo "${year_full} - $file_name"
+
+  else
+    echo "0000 - $file_name"
+
+  fi
+}
+
+main() {
+  for file_name in *; do
+    local new_file_name=`get_new_file_name "$file_name"`
+
+    echo "$new_file_name"
+
+    #mv "$file_name" "$new_file_name"
+  done
+}
+
+main
+

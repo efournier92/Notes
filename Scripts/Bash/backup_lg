@@ -20,33 +20,29 @@ navigate_to_starting_dir() {
   cd "$working_dir"
 }
 
-delete_preexisting_zip() {
-  local zip_file="$1"
+try_delete_preexisting_zip() {
+  local zip_location="$1"
 
-  rm -rf "$zip_file"
+  rm -rf "$zip_location"
 }
 
-zip_dir() {
-  local zip_dir="$1"
-  local zip_file="$2"
+zip_lg_dir() {
+  local zip_location="$1"
+  local lg_dir_name="Lg"
 
-  local log_dir_name="Lg"
-
-  zip -r "$zip_dir/$zip_file" "$log_dir_name"
+  zip -r "$zip_location" "$lg_dir_name"
 }
 
 main() {
   local backup_drive="$1"
-
-  local log_dir="/mnt/bnk/snc"
   local working_dir=`pwd`
   local date_stamp=`date +'%Y-%m-%d'`
-  local zip_dir="/mnt/$backup_drive/Lg/Backups"
-  local zip_file="$date_stamp.zip"
+  local zip_location="$backup_drive/Lg/Backups/$date_stamp.zip"
+  local log_dir="/mnt/bnk/snc"
   
   navigate_to_log_dir "$log_dir"
-  delete_preexisting_zip "$zip_file"
-  zip_dir "$zip_dir" "$log_dir"
+  try_delete_preexisting_zip "$zip_location"
+  zip_lg_dir "$zip_location"
   navigate_to_starting_dir "$working_dir"
 }
 

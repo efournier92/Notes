@@ -8,10 +8,9 @@
 # Example Usage : ./boot laptop
 #----------------
 
-alias_dir="$HOME/.zsh/alias"
+source "$HOME/.zsh/env/common"
+source "$HOME/.zsh/alias/drives"
 shopt -s expand_aliases
-source "$HOME/.zsh/env/env.zsh"
-source "$alias_dir/drives.zsh"
 
 delay_to_prevent_ui_bugs() {
   local delay_time=$1
@@ -28,23 +27,24 @@ start_unison_snc() {
     && nohup "$watch_script" "$SNC" "$ZSCRIPTS/uni" >/dev/null 2>&1&
 }
 
-is_valid_machine_type() {
-  local machine_type="$1"
+is_valid_environment_name() {
+  local environment_name="$1"
 
-  [[ "$machine_type" != "manjaro_general" \
-    && "$machine_type" != "manjaro_media" \
-    && "$machine_type" != "lubuntu_media" \
+  [[ "$environment_name" != "manjaro_general" \
+    && "$environment_name" != "manjaro_media" \
+    && "$environment_name" != "lubuntu_media" \
+    && "$environment_name" != "lubuntu_fmedia" \
   ]] \
     && echo "false" \
     || echo "true"
 }
 
-validate_machine_type() {
-  local machine_type="$1"
+validate_environment_name() {
+  local environment_name="$1"
 
-  local machine_is_valid=`is_valid_machine_type "$machine_type"`
-  if [[ "$machine_is_valid" == "false" ]]; then
-    echo "ERROR: Must supply valid a valid machine type" >&2
+  local environment_name_is_valid=`is_valid_environment_name "$environment_name"`
+  if [[ "$is_valid_environment_name" == "false" ]]; then
+    echo "ERROR: Must supply a valid environment name" >&2
     exit 1
   fi
 }
@@ -57,14 +57,33 @@ run_lubuntu_media_tasks() {
   setxkbmap -option caps:escape
   pacmd set-default-sink alsa_output.platform-bcm2835_audio.stereo-fallback
 
+  delay_to_prevent_ui_bugs 2
+  xdotool key Escape  
   m_md
-  kodi -fs &
+
   gnome-terminal --window --maximize &
+  kodi -fs &
+}
+
+run_lubuntu_fmedia_tasks() {
+  export SYS_NAME="lubuntu_fmedia"
+  $HOME/scripts/connect_vpn_persistently "Calypso" 60 &
+  $HOME/scripts/connect_vnc_persistently 60 &
+  $HOME/scripts/pulseaudio_set_default_sink "alsa.name" "HDMI" &
+
+  xfce4-power-manager
+  setxkbmap -option caps:escape
+  delay_to_prevent_ui_bugs 3
+  xdotool key Escape  
+
+  gnome-terminal --window --maximize &
+  kodi -fs &
 }
 
 run_manjaro_media_tasks() {
   $HOME/scripts/connect_vpn_persistently "Calypso" 60 &
   $HOME/scripts/connect_vnc_persistently 60 &
+  $HOME/scripts/pulseaudio_set_default_sink "alsa.name" "HDMI" &
 
   setxkbmap -option caps:escape
 
@@ -72,8 +91,8 @@ run_manjaro_media_tasks() {
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "suspend"
   gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 5400
 
-  delay_to_prevent_ui_bugs 2
   xdotool key Escape  
+  delay_to_prevent_ui_bugs 2
   m_md
 
   gnome-terminal --window --maximize &
@@ -93,26 +112,34 @@ run_manjaro_general_tasks() {
   start_unison_snc
 
   delay_to_prevent_ui_bugs 2
-  xdotool key Escape  
-  m_bnk
+  xdotool key Escape
 
+  m_bnk
   gnome-terminal --window --maximize
 }
 
 main() {
-  local machine_type="$1"
+  export ENV_NAME="$1"
 
-  validate_machine_type "$machine_type"
+  #validate_environment_name "$ENV_NAME"
 
   delay_to_prevent_ui_bugs
-  
-  if [[ "$machine_type" == "manjaro_general" ]]; then
-    run_manjaro_general_tasks
-  elif [[ "$machine_type" == "manjaro_media" ]]; then
-    run_manjaro_media_tasks
-  elif [[ "$machine_type" == "lubuntu_media" ]]; then
-    run_lubuntu_media_tasks
-  fi
+ 
+  #source "$ZENV/common"
+  #source "$ZALIAS/drives"
+  #echo "ENV: $ENV_NAME"
+  . "$ZENV/$ENV_NAME"
+  run_boot_tasks
+  #run_manjaro_general_tasks
+  #if [[ "$ENV_NAME" == "linux_manjaro_general" ]]; then
+  #  run_manjaro_general_tasks
+  #elif [[ "$ENV_NAME" == "linux_manjaro_media" ]]; then
+  #  run_manjaro_media_tasks
+  #elif [[ "$ENV_NAME" == "linux_lubuntu_media" ]]; then
+  #  run_lubuntu_media_tasks
+  #elif [[ "$ENV_NAME" == "linux_lubuntu_fmedia" ]]; then
+  #  run_lubuntu_fmedia_tasks
+  #fi
 }
 
 main "$@"
