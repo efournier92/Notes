@@ -1,11 +1,10 @@
-#!/bin/bash
+#!/bin/zsh
 
 #----------------
 # Name          : pulseaudio_set_default_sink
 # Description   : Finds index of the audio sink matched by the supplied property name and target pattern, then sets that sink as the default. Meant to be run at boot time.
 # Author        : E Fournier
 # Dependencies  : pactl, pacmd
-# Notes         : Ensure `load-module module-stream-restore restore_device=false` is set in `/etc/pulse/default.pa`
 # Example Usage : ./pulseaudio_set_default_sink "alsa.name" "HDMI"
 #----------------
 
@@ -17,20 +16,11 @@ get_target_sink_index() {
   pactl list sinks |
     grep "$property_name" |
       while read line; do 
-        if [[ "$line" =~ "$target_pattern" ]]; then
-          echo $index
-        fi
+        [[ "$line" =~ "$target_pattern" ]] \
+          && local hdmi_sink_index=$index
         local index=$((index + 1))
       done;
-}
-
-set_active_sinks() {
-  local hdmi_sink_index=$1
-
-  pacmd list-sink-inputs | grep index | while read line; do
-    local active_sink=`echo $line | cut -f2 -d ' '`
-    pacmd move-sink-input $active_sink $hdmi_sink_index
-  done
+  echo $hdmi_sink_index
 }
 
 set_default_sink_to_target() {
@@ -42,14 +32,12 @@ set_default_sink_to_target() {
 main() {
   local property_name="$1"
   local target_pattern="$2"
- 
-  local first_sink_number=`pactl list short sinks | cut -c1-1 | head -n 1`;
-  local hdmi_sink_index=`get_target_sink_index "$property_name" "$target_pattern"`
-  local hdmi_sink_number=$(( first_sink_number + hdmi_sink_index ))
   
-  if [[ ! -z $hdmi_sink_number ]]; then
-    set_default_sink_to_target $hdmi_sink_number
-    set_active_sinks $hdmi_sink_number
+  local hdmi_sink_index=`get_target_sink_index "$property_name" "$target_pattern"`
+  
+  if [[ ! -z $hdmi_sink_index ]]; then
+    echo "HDMI Sink Index: $hdmi_sink_index" >&2
+    set_default_sink_to_target $hdmi_sink_index
   else
     echo "Failed to detect HDMI sink" >&2
   fi

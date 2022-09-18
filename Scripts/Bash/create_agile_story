@@ -5,8 +5,6 @@ get_story_contents() {
 cat << EOF
 # [$name]()
 
-## Summary
-
 ## Background
 
 ## Terminology
@@ -28,12 +26,16 @@ EOF
 
 main() {
   local name="$1"
-  local dir="$(pwd)"
+  local dir="$2"
+
+  [[ -z "$dir" ]] && local dir="$(pwd)"
   
   mkdir -p "${dir}/${name}"
 
   local file="${dir}/${name}/${name}.md"
   touch "$file"
+
+  echo "${file}" >&2
 
   get_story_contents "$name" >> "$file"
 }

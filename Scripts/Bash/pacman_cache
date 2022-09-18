@@ -19,6 +19,7 @@ calculate_disk_usage() {
 remove_all_uninstalled_packages() {
   printf "________\nREMOVING ALL UNINSTALLED PACKAGES\n\n"
   sudo pacman -Sc
+  paccache -ruk0
 }
 
 remove_keeping_num_versions() {
