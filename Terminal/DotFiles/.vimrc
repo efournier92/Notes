@@ -224,6 +224,9 @@ nnoremap <leader>f :set guifont=*<CR>
 """ Format JSON
 nnoremap <leader>json :%!python -m json.tool<CR>
 
+"" Replace curly quotes with straight quotes
+noremap <Leader>q :%s/“/"/g<CR>:%s/”/"/g<CR>:%s/’/'/g<CR>:%s/‘/'/g<CR>
+
 "" Rename
 
 """ Rename selection
