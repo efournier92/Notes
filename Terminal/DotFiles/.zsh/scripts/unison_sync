@@ -5,10 +5,10 @@
 # Description   : Syncs local directory to remote using Unison
 # Author        : E Fournier
 # Dependencies  : unison, inotifywait, pgrep
-# Example Usage : ./sync_unison 
+# Example Usage : ./unison_sync
 #----------------
 
-#source "$HOME/.zsh/env/common"
+source "$HOME/.zsh/env/common"
 
 validate_args() {
   local server="$1"

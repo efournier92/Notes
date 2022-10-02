@@ -5,10 +5,10 @@
 # Description   : Starts the unison sync process
 # Author        : E Fournier
 # Dependencies  : nohup
-# Example Usage : ./uni
+# Example Usage : ./unison_start
 #----------------
 
-#source "$HOME/.zsh/env/common"
+source "$HOME/.zsh/env/common"
 
 main() {
   local mode="$1"

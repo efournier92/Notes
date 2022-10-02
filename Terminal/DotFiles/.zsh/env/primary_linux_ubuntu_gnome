@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 #----------------
-# Name          : linux_manjaro_general
-# Description   : Shell-environment configuration for General build on Linux Manjaro
+# Name          : primary_linux_ubuntu_gnome
+# Description   : Shell-environment configuration for Primary build on Linux Ubuntu
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------
@@ -25,7 +25,15 @@ export SYNC_ENABLED=false
 ## Resources
 
 ### Linux common
-source "$ZENV/linux_common"
+source "$ZENV/common_linux"
+
+### Primary common
+source "$ZENV/primary_linux_common"
+
+## Overrides
+
+### Hide snap loop devices from `lsblk` output
+function lsblk() { command lsblk -e7; }; 
 
 ## Boot
 
@@ -33,8 +41,10 @@ source "$ZENV/linux_common"
 run_boot_tasks() {
   gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
   gsettings set org.gnome.desktop.screensaver lock-enabled true
-  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "nothing"
-  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 10000
+  gsettings set org.gnome.desktop.media-handling automount false
+  gsettings set org.gnome.desktop.media-handling automount-open false 
+
+  PATH="$PATH:$HOME/.local/bin"
 
   m_bnk
   gnome-terminal --window --maximize

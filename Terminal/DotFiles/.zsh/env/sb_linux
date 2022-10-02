@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 #----------------
-# Name          : linux_manjaro_general
-# Description   : Shell-environment configuration for General build on Linux Manjaro
+# Name          : sb_linux
+# Description   : Shell-environment configuration for SB build on Linux
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------

@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 #----------------
-# Name          : linux_manjaro_media
-# Description   : Shell-environment configuration for General build on Linux Manjaro
+# Name          : media_linux_manjaro_gnome
+# Description   : Shell-environment configuration for Media build on Linux Manjaro
 # Author        : E Fournier
 # Dependencies  : zsh, xdotool, kodi, gnome, gnome-terminal
 #----------------

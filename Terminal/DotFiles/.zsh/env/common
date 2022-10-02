@@ -2,7 +2,7 @@
 
 #----------------
 # Name          : common
-# Description   : Environment-specific configuration for ZSH
+# Description   : Common configuration for ZSH environments
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------
@@ -18,12 +18,12 @@ export ZZSH="$HOME/.zsh"
 export ZOHMYZSH="$HOME/.oh-my-zsh"
 
 #### Zsh alias directory
-export ZALIAS="$ZZSH/alias"
+export ZTOOLS="$ZZSH/tools"
 
 #### Zsh plugins directory
 export ZPLUGINS="$ZZSH/plugins"
 
-#### Zsh alias directory
+#### Zsh environment directory
 export ZENV="$ZZSH/env"
 
 #### Zsh scripts directory
@@ -46,10 +46,13 @@ source "$ZENV/$ENV_NAME"
 #### Disable update prompts
 DISABLE_AUTO_UPDATE=true
 
+#### Hide user and host from auto titles
 DISABLE_AUTO_TITLE=true
 
-#### Load oh-my-zsh assets
+#### Set global variable
 ZSH="$ZOHMYZSH"
+
+#### Load oh-my-zsh assets
 source "$ZSH/oh-my-zsh.sh"
 
 #### Enable extension for syntax highlighting
@@ -177,4 +180,45 @@ export UNISONLOCALHOSTNAME="$ENV_ID"
 
 #### Conditionally start the unison sync process
 $SYNC_ENABLED && $ZSCRIPTS/unison_start watch
+
+### Sync with Unison
+alias uni=". $ZSCRIPTS/unison_start"
+
+## Overrides
+
+### Location
+
+#### Whereami
+alias whereami="curl ipinfo.io"
+
+### List
+
+#### List Block Devices with UUIDs
+alias lsuuid="lsblk -o NAME,FSTYPE,PARTLABEL,UUID,PARTUUID"
+
+## Files
+
+### Cleanup
+
+#### List `._` Files
+alias dotunderls="find . -name '._*' -print"
+
+#### Delete `._` Files
+alias dotunderrm="find . -name '._*' -delete -print"
+
+### Dot Files
+
+#### Copy from current directory to $HOME
+alias dot_files_to_home="cp -r .tmux .tmux.conf .vim .vimrc .zsh .zshrc $HOME"
+
+#### Copy from $HOME to current directory
+alias dot_files_from_home="cp -rv ~/.tmux ~/.tmux.conf ~/.vim ~/.vimrc ~/.zsh ~/.zshrc ."
+
+### Notes
+
+#### Start session
+alias notes=". $TSESSIONS/notes.session"
+
+#### Kill session
+alias notes!="tmux kill-session -t notes"
 

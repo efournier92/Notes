@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#----------------
+# Name          : lg_open
+# Description   : Opens contents of `lg` container in Vim
+# Author        : E Fournier
+# Dependencies  : lg_mount, vim
+# Example Usage : ./lg_mount
+#----------------
+
 main() {
   $ZSCRIPTS/lg_mount
   

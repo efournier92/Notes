@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 #----------------
-# Name          : linux_manjaro_general
-# Description   : Shell-environment configuration for General build on Linux Manjaro
+# Name          : primary_linux_manjaro_gnome
+# Description   : Shell-environment configuration for Primary build on Linux Manjaro
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------

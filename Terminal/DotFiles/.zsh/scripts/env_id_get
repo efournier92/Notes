@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#----------------
+# Name          : env_id_get
+# Description   : Functionality for getting and setting a `~/.env_id` file
+# Author        : E Fournier
+# Dependencies  : bash
+# Example Usage : ./env_id_get
+#----------------
+
 create_env_id_file() {
   local env_name_file="$1"
   local env_name="$2"

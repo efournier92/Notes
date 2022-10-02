@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#----------------
+# Name          : lg_mount
+# Description   : Mounts `lg` container
+# Author        : E Fournier
+# Dependencies  : veracrypt
+# Example Usage : ./lg_mount
+#----------------
+
 main() {
   local parent_dir="$SNC"
   local file_name="$parent_dir/Lg.vc"

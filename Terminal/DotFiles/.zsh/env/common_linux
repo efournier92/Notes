@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 #----------------
-# Name          : linux_common
-# Description   : Common shell-environment configuration for Linux systems
+# Name          : common_linux
+# Description   : Linux-specific configuration for ZSH environments
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------
@@ -26,22 +26,10 @@ mkdir -p "$SBFS" > /dev/null 2>&1
 ## Sources
 
 ### Drives
-source "$ZALIAS/drives"
-
-### Externals
-source "$ZALIAS/externals"
-
-### Sb
-source "$ZALIAS/sb"
+source "$ZTOOLS/drives"
 
 ### Snc
-source "$ZALIAS/snc"
-
-### Tools
-source "$ZALIAS/tools"
-
-### Tmux
-source "$ZALIAS/tmux"
+source "$ZTOOLS/snc"
 
 ## GUI Launchers
 

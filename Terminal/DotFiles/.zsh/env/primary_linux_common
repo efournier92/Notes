@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 #----------------
-# Name          : tools.zsh
-# Description   : Aliases for miscellaneous tools
+# Name          : primary_linux_common
+# Description   : Common configuration for Primary build on Linux Lubuntu
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------
@@ -20,9 +20,6 @@ alias banking="$SDOCS/Fin/browser_tabs_banking"
 
 ### Open Amazon Fresh tabs in Chrome
 alias fresh="$SDOCS/Hlt/browser_tabs_fresh"
-
-### Create a new agile story directory and file
-alias story="$USCRIPTS/create_agile_story"
 
 ### Open Weight spreadsheet
 alias weight="spreadsheet $SDOCS/Hlt/Weight.xlsx"
@@ -42,32 +39,6 @@ alias music_practice="libreoffice $SDOCS/Mus/Practice/Music_Practice.xlsx"
 
 ### Open Nautilus in a detached process nohup process
 nnautilus() { nohup nautilus "$1" </dev/null >/dev/null 2>&1 &! }
-
-### Dot files
-
-#### Command to open a URL in a fresh browser session
-alias open_browser_url="google-chrome-stable --new-window"
-
-#### Copy from current directory to $HOME
-alias dot_files_to_home="cp -r .tmux .tmux.conf .vim .vimrc .zsh .zshrc $HOME"
-
-#### Copy from $HOME to current directory
-alias dot_files_from_home="cp -rv ~/.tmux ~/.tmux.conf ~/.vim ~/.vimrc ~/.zsh ~/.zshrc ."
-
-## Web
-
-### Material-Color-Picker Web Utility
-alias material_colors="open_browser_url https://materialui.co/colors"
-
-### Download YouTube Audio
-yt_audio() { "$ZSCRIPTS/yt_audio" "$1"; }
-
-## Sync
-
-### SB 
-
-### Sync with Unison
-alias uni=". $ZSCRIPTS/unison_start"
 
 ## Lg
 
@@ -89,21 +60,46 @@ alias tor="GTK_THEME=Adwaita:light torbrowser-launcher"
 ### Torr
 alias torr="$USCRIPTS/torr"
 
-## List
+## Web
 
-### List Block Devices with UUIDs
-alias lsuuid="lsblk -o NAME,FSTYPE,PARTLABEL,UUID,PARTUUID"
+#### Command to open a URL in a fresh browser session
+alias open_browser_url="google-chrome-stable --new-window"
 
-## Location
+### Material-Color-Picker Web Utility
+alias material_colors="open_browser_url https://materialui.co/colors"
 
-### Whereami
-alias whereami="curl ipinfo.io"
+### Download YouTube Audio
+yt_audio() { "$ZSCRIPTS/yt_audio" "$1"; }
 
-## Cleanup
+source "$ZZSH/.secrets"
 
-### List `._` Files
-alias dotunderls="find . -name '._*' -print"
+## SB
 
-### Delete `._` Files
-alias dotunderrm="find . -name '._*' -delete -print"
+### Connect to SSH Session
+alias sbssh="ssh ${sb_username}@${sb_server_name}.${sb_server_domain}"
+
+### VPN
+
+#### Connect to VPN
+alias sbvpn="nmcli con up id $sb_server_name"
+#alias sbvpn="sudo openvpn --daemon --config /etc/openvpn/keys/${server_name}.ovpn"
+
+#### Disconnect from VPN
+alias sbvpn!="nmcli con down id $sb_server_name"
+
+### Local Filesystem
+
+#### Mount slot to local filesystem
+alias sbfs=". $USCRIPTS/mount_sbfs $SBFS"
+
+#### Unmount slot from local filesystem
+alias sbfs!="fusermount -u $SBFS"
+
+### Tmux
+
+#### Start session
+alias sb=". $TSESSIONS/sb.session"
+
+#### Kill session
+alias sb!="tmux kill-session -t sb"
 

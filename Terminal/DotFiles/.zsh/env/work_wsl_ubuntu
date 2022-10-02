@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 #----------------
-# Name          : windows_work
+# Name          : work_wsl_ubuntu
 # Description   : Shell-environment configuration for Work build on Windows (WSL) system
 # Author        : E Fournier
 # Dependencies  : zsh
@@ -39,16 +39,64 @@ export DISPLAY=localhost:0.0
 ## Sources
 
 ### Snc aliases
-source "$ZALIAS/snc"
+source "$ZTOOLS/snc"
 
 ### Tools aliases
-source "$ZALIAS/tools"
+source "$ZTOOLS/tools"
 
 ### Windows aliases
-source "$ZALIAS/windows"
+source "$ZTOOLS/windows"
+
+## Agile
+
+### Create a new agile story directory and file
+alias story="$USCRIPTS/create_agile_story"
+
+## Utilities
+
+alias start="cmd.exe /C start"
+alias vvm="bash $USCRIPTS/vvm.bash $SNC"
+
+## Programs
+
+alias qdir="start \"$HDOCS\\Q-Dir_State.qdr\""
+alias screens="explore \"%USERPROFILE%\\snc\\Pictures\\Screenshots\""
+alias nplus="/mnt/c/Program\ Files\ \(x86\)/Notepad++/notepad++.exe"
+
+## System
+
+### Mount
+export TFS="/mnt/tfs"
+alias m_tfs="sudo mount -t drvfs '\\\\tfs\\TeamCityBuilds' $TFS"
+alias m_tfs!="sudo umount $TFS"
+
+### System Edit
+alias hostedit="nplus 'C:\Windows\System32\drivers\etc\hosts'"
+
+### System Cleanup
+alias tempclean="rm -rf $HOME/AppData/Local/Temp/*"
+
+### Edit Files
+
+#### Spectrum Paths
+alias spectrumpaths="vim $SNC/Work/SpectrumPaths.md"
+
+#### Blue Jeans Rooms
+alias blu="vim $SWORK/BlueJeansRooms.md"
+
+### Logs
+
+#### Logs root
+export LOGS="/e/Logs-Raw/"
+alias logs="cd $LOGS"
+
+#### Exceptions
+export EXCEPTIONS="$LOGS/Exceptions"
+alias exceptions="cd $EXCEPTIONS"
 
 ## GUI Launchers
 
+### Returns the directory to explore
 get_directory_or_default() {
   [[ -z "$1" ]] \
     && local explore_path="." \
@@ -56,6 +104,7 @@ get_directory_or_default() {
   echo "$explore_path"
 }
 
+### Opens an application in Windows from WSL
 open_app() {
   local app_location="$1"
   [[ -z "$1" ]] \

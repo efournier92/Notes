@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #----------------
-# Name          : boot_tasks
+# Name          : boot
 # Description   : Run boot-time tasks depending on the executing machine
 # Author        : E Fournier
-# Dependencies  : pkexec, dmidecode, kodi
-# Example Usage : ./boot laptop
+# Dependencies  : bash
+# Example Usage : ./boot ${env_name}
 #----------------
 
 shopt -s expand_aliases
@@ -29,7 +29,7 @@ main() {
   local env_name="$(head -n 1 ~/.env_name)"
 
   . "$HOME/.zsh/env/common"
-  . "$HOME/.zsh/alias/drives"
+  . "$HOME/.zsh/tools/drives"
   . "$ZENV/$env_name"
 
   delay_for_ui 0.5

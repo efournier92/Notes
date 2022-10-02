@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 #----------------
-# Name          : linux_lubuntu_media
-# Description   : Shell-environment configuration for Media build on Linux Lubuntu
+# Name          : fmedia_linux_lubuntu
+# Description   : Shell-environment configuration for FMedia build on Linux Lubuntu
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------
@@ -31,16 +31,14 @@ source "$ZENV/linux_common"
 
 ### Tasks
 run_boot_tasks() {
-  export SYS_NAME="linux_lubuntu_media"
+  export SYS_NAME="linux_lubuntu_fmedia"
   $USCRIPTS/connect_persistently_audio_sink 60 "alsa.name" "HDMI" &
-  #$USCRIPTS/connect_persistently_vnc 60 &
-  #$USCRIPTS/connect_persistently_wifi 60 "FW-East-5G" "FW-FamilyRoom" &
+  $USCRIPTS/connect_persistently_vnc 60 &
+  $USCRIPTS/connect_persistently_wifi 60 "FW-FamilyRoom" "FW-East" &
   #$USCRIPTS/connect_persistently_vpn 60 "Calypso" &
 
   xfce4-power-manager &
   setxkbmap -option caps:escape &
-
-  m_md
 
   gnome-terminal --window --maximize &
   kodi -fs >/dev/null 2>&1 &
