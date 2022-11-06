@@ -1,0 +1,56 @@
+#!/bin/bash
+
+capture_single_source_audio() {
+  local file_name="$1"
+  local audio_device="$2"
+  local audio_rate="22050"
+  local audio_volume="4"
+
+  ffmpeg \
+    -f alsa -ac 2 -ar $audio_rate -i "$audio_device" -b:a 64k "${file_name}"
+}
+
+capture_dual_source_audio() {
+  local file_name="$1"
+  local left_device="$2"
+  local right_device="$3"
+
+  local left_volume="1"
+  local right_volume="4"
+  local time="10:00:00"
+  local thread_queue="4096"
+  local bitrate="128k"
+  local audio_rate="11025"
+
+  ffmpeg \
+    -f alsa -ac 1 -ar "$audio_rate" -thread_queue_size "$thread_queue" -i "$left_device" -t "$time" \
+    -f alsa -ac 1 -ar "$audio_rate" -thread_queue_size "$thread_queue" -i "$right_device" -t "$time" \
+    -filter_complex "[0]volume=$left_volume[left_channel];[1]volume=$right_volume[right_channel];[left_channel][right_channel]join=inputs=2:channel_layout=stereo[combined_channels]" \
+    -map "[combined_channels]" -b:a "$bitrate" "${file_name}"
+}
+
+get_file_name() {
+  local timestamp=`date +"%Y-%m-%d-%H%M"`
+
+  echo "${timestamp}.wav"
+}
+
+main() {
+  local output_dir="$1"
+  local left_device="$2"
+  local right_device="$3"
+
+  local file_name="${output_dir}/`get_file_name`"
+  #local left_device="plughw:CARD=Microphone,DEV=0"
+  local left_device="plughw:0"
+  local right_device="plughw:CARD=Microphone,DEV=0"
+ 
+  if [[ ! -z "$right_device" ]]; then
+    capture_dual_source_audio "$file_name" "$left_device" "$right_device"
+  else
+    capture_single_source_audio "$file_name" "$left_device"
+  fi
+}
+
+main "$@"
+
