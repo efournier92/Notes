@@ -19,11 +19,11 @@ main() {
   fi
   
   local sync_file_location="$ZSCRIPTS/unison_sync"
-  local server_domain="calypso.whatbox.ca"
-  local user="misigno"
+  local server_domain="$lb_server_domain"
+  local user="$lb_username"
   local local_sync_dir="$SNC"
-  local server_sync_dir="$SBROOT/snc"
-  local server_bin_dir="$SBROOT/bin"
+  local server_sync_dir="/home/${user}/bnk/snc"
+  local server_bin_dir="/usr/bin"
 
   if [[ "$mode" == "watch" ]]; then
     nohup "$sync_file_location" "$server_domain" "$user" "$local_sync_dir" "$server_sync_dir" "$server_bin_dir" "watch" >/dev/null 2>&1&

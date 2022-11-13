@@ -22,7 +22,7 @@ alias banking="$SDOCS/Fin/browser_tabs_banking"
 alias fresh="$SDOCS/Hlt/browser_tabs_fresh"
 
 ### Open Weight spreadsheet
-alias weight="spreadsheet $SDOCS/Hlt/Weight.xlsx"
+alias weight="spreadsheet $SDOCS/Hlt/Diet/Weight.xlsx"
 
 ### Open Jeopardy-download page in browser
 alias jeopardy_episodes="$SDOCS/Gme/Scripts/jeopardy_episodes"
@@ -73,7 +73,13 @@ yt_audio() { "$ZSCRIPTS/yt_audio" "$1"; }
 
 source "$ZZSH/.secrets"
 
+alias lb_ssh="ssh ${lb_server_domain}@${lb_username}"
+alias lb_rc="$ZSCRIPTS/ssh_download ${lb_server_domain} ${lb_username}"
+
 ## SB
+
+### SB root directory
+export SBROOT="/home/${sb_username}"
 
 ### Connect to SSH Session
 alias sbssh="ssh ${sb_username}@${sb_server_name}.${sb_server_domain}"
@@ -82,7 +88,6 @@ alias sbssh="ssh ${sb_username}@${sb_server_name}.${sb_server_domain}"
 
 #### Connect to VPN
 alias sbvpn="nmcli con up id $sb_server_name"
-#alias sbvpn="sudo openvpn --daemon --config /etc/openvpn/keys/${server_name}.ovpn"
 
 #### Disconnect from VPN
 alias sbvpn!="nmcli con down id $sb_server_name"

@@ -23,13 +23,16 @@ export SBFS="$BNK/sbfs"
 #### Ensure relevant directories exist
 mkdir -p "$SBFS" > /dev/null 2>&1
 
+## Tools                                                                                                                                                                                                         
+                                                                                                                                                                                                                 
+### Open Lg session in Vim                                                                                                                                                                                       
+export lg_command="$ZSCRIPTS/lg_open"                                                                                                                                                                            
+alias lg="$lg_command"     
+
 ## Sources
 
 ### Drives
 source "$ZTOOLS/drives"
-
-### Snc
-source "$ZTOOLS/snc"
 
 ## GUI Launchers
 

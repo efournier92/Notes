@@ -35,6 +35,24 @@ source "$ZENV/primary_linux_common"
 ### Hide snap loop devices from `lsblk` output
 function lsblk() { command lsblk -e7; }; 
 
+## External Devices
+
+### Phones
+
+#### Nexus
+
+##### Phone ID
+phone_id="SAMSUNG_SAMSUNG_Android_28c97b85383f7ece"
+
+##### Mount
+function m_phone() { gio mount "mtp://$phone_id"; }
+
+##### Dismount
+function m_phone!() { gio mount -u "mtp://$phone_id"; }
+
+##### Access Files
+function cd_phone() { cd "/run/user/1000/gvfs/mtp:host=$phone_id/Phone"; }
+
 ## Boot
 
 ### Tasks

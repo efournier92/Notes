@@ -10,6 +10,28 @@
 filetype plugin indent on
 set cursorline
 
+"" Plugins
+
+""" Automatically install vim-plug manager
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-commentary'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'preservim/nerdtree'
+  Plug 'ludovicchabant/vim-gutentags'
+  Plug 'brooth/far.vim'
+  Plug 'andymass/vim-matchup'
+  Plug 'yegappan/taglist'
+call plug#end()
+
 "" Compatibility
 
 """ Disable Vi compatibility
@@ -34,6 +56,11 @@ set viminfofile=NONE
 """ Encryption method
 set cm=blowfish2
 
+"" File tree
+
+""" Fix NERDtree menu
+set cmdheight=1
+
 "" Fuzzy Find
 
 """ Find recursively from base directory
@@ -41,6 +68,64 @@ set path+=**
 
 """ Show menu of found items on <Tab>
 set wildmenu
+
+""" FZF
+
+"""" Files
+nnoremap <silent> <C-P> :GFiles<CR>
+
+"""" Tags
+nnoremap <silent> <C-T> :call fzf#vim#tags(expand('<cword>'))<CR>
+nnoremap <silent> <C-T><C-T> :Tags<CR>
+
+"""" Buffers
+nnoremap <silent> <C-B> :Buffers<CR>
+
+"""" History
+nnoremap <silent> <C-H> :History<CR>
+
+"""" Find
+nnoremap <silent> <C-F> :call fzf#vim#ag(expand('<cword>', '--word-regexp'))<CR>
+nnoremap <silent> <C-F><C-F> :Ag<CR>
+
+""" Vimgrep
+
+"""" Search for a pattern and open results in the quickfix menu
+function Xgrep()
+  call inputsave()
+  let pattern = input('find: ')
+  call inputrestore()
+  execute 'vimgrep /' . pattern . '/g *'
+  copen
+  resize 20
+  let @/ = pattern
+  normal n
+endfunction
+
+"""" Search encrypted files
+nmap <leader>x :call Xgrep()<CR>
+
+"" Version Control
+
+""" Fugitive
+
+"""" Display all dirty files
+nnoremap <silent> <Leader>gg :Git<cr>
+
+"""" Display a vertical diff for the current buffer
+nnoremap <silent> <Leader>gd :Gvdiff<cr>
+
+"""" Open merge tool to resolve conflicts in the active file
+nnoremap <silent> <Leader>gm :Gvdiffsplit!<cr>
+
+"""" While Merging | take left change
+nnoremap <silent> <Leader>gl :diffget //2<cr>
+
+"""" When Merging | take right change
+nnoremap <silent> <Leader>gr :diffget //3<cr>
+
+"""" Push commited changes
+nnoremap <silent> <Leader>gp :G push<cr>
 
 " Interface
 
@@ -170,28 +255,6 @@ set incsearch
 """ Enable searching with regex expressions
 set magic
 
-" File Tree (netrw)
-
-"" Hide banner
-let g:netrw_banner = 0
-
-"" Opening files
-if winnr('$') ==# '1'
-  """ Open in current window if no splits
-  let g:netrw_browse_split = 0
-else
-  """ Open in previous window if any splits
-  let g:netrw_browse_split = 4
-endif
-
-"" List files without expandable directories
-let g:netrw_liststyle = 4
-
-"" Apply narrow width for window
-let g:netrw_winsize = 20
-
-"" Prevent history file creation
-let g:netrw_dirhistmax = 0
 
 " Shortcuts
 
@@ -201,7 +264,8 @@ let mapleader = '\'
 "" Tabs
 
 "" Toggle file tree
-nnoremap <silent> <Leader>e :Lexplore<cr>
+nnoremap <silent> <Leader>et :NERDTreeToggle<cr>
+nnoremap <silent> <Leader>ef :NERDTreeFind<cr>
 
 """ Create a new tab
 nnoremap <silent> <C-W>t :tabnew<CR>
@@ -212,7 +276,7 @@ nnoremap <silent> <C-W>t :tabnew<CR>
 nmap <Leader>s :setlocal spell! spelllang=en_gb<CR>
 
 """ Globally search for the word under the cursor
-nmap <Leader>g :vimgrep <C-R>=expand('<cword>')<CR> **/* <CR> :cw <CR>"
+nmap <Leader>vg :vimgrep <C-R>=expand('<cword>')<CR> **/* <CR> :cw <CR>"
 
 "" Font
 
@@ -224,13 +288,22 @@ nnoremap <leader>f :set guifont=*<CR>
 """ Format JSON
 nnoremap <leader>json :%!python -m json.tool<CR>
 
-"" Replace curly quotes with straight quotes
+""" Replace curly quotes with straight quotes
 noremap <Leader>q :%s/“/"/g<CR>:%s/”/"/g<CR>:%s/’/'/g<CR>:%s/‘/'/g<CR>
+
+""" Prettify HTML
+noremap <Leader>ph :!tidy -mi -xml -wrap 0 %<CR>
 
 "" Rename
 
 """ Rename selection
 vnoremap <Leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
+
+""" Rename locally
+nmap <Leader>rn :%s/<C-R><C-W>/<C-R><C-W>/g<left><left>
+
+""" Find and replace
+nmap <Leader>ra :Far <C-R><C-W>/<C-R><C-W>/g<left><left>
 
 "" Encoding
 

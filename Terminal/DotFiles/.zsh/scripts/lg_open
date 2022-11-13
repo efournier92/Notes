@@ -9,11 +9,14 @@
 #----------------
 
 main() {
-  $ZSCRIPTS/lg_mount
-  
-  cd "$SLG"
+  local year=`date +"%Y"`
 
-  vim -O "$@"
+  echo -n "Password: "
+  read -s password
+
+  cd "$SNC/Lg"
+
+  vim --cmd "set key=$password" -O "Do.md" "Lg.md" -c "tabnew ${year}.md" -c "tabn 1"
 }
 
 main "$@"
