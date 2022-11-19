@@ -1,0 +1,92 @@
+#!/bin/bash
+
+#----------------
+# Name          : audio_rc_process
+# Description   : Processes raw WAVs to MP3s of minimal size
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./audio_rc_process {rc_dir}
+#----------------
+
+get_processed_dir_location() {
+  local base_dir="$1"
+
+  echo "${base_dir}/_processed"
+}
+
+get_archive_dir_location() {
+  local base_dir="$1"
+
+  echo "${base_dir}/_archive"
+}
+
+convert_file() {
+  local input_file="$1"
+  local processed_dir="$2"
+  local archive_dir="$3"
+
+  local input_file_name="${input_file##*/}"
+  local input_file_name_without_extension="${input_file_name%.*}"
+  local output_extension="mp3"
+  local output_file="${processed_dir}/${input_file_name_without_extension}.${output_extension}"
+  local output_quality="9"
+  local output_codec="libmp3lame"
+  local output_channels="2"
+  
+  echo "CONVERTING > $input_file to $output_file" >&2
+
+  ffmpeg -i "$input_file" -c:a "$output_codec" -ac "$output_channels" -q:a "$output_quality" "$output_file"
+  
+  if [[ -f "$output_file" ]]; then
+    echo "Moving > $input_file to $archive_dir" >&2
+    mv "$input_file" "$archive_dir"
+  fi
+}
+
+convert_dir() {
+  local input_dir="$1"
+  local processed_dir="$2"
+  local archive_dir="$3"
+
+  for file in "$input_dir"/*.wav; do
+    #local input_file="${file##*/}"
+    convert_file "$file" "$processed_dir" "$archive_dir"
+  done
+}
+
+create_dir() {
+  local rc_dir="$1"
+  local dir_name="$2"
+
+  mkdir -p "${rc_dir}/${dir_name}"
+}
+
+create_dirs() {
+  local processed_dir="$1"
+  local archive_dir="$2"
+
+  create_dir "$processed_dir"
+  create_dir "$archive_dir"
+}
+
+main() {
+  local rc_dir="$1"
+
+  if [[ ! -d "$rc_dir" ]]; then
+    echo "ERROR > Must supply a valid /rc directory as 1st argument." >&2
+  fi
+
+  local processed_dir=`get_processed_dir_location "$rc_dir"`
+  local archive_dir=`get_archive_dir_location "$rc_dir"`
+
+  create_dirs "$processed_dir" "$archive_dir"
+  
+  if [[ -d "$rc_dir" ]]; then
+    convert_dir "$rc_dir" "$processed_dir" "$archive_dir"
+  else
+    echo "ERROR > Must supply a file or directory as the 1st argument."
+  fi
+}
+
+main "$@"
+

@@ -515,17 +515,6 @@ Convert an `avi` to `divx` for some reason.
 ffmpeg -i in.avi -s 320x240 -vcodec msmpeg4v2 out.avi
 ```
 
-### Install in OsX 
-
-#### Description
-Build and install `ffmpeg` on a Mac via [homebrew](https://brew.sh/)
-
-#### Command
-
-```bash
-brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-fontconfig --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-openssl --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools --with-x265 --with-faac --with-lame --with-x264 --with-xvid
-```
-
 ### Image Sequence to MP4
 
 ```bash
@@ -560,6 +549,38 @@ ffmpeg \
    [bg7][f7]overlay,format=yuv420p[v]" -map "[v]" -movflags +faststart out.gif
 ```
 
+### Gifs
+
+#### Gifski
+
+##### Download
+- https://gif.ski/
+
+##### Usage
+
+```bash
+gifski --fps 7 --width 520 -o file_520.gif frame*.png
+```
+
+#### Produce Frames from Video
+
+```bash
+ffmpeg -i slideshow.mp4 -filter:v "crop=720:720:282:0" -r 7 "$FRAME_DIR/frame%04d.png"
+```
+
+#### Reduce Image Size
+
+##### Single File
+
+```bash
+convert input.jpg -resize 600 output.jpg
+```
+
+##### Batch
+```bash
+for i in *.png; do convert "$i" -resize 600 "$i.jpg"; done
+```
+
 ### Image Sequence to GIF
 
 ```bash
@@ -592,6 +613,17 @@ ffmpeg \
    [bg5][f5]overlay[bg6]; \
    [bg6][f6]overlay[bg7]; \
    [bg7][f7]overlay,format=yuv420p[v]" -map "[v]" -movflags +faststart out.gif
+```
+
+### Install in OsX 
+
+#### Description
+Build and install `ffmpeg` on a Mac via [homebrew](https://brew.sh/)
+
+#### Command
+
+```bash
+brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-fontconfig --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-openssl --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools --with-x265 --with-faac --with-lame --with-x264 --with-xvid
 ```
 
 ### Install in Debian
