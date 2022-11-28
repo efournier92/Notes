@@ -27,12 +27,12 @@ done
 
 # Return CONCAT DIR location
 function concat_dir {
-  echo "$out_dir/_concat"
+  echo "$out_dir/.concat"
 }
 
 # Return JOIN DIR location
 function join_dir {
-  echo "$out_dir/_joins"
+  echo "$out_dir/.joins"
 }
 
 # Return CONCAT FILE location, based on input date
@@ -59,7 +59,7 @@ function is_valid_file_name {
   eval_file=$1
   file_name="${eval_file##*/}"
   file_name="${file_name%%.*}"
-  if [[ "$file_name" =~ ^[0-9]{2}-[0-9]{2}-[0-9]{2}_[0-9]{2}$ ]]; then
+  if [[ "$file_name" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{4}_[0-9]{2}$ ]]; then
     [[ $verbose = true ]] && echo "$file_name IS a valid file"
     true
   else
@@ -92,10 +92,10 @@ function wait_for_ffmpeg_to_finish {
       [[ $verbose = true ]] && echo "FFmpeg conversion complete"
       is_convert_complete=true
       # Join duplicates, if there are any
-      if ls `join_dir`/*.WAV &>/dev/null &>/dev/null; then
-        in_dir=`join_dir`
-        start_conversion
-      fi
+      # if ls `join_dir`/*.WAV &>/dev/null &>/dev/null; then
+      #   in_dir=`join_dir`
+      #   start_conversion
+      # fi
     fi
   done
 }
@@ -153,6 +153,17 @@ function clean_concat_file {
   touch "$file_to_clean"
 }
 
+does_file_already_exist() {
+  local in_dir="$1"
+  local new_file_name="$2"
+  
+  if [[ -f "$in_dir/$new_file_name.WAV" ]]; then
+    true
+  else
+    false
+  fi
+}
+
 # Rename files based on user input
 function name_audio_files {
   for file in $in_dir/*.WAV; do
@@ -162,15 +173,17 @@ function name_audio_files {
     new_file_name="$file"
     has_file_moved=false
     until is_valid_file_name "$new_file_name"; do
-      cvlc "$file" &
+      cvlc "$file" > /dev/null 2>&1 &
       vlc_process=$!
       sleep 0.1
-      printf "[yy-mm-dd_##]: "
-      read new_file_name
+      local current_year_month=`date "+%Y-%m-"`
+      read -p "[yyyy-mm-dd_##]: " -i "$current_year_month" -e new_file_name
       kill $vlc_process
       if [[ "$new_file_name" == "delete" ]]; then
         rm "$file"
         break
+      elif does_file_already_exist "$in_dir" "$new_file_name"; then
+        echo "ERROR: File name already exists. Please enter a different name.\n"
       elif is_valid_file_name "$new_file_name"; then
         if [[ "$file" =~ 'join' ]]; then
           wav_dir=$out_dir
@@ -232,5 +245,6 @@ function start_conversion {
 
 in_file_type="WAV"
 ask_to_delete_join_dir
+rm -rf `concat_dir`
 start_conversion
 
