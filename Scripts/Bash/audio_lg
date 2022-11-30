@@ -177,7 +177,7 @@ function name_audio_files {
       vlc_process=$!
       sleep 0.1
       local current_year_month=`date "+%Y-%m-"`
-      read -p "[yyyy-mm-dd_##]: " -i "$current_year_month" -e new_file_name
+      read -p "[yyyy-mm-dd-HHMM_##]: " -i "$current_year_month" -e new_file_name
       kill $vlc_process
       if [[ "$new_file_name" == "delete" ]]; then
         rm "$file"
