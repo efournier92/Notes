@@ -30,11 +30,6 @@ source "$ZENV/common_linux"
 ### Primary common
 source "$ZENV/primary_linux_common"
 
-## Overrides
-
-### Hide snap loop devices from `lsblk` output
-function lsblk() { command lsblk -e7; }; 
-
 ## External Devices
 
 ### Phones

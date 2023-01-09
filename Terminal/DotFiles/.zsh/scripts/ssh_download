@@ -14,7 +14,8 @@ main() {
     exit
   fi
 
-  rsync -au --progress "${username}@${address}:/home/${username}/bnk/rc/" "$HLE/rc/" 
+  rsync -au --progress "${username}@${address}:/home/${username}/bnk/rc/_processed" "$BNK/rc/" 
 }
 
 main "$@"
+

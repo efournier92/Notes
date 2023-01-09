@@ -217,6 +217,9 @@ alias whereami="curl ipinfo.io"
 
 ### List
 
+### Hide snap loop devices from `lsblk` output
+function lsbl() { command lsblk -e7; }; 
+
 #### List Block Devices with UUIDs
 alias lsuuid="lsblk -o NAME,FSTYPE,PARTLABEL,UUID,PARTUUID"
 

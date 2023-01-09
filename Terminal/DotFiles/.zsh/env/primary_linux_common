@@ -73,7 +73,7 @@ yt_audio() { "$ZSCRIPTS/yt_audio" "$1"; }
 
 source "$ZZSH/.secrets"
 
-alias lb_ssh="ssh ${lb_server_domain}@${lb_username}"
+alias lb_ssh="ssh ${lb_username}@${lb_server_domain}"
 alias lb_rc="$ZSCRIPTS/ssh_download ${lb_server_domain} ${lb_username}"
 
 ## SB

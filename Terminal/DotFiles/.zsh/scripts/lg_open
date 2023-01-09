@@ -10,13 +10,14 @@
 
 main() {
   local year=`date +"%Y"`
+  local last_year=$((year - 1))
 
   echo -n "Password: "
   read -s password
 
   cd "$SNC/Lg"
 
-  vim --cmd "set key=$password" -O "Do.md" "Lg.md" -c "tabnew ${year}.md" -c "tabn 1"
+  vim --cmd "set key=$password" -O "Do.md" "Lg.md" -c "tabnew ${year}.md" -c "tabnew ${last_year}.md" -c "tabnew Xy.md" -c "tabn 1"
 }
 
 main "$@"

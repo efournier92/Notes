@@ -11,3 +11,7 @@ export ENV_NAME="$(head -n 1 $HOME/.env_name)"
 ## Start the config-loading process
 source "$HOME/.zsh/env/common"
 
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
