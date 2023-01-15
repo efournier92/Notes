@@ -25,7 +25,7 @@ uuid_md="557302aa-ac1b-4cff-b7f0-3f8cf4db290b"
 export RC="/mnt/rc"
 
 #### Mount
-alias m_rc="mount /dev/disk/by-uuid/0000-006F"
+alias m_rc="$ZSCRIPTS/rc_mount"
 
 #### Unmount
 alias m_rc!="umount $RC"
