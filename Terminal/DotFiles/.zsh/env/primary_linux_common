@@ -73,32 +73,52 @@ yt_audio() { "$ZSCRIPTS/yt_audio" "$1"; }
 
 source "$ZZSH/.secrets"
 
-alias lb_ssh="ssh ${lb_username}@${lb_server_domain}"
-alias lb_rc="$ZSCRIPTS/ssh_download ${lb_server_domain} ${lb_username}"
+# TODO: Fix naming, comments
+
+
 
 ## SB
 
 ### SB root directory
 export SBROOT="/home/${sb_username}"
 
-### Connect to SSH Session
-alias sbssh="ssh ${sb_username}@${sb_server_name}.${sb_server_domain}"
+## SSH Connections
+
+### Connect to SB via SSH
+alias ssh_sb="ssh ${sb_username}@${sb_server_name}.${sb_server_domain}"
+
+### Connect to LB via SSH
+alias ssh_lb="ssh ${lb_username}@${lb_server_domain}"
+
+### Connect to MB via SSH
+alias ssh_mb="ssh ${mb_username}@${mb_server_domain}"
+
+## RC
+
+### Download RC from LB over SSH
+alias rc_lb="$ZSCRIPTS/ssh_download $lb_username $lb_server_domain_local"
+
+### Download RC from MB over SSH
+alias rc_mb="$ZSCRIPTS/ssh_download $mb_username $mb_server_domain"
+
+### Download RC from both LB and MB over SSH
+rc_lb+mb() { rc_lb; rc_mb }
 
 ### VPN
 
 #### Connect to VPN
-alias sbvpn="nmcli con up id $sb_server_name"
+alias vpn_sb="nmcli con up id $sb_server_name"
 
 #### Disconnect from VPN
-alias sbvpn!="nmcli con down id $sb_server_name"
+alias vpn_sb!="nmcli con down id $sb_server_name"
 
 ### Local Filesystem
 
 #### Mount slot to local filesystem
-alias sbfs=". $USCRIPTS/mount_sbfs $SBFS"
+alias fs_sb=". $USCRIPTS/mount_sbfs $SBFS"
 
 #### Unmount slot from local filesystem
-alias sbfs!="fusermount -u $SBFS"
+alias fs_sb!="fusermount -u $SBFS"
 
 ### Tmux
 

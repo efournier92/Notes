@@ -14,12 +14,12 @@ SESSION_NAME="sb"
 ## 1st Window
 
 ### Full Pane
-tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR" "ssh -t misigno@calypso.whatbox.ca 'tremc'"
+tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR" "ssh -t ${sb_username}@${sb_server_name}.${sb_server_domain} 'tremc'"
 
 ## 2nd Window 
 
 ### Full Pane
-tmux new-window -t "$SESSION_NAME:1" "ssh -t misigno@calypso.whatbox.ca 'zsh'"
+tmux new-window -t "$SESSION_NAME:1" "ssh -t ${sb_username}@${sb_server_name}.${sb_server_domain} 'zsh'"
 
 ## 3rd Window
 

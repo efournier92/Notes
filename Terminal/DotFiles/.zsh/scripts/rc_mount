@@ -8,7 +8,7 @@
 # Example Usage : ./rc_mount
 #----------------
 
-is_uuid_new_attached() {
+is_uuid_attached() {
   local uuid="$1" 
 
   local readlink_response=`readlink "/dev/disk/by-uuid/$uuid"`
@@ -21,14 +21,18 @@ is_uuid_new_attached() {
 main() {
  local uuid_new="EC95-4FBB"
  local uuid_old="0000-006F"
+ local uuid_alt="D68B-C6E5"
   
-  local is_uuid_new_attached=`is_uuid_new_attached $uuid_new`
-  local is_uuid_old_attached=`is_uuid_new_attached $uuid_old`
+  local is_uuid_new_attached=`is_uuid_attached $uuid_new`
+  local is_uuid_old_attached=`is_uuid_attached $uuid_old`
+  local is_uuid_alt_attached=`is_uuid_attached $uuid_alt`
 
   if [[ "$is_uuid_new_attached" == true ]]; then
     mount "/dev/disk/by-uuid/$uuid_new"
   elif [[ "$is_uuid_old_attached" == true ]]; then
     mount "/dev/disk/by-uuid/$uuid_old"
+  elif [[ "$is_uuid_alt_attached" == true ]]; then
+    mount "/dev/disk/by-uuid/$uuid_alt"
   else
     echo "ERROR: No drives connected."
   fi
