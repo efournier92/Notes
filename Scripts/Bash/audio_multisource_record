@@ -18,11 +18,13 @@ capture_single_source_audio() {
   local file_name="$2"
   local audio_device="$3"
 
-  local audio_rate="22050"
-  local audio_volume="1"
+  local audio_rate="4010"
+  local audio_channels="1"
+  local thread_queue="16384"
 
   ffmpeg \
-    -f alsa -ac 2 -ar $audio_rate -i "$audio_device" -t "$output_duration" -b:a 64k "${file_name}"
+    -f alsa -channels "$audio_channels" -thread_queue_size "$thread_queue" -sample_rate "$audio_rate" -t "$output_duration" -async 1 -i "$audio_device" \
+    "${file_name}.wav"
 }
 
 capture_dual_source_audio() {
@@ -33,21 +35,20 @@ capture_dual_source_audio() {
 
   local left_volume="1"
   local right_volume="4"
-  local thread_queue="4096"
-  local bitrate="128k"
-  local audio_rate="11025"
+  local audio_rate="2005"
+  local thread_queue="16384"
 
   ffmpeg \
-    -f alsa -ac 1 -ar "$audio_rate" -thread_queue_size "$thread_queue" -i "$left_device" -t "$output_duration" \
-    -f alsa -ac 1 -ar "$audio_rate" -thread_queue_size "$thread_queue" -i "$right_device" -t "$output_duration" \
+    -f alsa -channels 1 -thread_queue_size "$thread_queue" -sample_rate "$audio_rate" -t "$output_duration" -async 1 -i "$left_device" \
+    -f alsa -channels 1 -thread_queue_size "$thread_queue" -sample_rate "$audio_rate" -t "$output_duration" -async 1 -i "$right_device" \
     -filter_complex "[0]volume=$left_volume[left_channel];[1]volume=$right_volume[right_channel];[left_channel][right_channel]join=inputs=2:channel_layout=stereo[combined_channels]" \
-    -map "[combined_channels]" -b:a "$bitrate" "${file_name}"
+    -map "[combined_channels]" "${file_name}.wav"
 }
 
 get_file_name() {
   local timestamp=`date +"%Y-%m-%d-%H%M"`
 
-  echo "${timestamp}.wav"
+  echo "${timestamp}"
 }
 
 main() {
