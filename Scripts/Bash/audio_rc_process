@@ -5,7 +5,7 @@
 # Description   : Processes raw WAVs to MP3s of minimal size
 # Author        : E Fournier
 # Dependencies  : ffmpeg
-# Example Usage : ./audio_rc_process {rc_dir}
+# Example Usage : ./audio_rc_process {rc_dir} mono
 #----------------
 
 get_processed_dir_location() {
@@ -24,6 +24,7 @@ convert_file() {
   local input_file="$1"
   local processed_dir="$2"
   local archive_dir="$3"
+  local is_mono="$4"
 
   local input_file_name="${input_file##*/}"
   local input_file_name_without_extension="${input_file_name%.*}"
@@ -32,8 +33,10 @@ convert_file() {
   local output_quality="9"
   local output_codec="libmp3lame"
   local output_channels="2"
+
+  [[ "$is_mono" == true ]] && local output_channels="1"
   
-  echo "CONVERTING > $input_file to $output_file" >&2
+  echo "CONVERTING > $input_file to $output_file with $output_channels channel(s)" >&2
 
   ffmpeg -i "$input_file" -c:a "$output_codec" -ac "$output_channels" -q:a "$output_quality" "$output_file"
   
@@ -47,10 +50,10 @@ convert_dir() {
   local input_dir="$1"
   local processed_dir="$2"
   local archive_dir="$3"
+  local is_mono="$4"
 
   for file in "$input_dir"/*.wav; do
-    #local input_file="${file##*/}"
-    convert_file "$file" "$processed_dir" "$archive_dir"
+    convert_file "$file" "$processed_dir" "$archive_dir" "$is_mono"
   done
 }
 
@@ -71,6 +74,9 @@ create_dirs() {
 
 main() {
   local rc_dir="$1"
+  local is_mono="$2"
+
+  [[ "$is_mono" == "mono" ]] && local is_mono=true || local is_mono=false
 
   if [[ ! -d "$rc_dir" ]]; then
     echo "ERROR > Must supply a valid /rc directory as 1st argument." >&2
@@ -82,7 +88,7 @@ main() {
   create_dirs "$processed_dir" "$archive_dir"
   
   if [[ -d "$rc_dir" ]]; then
-    convert_dir "$rc_dir" "$processed_dir" "$archive_dir"
+    convert_dir "$rc_dir" "$processed_dir" "$archive_dir" "$is_mono"
   else
     echo "ERROR > Must supply a file or directory as the 1st argument."
   fi
