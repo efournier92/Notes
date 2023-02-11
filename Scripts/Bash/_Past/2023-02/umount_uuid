@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#----------------
+# Name          : umount_uuid
+# Description   : Mounts md drive with veracrypt
+# Author        : E Fournier
+# Dependencies  : veracrypt
+# Example Usage : ./umount_uuid $drive_uuid
+#----------------
+
+validate_args() {
+  local drive_uuid="$1"
+
+  if [[ -z "$drive_uuid" ]]; then
+    echo "ERROR: Must supply drive UUID"
+    echo "USAGE: ./umount_uuid_veracrypt drive_uuid"
+    exit 1
+  fi
+}
+
+unmount_drive() {
+  local drive_uuid="$1"
+
+  sudo umount "/dev/disk/by-partuuid/$drive_uuid"
+}
+
+main() {
+  local drive_uuid="$1"
+
+  validate_args "$drive_uuid"
+
+  unmount_drive "$drive_uuid"
+}
+
+main "$@"
+

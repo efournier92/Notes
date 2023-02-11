@@ -33,9 +33,9 @@ main() {
   for file_name in *; do
     local new_file_name=`get_new_file_name "$file_name"`
 
-    #echo "$new_file_name"
+    echo "$new_file_name"
 
-    mv "$file_name" "$new_file_name"
+    #mv "$file_name" "$new_file_name"
   done
 }
 

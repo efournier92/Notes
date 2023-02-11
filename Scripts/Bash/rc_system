@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#----------------
+# Name          : rc_system
+# Description   : Records system audio to a WAV file in mono
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./rc_system "username" "server_domain" "home_directory"
+#----------------
+
+main() {
+  ffmpeg -f alsa -channels 1 -i hw:1 -t 10 out.wav
+}
+
+main "$@"
+

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#----------------
+# Name          : podcast_scrape_episodes 
+# Description   : Scape names for a series of podcast episodes from the corresponding website by search pattern.
+# Author        : E Fournier
+# Dependencies  : curl, awk
+# Example Usage : ./podcast_scrape_episodes 426 "https://changelog.com/podcast" "episode-header-title"
+#----------------
+
+main() {
+  local total_episodes="$1"
+  local base_url="$2"
+  local search_pattern="$3"
+  local awk_command='/'$search_pattern'/{getline; gsub(/[ ]*<\/h1>*/," "); print $0}'
+
+  local episode_number=1
+  while [[ $episode_number -lt $total_episodes ]]; do
+    local url="${base_url}/${episode_number}"
+
+    local episode_title=`curl -s "$url" | awk "$awk_command"`k
+
+    echo "$episode_number,$episode_title"
+    echo "$episode_number,$episode_title" >> "episodes.txt"
+
+    episode_number=$(( episode_number + 1 ))
+  done
+}
+
+main "$@"
+

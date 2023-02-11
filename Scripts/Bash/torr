@@ -3,8 +3,8 @@
 main() {
   local search_term="$1"
 
-  #we-get --search "$search_term" --target=the_pirate_bay,1337x,yts
-  we-get --search "$search_term" --target=1337x,yts
+  we-get --search "$search_term" --target=the_pirate_bay,1337x,yts
+  #we-get --search "$search_term" --target=1337x,yts
 }
 
 main "$@"

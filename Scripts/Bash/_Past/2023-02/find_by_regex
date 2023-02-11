@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#----------------
+# Name          : find_by_regex
+# Description   : Find by regular expression in current directory
+# Author        : E Fournier
+# Dependencies  : find
+# Example Usage : ./find_by_regex pattern
+#----------------
+
+validate_args() {
+  if [[ -z $1 ]]; then
+    echo "ERROR: Must supply a RegEx as 1st argument"
+    exit 1
+  fi
+}
+
+run_find_by_regex() {
+  local expression="$1"
+
+  find . -regextype sed -regex ".*/${expression}" >> "./find-by-regex.log"
+}
+
+main() {
+  validate_args "$@"
+  local expression="$1"
+  
+  run_find_by_regex "$expression"
+}
+
+main "$@"
+

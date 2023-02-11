@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#----------------
+# Name          : rc_download
+# Description   : Downloads the contents of a directory from a remote server
+# Author        : E Fournier
+# Dependencies  : rsync
+# Example Usage : ./rc_download "username" "address" "target_dir"
+#----------------
+
+main() {
+  local username="$1" 
+  local address="$2"
+  local target_dir="$3"
+
+  if [[ -z "$username" ]]; then
+    echo "ERROR > Must supply username as 1st argument."
+    exit
+  fi
+
+  if [[ -z "$address" ]]; then
+    echo "ERROR > Must supply address as 2nd argument."
+    exit
+  fi
+
+  if [[ -z "$target_dir" ]]; then
+    echo "ERROR > Must supply target directory as 3rd argument."
+    exit
+  fi
+
+  rsync -au --progress "${username}@${address}:/home/${username}/bnk/rc/_processed/*" "$target_dir"
+}
+
+main "$@"
+

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#----------------
+# Name          : connect_persistently_audio_sink
+# Description   : Continuously attempts to resolve PulseAudio issues pertaining to connections to the wrong sink
+# Author        : E Fournier
+# Dependencies  : pulseaudio_set_default_sink
+# Example Usage : ./connect_persistently_audio_sink 60 "alsa.name" "HDMI"
+#----------------
+
+validate_arguments() {
+  local timeout_seconds=$1
+  local property_name="$2"
+  local target_pattern="$3"
+
+  if [[ -z "$timeout_seconds" || -z "$property_name" || -z "$target_pattern" ]]; then
+    echo "ERROR: Arguments supplied incorrectly"
+    echo 'USAGE: ./connect_audio_persistently $timeout_seconds $property_name $target_pattern'
+    exit
+  fi
+}
+
+main() {
+  local timeout_seconds=$1
+  local property_name="$2"
+  local target_pattern="$3"
+  
+  validate_arguments "$timeout_seconds" "$property_name" "$target_pattern"
+
+  while true; do
+    $USCRIPTS/pulseaudio_set_default_sink "$property_name" "$target_pattern" &
+
+    sleep $timeout_seconds
+  done
+}
+
+main "$@"
+

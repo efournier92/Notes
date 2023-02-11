@@ -1,0 +1,333 @@
+#!/bin/bash
+
+#----------------
+# Name          : audio_normalize_and_fade
+# Description   : Masters a directory of audio tracks by normalizing the volume and fading the tracks in and out
+# Author        : E Fournier
+# Dependencies  : ffmpeg-normalize
+# Example Usage : ./audio_normalize_and_fade [$normalization_target_level] [$fade_duration_seconds]
+#----------------
+
+shopt -s extglob
+
+normalize_audio_levels_peak() {
+  local out_dir="$1"
+  local target_level=$2
+
+  mkdir -p "$out_dir"
+
+  ffmpeg-normalize *.*(mp3|wav|m4a|flac) \
+    --output-folder "$out_dir" \
+    --normalization-type peak \
+    --target-level "$target_level" \
+    --extension wav \
+    --progress
+}
+
+normalize_audio_levels_volume() {
+  local out_dir="$1"
+  local target_level=$2
+
+  mkdir -p "$out_dir"
+  
+  for file in *.*(mp3|wav|m4a|flac); do \
+    ffmpeg -i "$file" \
+      -filter:a "volume=${target_level}" "${out_dir}/${file%.*}.mp3"
+  done
+}
+
+normalize_audio_levels_rms() {
+  local out_dir="$1"
+  local target_level=$2
+
+  mkdir -p "$out_dir"
+
+  ffmpeg-normalize *.*(mp3|wav|m4a|flac) \
+    --output-folder "$out_dir" \
+    --normalization-type rms \
+    --target-level $target_level \
+    --extension wav \
+    --progress
+}
+
+normalize_audio_levels_ebu() {
+  local out_dir="$1"
+  local target_level=$2
+  local true_peak=$3
+  local loudness_range_target=$4
+  
+  mkdir -p "$out_dir"
+
+  ffmpeg-normalize *.*(mp3|wav|m4a|flac) \
+    --output-folder "./${out_dir}" \
+    --normalization-type ebu \
+    --target-level $target_level \
+    --true-peak $true_peak \
+    --loudness-range-target $loudness_range_target \
+    --extension wav \
+    --dual-mono \
+    --progress
+}
+
+normalize_audio_levels_copy() {
+  local out_dir="$1"
+  local target_level=$2
+
+  mkdir -p "$out_dir"
+
+  for file in *.*(mp3|wav|m4a|flac); do
+    echo "Copying $file to $out_dir"
+    cp "$file" "${out_dir}/${file}"
+  done
+}
+
+normalize_audio_levels() {
+  local mode="$1"
+  local out_dir_normalize="$2"
+  local target_level=$3
+  local true_peak=$4
+  local loudness_range_target=$5
+
+  mkdir -p "$out_dir_normalize"
+
+  if [[ "$mode" == "ebu" ]]; then
+    echo "INFO: Normalizing by ebu." >&2
+    normalize_audio_levels_ebu "$out_dir_normalize" $target_level $true_peak $loudness_range_target
+  elif [[ "$mode" == "peak" ]]; then
+    echo "INFO: Normalizing by peak." >&2
+    normalize_audio_levels_peak "$out_dir_normalize" $target_level
+  elif [[ "$mode" == "rms" ]]; then
+    echo "INFO: Normalizing by rms." >&2
+    normalize_audio_levels_rms "$out_dir_normalize" $target_level
+  elif [[ "$mode" == "volume" ]]; then
+    echo "INFO: Normalizing by volume." >&2
+    normalize_audio_levels_volume "$out_dir_normalize" $target_level
+  else echo "ERROR: Normalize mode not found."
+    exit
+  fi
+}
+
+convert_to_mp3_with_fades() {
+  local in_dir="$1"
+  local out_dir="$2"
+  local fade_duration_seconds=$3
+
+  mkdir -p "$out_dir"
+
+  for file in *.*(mp3|wav|m4a|flac); do
+    local duration=$(ffprobe -loglevel error -show_entries format=duration -of default=nk=1:nw=1 "$file")
+    local offset=$(bc -l <<< "$duration"-$fade_duration_seconds)
+    ffmpeg \
+      -i "$file" \
+      -c:a libmp3lame -b:a 192k -ac 1 \
+      -af "afade=t=in:st=0:d=$fade_duration_seconds,afade=t=out:st=$offset:d=$fade_duration_seconds" \
+      "$out_dir/${file%%.*}.mp3"
+    done
+  }
+
+convert_to_mp3_without_fades() {
+  local in_dir="$1"
+  local out_dir="$2"
+
+  mkdir -p "$out_dir"
+
+  for file in *.*(mp3|wav|m4a|flac); do
+    local duration=$(ffprobe -loglevel error -show_entries format=duration -of default=nk=1:nw=1 "$file")
+    ffmpeg \
+      -i "$file" \
+      -c:a libmp3lame -b:a 192k -ac 2 \
+      "$out_dir/${file%%.*}.mp3"
+    done
+  }
+
+get_mode() {
+  while [[ "$1" != "" ]]; do
+    case $1 in
+
+      -m | --mode )
+        shift
+        local mode="$1"
+        ;;
+
+    esac
+    shift
+  done
+ 
+  if [[ -z $mode ]]; then
+    echo "ERROR: Must supply MODE as an argument" >&2
+    exit
+  fi
+
+  echo "$mode"
+}
+
+get_target_level() {
+  while [[ "$1" != "" ]]; do
+    case $1 in
+
+      -t | --target_level )
+        shift
+        local target_level="$1"
+        ;;
+
+    esac
+    shift
+  done
+
+  [[ -z $target_level ]] && local target_level=-5
+
+  echo "$target_level"
+}
+
+get_true_peak() {
+  while [[ "$1" != "" ]]; do
+    case $1 in
+
+      -tp | --true_peak )
+        shift
+        local true_peak="$1"
+        ;;
+
+    esac
+    shift
+  done
+
+  [[ -z $true_peak ]] && local true_peak=+0.0
+
+  echo "$true_peak"
+}
+
+get_loudness_range_target() {
+  while [[ "$1" != "" ]]; do
+    case $1 in
+
+      -lrt | --loudness_range_target )
+        shift
+        local loudness_range_target="$1"
+        ;;
+
+    esac
+    shift
+  done
+
+  [[ -z $loudness_range_target ]] && local loudness_range_target=20.0
+
+  echo "$loudness_range_target"
+}
+
+get_fade_duration() {
+  while [[ "$1" != "" ]]; do
+    case $1 in
+
+      -fd | --fade_duration )
+        shift
+        local fade_duration="$1"
+        ;;
+
+    esac
+    shift
+  done
+
+  [[ -z $fade_duration_seconds ]] && local fade_duration_seconds=2
+
+  echo "$fade_duration_seconds"
+}
+
+get_volume() {
+  while [[ "$1" != "" ]]; do
+    case $1 in
+
+      -v | --volume )
+        shift
+        local volume="$1"
+        ;;
+
+    esac
+    shift
+  done
+
+  [[ -z $volume ]] && local volume=2
+
+  echo "$volume"
+}
+
+get_should_disable_fades() {
+  while [[ "$1" != "" ]]; do
+    case $1 in
+
+      -nf | --no_fade )
+        shift
+        local no_fade="true"
+        ;;
+
+    esac
+    shift
+  done
+
+  [[ -z $no_fade ]] && local no_fade="false"
+
+  echo "$no_fade"
+}
+
+try_delete_existing_ouput_dirs() {
+  local out_dir_normalize="$1"
+  local out_dir_fades="$2"
+
+  if [[ -d "$out_dir_normalize" || -d  "$out_dir_fades" ]]; then
+    printf "Remove old output directories? [Y/n] >> "
+    read should_delete
+
+    [[ ! "$should_delete" =~ "n" ]] \
+      && rm -rf "$out_dir_normalize" "$out_dir_fades" \
+      || exit
+  fi
+}
+
+clean_up_after_conversion() {
+  local start_dir="$1"
+  local out_dir_normalize="$2"
+  local out_dir_fades="$3"
+
+  mv "$out_dir_fades" "$start_dir"
+
+  cd "$start_dir"
+
+  rm -r "$out_dir_normalize"
+}
+
+write_verbose_output() {
+  echo "MODE: `get_mode $@`" >&2
+  echo "DIR: $out_dir_normalize"
+  echo "TARGET LEVEL: `get_target_level $@`"
+  echo "TRUE PEAK: `get_true_peak $@`"
+  echo "LRT: `get_loudness_range_target $@`"
+}
+
+main() {
+  local dir_to_process="$1"
+  local out_dir_normalize="_output_normalize"
+  local out_dir_fades="_output"
+
+  [[ -z "$dir_to_process" ]] && local dir_to_process="$(pwd)"
+
+  try_delete_existing_ouput_dirs "$out_dir_normalize" "$out_dir_fades"
+
+  write_verbose_output "$@"
+
+  normalize_audio_levels `get_mode "$@"` "$out_dir_normalize" `get_target_level "$@"` `get_true_peak "$@"` `get_loudness_range_target "$@"`
+
+  cd "$out_dir_normalize"
+  
+  convert_to_mp3_with_fades "$out_dir_normalize" "$out_dir_fades" `get_fade_duration "$@"`
+
+  #if [[ `get_should_disable_fades "$@"` == "true" ]]; then
+  #  convert_to_mp3_without_fades "$out_dir_normalize" "$out_dir_fades"
+  #elif [[ "$disable_fades" ]]; then
+  #  convert_to_mp3_with_fades "$out_dir_normalize" "$out_dir_fades" `get_fade_duration "$@"`
+  #fi
+
+  clean_up_after_conversion "$start_dir" "$out_dir_normalize" "$out_dir_fades"
+}
+
+main "$@"
+

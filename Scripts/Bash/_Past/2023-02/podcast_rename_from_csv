@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#----------------
+# Name          : podcast_rename_from_csv
+# Description   : Rename a series of podcast files from a CSV file
+# Author        : E Fournier
+# Dependencies  : plain old bash
+# Example Usage : ./podcast_rename_from_csv mp3 "../episodes.txt" .
+#----------------
+
+main() {
+  local extension="$1"
+  local csv_file="$2"
+  local dir="$3"
+
+  if [[ -z "$extension" ]]; then
+    echo "ERROR: Must provide an extension as 1st argument"
+    exit
+  elif [[ -z "$csv_file" || ! "$csv_file" =~ ".csv"  ]]; then
+    echo "ERROR: Must provide a valid CSV as 2nd argument"
+    exit
+  fi
+
+  [[ -z "$dir" ]] && local dir="$(pwd)"
+
+  local index=1
+  for file in $dir/*.$extension; do
+    local index_formatted=`printf "%03d" $index`
+    
+    # Skip if file is not matched in sequence
+    if [[ ! "$file" =~ "$index_formatted" ]]; then
+      index_formatted=`printf "%03d" $index`
+      echo "$index_formatted Not Found"
+      index="$(( index + 1 ))"
+    fi
+    
+    # Rename if file is matched in sequence
+    sed "${index}q;d" "$csv_file" | \
+      while IFS=, read -r episode_number episode_name; do
+        mv "$file" "${file/$extension/}${episode_name}.${extension}";
+      done
+
+      index="$(( index + 1 ))"
+  done
+}
+
+main "$@"
+

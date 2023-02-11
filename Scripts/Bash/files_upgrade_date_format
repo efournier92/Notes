@@ -1,0 +1,43 @@
+#!/bin/bash
+
+main() {
+  command="$@"
+
+  [[ "$command" =~ "exec" ]] && local should_execute=true
+
+  for file_name in $(find .); do
+    if [[ "$file_name" =~ [0-9]{2}-[0-9]{2}-[0-9]{2} ]]; then
+      local date_unformatted="${BASH_REMATCH[0]}"
+
+      #[[ "$file_name" =~ [0-9]{4}-[0-9]{2}-[0-9]{2} ]] && return
+      
+      local year_starts_with="${date_unformatted:0:1}"
+
+      if [[ $year_starts_with -lt 5 ]]; then
+        local date_formatted="20${date_unformatted}"
+      else
+        local date_formatted="19${date_unformatted}"
+      fi
+      
+      local file_name_new="${file_name//$date_unformatted/$date_formatted}"
+
+      if [[ "$should_execute" == true ]]; then
+        echo "-------"
+        echo "MOVING"
+        echo "-------"
+        echo "FROM  : $file_name"
+        echo "TO    : $file_name_new"
+        mv "$file_name" ""
+      else
+        echo "-------"
+        echo "PREVIEW"
+        echo "-------"
+        echo "FROM  : $file_name"
+        echo "TO    : $file_name_new"
+      fi
+    fi
+  done
+}
+
+main "$@"
+

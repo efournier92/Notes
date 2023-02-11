@@ -1,0 +1,111 @@
+#!/bin/bash
+
+remove_substring() {
+  local file_name="$1"
+  local substring_to_remove="$2"
+
+  local file_name="${file_name//$substring_to_remove/}"
+  #echo "$file_name" >&2
+
+  echo "$file_name"
+}
+
+replace_substring() {
+  local file_name="$1"
+  local from="$2"
+  local to="$3"
+
+  local file_name="${file_name/$from/$to}"
+  #echo "$file_name" >&2
+
+  echo "$file_name"
+}
+
+remove_substrings() {
+  local file_name="$1"
+
+  local file_name=`remove_substring "$file_name" "HSRS_"`
+  local file_name=`remove_substring "$file_name" "NCF"`
+  local file_name=`remove_substring "$file_name" "_CF"`
+  local file_name=`remove_substring "$file_name" "-CF"`
+  local file_name=`remove_substring "$file_name" "_"`
+  local file_name=`remove_substring "$file_name" "_INC"`
+  local file_name=`remove_substring "$file_name" "-INC"`
+  local file_name=`remove_substring "$file_name" "INC"`
+  local file_name=`remove_substring "$file_name" "BOS"`
+  local file_name=`remove_substring "$file_name" "MTT"`
+
+  echo "$file_name"
+}
+
+get_new_file_name() {
+  local file_name="$1"
+
+  #local file_name=`replace_substring "$file_name" ".MP3" ".mp3"`
+  #local file_name=`remove_substrings "$file_name"`
+
+  if [[ "$file_name" =~ [0-9]{2}-[0-9]{2}-[0-9]{2} ]]; then
+    local date_unformatted="${BASH_REMATCH[0]}"
+    local day="${date_unformatted:3:2}"
+    local month="${date_unformatted:0:2}"
+    local year_2_digit="${date_unformatted:6:2}"
+    local year_2_digit_starts_with="${year_2_digit:0:1}"
+
+    if [[ $year_2_digit_starts_with -lt 5 ]]; then
+      local year_full="20${year_2_digit}"
+    else
+      local year_full="19${year_2_digit}"
+    fi
+
+    echo "${year_full}-${month}-${day} - $file_name"
+
+  elif [[ "$file_name" =~ [0-9]{4} ]]; then
+    local year_full="${BASH_REMATCH[0]}"
+
+    echo "${year_full} - $file_name"
+
+  else
+    echo "0000 - $file_name"
+
+  fi
+}
+
+delete_non_audio() {
+  local files_to_delete=`find . -type f ! -name '*.mp3' -o -name '*XX*'`
+  
+  if [[ ! -z "$files_to_delete" ]]; then
+    echo "DELETE THESE FILES?"
+    echo "-------------------"
+    echo "$files_to_delete"
+    echo "-------------------"
+    read -p "[y/n] > " -e should_delete
+  fi
+  
+  if [[ "$should_delete" =~ "y" ]]; then
+    find . -type f ! -name '*.mp3' -delete
+    find . -type f -name '*XX*' -delete
+  fi
+}
+
+delete_dir() {
+  local dir_name="$1"
+
+  rm -rf "$dir_name"
+}
+
+main() {
+  #delete_dir "Set Lists"
+
+  for file_name in *; do
+    local new_file_name=`get_new_file_name "$file_name"`
+
+    #echo "$new_file_name"
+
+    mv -v "$file_name" "$new_file_name"
+
+    #delete_non_audio
+  done
+}
+
+main
+

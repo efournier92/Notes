@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#----------------
+# Name          : rc_clean
+# Description   : Cleans directories on remote servers
+# Author        : E Fournier
+# Dependencies  : ssh
+# Example Usage : ./rc_clean "username" "server_domain" "home_directory"
+#----------------
+
+delete_from_server() {
+  local username="$1" 
+  local server_domain="$2"
+  local home_dir="$3"
+
+  ssh ${username}@${server_domain} "rm -rv $home_dir/bnk/rc/_processed $home_dir/bnk/rc/_archive"
+}
+
+main() {
+  local username="$1" 
+  local server_domain="$2"
+  local home_dir="$3"
+
+  delete_from_server "$username" "$server_domain" "$home_dir"
+}
+
+main "$@"
+

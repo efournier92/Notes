@@ -1,0 +1,16 @@
+#!/bin/bash
+
+main() {
+  local file_in="$1"
+
+  local dir_out_parent="_screens"
+  local file_in_name="${file_in%%.*}"
+  local dir_out="${dir_out_parent}/${file_in_name}"
+
+  mkdir -p "$dir_out"
+
+  ffmpeg -i "$file_in" -r 0.1 "${dir_out}/${file_in_name}_%04d.png"
+}
+
+main "$@"
+

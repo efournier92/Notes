@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# ./time_until "2022-01-03 09:00"
+
+main() {
+  local time_input="$1"
+  local timestamp_input=$( date +%s -d "$time_input" )
+  local timestamp_now=$( date +%s )
+
+  local time_between_total_seconds=$(( timestamp_input - timestamp_now ))
+  local time_between_total_minutes=$(( time_between_total_seconds / 60 ))
+  local time_between_total_hours=$(( time_between_total_minutes / 60 ))
+  local time_between_total_days=$(( time_between_total_hours / 24 ))
+
+  local time_between_mod_seconds=$(( time_between_total_seconds % 360 ))
+  local time_between_mod_minutes=$(( time_between_total_minutes % 60 ))
+  local time_between_mod_hours=$(( time_between_total_hours % 24 ))
+  local time_between_mod_days=$time_between_total_days
+
+  echo "----------------"
+  echo "TIME REMAINING : ${time_between_mod_days}d ${time_between_mod_hours}h ${time_between_mod_minutes}m"
+  echo "----------------"
+  echo "TOTAL DAYS     : $time_between_total_days"
+  echo "TOTAL HOURS    : $time_between_total_hours"
+  echo "TOTAL MINUTES  : $time_between_total_minutes"
+  echo "TOTAL SECONDS  : $time_between_total_seconds"
+  echo "----------------"
+}
+
+main "$@"
+

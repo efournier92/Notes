@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#----------------
+# Name          : files_to_batch_dirs
+# Description   : Sorts files into batch directories for easier processing.
+# Author        : E Fournier
+# Dependencies  : plain old bash
+# Example Usage : ./files_to_batch_dirs mp3 batch_name
+#----------------
+
+main() {
+  local extension="$1"
+  local batch_name="$2"
+
+  local dir_index=0
+  local file_index=0
+
+  local working_dir="${batch_name}_${dir_index}"
+  mkdir -p $working_dir
+
+  for file in *.$extension; do
+    if [[ "$file_index" == 9 ]]; then 
+      file_index=0
+      dir_index=$(( dir_index + 1 ))
+      working_dir="${batch_name}_${dir_index}"
+      mkdir -p $working_dir
+    fi
+
+    mv "$file" "$working_dir"
+
+    file_index=$(( file_index + 1 )) 
+  done
+}
+
+main() "$@"
+

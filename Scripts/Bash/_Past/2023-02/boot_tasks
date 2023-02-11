@@ -1,0 +1,146 @@
+#!/bin/bash
+
+#----------------
+# Name          : boot_tasks
+# Description   : Run boot-time tasks depending on the executing machine
+# Author        : E Fournier
+# Dependencies  : pkexec, dmidecode, kodi
+# Example Usage : ./boot laptop
+#----------------
+
+source "$HOME/.zsh/env/common"
+source "$HOME/.zsh/alias/drives"
+shopt -s expand_aliases
+
+delay_to_prevent_ui_bugs() {
+  local delay_time=$1
+
+  [[ -z $delay_time ]] && local delay_time=0.5
+
+  sleep "$delay_time"
+}
+
+start_unison_snc() {
+  local watch_script="$HSCRIPTS/watch_for_change"
+
+  [[ -z `pgrep inotifywait` && -f "$watch_script" ]] \
+    && nohup "$watch_script" "$SNC" "$ZSCRIPTS/uni" >/dev/null 2>&1&
+}
+
+is_valid_environment_name() {
+  local environment_name="$1"
+
+  [[ "$environment_name" != "manjaro_general" \
+    && "$environment_name" != "manjaro_media" \
+    && "$environment_name" != "lubuntu_media" \
+    && "$environment_name" != "lubuntu_fmedia" \
+  ]] \
+    && echo "false" \
+    || echo "true"
+}
+
+validate_environment_name() {
+  local environment_name="$1"
+
+  local environment_name_is_valid=`is_valid_environment_name "$environment_name"`
+  if [[ "$is_valid_environment_name" == "false" ]]; then
+    echo "ERROR: Must supply a valid environment name" >&2
+    exit 1
+  fi
+}
+
+run_lubuntu_media_tasks() {
+  $HOME/scripts/connect_vpn_persistently "Calypso" 60 &
+  $HOME/scripts/connect_vnc_persistently 60 &
+  $HOME/scripts/pulseaudio_set_default_sink "alsa.name" "HDMI" &
+
+  setxkbmap -option caps:escape
+  pacmd set-default-sink alsa_output.platform-bcm2835_audio.stereo-fallback
+
+  delay_to_prevent_ui_bugs 2
+  xdotool key Escape  
+  m_md
+
+  gnome-terminal --window --maximize &
+  kodi -fs &
+}
+
+run_lubuntu_fmedia_tasks() {
+  export SYS_NAME="lubuntu_fmedia"
+  $HOME/scripts/connect_vpn_persistently "Calypso" 60 &
+  $HOME/scripts/connect_vnc_persistently 60 &
+  $HOME/scripts/pulseaudio_set_default_sink "alsa.name" "HDMI" &
+
+  xfce4-power-manager
+  setxkbmap -option caps:escape
+  delay_to_prevent_ui_bugs 3
+  xdotool key Escape  
+
+  gnome-terminal --window --maximize &
+  kodi -fs &
+}
+
+run_manjaro_media_tasks() {
+  $HOME/scripts/connect_vpn_persistently "Calypso" 60 &
+  $HOME/scripts/connect_vnc_persistently 60 &
+  $HOME/scripts/pulseaudio_set_default_sink "alsa.name" "HDMI" &
+
+  setxkbmap -option caps:escape
+
+  gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "suspend"
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 5400
+
+  xdotool key Escape  
+  delay_to_prevent_ui_bugs 2
+  m_md
+
+  gnome-terminal --window --maximize &
+  kodi -fs &
+}
+
+run_manjaro_general_tasks() {
+  local touchscreen_id="SYNA2393:00 06CB:19AC"
+
+  xinput disable "$touchscreen_id"
+  setxkbmap -option caps:escape
+  
+  gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend true
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type "nothing"
+  gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 10000
+
+  start_unison_snc
+
+  delay_to_prevent_ui_bugs 2
+  xdotool key Escape
+
+  m_bnk
+  gnome-terminal --window --maximize
+}
+
+main() {
+  export ENV_NAME="$1"
+
+  #validate_environment_name "$ENV_NAME"
+
+  delay_to_prevent_ui_bugs
+ 
+  #source "$ZENV/common"
+  #source "$ZALIAS/drives"
+  #echo "ENV: $ENV_NAME"
+  . "$ZENV/$ENV_NAME"
+  run_boot_tasks
+  #run_manjaro_general_tasks
+  #if [[ "$ENV_NAME" == "linux_manjaro_general" ]]; then
+  #  run_manjaro_general_tasks
+  #elif [[ "$ENV_NAME" == "linux_manjaro_media" ]]; then
+  #  run_manjaro_media_tasks
+  #elif [[ "$ENV_NAME" == "linux_lubuntu_media" ]]; then
+  #  run_lubuntu_media_tasks
+  #elif [[ "$ENV_NAME" == "linux_lubuntu_fmedia" ]]; then
+  #  run_lubuntu_fmedia_tasks
+  #fi
+}
+
+main "$@"
+

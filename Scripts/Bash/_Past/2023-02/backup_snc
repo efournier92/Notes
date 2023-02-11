@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 #----------------
 # Name          : backup_snc
 # Description   : Zips contents of the snc directory to an external device for backup
@@ -40,8 +39,8 @@ clean_trash_dir() {
 }
 
 backup_lg_dir() {
-  local tools_dir="$HOME/.zsh/tools"
-  source "$tools_dir/drives"
+  local alias_dir="$HOME/.zsh/alias"
+  source "$alias_dir/drives"
 
   bk_lg
 }

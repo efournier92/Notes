@@ -8,8 +8,8 @@
 # Example Usage : ./audio_books_convert ./robinson-crusoe "Robinson Cruso"
 #----------------
 
-#shopt -s extglob
-#shopt -s nocaseglob
+shopt -s extglob
+shopt -s nocaseglob
 
 validate_args() {
   local in_dir="$1"
@@ -28,11 +28,10 @@ rename_files_as_chapters() {
   local index=1
   for file in "$in_dir"/*+(mp3|wav|ogg|flac|aiff|vox); do
     echo $file
-    # local print_num=`printf "%02d" $index`
-    local chapter_name="${file%.*}"
-    local chapter_file_name="${chapter_name}.mp3"
-    if [ ! -f "$in_dir/$chapter_file_name" ]; then
-      mv "$file" "$in_dir/$chapter_file_name"
+    local print_num=`printf "%02d" $index`
+    local chapter_name="Part $print_num.mp3"
+    if [ ! -f "$in_dir/$chapter_name" ]; then
+      mv "$file" "$in_dir/$chapter_name"
       index=$((index + 1))
     fi
   done
@@ -55,7 +54,7 @@ main() {
   local book_name="$2"
 
   validate_args "$in_dir" "$book_name"
-  #rename_files_as_chapters "$in_dir"
+  rename_files_as_chapters "$in_dir"
   merge_chapters_as_m4b "$in_dir" "$book_name"
 }
 

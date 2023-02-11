@@ -1,0 +1,105 @@
+#!/bin/bash
+
+#----------------
+# Name          : backup_dir
+# Description   : Backs up one directory to another using rclone
+# Author        : E Fournier
+# Dependencies  : rclone, ls, cat
+# Example Usage : ./backup_dir /dev/extA /dev/extB
+#----------------
+
+has_empty_args() {
+  local source_location="$1"
+  local destination_location="$2"
+
+  [[ -z "$source_location" || -z "$destination_location" ]] \
+    && echo "true" \
+    || echo "false"
+}
+
+has_empty_locations() {
+  local source_location="$1"
+  local destination_location="$2"
+
+  [[ $(ls -A "$source_location") || $(ls -A "$destination_location") ]] \
+    && echo "false" \
+    || echo "true"
+}
+
+should_backup() {
+  local source_location="$1"
+  local destination_location="$2"
+
+  local args_are_empty=`has_empty_args "$source_location" "$destination_location"`
+
+  local locations_are_empty=`has_empty_locations "$source_location" "$destination_location"`
+
+  [[ "$args_are_empty" == "true" ]] \
+    && echo "ERROR: One or both supplied arguments is empty" >&2
+
+  [[ "$locations_are_empty" == "true" ]] \
+    && echo "ERROR: One or both supplied locations is empty" >&2
+  
+  [[ "$args_are_empty" == "false" && "$locations_are_empty" == "false" ]] \
+    && echo "true" \
+    || echo "false"
+}
+
+print_deleting_message() {
+  local dir_location="$1"
+
+  cat << EOF
+________
+DELETING empty directories from $dir_location
+
+EOF
+}
+
+delete_empty_dirs() {
+  local dir_location="$1"
+
+  print_deleting_message "$dir_location"
+  find "$dir_location" -empty -type d -print -delete
+}
+
+delete_all_empty_dirs() {
+  local source_location="$1"
+  local destination_location="$2"
+
+  delete_empty_dirs "$source_location"
+  delete_empty_dirs "$destination_location"
+}
+
+print_backup_message() {
+  local source_location="$1"
+  local destination_location="$2"
+
+  cat << EOF
+_______
+SYNCING $source_location to $destination_location
+
+EOF
+}
+
+run_backup() {
+  local source_location="$1"
+  local destination_location="$2"
+
+  print_backup_message "$source_location" "$destination_location"
+  sudo rclone sync "$source_location" "$destination_location" --verbose
+}
+
+main() {
+  local source_location="$1"
+  local destination_location="$2"
+  
+  local should_run_backup=`should_backup "$source_location" "$destination_location"`
+
+  if [[ "$should_run_backup" == "true" ]]; then
+    run_backup "$source_location" "$destination_location"
+    delete_all_empty_dirs "$source_location" "$destination_location"
+  fi
+}
+
+main "$@"
+

@@ -1,0 +1,101 @@
+#!/bin/bash
+
+#----------------
+# Name          : backup_md_multiple
+# Description   : Syncs media content from an external device to 2 MD locations
+# Author        : E Fournier
+# Dependencies  : rclone
+# Example Usage : ./backup_md_multiple extA
+#----------------
+
+validate_args() {
+  if [[ -z "$1" ]]; then
+    echo "ERROR: Source disk not supplied"
+    exit 1
+  fi
+}
+
+exit_if_any_drive_is_missing() {
+  local source_location="$1"
+  local md0_location="$2"
+  local md1_location="$3"
+
+  if [[ \
+    ! $(ls -A "$source_location") || \
+    ! $(ls -A "$md0_location") || \
+    ! $(ls -A "$md1_location") \
+  ]]; then
+    echo "ERROR: Not all supplied drive exist"
+    exit 1
+  fi
+}
+
+sync_audio() {
+  local source_location="$1"
+  local audio_dir="$2"
+
+  mkdir -p "$audio_dir"
+  rclone sync "$source_location/Media/Audio" "$audio_dir" --verbose
+}
+
+sync_movies() {
+  local source_location="$1"
+  local movies_dir="$2"
+  
+  mkdir -p "$movies_dir"
+  rclone sync "$source_location/Media/Video/Movies" "$movies_dir" --verbose
+}
+
+sync_tv() {
+  local source_location="$1"
+  local tv_dir="$2"
+
+  mkdir -p "$tv_dir"
+  rclone sync "$source_location/Media/Video/TV" "$tv_dir" --verbose
+}
+
+run_sync() {
+  local source_location="$1"
+  local md0_location="$2"
+  local md1_location="$3"
+
+  local audio_dir="$md0_location/Audio"
+  local movies_dir="$md0_location/Video/Movies"
+  local tv_dir="$md1_location/Video/TV"
+  
+  sync_audio  "$source_location" "$audio_dir"
+  sync_movies "$source_location" "$movies_dir"
+  sync_tv     "$source_location" "$tv_dir"
+}
+
+delete_empty_dirs() {
+  local source_location="$1"
+  local md0_location="$2"
+  local md1_location="$3"
+
+  echo " --------------------------"
+  echo " DELETING EMPTY DIRECTORIES"
+  echo " --------------------------"
+  find "$source_location" -empty -type d -print -delete
+  find "$md0_location"    -empty -type d -print -delete
+  find "$md1_location"    -empty -type d -print -delete
+}
+
+
+main() {
+  validate_args "$@"
+  local source_drive="$1"
+
+  local source_location="/mnt/$source_drive"
+  local md0_location="/mnt/md0"
+  local md1_location="/mnt/md1"
+
+  exit_if_any_drive_is_missing "$source_location" "$md0_location" "$md1_location"
+
+  run_sync "$source_location" "$md0_location" "$md1_location"
+
+  delete_empty_dirs "$source_location" "$md0_location" "$md1_location"
+}
+
+main "$@"
+

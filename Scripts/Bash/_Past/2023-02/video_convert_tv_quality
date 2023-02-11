@@ -1,0 +1,74 @@
+#!/bin/bash
+
+#----------------
+# Name          : video_convert_tv_quality
+# Description   : Converts videos in a directory to standard quality output
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./video_convert_tv_quality 30 false $(pwd)
+#----------------
+
+shopt -s extglob
+shopt -s nullglob
+
+print_info() {
+  local in_file="$1"
+  local out_file="$2"
+
+  echo "__________" >&2
+  echo "Converting: $in_file >> $out_file" >&2
+  echo "" >&2
+}
+
+get_deinterlacing_command() {
+  local is_deinterlacing_enabled="$1"
+
+  [[ "$is_deinterlacing_enabled" == "true" ]] \
+    && echo "-vf yadif=0:0:0" \
+    || echo ""
+}
+
+run_ffmpeg_command() {
+  local in_file="$1"
+  local out_file="$2"
+  local crf="$3"
+  local is_deinterlacing_enabled="$4"
+
+  ffmpeg -i "$in_file" \
+    -c:a aac -ac 2 -b:a 128k \
+    -c:v libx264 -crf "$crf" -tune film -preset slow \
+    -profile:v baseline -level 3.0 -pix_fmt yuv420p \
+    -max_muxing_queue_size 400 \
+    `get_deinterlacing_command "$is_deinterlacing_enabled"` \
+    -movflags faststart \
+    -map_metadata -1 -strict -2 \
+    "$out_file"
+}
+
+main() {
+  local crf="$1"
+  local is_deinterlacing_enabled="$2"
+  local working_dir="$3"
+
+  [[ -z "$crf" ]] && local crf="30"
+  [[ -z "$working_dir" ]] && local working_dir="$(pwd)"
+  
+  local ext_out="mp4"
+  local out_dir="_OUT_${crf}"
+
+  cd "$working_dir"
+
+  mkdir -p "$working_dir/$out_dir"
+
+  for in_file in *.{mp4,mkv,avi,webm,mpeg,mpg,wav,wmv,mov,flv,f4v,swf,vob}; do
+    local in_file_ext="${in_file##*.}"
+    local out_file="$out_dir/${in_file/$in_file_ext/$ext_out}"
+    
+    print_info "$in_file" "$out_file"
+    
+    run_ffmpeg_command "$in_file" "$out_file" "$crf" "$is_deinterlacing_enabled"
+  done
+}
+
+main "$@"
+
