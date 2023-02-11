@@ -19,23 +19,6 @@ uuid_md="557302aa-ac1b-4cff-b7f0-3f8cf4db290b"
 
 ## Mountpoints
 
-### /mnt/rc
-
-#### Base
-export RC="/mnt/rc"
-
-#### Mount
-alias m_rc="$ZSCRIPTS/rc_mount"
-
-#### Unmount
-alias m_rc!="umount $RC"
-
-#### Remove WAV files
-alias rcrm="rm $RC/RECORD/*.WAV"
-
-#### Remove WAV files
-alias rcls="ls $RC/RECORD"
-
 ### /mnt/bnk
 
 #### Base

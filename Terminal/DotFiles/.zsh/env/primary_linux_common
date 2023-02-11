@@ -69,13 +69,9 @@ alias open_browser_url="google-chrome-stable --new-window"
 alias material_colors="open_browser_url https://materialui.co/colors"
 
 ### Download YouTube Audio
-yt_audio() { "$ZSCRIPTS/yt_audio" "$1"; }
+yt_audio() { "$USCRIPTS/yt_audio" "$1"; }
 
 source "$ZZSH/.secrets"
-
-# TODO: Fix naming, comments
-
-
 
 ## SB
 
@@ -95,14 +91,62 @@ alias ssh_mb="ssh ${mb_username}@${mb_server_domain}"
 
 ## RC
 
-### Download RC from LB over SSH
-alias rc_lb="$ZSCRIPTS/ssh_download $lb_username $lb_server_domain_local"
+### Download
 
-### Download RC from MB over SSH
-alias rc_mb="$ZSCRIPTS/ssh_download $mb_username $mb_server_domain"
+#### Download RC from LB over SSH
+alias rc_download_lb="$USCRIPTS/rc_download $lb_username $lb_server_domain /mnt/rc"
 
-### Download RC from both LB and MB over SSH
-rc_lb+mb() { rc_lb; rc_mb }
+#### Download RC from MB over SSH
+alias rc_download_mb="$USCRIPTS/rc_download $mb_username $mb_server_domain /mnt/rc"
+
+#### Download RC from both LB and MB over SSH
+rc_download_lb+mb() { rc_download_lb; rc_download_mb }
+
+### Clean
+
+#### Clean RC directories from MB over SSH
+alias rc_clean_lb="$USCRIPTS/rc_clean $lb_username $lb_server_domain /home/misigno"
+
+#### Download RC from MB over SSH
+alias rc_clean_mb="$USCRIPTS/rc_clean $mb_username $mb_server_domain /home/misigno"
+
+#### Download RC from both LB and MB over SSH
+rc_clean_lb+mb() { rc_clean_lb; rc_clean_mb }
+
+### Thumbs
+
+#### Base
+export RC="/mnt/rc"
+
+#### Mount
+alias rc_thumbs_mount="$USCRIPTS/rc_mount"
+
+#### Unmount
+alias rc_thumbs_umount!="umount $RC"
+
+#### List files
+alias rc_thumbs_ls="ls $RC/RECORD"
+
+#### Remove WAV files
+alias rc_thumbs_rm="rm $RC/RECORD/*.WAV"
+
+### /mnt/rc
+
+#### Base
+export RC="/mnt/rc"
+
+#### Mount
+alias m_rc="$ZSCRIPTS/rc_mount"
+
+#### Unmount
+alias m_rc!="umount $RC"
+
+#### Remove WAV files
+alias rc_rm="rm $RC/RECORD/*.WAV"
+
+#### Remove WAV files
+alias rcls="ls $RC/RECORD"
+
 
 ### VPN
 
