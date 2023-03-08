@@ -16,19 +16,24 @@ set cursorline
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin()
+  Plug 'airblade/vim-gitgutter'
+  Plug 'andymass/vim-matchup'
+  Plug 'brooth/far.vim'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'gabrielelana/vim-markdown'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'ludovicchabant/vim-gutentags'
+  Plug 'MattesGroeger/vim-bookmarks'
+  Plug 'ngmy/vim-rubocop'
+  Plug 'preservim/nerdtree'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'preservim/nerdtree'
-  Plug 'ludovicchabant/vim-gutentags'
-  Plug 'brooth/far.vim'
-  Plug 'andymass/vim-matchup'
+  Plug 'tpope/vim-rails'
+  Plug 'thoughtbot/vim-rspec'
   Plug 'yegappan/taglist'
 call plug#end()
 
@@ -85,8 +90,8 @@ nnoremap <silent> <C-B> :Buffers<CR>
 nnoremap <silent> <C-H> :History<CR>
 
 """" Find
-nnoremap <silent> <C-F> :call fzf#vim#ag(expand('<cword>', '--word-regexp'))<CR>
-nnoremap <silent> <C-F><C-F> :Ag<CR>
+nnoremap <silent> <C-S> :call fzf#vim#ag(expand('<cword>', '--word-regexp'))<CR>
+nnoremap <silent> <C-F> :Ag<CR>
 
 """ Vimgrep
 
@@ -186,16 +191,16 @@ set backspace=indent,eol,start
 """ Order of auto-complete options for <ctrl-n> menu
 set complete=.,w,b,u,t,i,k
 
-"" Graphical Vim
+"" Graphical Vim Tweaks
 
 """ Font
-"set guifont=Hack
+set guifont=Hack
 
 """ Hide the menubar
-"set guioptions -=m
+set guioptions -=m
 
 """ Hide the toolbar
-"set guioptions -=T
+set guioptions -=T
 
 " Spelling
 
@@ -255,7 +260,6 @@ set incsearch
 """ Enable searching with regex expressions
 set magic
 
-
 " Shortcuts
 
 "" Leader Key
@@ -289,21 +293,18 @@ nnoremap <leader>f :set guifont=*<CR>
 nnoremap <leader>json :%!python -m json.tool<CR>
 
 """ Replace curly quotes with straight quotes
-noremap <Leader>q :%s/“/"/g<CR>:%s/”/"/g<CR>:%s/’/'/g<CR>:%s/‘/'/g<CR>
 
-""" Prettify HTML
-noremap <Leader>ph :!tidy -mi -xml -wrap 0 %<CR>
+"""" Function
+function! ReplaceCurlyQuotes()
+  silent! %s/“/"/g
+  silent! %s/”/"/g
+  silent! %s/’/'/g
+  silent! %s/‘/'/g
+  let @/ = ""
+endfunction
 
-"" Rename
-
-""" Rename selection
-vnoremap <Leader>r "hy:%s/<C-r>h/<C-r>h/gc<left><left><left>
-
-""" Rename locally
-nmap <Leader>rn :%s/<C-R><C-W>/<C-R><C-W>/g<left><left>
-
-""" Find and replace
-nmap <Leader>ra :Far <C-R><C-W>/<C-R><C-W>/g<left><left>
+"""" Command Mapping
+noremap <Leader>q :call ReplaceCurlyQuotes()<CR>
 
 "" Encoding
 
@@ -319,6 +320,11 @@ vnoremap <leader>d64 :'<,'>!python -m base64 -d<CR>
 
 """ Change PWD to directory of the current buffer
 nnoremap <leader>cd :cd %:p:h<CR>
+
+"" Search
+
+""" Count highlighted results
+nnoremap <leader>ch :%s///gn<CR>
 
 "" HTML
 
@@ -350,4 +356,53 @@ noremap <Leader>bhead :-1read $VSNIPS/bash_header.bash<CR>ea
 
 """ Bash null check
 noremap <Leader>bnull :-1read $VSNIPS/bash_nullcheck.bash<CR>ea
+
+function! Refactor()
+    call inputsave()
+    let @z=input("What do you want to rename '" . @z . "' to? ")
+    call inputrestore()
+endfunction
+
+" Locally (local to block) rename a variable
+nmap <Leader>rn :%s/<C-R><C-W>/<C-R><C-W>/g<left><left>
+
+nmap <Leader>ra :Far <C-R><C-W>/<C-R><C-W>/g<left><left>
+
+function! Diff(spec)
+    vertical new
+    setlocal bufhidden=wipe buftype=nofile nobuflisted noswapfile
+    let cmd = "++edit #"
+    if len(a:spec)
+        let cmd = "!git -C " . shellescape(fnamemodify(finddir('.git', '.;'), ':p:h:h')) . " show " . a:spec . ":#"
+    endif
+    execute "read " . cmd
+    silent 0d_
+    diffthis
+    wincmd p
+    diffthis
+endfunction
+command! -nargs=? Diff call Diff(<q-args>)
+
+" Fix NERDtree menu
+set cmdheight=1
+
+noremap <Leader>ph :!tidy -mi -xml -wrap 0 %<CR>
+
+" RSpec.vim mappings
+map <Leader>tc :call RunNearestSpec()<CR>
+map <Leader>tl :call RunLastSpec()<CR>
+map <Leader>tf :call RunCurrentSpecFile()<CR>
+map <Leader>ta :call RunAllSpecs()<CR>
+
+" Rubocop
+let g:vimrubocop_keymap = 0
+nmap <Leader>rs :RuboCop<CR>
+nmap <Leader>rf :RuboCop -A<CR>
+
+" Bookmarks
+nmap <Leader>bb <Plug>BookmarkToggle
+nmap <Leader>bs <Plug>BookmarkShowAll
+nmap <Leader>bn <Plug>BookmarkNext
+nmap <Leader>bp <Plug>BookmarkPrev
+nmap <Leader>bc <Plug>BookmarkClearAll
 
