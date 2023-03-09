@@ -142,7 +142,7 @@ set backspace=indent,eol,start
 "" Completion
 
 """ Order of auto-complete options for <ctrl-n> menu
-set complete=.,w,b,u,t,i,k
+set complete=.,w,b,u,t,k
 
 "" Graphical Vim Tweaks
 
@@ -160,7 +160,7 @@ set guioptions -=T
 """ Dictionary
 
 """" Include dictionary words file
-set dictionary+=$VIM/dict/words
+set dictionary+=$VVIM/dict/words
 
 """" Underline misspelled words
 hi! SpellBad cterm=underline ctermbg=none ctermfg=none
@@ -397,4 +397,5 @@ nmap <Leader>bs <Plug>BookmarkShowAll
 nmap <Leader>bn <Plug>BookmarkNext
 nmap <Leader>bp <Plug>BookmarkPrev
 nmap <Leader>bc <Plug>BookmarkClearAll
+
 
