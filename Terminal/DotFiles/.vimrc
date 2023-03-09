@@ -1,41 +1,19 @@
 "----------------
 " Name          : .vimrc
-" Description   : Main VIM configuration file
+" Description   : VIM configuration file
 " Author        : E Fournier
 " Dependencies  : vim
 "----------------
 
 " System
 
-filetype plugin indent on
+"" Syntax
+
+""" Highlight the selected line
 set cursorline
 
-"" Plugins
-
-""" Automatically install vim-plug manager
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-endif
-
-call plug#begin()
-  Plug 'airblade/vim-gitgutter'
-  Plug 'andymass/vim-matchup'
-  Plug 'brooth/far.vim'
-  Plug 'editorconfig/editorconfig-vim'
-  Plug 'gabrielelana/vim-markdown'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'ludovicchabant/vim-gutentags'
-  Plug 'MattesGroeger/vim-bookmarks'
-  Plug 'ngmy/vim-rubocop'
-  Plug 'preservim/nerdtree'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-rails'
-  Plug 'thoughtbot/vim-rspec'
-  Plug 'yegappan/taglist'
-call plug#end()
+""" Detect and adjust for file type
+filetype plugin indent on
 
 "" Compatibility
 
@@ -61,12 +39,42 @@ set viminfofile=NONE
 """ Encryption method
 set cm=blowfish2
 
-"" File tree
+"" Format
 
-""" Fix NERDtree menu
-set cmdheight=1
+""" Convert tabs into spaces
+set smarttab
 
-"" Fuzzy Find
+""" Spaces per <Tab>
+set tabstop=2
+
+""" Use appropriate number of spaces on <Tab> in Insert and Visual modes
+set expandtab
+
+""" Spaces per <Tab> when performing editing operations
+set softtabstop=2
+
+""" Space for auto indentation
+set shiftwidth=2
+
+""" Round indents to a multiple of $shiftwidth
+set shiftround
+
+"" Search and Find
+
+""" Ignore case when search contains only lowercase letters
+set ignorecase
+
+""" Use case when search contains a capital letter
+set smartcase
+
+""" Highlight search matches
+set hlsearch
+
+""" Search incrementally while typing
+set incsearch
+
+""" Enable searching with regex expressions
+set magic
 
 """ Find recursively from base directory
 set path+=**
@@ -74,63 +82,8 @@ set path+=**
 """ Show menu of found items on <Tab>
 set wildmenu
 
-""" FZF
-
-"""" Files
-nnoremap <silent> <C-P> :GFiles<CR>
-
-"""" Tags
-nnoremap <silent> <C-T> :call fzf#vim#tags(expand('<cword>'))<CR>
-nnoremap <silent> <C-T><C-T> :Tags<CR>
-
-"""" Buffers
-nnoremap <silent> <C-B> :Buffers<CR>
-
-"""" History
-nnoremap <silent> <C-H> :History<CR>
-
-"""" Find
-nnoremap <silent> <C-S> :call fzf#vim#ag(expand('<cword>', '--word-regexp'))<CR>
-nnoremap <silent> <C-F> :Ag<CR>
-
-""" Vimgrep
-
-"""" Search for a pattern and open results in the quickfix menu
-function Xgrep()
-  call inputsave()
-  let pattern = input('find: ')
-  call inputrestore()
-  execute 'vimgrep /' . pattern . '/g *'
-  copen
-  resize 20
-  let @/ = pattern
-  normal n
-endfunction
-
-"""" Search encrypted files
-nmap <leader>x :call Xgrep()<CR>
-
-"" Version Control
-
-""" Fugitive
-
-"""" Display all dirty files
-nnoremap <silent> <Leader>gg :Git<cr>
-
-"""" Display a vertical diff for the current buffer
-nnoremap <silent> <Leader>gd :Gvdiff<cr>
-
-"""" Open merge tool to resolve conflicts in the active file
-nnoremap <silent> <Leader>gm :Gvdiffsplit!<cr>
-
-"""" While Merging | take left change
-nnoremap <silent> <Leader>gl :diffget //2<cr>
-
-"""" When Merging | take right change
-nnoremap <silent> <Leader>gr :diffget //3<cr>
-
-"""" Push commited changes
-nnoremap <silent> <Leader>gp :G push<cr>
+""" Count highlighted results
+nnoremap <leader>ch :%s///gn<CR>
 
 " Interface
 
@@ -202,63 +155,26 @@ set guioptions -=m
 """ Hide the toolbar
 set guioptions -=T
 
-" Spelling
+"" Spelling
 
-"" Dictionary
+""" Dictionary
 
-""" Include dictionary words file
+"""" Include dictionary words file
 set dictionary+=$VIM/dict/words
 
-""" Underline misspelled words
+"""" Underline misspelled words
 hi! SpellBad cterm=underline ctermbg=none ctermfg=none
 
-"" Auto Enable Spell Checking for File Types
+""" Auto Enable Spell Checking for File Types
 
-""" Text files
+"""" Text files
 autocmd BufRead,BufNewFile *.txt setlocal spell
 
-""" Markdown files
+"""" Markdown files
 autocmd BufRead,BufNewFile *.md setlocal spell
 
-""" File with no an extension
+"""" File with no an extension
 autocmd BufRead,BufNewFile * if expand('%:t') !~ '\.' | setlocal spell | endif
-
-"" Indentation
-
-""" Convert tabs into spaces
-set smarttab
-
-""" Spaces per <Tab>
-set tabstop=2
-
-""" Use appropriate number of spaces on <Tab> in Insert and Visual modes
-set expandtab
-
-""" Spaces per <Tab> when performing editing operations
-set softtabstop=2
-
-""" Space for auto indentation
-set shiftwidth=2
-
-""" Round indents to a multiple of $shiftwidth
-set shiftround
-
-"" Search
-
-""" Ignore case when search contains only lowercase letters
-set ignorecase
-
-""" Use case when search contains a capital letter
-set smartcase
-
-""" Highlight search matches
-set hlsearch
-
-""" Search incrementally while typing
-set incsearch
-
-""" Enable searching with regex expressions
-set magic
 
 " Shortcuts
 
@@ -266,10 +182,6 @@ set magic
 let mapleader = '\'
 
 "" Tabs
-
-"" Toggle file tree
-nnoremap <silent> <Leader>et :NERDTreeToggle<cr>
-nnoremap <silent> <Leader>ef :NERDTreeFind<cr>
 
 """ Create a new tab
 nnoremap <silent> <C-W>t :tabnew<CR>
@@ -287,21 +199,10 @@ nmap <Leader>vg :vimgrep <C-R>=expand('<cword>')<CR> **/* <CR> :cw <CR>"
 """ Open font-picker menu for graphical vim
 nnoremap <leader>f :set guifont=*<CR>
 
-"" Format
+"" Formatting
 
 """ Format JSON
 nnoremap <leader>json :%!python -m json.tool<CR>
-
-""" Replace curly quotes with straight quotes
-
-"""" Function
-function! ReplaceCurlyQuotes()
-  silent! %s/“/"/g
-  silent! %s/”/"/g
-  silent! %s/’/'/g
-  silent! %s/‘/'/g
-  let @/ = ""
-endfunction
 
 """" Command Mapping
 noremap <Leader>q :call ReplaceCurlyQuotes()<CR>
@@ -321,11 +222,6 @@ vnoremap <leader>d64 :'<,'>!python -m base64 -d<CR>
 """ Change PWD to directory of the current buffer
 nnoremap <leader>cd :cd %:p:h<CR>
 
-"" Search
-
-""" Count highlighted results
-nnoremap <leader>ch :%s///gn<CR>
-
 "" HTML
 
 """ Create tag
@@ -343,6 +239,11 @@ noremap <Leader>hct vat<ESC>`<I<!--<ESC>`>A--><ESC>
 """ Uncomment tag
 noremap <Leader>hut vat<ESC>`<^xxxx`>$xxx<ESC>
 
+" Locally (local to block) rename a variable
+nmap <Leader>rn :%s/<C-R><C-W>/<C-R><C-W>/g<left><left>
+
+noremap <Leader>ph :!tidy -mi -xml -wrap 0 %<CR>
+
 "" Snippets
 
 """ HTML skeleton
@@ -357,49 +258,140 @@ noremap <Leader>bhead :-1read $VSNIPS/bash_header.bash<CR>ea
 """ Bash null check
 noremap <Leader>bnull :-1read $VSNIPS/bash_nullcheck.bash<CR>ea
 
-function! Refactor()
-    call inputsave()
-    let @z=input("What do you want to rename '" . @z . "' to? ")
-    call inputrestore()
+"" Functions
+
+""" Replace curly quotes with straight quotes
+function! ReplaceCurlyQuotes()
+  silent! %s/“/"/g
+  silent! %s/”/"/g
+  silent! %s/’/'/g
+  silent! %s/‘/'/g
+  let @/ = ""
 endfunction
 
-" Locally (local to block) rename a variable
-nmap <Leader>rn :%s/<C-R><C-W>/<C-R><C-W>/g<left><left>
-
-nmap <Leader>ra :Far <C-R><C-W>/<C-R><C-W>/g<left><left>
-
-function! Diff(spec)
-    vertical new
-    setlocal bufhidden=wipe buftype=nofile nobuflisted noswapfile
-    let cmd = "++edit #"
-    if len(a:spec)
-        let cmd = "!git -C " . shellescape(fnamemodify(finddir('.git', '.;'), ':p:h:h')) . " show " . a:spec . ":#"
-    endif
-    execute "read " . cmd
-    silent 0d_
-    diffthis
-    wincmd p
-    diffthis
+""" Search for a pattern and open results in the quickfix menu
+function Xgrep()
+  call inputsave()
+  let pattern = input('find: ')
+  call inputrestore()
+  execute 'vimgrep /' . pattern . '/g *'
+  copen
+  resize 20
+  let @/ = pattern
+  normal n
 endfunction
-command! -nargs=? Diff call Diff(<q-args>)
 
-" Fix NERDtree menu
+" Plugins
+
+"" Vim-Plug
+
+""" Automatically install the plugin manager
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
+
+""" Register Plugins
+call plug#begin()
+  Plug 'airblade/vim-gitgutter'
+  Plug 'andymass/vim-matchup'
+  Plug 'brooth/far.vim'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'gabrielelana/vim-markdown'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'ludovicchabant/vim-gutentags'
+  Plug 'MattesGroeger/vim-bookmarks'
+  Plug 'ngmy/vim-rubocop'
+  Plug 'preservim/nerdtree'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-rails'
+  Plug 'thoughtbot/vim-rspec'
+  Plug 'yegappan/taglist'
+call plug#end()
+
+"" File Trees
+
+""" NERDtree
+
+"""" Fix menu height
 set cmdheight=1
 
-noremap <Leader>ph :!tidy -mi -xml -wrap 0 %<CR>
+"""" Toggle file tree
+nnoremap <silent> <Leader>et :NERDTreeToggle<cr>
+nnoremap <silent> <Leader>ef :NERDTreeFind<cr>
 
-" RSpec.vim mappings
+""" Netrw
+
+"""" Hide banner
+let g:netrw_banner = 0
+
+"""" List files without expandable directories
+let g:netrw_liststyle = 3
+
+"""" Prevent history file creation
+let g:netrw_dirhistmax = 0
+
+"" Fugitive | Version Control
+
+""" Display all dirty files
+nnoremap <silent> <Leader>gg :Git<cr>
+
+""" Display a vertical diff for the current buffer
+nnoremap <silent> <Leader>gd :Gvdiff<cr>
+
+""" Open merge tool to resolve conflicts in the active file
+nnoremap <silent> <Leader>gm :Gvdiffsplit!<cr>
+
+""" While Merging | take left change
+nnoremap <silent> <Leader>gl :diffget //2<cr>
+
+""" When Merging | take right change
+nnoremap <silent> <Leader>gr :diffget //3<cr>
+
+""" Push commited changes
+nnoremap <silent> <Leader>gp :G push<cr>
+
+"" FAR | Find and Replace
+
+""" Replace a pattern across the current directory
+nmap <Leader>ra :Far <C-R><C-W>/<C-R><C-W>/g<left><left>
+
+"" FZF
+
+""" Files
+nnoremap <silent> <C-P> :GFiles<CR>
+
+""" Tags
+nnoremap <silent> <C-T> :call fzf#vim#tags(expand('<cword>'))<CR>
+nnoremap <silent> <C-T><C-T> :Tags<CR>
+
+""" Buffers
+nnoremap <silent> <C-B> :Buffers<CR>
+
+""" History
+nnoremap <silent> <C-H> :History<CR>
+
+""" Find
+nnoremap <silent> <C-S> :call fzf#vim#ag(expand('<cword>', '--word-regexp'))<CR>
+nnoremap <silent> <C-F> :Ag<CR>
+
+""" Search encrypted files
+nmap <leader>x :call Xgrep()<CR>
+
+"" RSpec.vim
 map <Leader>tc :call RunNearestSpec()<CR>
 map <Leader>tl :call RunLastSpec()<CR>
 map <Leader>tf :call RunCurrentSpecFile()<CR>
 map <Leader>ta :call RunAllSpecs()<CR>
 
-" Rubocop
+"" Rubocop
 let g:vimrubocop_keymap = 0
 nmap <Leader>rs :RuboCop<CR>
 nmap <Leader>rf :RuboCop -A<CR>
 
-" Bookmarks
+"" Bookmarks
 nmap <Leader>bb <Plug>BookmarkToggle
 nmap <Leader>bs <Plug>BookmarkShowAll
 nmap <Leader>bn <Plug>BookmarkNext
