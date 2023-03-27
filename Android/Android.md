@@ -8,146 +8,159 @@
 - [Applications](#applications)
 
 ## Overview
-When it comes to mobile device Operating Systems, [Android](https://www.android.com/) has become the norm across a multitude of non-desktop devices. I like it because it's based on the Linux kernel, and is a lot more open than [iOS](https://www.apple.com/ios/). I usually install a [custom ROM](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions) and a whole bunch of apps, as detailed below.
+- When it comes to mobile device Operating Systems, [Android](https://www.android.com/) has become the norm across a multitude of non-desktop devices. I like it because it's based on the Linux kernel, and is a lot more open than [iOS](https://www.apple.com/ios/). I usually install a [custom ROM](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions) and a whole bunch of apps, as detailed below.
 
 ## [TWRP](https://twrp.me/about/)
 
 ### Description
-A custom Recovery tool, used for installing custom software, backup, restoration, and more.
+- A custom Recovery tool, used for installing custom software, backup, restoration, and more.
 
 #### Backup
-1. Boot into TWRP recovery mode
-2. Select `Backup`
-3. Uncheck everything except `Data (excl. storage)`
-4. Swipe to Backup
-5. Copy `/TWRP` directory contents to backup location
+1. Boot into TWRP recovery mode.
+1. Select `Backup`.
+1. Uncheck everything except `Data (excl. storage)`.
+1. Swipe to Backup.
+1. Copy `/TWRP` directory contents to backup location.
 
 #### Restore
-1. Copy ROM, OpenGApps, and SuperSU to device
-2. Boot into TWRP recovery mode
-3. Install ROM
-4. Install SuperSU
-5. Reboot to system and skip setup
-6. Reboot to recovery
-7. Install OpenGApps
-8. Reboot to system
-9. Reboot to recovery
-10. Select `Backup`
-11. Uncheck everything except `Boot`
-12. Swipe to Backup
-13. Copy TWRP from backup location to the backup folder created in step 12
-14. Select `Restore`
-15. Uncheck everything except `Data (excl. storage)`
-16. Swipe to restore
-17. Reboot to system
+1. Copy ROM, `OpenGApps`, and `SuperSU` to device.
+1. Boot into `TWRP` recovery mode.
+1. Install ROM.
+1. Install `SuperSU`.
+1. Reboot to system and skip setup.
+1. Reboot to recovery.
+1. Install `OpenGApps`.
+1. Reboot to system.
+1. Reboot to recovery.
+1. Select `Backup`.
+1. Uncheck everything except `Boot`.
+1. Swipe to Backup.
+1. Copy TWRP from backup location to the backup folder created in step 12.
+1. Select `Restore`.
+1. Uncheck everything except `Data (excl. storage)`.
+1. Swipe to restore.
+1. Reboot to system.
 
 ## Installing [Custom ROMs](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions)
 
 ### Description
-In order to install a [custom ROM](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions) on a device, the following steps must first be performed.
+- In order to install a [custom ROM](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions) on a device, the following steps must first be performed.
 
 ### Steps
 
 #### 1. Unlock Bootloader
-1. Enable USB Debugging in the `Developer Options`
-2. Enable OEM unlock in the `Developer Options`
-3. Connect device to computer
-4. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`
-5. Verify device connection: `$ sudo fastboot devices`
-6. Unlock device `$ fastboot flashing unlock`
-7. Reboot
+1. Enable USB Debugging in the `Developer Options`.
+1. Enable OEM unlock in the `Developer Options`.
+1. Connect device to computer.
+1. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`.
+1. Verify device connection: `$ sudo fastboot devices`.
+1. Unlock device `$ fastboot flashing unlock`.
+1. Reboot the device.
 
 #### 2. Install TWRP
-1. [Download TWRP](https://dl.twrp.me/bullhead/twrp-3.0.2-2-bullhead.img)
-2. Connect device to computer
-3. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`
-4. Verify device connection: `$ sudo fastboot devices`
-5. `$ fastboot flash recovery twrp-3.0.2-2-bullhead.img`
+1. [Download TWRP](https://dl.twrp.me/bullhead/twrp-3.0.2-2-bullhead.img).
+1. Connect device to computer.
+1. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`.
+1. Verify device connection: `$ sudo fastboot devices`.
+1. `$ fastboot flash recovery twrp-3.0.2-2-bullhead.img`>
 
 #### 3. Root Device
-1. [Download SuperSU](http://www.supersu.com/download)
-2. Copy downloaded zip file to device
-3. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`
-4. Enter `recovery` mode using via bootloader
-5. Select `Install`, locate the SuperSU zip file, and install it
-6. Select `reboot` from the main TWRP menu
+1. [Download SuperSU](http://www.supersu.com/download)>
+1. Copy downloaded zip file to device.
+1. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`.
+1. Enter `recovery` mode using via bootloader.
+1. Select `Install`, locate the SuperSU zip file, and install it.
+1. Select `reboot` from the main TWRP menu.
 
 #### 4. Flash Custom ROM
-1. Choose & Download Desired Custom ROM
-2. Copy downloaded zip file to device
-3. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`
-4. Enter `recovery` mode using via bootloader
-5. Select `Install`, locate the ROM zip file, and install it
-6. Select `reboot` from the main TWRP menu
+1. Choose & Download Desired Custom ROM.
+1. Copy downloaded zip file to device.
+1. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`.
+1. Enter `recovery` mode using via bootloader.
+1. Select `Install`, locate the ROM zip file, and install it.
+1. Select `reboot` from the main TWRP menu.
 
 ## [Rooting](https://en.wikipedia.org/wiki/Rooting_(Android)) Commands
 
 ### Description
-The following commands come in handy while [rooting](https://en.wikipedia.org/wiki/Rooting_(Android)) an Android device.
+- The following commands come in handy while [rooting](https://en.wikipedia.org/wiki/Rooting_(Android)) an Android device.
 
 ### Commands
 
 #### List Available Devices
+
 ```bash
 sudo adb devices
 ```
 
 #### Install [SuperSU](http://www.supersu.com/)
+
 ```bash
 adb sideload SuperSU-v2.82-201705271822.zip
 ```
 
 #### Install [Custom ROM](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions)
+
 ```bash
 adb sideload purenexus_bullhead-7.1.2-20170612-OFFICIAL.zip
 ```
 
 #### Install [Open GAPS](https://opengapps.org/)
+
 ```bash
 adb sideload BeansGapps-Mini-7.1.x-20170610.zip
 ```
 
 #### Flash Boot
+
 ```bash
 fastboot flash boot boot.img
 ```
 
 #### Flash Bootloader
+
 ```bash
 fastboot flash bootloader bootloader-bullhead-bhz11m.img
 ```
 
 #### Reboot Bootloader
+
 ```bash
 fastboot reboot-bootloader
 ```
 
 #### Flash Radio
+
 ```bash
 fastboot flash radio radio-bullhead-m8994f-2.6.37.2.21.img
 ```
 
 #### Flash Recovery
+
 ```bash
 fastboot flash recovery twrp-3.0.2-0-bullhead.img
 ```
 
 #### Flash System
+
 ```bash
 fastboot flash system system.img
 ```
 
 #### Flash Vendor
+
 ```bash
 fastboot flash vendor vendor.img
 ```
 
 #### Format Cache
+
 ```bash
 fastboot format cache
 ```
 
 #### Format User Data
+
 ```bash
 fastboot format userdata
 ```
@@ -155,7 +168,7 @@ fastboot format userdata
 ## Applications
 
 ### Description
-This is a comprehensive list of Android Apps I find useful, and usually install on my devices.
+- This is a comprehensive list of Android Apps I find useful, and usually install on my devices.
 
 ### List
 - ADE
