@@ -21,9 +21,9 @@ has_empty_locations() {
   local source_location="$1"
   local destination_location="$2"
 
-  [[ $(ls -A "$source_location") || $(ls -A "$destination_location") ]] \
-    && echo "false" \
-    || echo "true"
+  [[ -z $(ls -A "$source_location") ]] || [[ -z $(ls -A "$destination_location") ]] \
+    && echo "true" \
+    || echo "false"
 }
 
 should_backup() {
