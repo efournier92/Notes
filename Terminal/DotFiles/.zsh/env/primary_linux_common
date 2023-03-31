@@ -40,18 +40,6 @@ alias music_practice="libreoffice $SDOCS/Mus/Practice/Music_Practice.xlsx"
 ### Open Nautilus in a detached process nohup process
 nnautilus() { nohup nautilus "$1" </dev/null >/dev/null 2>&1 &! }
 
-## Lg
-
-### Text
-
-#### Mount Lg Container
-alias m_lg="$USCRIPTS/m_lg"
-
-### Audio
-
-#### Run Audio-Lg Script
-alias aud_lg="$USCRIPTS/audio_lg -i $RC/RECORD -o $EXTA/Lg/Audio"
-
 ## Browser
 
 ### Launch Tor
@@ -94,13 +82,13 @@ alias ssh_mb="ssh ${mb_username}@${mb_server_domain}"
 ### Download
 
 #### Download RC from LB over SSH
-alias rc_download_lb="$USCRIPTS/rc_download $lb_username $lb_server_domain /mnt/rc"
+alias rc_download_lb="$USCRIPTS/rc_download $lb_username $lb_server_domain /mnt/bnk/rc"
 
 #### Download RC from MB over SSH
-alias rc_download_mb="$USCRIPTS/rc_download $mb_username $mb_server_domain /mnt/rc"
+alias rc_download_mb="$USCRIPTS/rc_download $mb_username $mb_server_domain /mnt/bnk/rc"
 
 #### Download RC from both LB and MB over SSH
-rc_download_lb+mb() { rc_download_lb; rc_download_mb }
+rc_download_all() { rc_download_lb; rc_download_mb }
 
 ### Clean
 
@@ -111,7 +99,7 @@ alias rc_clean_lb="$USCRIPTS/rc_clean $lb_username $lb_server_domain /home/misig
 alias rc_clean_mb="$USCRIPTS/rc_clean $mb_username $mb_server_domain /home/misigno"
 
 #### Download RC from both LB and MB over SSH
-rc_clean_lb+mb() { rc_clean_lb; rc_clean_mb }
+rc_clean_all() { rc_clean_lb; rc_clean_mb }
 
 ### Thumbs
 
@@ -119,34 +107,19 @@ rc_clean_lb+mb() { rc_clean_lb; rc_clean_mb }
 export RC="/mnt/rc"
 
 #### Mount
-alias rc_thumbs_mount="$USCRIPTS/rc_mount"
+alias rc_thumb_mount="$USCRIPTS/rc_mount"
 
 #### Unmount
-alias rc_thumbs_umount!="umount $RC"
+alias rc_thumb_mount!="umount $RC"
 
 #### List files
-alias rc_thumbs_ls="ls $RC/RECORD"
+alias rc_thumb_list="ls $RC/RECORD"
 
 #### Remove WAV files
-alias rc_thumbs_rm="rm $RC/RECORD/*.WAV"
+alias rc_thumb_clean="rm $RC/RECORD/*.WAV"
 
-### /mnt/rc
-
-#### Base
-export RC="/mnt/rc"
-
-#### Mount
-alias m_rc="$ZSCRIPTS/rc_mount"
-
-#### Unmount
-alias m_rc!="umount $RC"
-
-#### Remove WAV files
-alias rc_rm="rm $RC/RECORD/*.WAV"
-
-#### Remove WAV files
-alias rcls="ls $RC/RECORD"
-
+#### Convert Files
+alias rc_thumb_process="$USCRIPTS/rc_thumb_process -i $RC/RECORD -o $EXTA/Lg/Audio"
 
 ### VPN
 

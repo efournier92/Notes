@@ -392,10 +392,10 @@ nmap <Leader>rs :RuboCop<CR>
 nmap <Leader>rf :RuboCop -A<CR>
 
 "" Bookmarks
+let g:bookmark_auto_save_file = $VVIM .'/bookmarks'
 nmap <Leader>bb <Plug>BookmarkToggle
 nmap <Leader>bs <Plug>BookmarkShowAll
 nmap <Leader>bn <Plug>BookmarkNext
 nmap <Leader>bp <Plug>BookmarkPrev
 nmap <Leader>bc <Plug>BookmarkClearAll
-
 

@@ -9,10 +9,18 @@
  
 ## Environment
 
+### Env File
+
+#### Read the 1st line of the file to get the environment name
+export ENV_NAME="$(head -n 1 $HOME/.env_name)"
+
 ### Zsh
  
 #### Zsh root directory
 export ZZSH="$HOME/.zsh"
+
+#### Zsh dot directory
+export ZDOTDIR="$ZZSH"
 
 #### Oh-My-Zsh directory
 export ZOHMYZSH="$HOME/.oh-my-zsh"
@@ -29,11 +37,11 @@ export ZENV="$ZZSH/env"
 #### Zsh scripts directory
 export ZSCRIPTS="$ZZSH/scripts"
 
-#### Zsh cache directory
-export ZSH_COMPDUMP="${HOME}/.cache/.zcompdump-${ZSH_VERSION}"
-
 ### Create env_id file
 export ENV_ID="$($ZSCRIPTS/env_id_get)"
+
+### Specify the location of the .zcompdump file
+export ZSH_COMPDUMP="$HOME/.cache/.zcompdump-${ENV_ID}-${ZSH_VERSION}"
 
 ### Load environment-specific configuration
 source "$ZENV/$ENV_NAME"
@@ -114,34 +122,34 @@ export USCRIPTS="$HOME/.scripts"
 #### Ensure relevant directories exist
 mkdir -p "$BNK" "$SNC" "$CS" "$HLE" > /dev/null 2>&1
 
-### Snc                                                                                                                                                                                                          
-                                                                                                                                                                                                                 
-#### Books                                                                                                                                                                                                       
-export SBOOKS="$SNC/Books"                                                                                                                                                                                       
-                                                                                                                                                                                                                 
-#### Desktop                                                                                                                                                                                                     
-export SDESK="$SNC/Desktop"                                                                                                                                                                                      
-                                                                                                                                                                                                                 
-#### Documents                                                                                                                                                                                                   
-export SDOCS="$SNC/Documents"                                                                                                                                                                                    
-                                                                                                                                                                                                                 
-#### Lg                                                                                                                                                                                                          
-export SLG="$SNC/Lg"                                                                                                                                                                                             
-                                                                                                                                                                                                                 
-#### Pictures                                                                                                                                                                                                    
-export SPHO="$SNC/Pictures"                                                                                                                                                                                      
-                                                                                                                                                                                                                 
-#### Screenshots                                                                                                                                                                                                 
-export SSHOTS="$SNC/Pictures/screenshots"                                                                                                                                                                        
-                                                                                                                                                                                                                 
-#### Work                                                                                                                                                                                                        
-export SWORK="$SNC/Work"                                                                                                                                                                                         
-                                                                                                                                                                                                                 
-#### Stories                                                                                                                                                                                                     
-export SSTORIES="$SWORK/Stories"                                                                                                                                                                                 
-                                                                                                                                                                                                                 
-### Notes                                                                                                                                                                                                        
-export SNOTES="$SNC/Notes"                                                                                                                                                                                       
+### Snc
+
+#### Books
+export SBOOKS="$SNC/Books"
+
+#### Desktop
+export SDESK="$SNC/Desktop"
+
+#### Documents
+export SDOCS="$SNC/Documents"
+
+#### Lg
+export SLG="$SNC/Lg"
+
+#### Pictures
+export SPHO="$SNC/Pictures"
+
+#### Screenshots
+export SSHOTS="$SNC/Pictures/screenshots"
+
+#### Work
+export SWORK="$SNC/Work"
+
+#### Stories
+export SSTORIES="$SWORK/Stories"
+
+### Notes
+export SNOTES="$SNC/Notes"
 
 ### Vim
 
@@ -236,10 +244,10 @@ alias dotunderrm="find . -name '._*' -delete -print"
 ### Dot Files
 
 #### Copy from current directory to $HOME
-alias dot_files_to_home="cp -r .tmux .tmux.conf .vim .vimrc .zsh .zshrc $HOME"
+alias dot_files_to_home="cp -r .tmux .tmux.conf .vim .vimrc .zsh .zshenv $HOME"
 
 #### Copy from $HOME to current directory
-alias dot_files_from_home="cp -rv ~/.tmux ~/.tmux.conf ~/.vim ~/.vimrc ~/.zsh ~/.zshrc ."
+alias dot_files_from_home="cp -rv ~/.tmux ~/.tmux.conf ~/.vim ~/.vimrc ~/.zsh ~/.zshenv ."
 
 ### Notes
 

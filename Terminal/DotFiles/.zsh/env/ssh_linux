@@ -30,3 +30,6 @@ export SYNC_ENABLED=false
 ### Linux common
 source "$ZENV/linux_common"
 
+### Record RC
+alias rc_record="nohup /home/misigno/.scripts/rc_record '08:00:00' '/home/misigno/bnk/rc' 'plughw:CARD=Creation,DEV=0' 'plughw:CARD=Device,DEV=0' > /dev/null 2>&1&"                                             
+
