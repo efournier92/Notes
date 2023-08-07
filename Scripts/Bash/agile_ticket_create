@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#----------------
+# Name          : agile_ticket_create
+# Description   : Creates a template for tracking details while developing an agile ticket
+# Author        : E Fournier
+# Dependencies  : bash
+# Example Usage : ./agile_ticket_create 'ticket_sprint' 'ticket_id' 'ticket_title'
+#----------------
+
 get_story_contents() {
   local ticket_sprint="$1"
   local ticket_id="$2"
@@ -102,8 +110,6 @@ N/A
 
 ##### \`f\` | #0
 
-##### \`f\` | #0
-
 ## Communication
 
 ## Notes
@@ -172,5 +178,4 @@ main() {
 }
 
 main "$@"
-
 
