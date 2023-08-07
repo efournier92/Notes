@@ -266,6 +266,8 @@ function! ReplaceCurlyQuotes()
   silent! %s/”/"/g
   silent! %s/’/'/g
   silent! %s/‘/'/g
+  silent! %s/…/.../g
+  silent! %s/—/-/g
   let @/ = ""
 endfunction
 
@@ -300,6 +302,7 @@ call plug#begin()
   Plug 'gabrielelana/vim-markdown'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'leafOfTree/vim-vue-plugin'
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'ngmy/vim-rubocop'
@@ -398,4 +401,7 @@ nmap <Leader>bs <Plug>BookmarkShowAll
 nmap <Leader>bn <Plug>BookmarkNext
 nmap <Leader>bp <Plug>BookmarkPrev
 nmap <Leader>bc <Plug>BookmarkClearAll
+
+"" Markdown
+let g:markdown_enable_input_abbreviations = 0
 

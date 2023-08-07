@@ -21,6 +21,9 @@ alias banking="$SDOCS/Fin/browser_tabs_banking"
 ### Open Amazon Fresh tabs in Chrome
 alias fresh="$SDOCS/Hlt/browser_tabs_fresh"
 
+### Open Red Sox tabs in Chrome
+alias redsox="$SDOCS/Gme/Scripts/browser_tabs_redsox"
+
 ### Open Weight spreadsheet
 alias weight="spreadsheet $SDOCS/Hlt/Diet/Weight.xlsx"
 
@@ -82,24 +85,24 @@ alias ssh_mb="ssh ${mb_username}@${mb_server_domain}"
 ### Download
 
 #### Download RC from LB over SSH
-alias rc_download_lb="$USCRIPTS/rc_download $lb_username $lb_server_domain /mnt/bnk/rc"
+alias rc_remote_download_lb="$USCRIPTS/rc_download $lb_username $lb_server_domain /mnt/bnk/rc"
 
 #### Download RC from MB over SSH
-alias rc_download_mb="$USCRIPTS/rc_download $mb_username $mb_server_domain /mnt/bnk/rc"
+alias rc_remote_download_mb="$USCRIPTS/rc_download $mb_username $mb_server_domain /mnt/bnk/rc"
 
 #### Download RC from both LB and MB over SSH
-rc_download_all() { rc_download_lb; rc_download_mb }
+rc_remote_download_all() { rc_remote_download_lb; rc_remote_download_mb }
 
 ### Clean
 
 #### Clean RC directories from MB over SSH
-alias rc_clean_lb="$USCRIPTS/rc_clean $lb_username $lb_server_domain /home/misigno"
+alias rc_remote_clean_lb="$USCRIPTS/rc_clean $lb_username $lb_server_domain /home/misigno"
 
 #### Download RC from MB over SSH
-alias rc_clean_mb="$USCRIPTS/rc_clean $mb_username $mb_server_domain /home/misigno"
+alias rc_remote_clean_mb="$USCRIPTS/rc_clean $mb_username $mb_server_domain /home/misigno"
 
 #### Download RC from both LB and MB over SSH
-rc_clean_all() { rc_clean_lb; rc_clean_mb }
+rc_remote_clean_all() { rc_remote_clean_lb; rc_remote_clean_mb }
 
 ### Thumbs
 

@@ -14,7 +14,7 @@ SESSION_NAME="sb"
 ## 1st Window
 
 ### Full Pane
-tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR" "ssh -t ${sb_username}@${sb_server_name}.${sb_server_domain} 'tremc'"
+tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR" "ssh -t ${sb_username}@${sb_server_name}.${sb_server_domain} 'tremc -X'"
 
 ## 2nd Window 
 
