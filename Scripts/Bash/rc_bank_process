@@ -1,0 +1,130 @@
+#!/bin/bash
+
+#----------------
+# Name          : rc_bank_process
+# Description   : TODO
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./rc_bank_process /mnt/rc/VIDEO 
+#----------------
+
+shopt -s extglob
+shopt -s nullglob
+
+# Stop execution if either directory is invalid
+ensure_valid_directories() {
+  local in_dir="$1"
+  local out_dir="$2"
+
+  if [[ ! -d "$in_dir" || -z "$out_dir" ]]; then
+    echo "ERROR: Invalid directories supplied."
+    echo "Input:  $in_dir"
+    echo "Output: $out_dir"
+    exit
+  fi
+}
+
+get_concat_file_location() {
+  echo "$out_dir/concat.txt"
+}
+
+generate_concat_file() {
+  local in_dir="$1"
+  local out_dir="$2"
+
+  local concat_file=`get_concat_file_location "$out_dir"`
+
+  rm -r "$concat_file"
+
+  touch "$concat_file"
+
+  for filename in "$in_dir"/*.{AVI,mp4}; do
+    [ -e "$filename" ] || continue
+
+    echo "file '${filename}'" >> "$concat_file"
+  done
+}
+
+concat_video_files() {
+  local out_dir="$1"
+  local out_name="$2"
+  local crf="$3"
+
+  local concat_file=`get_concat_file_location "$out_dir"`
+  local out_file="${out_dir}/${out_name}.mp4"
+
+  echo "--------------"
+  echo "ENCODING VIDEO"
+  echo "Concat File: $concat_file"
+  echo "Output File: $out_file"
+  echo "CRF: $crf"
+  echo "--------------"
+
+  ffmpeg -safe 0 -f concat -i "$concat_file" \
+    -c:a aac -ac 2 -b:a 128k \
+    -c:v libx264 -crf "$crf" -tune film -preset slow \
+    -profile:v baseline -level 3.0 -pix_fmt yuv420p \
+    -max_muxing_queue_size 400 \
+    -movflags faststart \
+    -map_metadata -1 -strict -2 \
+    "$out_file"
+}
+
+preview_clips() {
+  local in_dir="$1"
+
+  nohup vlc "$in_dir"/*.{AVI,mp4} >/dev/null 2>&1 &
+}
+
+open_concat_file() {
+  local concat_file="$1"
+
+  vim "$concat_file"
+}
+
+remove_concat_file() {
+  local concat_file="$1"
+
+  rm "$concat_file"
+}
+
+ensure_output_directory_exists() {
+  local out_dir="$1"
+
+  mkdir -p "$out_dir"
+}
+
+close_vlc() {
+  pkill vlc
+}
+
+get_output_video_name() {
+  until [[ ! -z "$output_video_name" ]]; do
+    read -p "Output Name > " output_video_name
+  done
+
+  echo "$output_video_name"
+}
+
+main() {
+  local in_dir="$1"
+  local out_dir="$2"
+  local crf="$3"
+
+  local crf_default="32"
+
+  [[ -z "$crf" ]] && local crf="$crf_default"
+  
+  ensure_valid_directories "$in_dir" "$out_dir"
+  ensure_output_directory_exists "$out_dir"
+  generate_concat_file "$in_dir" "$out_dir"
+  preview_clips "$in_dir"
+  open_concat_file `get_concat_file_location "$out_dir"`
+  local out_name=`get_output_video_name`
+  close_vlc
+  concat_video_files "$out_dir" "$out_name" "$crf"
+  remove_concat_file `get_concat_file_location "$out_dir"`
+}
+
+main "$@"
+
