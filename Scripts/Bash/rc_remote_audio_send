@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#----------------
+# Name          : rc_remote_audio_send
+# Description   : Starts phone recording from a remote server
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./rc_remote_audio_send "username" "address" "rc_script_path" "duration" "target_dir" "rc_device_name"
+#----------------
+
+main() {
+  local server_username="$1" 
+  local server_address="$2"
+  local rc_script_path="$3"
+  local duration="$4"
+  local target_dir="$5"
+  local rc_device_name="$6"
+
+  ssh -t -t "${server_username}@${server_address}" "'$rc_script_path' '$duration' '$target_dir' '$rc_device_name'"
+}
+
+main "$@"
+

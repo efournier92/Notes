@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#----------------
+# Name          : rc_remote_audio_recieve
+# Description   : Starts recording process on call to server
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./rc_remote_audio_recieve "duration" "target_dir" "rc_device_name"
+#----------------
+
+output_verbose_details() {
+  local rc_device_name="$1"
+  local rc_device_card="$2"
+  local rc_device_address="$3"
+  local target_dir="$4"
+  local duration="$5"
+  
+  echo
+  echo "---------------"
+  echo "RECORDING"
+  echo "---------------"
+  echo "DEVICE NAME   : $rc_device_name"
+  echo "DEVICE CARD   : $rc_device_card"
+  echo "DEVICE ADDRESS: $rc_device_address"
+  echo "TARGET DIR    : $target_dir"
+  echo "DURATION      : $duration"
+  echo "---------------"
+  echo
+}
+
+extract_between_brackets() {
+  local line="$1"
+
+  echo `echo "$line" | cut -d "[" -f2 | cut -d "]" -f1  | xargs`
+}
+
+get_device_card() {
+  local device_name="$1"
+
+  while read line; do
+    if [[ "$line" =~ "$device_name" ]] && [[ "$line" =~ ']:' ]]; then
+      local device_card=`extract_between_brackets "$line"`
+    fi
+  done < <(cat /proc/asound/cards)
+  
+  if [[ -z "$device_card" ]]; then
+    echo "ERROR > Failed to find a card for device: $device_name."
+    exit
+  fi
+
+  echo "$device_card"
+}
+
+main() {
+  local duration="$1"
+  local target_dir="$2"
+  local rc_device_name="$3"
+  
+  local rc_device_card=`get_device_card "$rc_device_name"`
+  local rc_device_address="plughw:CARD=$rc_device_card,DEV=0"
+
+  output_verbose_details "$rc_device_name" "$rc_device_card" "$rc_device_address" "$target_dir" "$duration"
+
+  ~/.scripts/rc_record "$duration" "$target_dir" "$rc_device_address"
+}
+
+main "$@"
+
