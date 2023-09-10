@@ -107,6 +107,14 @@ alias m_md=". $USCRIPTS/mount_uuid_veracrypt $uuid_md $MD 16"
 #### Unmount
 alias m_md!=". $USCRIPTS/umount_uuid_veracrypt $uuid_md"
 
+### Veracrypt
+
+#### Mount Container Read Only
+m_v_ro() { veracrypt -m ro "$1" "$2" }
+
+#### Dismount Container
+m_v!() { veracrypt -d "$1" }
+
 ## Backups
 
 ### Create a zip backup of snc directory

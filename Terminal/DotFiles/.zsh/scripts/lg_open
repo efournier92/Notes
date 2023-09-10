@@ -17,7 +17,14 @@ main() {
 
   cd "$SNC/Lg"
 
-  vim --cmd "set key=$password" -O "Do.md" "Lg.md" -c "tabnew ${year}.md" -c "tabnew ${last_year}.md" -c "tabnew Xy.md" -c "tabnew _Next.md" -c "tabn 1"
+  vim --cmd "set key=$password" \
+    -O "Do.md" "Lg.md" \
+    -c "tabnew ${year}.md" \
+    -c "tabnew ${last_year}.md" \
+    -c "tabnew Xy.md" \
+    -c "tabnew _Next.md" \
+    -c "tabnew _Search.md" \
+    -c "tabn 1"
 }
 
 main "$@"

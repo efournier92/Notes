@@ -1,0 +1,49 @@
+#!/bin/zsh
+
+#----------------
+# Name          : server.session
+# Description   : Launches a tmux session configured for hosting a dev server
+# Author        : E Fournier
+# Dependencies  : tmux, zsh
+#----------------
+
+## Load ZSH configuration
+#source "$HOME/.zsh/env/common"
+
+## Create Base Session
+BASE_DIR="~/bnk/cs"
+SESSION_NAME="server"
+
+CORE_DIR="$BASE_DIR/acog-prenatal-record"
+CRX_DIR="$BASE_DIR/AcogPrenatalRecordChromeExtension"
+
+## 1st Window
+
+### Full Pane
+#tmux new -s "$SESSION_NAME" -d "cd $CORE_DIR; zsh -c '. overmind_debug_web'"
+tmux new -s "$SESSION_NAME" -d "cd $CORE_DIR; tmux splitw -v -p 100 'sleep 1; overmind connect web' & overmind start -f Procfile.dev; zsh"
+# tmux new -s "$SESSION_NAME" -d "cd $CORE_DIR; tmux splitw -v -p 100 'sleep 1; overmind connect web' & overmind start -f Procfile.dev; zsh"
+
+# tmux new -s "$SESSION_NAME" -d "cd $CORE_DIR; . overmind_debug_web"
+
+sleep 1
+
+tmux split-window -p 30 "cd $CORE_DIR; zsh"
+
+## Session
+
+## 2nd Window 
+
+### Full Pane
+tmux new-window -t "$SESSION_NAME:1" "cd $CRX_DIR; yarn start; zsh"
+
+tmux split-window -p 30 "cd $CRX_DIR; zsh"
+
+tmux last-window
+
+## Attach
+tmux attach -t "$SESSION_NAME"
+
+## Switch to session
+tmux switch-client -t "$SESSION_NAME" &
+

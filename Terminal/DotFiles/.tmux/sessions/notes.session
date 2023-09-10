@@ -22,7 +22,7 @@ if [ "$?" -eq 1 ] ; then
   ### Create in new session if one does not exist
   tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR" "vim"
 else
-  ### Create in existing session if one already exists
+  ### Create a window in an existing session if one already exists
   tmux new-window -t "$SESSION_NAME" -c "$BASE_DIR" "vim"
 fi
 

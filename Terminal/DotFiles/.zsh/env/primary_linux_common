@@ -104,13 +104,19 @@ alias rc_remote_clean_mb="$USCRIPTS/rc_clean $mb_username $mb_server_domain /hom
 #### Download RC from both LB and MB over SSH
 rc_remote_clean_all() { rc_remote_clean_lb; rc_remote_clean_mb }
 
+### Phone
+alias rc_remote_phone="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 08:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device'"
+
+### Microphone
+alias rc_remote_mic="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 08:00:00 /home/$lb_username/bnk/rc 'USB PnP Audio Device'"
+
 ### Thumbs
 
 #### Base
 export RC="/mnt/rc"
 
 #### Mount
-alias rc_thumb_mount="$USCRIPTS/rc_mount"
+alias rc_thumb_mount="$ZSCRIPTS/rc_mount"
 
 #### Unmount
 alias rc_thumb_mount!="umount $RC"
@@ -123,6 +129,23 @@ alias rc_thumb_clean="rm $RC/RECORD/*.WAV"
 
 #### Convert Files
 alias rc_thumb_process="$USCRIPTS/rc_thumb_process -i $RC/RECORD -o $EXTA/Lg/Audio"
+
+### Bank
+
+#### Mount
+alias rc_bank_mount="$ZSCRIPTS/rc_mount"
+
+#### Unmount
+alias rc_bank_mount!="umount $RC"
+
+#### List files
+alias rc_bank_list="ls $RC/VIDEO"
+
+#### Remove WAV files
+alias rc_bank_clean="rm $RC/VIDEO/*.AVI"
+
+#### Convert Files
+alias rc_bank_process="$USCRIPTS/rc_bank_process $RC/VIDEO $BNK/rc"
 
 ### VPN
 
