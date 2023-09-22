@@ -5,7 +5,7 @@
 # Description   : Starts phone recording from a remote server
 # Author        : E Fournier
 # Dependencies  : ffmpeg
-# Example Usage : ./rc_remote_audio_send "username" "address" "rc_script_path" "duration" "target_dir" "rc_device_name"
+# Example Usage : ./rc_remote_audio_send "username" "address" "rc_script_path" "duration" "target_dir" "rc_device_name_left" "rc_device_name_right"
 #----------------
 
 main() {
@@ -14,9 +14,10 @@ main() {
   local rc_script_path="$3"
   local duration="$4"
   local target_dir="$5"
-  local rc_device_name="$6"
+  local rc_device_name_left="$6"
+  local rc_device_name_right="$7"
 
-  ssh -t -t "${server_username}@${server_address}" "'$rc_script_path' '$duration' '$target_dir' '$rc_device_name'"
+  ssh -t -t "${server_username}@${server_address}" "'$rc_script_path' '$duration' '$target_dir' '$rc_device_name_left' '$rc_device_name_right'"
 }
 
 main "$@"

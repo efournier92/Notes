@@ -110,6 +110,9 @@ alias rc_remote_phone="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_do
 ### Microphone
 alias rc_remote_mic="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 08:00:00 /home/$lb_username/bnk/rc 'USB PnP Audio Device'"
 
+### Zoom
+alias rc_remote_zoom="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 08:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device'"
+
 ### Thumbs
 
 #### Base
@@ -147,27 +150,32 @@ alias rc_bank_clean="rm $RC/VIDEO/*.AVI"
 #### Convert Files
 alias rc_bank_process="$USCRIPTS/rc_bank_process $RC/VIDEO $BNK/rc"
 
-### VPN
+## VPN
 
-#### Connect to VPN
+### Connect to VPN
 alias vpn_sb="nmcli con up id $sb_server_name"
 
-#### Disconnect from VPN
+### Disconnect from VPN
 alias vpn_sb!="nmcli con down id $sb_server_name"
 
-### Local Filesystem
+## Local Filesystem
 
-#### Mount slot to local filesystem
+### Mount slot to local filesystem
 alias fs_sb=". $USCRIPTS/mount_sbfs $SBFS"
 
-#### Unmount slot from local filesystem
+### Unmount slot from local filesystem
 alias fs_sb!="fusermount -u $SBFS"
 
-### Tmux
+## Tmux
 
-#### Start session
+### Start session
 alias sb=". $TSESSIONS/sb.session"
 
-#### Kill session
+### Kill session
 alias sb!="tmux kill-session -t sb"
+
+## Docker
+
+### m4b-tool
+alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
 

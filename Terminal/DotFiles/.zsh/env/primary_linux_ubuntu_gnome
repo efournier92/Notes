@@ -60,6 +60,11 @@ run_boot_tasks() {
   PATH="$PATH:$HOME/.local/bin"
 
   m_bnk
+  
+  pactl unload-module module-switch-on-connect
+  pactl load-module module-combine-sink
+  pactl set-default-sink combined
+
   gnome-terminal --window --maximize
 }
 
