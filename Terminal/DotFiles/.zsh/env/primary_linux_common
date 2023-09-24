@@ -111,7 +111,7 @@ alias rc_remote_phone="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_do
 alias rc_remote_mic="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 08:00:00 /home/$lb_username/bnk/rc 'USB PnP Audio Device'"
 
 ### Zoom
-alias rc_remote_zoom="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 08:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device'"
+alias rc_remote_zoom="$ZSCRIPTS/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 08:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device'"
 
 ### Thumbs
 

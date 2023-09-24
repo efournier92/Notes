@@ -1,0 +1,28 @@
+#!/bin/bash 
+
+#----------------
+# Name          : combined_audio_sink_enable
+# Description   : Enables combined audio sink via PulseAudio
+# Author        : E Fournier
+# Dependencies  : pactl
+# Example Usage : ./combined_audio_sink_enable
+#----------------
+
+does_combined_exist() {
+  local combined_sync_name='name: <combined.monitor>'
+
+  [[ -z `pacmd list-sources | grep -e "$combined_sync_name"` ]] \
+    && echo false \
+    || echo true
+}
+
+main() {
+  if [[ `does_combined_exist` == false ]]; then
+    pactl load-module module-combine-sink
+  fi
+
+  pactl set-default-sink combined
+}
+
+main "$@"
+

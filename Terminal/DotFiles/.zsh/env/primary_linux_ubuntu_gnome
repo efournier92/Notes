@@ -48,6 +48,15 @@ function m_phone!() { gio mount -u "mtp://$phone_id"; }
 ##### Access Files
 function cd_phone() { cd "/run/user/1000/gvfs/mtp:host=$phone_id/Phone"; }
 
+## Language Support
+
+### Ruby
+rbenv_dir="$HOME/.rbenv"
+if [[ -d "$rbenv_dir" ]]; then
+  export PATH="$rbenv_dir/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+
 ## Boot
 
 ### Tasks
@@ -61,10 +70,6 @@ run_boot_tasks() {
 
   m_bnk
   
-  pactl unload-module module-switch-on-connect
-  pactl load-module module-combine-sink
-  pactl set-default-sink combined
-
   gnome-terminal --window --maximize
 }
 
