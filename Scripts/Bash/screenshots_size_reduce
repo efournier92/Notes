@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#----------------
+# Name          : screenshots_size_reduce
+# Description   : Reduces file sizes for a directory of screenshot images.
+# Author        : E Fournier
+# Dependencies  : image-magick
+# Example Usage : ./screenshots_size_reduce "2200" "100"
+#----------------
+
+main() {
+  local config_resize="$1"
+  local config_quality="$2"
+
+  [[ -z "$config_resize" ]] && local config_resize="2200"
+  [[ -z "$config_quality" ]] && local config_quality="100"
+
+  local out_dir="_output_r${config_resize}_q${config_quality}"
+  mkdir "$out_dir"
+
+  for img in *.png; do
+    convert "$img" -resize 2100 -quality 90 "${out_dir}/${img/png/jpg}"
+  done
+}
+
+main "$@"
+
