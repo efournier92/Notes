@@ -1,0 +1,57 @@
+#!/bin/zsh
+
+#----------------
+# Name          : media_linux_ubuntu_lxde
+# Description   : Shell-environment configuration for Media build on Linux Lubuntu
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## File System
+
+### Bnk directory
+export BNK="$HOME/bnk"
+
+### Start directory
+export START="$HOME"
+
+## Tools
+
+### Sync
+
+#### Enable unison
+export SYNC_ENABLED=false
+
+## Resources
+
+### Linux Common
+source "$ZENV/common_linux"
+
+## Boot
+
+### Tasks
+run_boot_tasks() {
+  xfce4-power-manager &
+  /usr/bin/setxkbmap -option "caps:escape" &
+
+  # Disable the inbuilt speaker
+  pacmd unload-module module-switch-on-port-available
+
+  $USCRIPTS/connect_persistently_vpn 60 "Calypso" &
+  $USCRIPTS/connect_persistently_vnc 60 &
+
+  m_md
+
+  $ZSCRIPTS/apps_keep_alive "firefox" &
+  $ZSCRIPTS/apps_keep_alive "xfce4-terminal --maximize" &
+  $ZSCRIPTS/apps_keep_alive "kodi -fs" &
+
+  until [[ `wmctrl -l` =~ "Mozilla Firefox" ]]; do
+    sleep 2
+  done
+
+  jumpapp kodi
+
+  rm -f "$HOME/.xsession-errors"
+}
+
