@@ -2,7 +2,7 @@
 
 #----------------
 # Name          : lg_open
-# Description   : Opens contents of `lg` container in Vim
+# Description   : Opens `lg` in Vim per custom vimscript configuration
 # Author        : E Fournier
 # Dependencies  : vim
 # Example Usage : ./lg_open

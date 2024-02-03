@@ -1,48 +1,81 @@
 "----------------
 " Name          : lg_open.vim
-" Description   : Called from bash lg_open top open configured `lg` buffers in Vim
+" Description   : Opens `lg` buffers per custom configuration
 " Author        : E Fournier
 " Dependencies  : lg_open
 " Example Usage : source $ZSCRIPTS/lg_open.vim
 "----------------
 
-function! Main()
-  " Writes the current year to a variable
-  let $this_year = strftime("%Y", localtime())
-
-  " Writes last year to a variable
-  let $last_year = $this_year - 1
-
-  " Appends file extensions to calculated years
-  let $this_year_file = $this_year . '.md'
-  let $last_year_file = $last_year . '.md'
-
-  " Opens specific files in tabs in the specified order
-  tabnew $this_year_file
-  tabnew $last_year_file
-  tabnew Xy.md
-  tabnew _Next.md
-  tabnew _Search.md
-
-  " We maintain a tab with all directory files in splits
-  " This is to ensure auto-complete queries all tabs
-  " This is necessary, since all files are encrypted
-
-  " Switch to the 1st tab
-  " This is the tab with all files in splits
-  tabn 1
-  " Make this tab the last one
-  tabm
-  " Now push this tab to be the 2nd-to-last one
-  tabm -1
-  " Switch back to the 1st tab
-  tabn 1
-  " Create a new tab, split between 2 specified files
-  tabnew Lg.md
-  vsplit Do.md
-  " Move the tab we just created to be the 1st one
-  tabm 0
+function! SwitchToTabIndex(index)
+  exe 'tabn ' . a:index
 endfunction
 
-call Main()
+function! MoveCurrentTabToIndex(index)
+  exe 'tabm ' . a:index
+endfunction
+
+function! MoveCurrentTabToLast()
+  exe 'tabm'
+endfunction
+
+function! CreateNewTabWithVerticalSplits(...)
+  exe 'tabnew ' . a:1
+
+  let l:arg_index = 2
+  while l:arg_index <= a:0
+    exe 'vsplit ' . a:{l:arg_index}
+    let l:arg_index += 1
+  endwhile
+endfunction
+
+function! OpenYearFiles()
+  let l:this_year = strftime("%Y", localtime())
+
+  call OpenThisYearInTab(l:this_year)
+
+  call OpenLastYearInTab(l:this_year)
+endfunction
+
+function! OpenThisYearInTab(this_year)
+  let l:this_year_file = a:this_year . '.md'
+
+  exe 'tabnew ' . l:this_year_file
+endfunction
+
+function! OpenLastYearInTab(this_year)
+  let l:last_year = a:this_year - 1
+  let l:last_year_file = l:last_year . '.md'
+
+  exe 'tabnew ' . l:last_year_file
+endfunction
+
+function! OpenFilesInTabs(...)
+  let l:arg_index = 1
+  while l:arg_index <= a:0
+    exe 'tabnew ' . a:{l:arg_index}
+    let l:arg_index += 1
+  endwhile
+endfunction
+
+function! MoveFirstTabToIndex(index)
+  call SwitchToTabIndex(1)
+
+  call MoveCurrentTabToLast()
+
+  call MoveCurrentTabToIndex(a:index)
+endfunction
+
+function! OpenBufferConfiguration()
+  call CreateNewTabWithVerticalSplits('Lg.md', 'Do.md')
+
+  call OpenYearFiles()
+
+  call OpenFilesInTabs('Xy.md', '_Next.md', '_Search.md')
+  
+  call MoveFirstTabToIndex(-2)
+
+  call SwitchToTabIndex(1)
+endfunction
+
+call OpenBufferConfiguration()
 
