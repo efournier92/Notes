@@ -159,8 +159,11 @@ set guioptions -=T
 
 """ Dictionary
 
-"""" Include dictionary words file
-set dictionary+=$VVIM/dict/words
+"""" Include dictionary file
+set dictionary+=$VVIM/dict/english_us.dict
+
+"""" Use American English spellings
+set spelllang=en_us
 
 """" Underline misspelled words
 hi! SpellBad cterm=underline ctermbg=none ctermfg=none
@@ -175,6 +178,27 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 
 """" File with no an extension
 autocmd BufRead,BufNewFile * if expand('%:t') !~ '\.' | setlocal spell | endif
+
+"" Thesaurus
+
+"""" Include thesaurus file
+set thesaurus+=$VVIM/dict/english.thes
+
+"""" Allow spaces in thesaurus entries
+function! s:thesaurus()
+    let s:saved_ut = &ut
+    if &ut > 200 | let &ut = 200 | endif
+    augroup ThesaurusAuGroup
+        autocmd CursorHold,CursorHoldI <buffer>
+                    \ let &ut = s:saved_ut |
+                    \ set iskeyword-=32 |
+                    \ autocmd! ThesaurusAuGroup
+    augroup END
+    return ":set iskeyword+=32\<cr>vaWovea\<c-x>\<c-t>"
+endfunction
+
+"""" List synonyms for the word under the cursor
+nnoremap <expr> <leader>t <SID>thesaurus()
 
 " Shortcuts
 
@@ -404,4 +428,5 @@ nmap <Leader>bc <Plug>BookmarkClearAll
 
 "" Markdown
 let g:markdown_enable_input_abbreviations = 0
+let g:markdown_mapping_switch_status = '<Leader>m'
 
