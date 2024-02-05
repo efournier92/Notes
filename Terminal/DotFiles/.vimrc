@@ -160,13 +160,19 @@ set guioptions -=T
 """ Dictionary
 
 """" Include dictionary file
-set dictionary+=$VVIM/dict/english_us.dict
+set dictionary+=$VVIM/dict/en_us.dict
 
 """" Use American English spellings
 set spelllang=en_us
 
 """" Underline misspelled words
 hi! SpellBad cterm=underline ctermbg=none ctermfg=none
+
+"""" Do not indicate words recognized for another region
+hi! SpellLocal cterm=none ctermbg=none ctermfg=none
+
+"""" Do not indicate words that are hardly ever used
+hi! SpellRare cterm=none ctermbg=none ctermfg=none
 
 """ Auto Enable Spell Checking for File Types
 
@@ -182,23 +188,10 @@ autocmd BufRead,BufNewFile * if expand('%:t') !~ '\.' | setlocal spell | endif
 "" Thesaurus
 
 """" Include thesaurus file
-set thesaurus+=$VVIM/dict/english.thes
-
-"""" Allow spaces in thesaurus entries
-function! s:thesaurus()
-    let s:saved_ut = &ut
-    if &ut > 200 | let &ut = 200 | endif
-    augroup ThesaurusAuGroup
-        autocmd CursorHold,CursorHoldI <buffer>
-                    \ let &ut = s:saved_ut |
-                    \ set iskeyword-=32 |
-                    \ autocmd! ThesaurusAuGroup
-    augroup END
-    return ":set iskeyword+=32\<cr>vaWovea\<c-x>\<c-t>"
-endfunction
+let g:tq_openoffice_en_file=$VVIM . "/thesaurus/th_en_us"
 
 """" List synonyms for the word under the cursor
-nnoremap <expr> <leader>t <SID>thesaurus()
+nnoremap <Leader>t :ThesaurusQueryReplaceCurrentWord<CR>
 
 " Shortcuts
 
@@ -331,6 +324,7 @@ call plug#begin()
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'ngmy/vim-rubocop'
   Plug 'preservim/nerdtree'
+  Plug 'Ron89/thesaurus_query.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-rails'
