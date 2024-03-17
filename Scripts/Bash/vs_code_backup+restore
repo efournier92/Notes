@@ -1,0 +1,73 @@
+#!/bin/bash
+
+#----------------
+# Name          : vs_code_backup+restore
+# Description   : Creates/Restores a directory with configured VS Code settings.
+# Author        : E Fournier
+# Dependencies  : xargs, code
+# Example Usage : ./vs_code_backup+restore 'backup' 'VsCode_Settings_Backup'
+#----------------
+
+print_arguments_error() {
+  echo "ERROR: Please supply mode as 1st argument: 'backup' or 'restore'."
+  echo "GIVEN: $mode"
+  echo "------"
+  echo "USAGE: ./vs_code_backup+restore 'backup' 'VsCode_Settings_Backup'"
+  echo "USAGE: ./vs_code_backup+restore 'restore' 'VsCode_Settings_Backup'"
+}
+
+restore() {
+  local backup_dir="$1"
+
+  code --list-extensions | xargs -n 1 code --uninstall-extension
+
+  cat "${backup_dir}/vs_code_extensions_list.txt" | xargs -n 1 code --install-extension
+
+  cp "${backup_dir}/keybindings.json" ~/.config/Code/User/keybindings.json
+
+  cp "${backup_dir}/settings.json" ~/.config/Code/User/settings.json
+}
+
+backup() {
+  local backup_dir="$1"
+  
+  rm -rf "$backup_dir"
+  mkdir "$backup_dir"
+
+  code --list-extensions >> "${backup_dir}/vs_code_extensions_list.txt"
+
+  cp ~/.config/Code/User/keybindings.json "${backup_dir}/keybindings.json"
+
+  cp ~/.config/Code/User/settings.json "${backup_dir}/settings.json"
+}
+
+execute_by_mode() {
+  local mode="$1"
+  local backup_dir="$2"
+
+  if [[ "$mode" =~ "$keyword_backup" ]]; then
+    backup "$backup_dir"
+  elif [[ "$mode" =~ "$keyword_restore" ]]; then
+    restore "$backup_dir"
+  fi
+}
+
+main() {
+  local mode="$1"
+  local backup_dir="$2"
+
+  [[ -z "$backup_dir" ]] && local backup_dir="VsCode_Settings_Backup"
+
+  local keyword_backup="backup"
+  local keyword_restore="restore"
+  
+  if [[ -z "$mode" ]] || [[ ! "$mode" =~ "$keyword_backup" && ! "$mode" =~ "$keyword_restore" ]]; then
+    print_arguments_error
+    exit
+  fi
+  
+  execute_by_mode "$mode" "$backup_dir"
+}
+
+main "$@"
+

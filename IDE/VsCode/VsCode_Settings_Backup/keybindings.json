@@ -1,0 +1,56 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "ctrl+shift+alt+p",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "capslock",
+    "command": "extension.vim_escape",
+    "when": "editorTextFocus && vim.active && !inDebugRepl"
+  },
+  {
+    "key": "ctrl+up",
+    "command": "git.stage",
+    "when": "workbench.scm.active"
+  },
+  {
+    "key": "ctrl+down",
+    "command": "git.unstage",
+    "when": "workbench.scm.active"
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "git.stageAll",
+    "when": "workbench.scm.active"
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "git.unstageAll",
+    "when": "workbench.scm.active"
+  },
+  {
+    "key": "ctrl+shift+c",
+    "command": "editor.action.clipboardCopyAction"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "editor.action.clipboardPasteAction"
+  },
+  {
+    "key": "ctrl+shift+.",
+    "command": "keyboard-quickfix.openQuickFix"
+  },
+  {
+    "key": "ctrl+shift+j",
+    "command": "workbench.action.quickOpenSelectNext"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "workbench.action.quickOpenSelectNext"
+  },
+  {
+    "key": "ctrl+alt+shift+f",
+    "command": "extension.searchUnderCursor"
+  }
+]

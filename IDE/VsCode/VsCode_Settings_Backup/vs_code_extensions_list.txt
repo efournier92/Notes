@@ -1,0 +1,9 @@
+bcanzanella.openmatchingfiles
+davidsanders.search-under-cursor
+esbenp.prettier-vscode
+johnpapa.angular2
+karunamurti.rspec-snippets
+pascalsenn.keyboard-quickfix
+shopify.ruby-lsp
+thadeu.vscode-run-rspec-file
+vscodevim.vim
