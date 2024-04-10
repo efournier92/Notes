@@ -1,0 +1,74 @@
+#!/bin/bash
+
+#----------------
+# Name          : video_convert_tv_quality
+# Description   : Converts videos in a directory to standard quality output
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./video_join_tv_quality "concat.txt" "concat_file_28.mp4" 28 false
+#----------------
+
+shopt -s extglob
+shopt -s nullglob
+
+print_info() {
+  local concatr_file="$1"
+  local out_file="$2"
+
+  echo "__________" >&2
+  echo "Converting: $concat_file >> $out_file" >&2
+  echo "" >&2
+}
+
+get_deinterlacing_command() {
+  local is_deinterlacing_enabled="$1"
+
+  [[ "$is_deinterlacing_enabled" == "true" ]] \
+    && echo "-vf yadif=0:0:0" \
+    || echo ""
+}
+
+run_ffmpeg_command() {
+  local concat_file="$1"
+  local out_file="$2"
+  local crf="$3"
+  local is_deinterlacing_enabled="$4"
+
+  ffmpeg -safe 0 -f concat -i "$concat_file" \
+    -c:a aac -ac 2 -b:a 128k \
+    -c:v libx264 -crf "$crf" -tune film -preset slow \
+    -profile:v baseline -level 3.0 -pix_fmt yuv420p \
+    -max_muxing_queue_size 400 \
+    `get_deinterlacing_command "$is_deinterlacing_enabled"` \
+    -movflags faststart \
+    -map_metadata -1 -strict -2 \
+    "$out_file"
+}
+
+main() {
+  local concat_file="$1"
+  local out_file="$2"
+  local crf="$3"
+  local is_deinterlacing_enabled="$4"
+  
+  if [[ -z "$concat_file" || ! -f "$concat_file" ]]; then
+    echo "ERROR > Must supply a valid concat file name as the 1st argument."
+    echo 'EXAMPLE > ./video_join_tv_quality "concat.txt" "concat_file_28.mp4" 28 false'
+    exit
+  fi
+
+  if [[ -z "$out_file" ]]; then
+    echo "ERROR > Must supply output file name as 2nd argument."
+    echo 'EXAMPLE > ./video_join_tv_quality "concat.txt" "concat_file_28.mp4" 28 false'
+    exit
+  fi
+
+  [[ -z "$crf" ]] && local crf="30"
+  
+  print_info "$concat_file" "$out_file"
+  
+  run_ffmpeg_command "$concat_file" "$out_file" "$crf" "$is_deinterlacing_enabled"
+}
+
+main "$@"
+

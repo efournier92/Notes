@@ -53,11 +53,15 @@ main() {
   print_header "CLEAN WITH BLEACHBIT AS ADMIN"
   sudo $USCRIPTS/clean_with_bleachbit
 
+  # print_header "CLEAN CHROME CACHE STORAGE"
+  # setopt localoptions rmstarsilent
+  # rm -rv ~/.config/google-chrome/Profile\ */Service\ Worker/CacheStorage/*
+
   print_header "USAGE > DISK"
   df -h
 
-  print_header "USAGE > SYSTEM PARTITION"
-  df -h /dev/nvme0n1p21
+  print_header "USAGE > BOOT PARTITION"
+  df -h /boot
 }
 
 main "$@"
