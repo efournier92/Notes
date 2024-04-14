@@ -12,14 +12,14 @@ main() {
   local config_resize="$1"
   local config_quality="$2"
 
-  [[ -z "$config_resize" ]] && local config_resize="2200"
-  [[ -z "$config_quality" ]] && local config_quality="100"
+  [[ -z "$config_resize" ]] && local config_resize="2100"
+  [[ -z "$config_quality" ]] && local config_quality="90"
 
   local out_dir="_output_r${config_resize}_q${config_quality}"
   mkdir "$out_dir"
 
   for img in *.png; do
-    convert "$img" -resize 2100 -quality 90 "${out_dir}/${img/png/jpg}"
+    convert "$img" -resize "$config_resize" -quality "$config_quality" "${out_dir}/${img/png/jpg}"
   done
 }
 

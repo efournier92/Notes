@@ -2,10 +2,10 @@
 
 #----------------
 # Name          : rc_bank_process
-# Description   : TODO
+# Description   : Processes video files from the specified directory.
 # Author        : E Fournier
 # Dependencies  : ffmpeg
-# Example Usage : ./rc_bank_process /mnt/rc/VIDEO 
+# Example Usage : ./rc_bank_process ${in_dir} ${out_dir} ${crf}
 #----------------
 
 shopt -s extglob
@@ -34,7 +34,7 @@ generate_concat_file() {
 
   local concat_file=`get_concat_file_location "$out_dir"`
 
-  rm -r "$concat_file"
+  remove_concat_file "$concat_file"
 
   touch "$concat_file"
 
@@ -85,7 +85,7 @@ open_concat_file() {
 remove_concat_file() {
   local concat_file="$1"
 
-  rm "$concat_file"
+  rm -f "$concat_file"
 }
 
 ensure_output_directory_exists() {

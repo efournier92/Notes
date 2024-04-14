@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 #----------------
 # Name          : backup_snc
 # Description   : Zips contents of the snc directory to an external device for backup

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#----------------
+# Name          : files_segment_rename
+# Description   : Finds files by pattern then renames a specified segment of a filename
+# Author        : E Fournier
+# Dependencies  : find
+# Example Usage : ./files_segment_rename "*_MaTCh_*" "MaTch" "match"
+#----------------
+
+main() {
+  local find_pattern="$1"
+  local segment_old="$2"
+  local segment_new="$3"
+  local is_dry_run="$4"
+  
+  if [[ "$is_dry_run" == "true" ]]; then
+    find . -name "*${find_pattern}*" -exec sh -c 'file="{}"; echo "$file" "${file/segment_old/segment_new}"' \;
+  else
+    find . -name "*${find_pattern}*" -exec sh -c 'file="{}"; mv "${file/segment_old/segment_new}"' \;
+  fi
+}
+
+main "$@"
+

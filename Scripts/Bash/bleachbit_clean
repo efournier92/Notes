@@ -10,18 +10,28 @@
 
 run_bleachbit() {
   bleachbit --clean \
+    apt.* \
     chromium.* \
     deepscan.* \
-    epiphany.* \
+    evolution.* \
     firefox.* \
     gnome.* \
+    google_chrome.dom \
+    google_chrome.form_history \
+    google_chrome.search_engines \
+    google_chrome.session \
+    google_chrome.vacuum \
     journald.* \
     libreoffice.* \
     thumbnails.* \
     vlc.* \
     x11.* \
+    zoom.* \
     system.cache \
     system.clipboard \
+    system.custom \
+    system.desktop_entry \
+    system.localizations \
     system.recent_documents  \
     system.rotated_logs \
     system.tmp \
@@ -37,17 +47,8 @@ run_bleachbit_as_user() {
   run_bleachbit
 }
 
-run_bleachbit_as_admin() {
-  echo "________"
-  echo "Cleaning as root"
-  echo ""
-
-  sudo bash -c "$(declare -f run_bleachbit); run_bleachbit"
-}
-
 main() {
   run_bleachbit_as_user
-  #run_bleachbit_as_admin
 }
 
 main "$@"

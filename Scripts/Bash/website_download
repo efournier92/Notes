@@ -8,13 +8,9 @@
 # Example Usage : ./website_download "www.linuxjournal.com" "/content/downloading-entire-web-site-wget"
 #----------------
 
-main() {
+get_without_cookies() {
   local domain="$1"
-  local path="$2"
-
-  local full_path="${domain}${path}"
-  
-  echo "PATH: $full_path"
+  local full_path="$2"
 
   wget \
     --recursive \
@@ -25,7 +21,39 @@ main() {
     --restrict-file-names=windows \
     --domains "$domain" \
     --no-parent \
-      "${domain}${path}"
+    "${full_path}"
+}
+
+get_with_cookies() {
+  local domain="$1"
+  local full_path="$2"
+  local cookies_file="$3"
+
+  wget \
+    --recursive \
+    --page-requisites \
+    --adjust-extension \
+    --span-hosts \
+    --convert-links \
+    --restrict-file-names=windows \
+    --load-cookies "$cookies_file" \
+    --domains "$domain" \
+    --no-parent \
+    "${full_path}"
+}
+
+main() {
+  local domain="$1"
+  local path="$2"
+  local cookies_file="$3"
+
+  local full_path="${domain}${path}"
+
+  if [[ -z "$cookies_file" ]]; then
+    get_without_cookies "$full_path" "$domain"
+  else
+    get_with_cookies "$full_path" "$domain" "$cookies_file"
+  fi
 }
 
 main "$@"

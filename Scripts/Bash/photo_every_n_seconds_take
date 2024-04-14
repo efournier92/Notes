@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#----------------
+# Name          : photo_every_n_seconds_take
+# Description   : Takes a photo from the specified source every N seconds.
+# Author        : E Fournier
+# Dependencies  : ffmpeg, video4linux2
+# Example Usage : ./photo_every_n_seconds_take $SOURCE [$INTERVAL_IN_SECONDS]
+#----------------
+
+main() {
+  local source=$1
+  local interval_in_seconds=$2
+
+  [[ -z $interval_in_seconds ]] && local interval_in_seconds=60
+
+  while true; do
+    local timestamp=`date +'%y%m%d-%H%M%S'`
+
+    ffmpeg -f video4linux2 -s 1920x1080 -i "$source" -ss 0:0:2 -frames 1 "./${timestamp}.jpg"
+
+    sleep $interval_in_seconds
+  done
+}
+
+main "$@"
+
+

@@ -48,7 +48,7 @@ main() {
   sudo snap refresh
 
   print_header "CLEAN WITH BLEACHBIT"
-  $USCRIPTS/clean_with_bleachbit
+  $USCRIPTS/bleachbit_clean
 
   print_header "CLEAN WITH BLEACHBIT AS ADMIN"
   sudo $USCRIPTS/clean_with_bleachbit

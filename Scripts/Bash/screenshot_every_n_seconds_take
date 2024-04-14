@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#----------------
+# Name          : screenshot_every_n_seconds_take
+# Description   : Takes a screenshot from the specified source every N seconds.
+# Author        : E Fournier
+# Dependencies  : scrot
+# Example Usage : ./screenshot_every_n_seconds_take [$INTERVAL_IN_SECONDS]
+#----------------
+
+main() {
+  local interval_in_seconds=$1
+
+  [[ -z $interval_in_seconds ]] && local interval_in_seconds=60
+
+  while true; do
+    local timestamp=`date +'%y%m%d-%H%M%S'`
+
+    scrot "${timestamp}.png" --silent -e 'echo $n'
+
+    sleep $interval_in_seconds
+  done
+}
+
+main "$@"
+

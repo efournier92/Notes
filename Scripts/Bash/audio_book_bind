@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#----------------
+# Name          : audio_book_bind
+# Description   : Binds a series of audio files as an MP4 audiobook
+# Author        : E Fournier
+# Dependencies  : m4b-tool
+# Example Usage : . ./audio_book_bind ./robinson-crusoe "Robinson Crusoe"
+#----------------
+
+# PREREQUISITES
+
+## Install Docker in Ubuntu via Snap
+# sudo snap install docker
+
+## Install the Docker image
+# docker pull sandreas/m4b-tool:latest
+
+## Alias the docker image
+# alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
+
+# STEPS
+
+## 1. Rename MP3 files to reflect final chapter names
+## 2. Execute in context: . ./audio_book_bind ./$audio_book_dir $audio_book_nam
+## 3. Update metadata using kid3 tooling
+## 4. Verify the m4b output
+
+validate_args() {
+  local in_dir="$1"
+  local book_name="$2"
+
+  if [[ -z "$in_dir" || -z "$book_name" ]]; then
+    echo "ERROR: Not all arguments were supplied"
+    echo "USAGE: . ./audio_book_bind ./robinson-crusoe 'Robinson Crusoe'"
+    exit 1
+  fi
+}
+
+merge_chapters_as_m4b() {
+  local in_dir="$1"
+  local book_name="$2"
+
+  m4b-tool \
+    merge "$in_dir" \
+    --audio-channels 1 --audio-bitrate 64k \
+    --use-filenames-as-chapters --no-chapter-reindexing \
+    --jobs=4 --verbose \
+    --output-file="$book_name.m4b"
+
+  # m4b-tool --version
+
+  # m4b-tool merge "./Ghost in the Wires - My Adventures as the World’s Most Wanted Hacker" --audio-channels 1 --audio-bitrate 64k --use-filenames-as-chapters --no-chapter-reindexing --jobs=11 --output-file="Ghost.m4b"
+
+
+  # m4b-tool merge "$in_dir" --jobs=11 --output-file="$book_name.m4b"
+}
+
+main() {
+  local in_dir="$1"
+  local book_name="$2"
+
+  validate_args "$in_dir" "$book_name"
+  merge_chapters_as_m4b "$in_dir" "$book_name"
+}
+
+main "$@"
+
