@@ -263,6 +263,12 @@ noremap <Leader>ph :!tidy -mi -xml -wrap 0 %<CR>
 
 "" Snippets
 
+""" Lg
+let lg_snippets = $LSNIPS . "/_lg_snippets.vim"
+if filereadable(lg_snippets)
+  exe "source " . lg_snippets
+endif
+
 """ HTML skeleton
 noremap <Leader>html :-1read $VSNIPS/html_skeleton.html<CR>5jf>a
 
@@ -320,7 +326,7 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'leafOfTree/vim-vue-plugin'
-  Plug 'ludovicchabant/vim-gutentags'
+  " Plug 'ludovicchabant/vim-gutentags'
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'ngmy/vim-rubocop'
   Plug 'preservim/nerdtree'

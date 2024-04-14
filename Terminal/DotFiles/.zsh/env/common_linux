@@ -24,7 +24,7 @@ export SBFS="$BNK/sbfs"
 mkdir -p "$SBFS" > /dev/null 2>&1
 
 ## Tools                                                                                                                                                                                                         
-                                                                                                                                                                                                                 
+
 ### Open Lg session in Vim                                                                                                                                                                                       
 export lg_command="$ZSCRIPTS/lg_open"                                                                                                                                                                            
 alias lg="$lg_command"     

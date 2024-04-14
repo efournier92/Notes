@@ -105,13 +105,18 @@ alias rc_remote_clean_mb="$USCRIPTS/rc_clean $mb_username $mb_server_domain /hom
 rc_remote_clean_all() { rc_remote_clean_lb; rc_remote_clean_mb }
 
 ### Phone
-alias rc_remote_phone="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 08:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device'"
+alias rc_remote_phone="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device'"
 
 ### Microphone
-alias rc_remote_mic="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 08:00:00 /home/$lb_username/bnk/rc 'USB PnP Audio Device'"
+alias rc_remote_mic="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB PnP Audio Device'"
 
 ### Zoom
-alias rc_remote_zoom="$ZSCRIPTS/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 08:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device'"
+alias rc_remote_zoom="$ZSCRIPTS/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device'"
+
+### Lg
+
+#### Build from config
+alias lg_build="log-builder $SLG/.config/log_builder_config.yml"
 
 ### Thumbs
 
@@ -122,7 +127,7 @@ export RC="/mnt/rc"
 alias rc_thumb_mount="$ZSCRIPTS/rc_mount"
 
 #### Unmount
-alias rc_thumb_mount!="umount $RC"
+alias rc_thumb_umount="umount $RC"
 
 #### List files
 alias rc_thumb_list="ls -lh $RC/RECORD"
@@ -139,7 +144,7 @@ alias rc_thumb_process="$USCRIPTS/rc_thumb_process -i $RC/RECORD -o $EXTA/Lg/Aud
 alias rc_bank_mount="$ZSCRIPTS/rc_mount"
 
 #### Unmount
-alias rc_bank_mount!="umount $RC"
+alias rc_bank_umount="umount $RC"
 
 #### List files
 alias rc_bank_list="ls $RC/VIDEO"
@@ -156,7 +161,7 @@ alias rc_bank_process="$USCRIPTS/rc_bank_process $RC/VIDEO $BNK/rc"
 alias vpn_sb="nmcli con up id $sb_server_name"
 
 ### Disconnect from VPN
-alias vpn_sb!="nmcli con down id $sb_server_name"
+alias u_vpn_sb="nmcli con down id $sb_server_name"
 
 ## Local Filesystem
 
@@ -164,7 +169,7 @@ alias vpn_sb!="nmcli con down id $sb_server_name"
 alias fs_sb=". $USCRIPTS/mount_sbfs $SBFS"
 
 ### Unmount slot from local filesystem
-alias fs_sb!="fusermount -u $SBFS"
+alias u_fs_sb="fusermount -u $SBFS"
 
 ## Tmux
 
@@ -172,7 +177,7 @@ alias fs_sb!="fusermount -u $SBFS"
 alias sb=". $TSESSIONS/sb.session"
 
 ### Kill session
-alias sb!="tmux kill-session -t sb"
+alias u_sb="tmux kill-session -t sb"
 
 ## Docker
 

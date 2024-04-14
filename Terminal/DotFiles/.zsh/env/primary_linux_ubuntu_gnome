@@ -43,7 +43,7 @@ phone_id="SAMSUNG_SAMSUNG_Android_28c97b85383f7ece"
 function m_phone() { gio mount "mtp://$phone_id"; }
 
 ##### Dismount
-function m_phone!() { gio mount -u "mtp://$phone_id"; }
+function um_phone() { gio mount -u "mtp://$phone_id"; }
 
 ##### Access Files
 function cd_phone() { cd "/run/user/1000/gvfs/mtp:host=$phone_id/Phone"; }

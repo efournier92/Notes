@@ -28,7 +28,7 @@ export BNK="$BNK"
 alias m_bnk=". $USCRIPTS/mount_uuid_veracrypt $uuid_bnk $BNK 33"
 
 #### Unmount
-alias m_bnk!=". $USCRIPTS/umount_uuid_veracrypt $uuid_bnk"
+alias um_bnk=". $USCRIPTS/umount_uuid_veracrypt $uuid_bnk"
 
 ### /mnt/extA
 
@@ -39,7 +39,7 @@ export EXTA="/mnt/extA"
 alias m_extA="$USCRIPTS/mount_uuid_veracrypt $uuid_extA $EXTA 8"
 
 #### Unmount
-alias m_extA!="$USCRIPTS/umount_uuid_veracrypt $uuid_extA"
+alias um_extA="$USCRIPTS/umount_uuid_veracrypt $uuid_extA"
 
 ### /mnt/extB
 
@@ -50,7 +50,7 @@ export EXTB="/mnt/extB"
 alias m_extB=". $USCRIPTS/mount_uuid_veracrypt $uuid_extB $EXTB 12"
 
 #### Unmount
-alias m_extB!=". $USCRIPTS/umount_uuid_veracrypt $uuid_extB"
+alias um_extB=". $USCRIPTS/umount_uuid_veracrypt $uuid_extB"
 
 ### /mnt/extC
 
@@ -61,7 +61,7 @@ export EXTC="/mnt/extC"
 alias m_extC=". $USCRIPTS/mount_uuid_veracrypt $uuid_extC $EXTC 16"
 
 #### Unmount
-alias m_extC!=". $USCRIPTS/umount_uuid_veracrypt $uuid_extC"
+alias um_extC=". $USCRIPTS/umount_uuid_veracrypt $uuid_extC"
 
 ### /mnt/bkA
 
@@ -72,7 +72,7 @@ export BKA="/mnt/bkA"
 alias m_bkA=". $USCRIPTS/mount_uuid $uuid_bkA $BKA"
 
 #### Unmount
-alias m_bkA!=". $USCRIPTS/umount_uuid $uuid_bkA"
+alias um_bkA=". $USCRIPTS/umount_uuid $uuid_bkA"
 
 ### /mnt/bkB
 
@@ -83,7 +83,7 @@ export BKB="/mnt/bkB"
 alias m_bkB=". $USCRIPTS/mount_uuid $uuid_bkB $BKB"
 
 #### Unmount
-alias m_bkB!=". $USCRIPTS/umount_uuid $uuid_bkB"
+alias um_bkB=". $USCRIPTS/umount_uuid $uuid_bkB"
 
 ### /mnt/bkC
 
@@ -94,7 +94,7 @@ export BKC="/mnt/bkC"
 alias m_bkC=". $USCRIPTS/mount_uuid $uuid_bkC $BKC"
 
 #### Umount
-alias m_bkC!=". $USCRIPTS/umount_uuid $uuid_bkC"
+alias um_bkC=". $USCRIPTS/umount_uuid $uuid_bkC"
 
 ### /mnt/md
 
@@ -105,7 +105,7 @@ export MD="/mnt/md"
 alias m_md=". $USCRIPTS/mount_uuid_veracrypt $uuid_md $MD 16"
 
 #### Unmount
-alias m_md!=". $USCRIPTS/umount_uuid_veracrypt $uuid_md"
+alias um_md=". $USCRIPTS/umount_uuid_veracrypt $uuid_md"
 
 ### Veracrypt
 
@@ -113,7 +113,7 @@ alias m_md!=". $USCRIPTS/umount_uuid_veracrypt $uuid_md"
 m_v_ro() { veracrypt -m ro "$1" "$2" }
 
 #### Dismount Container
-m_v!() { veracrypt -d "$1" }
+um_v() { veracrypt -d "$1" }
 
 ## Backups
 

@@ -19,7 +19,7 @@ main() {
   cd "$SNC/Lg"
 
   vim --cmd "set key=$password" \
-    -o *.md \
+    -o 20*.md \
     -c "source $ZSCRIPTS/lg_open.vim"
 }
 

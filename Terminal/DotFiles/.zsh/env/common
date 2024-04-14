@@ -134,7 +134,12 @@ export SDESK="$SNC/Desktop"
 export SDOCS="$SNC/Documents"
 
 #### Lg
+
+##### Root
 export SLG="$SNC/Lg"
+
+##### Snippets
+export LSNIPS="$SLG/.snippets"
 
 #### Pictures
 export SPHO="$SNC/Pictures"
@@ -157,7 +162,7 @@ export SNOTES="$SNC/Notes"
 export VVIM="$HOME/.vim"
 
 #### Vim snippets directory
-export VSNIPS="$VIM/snippets"
+export VSNIPS="$VVIM/snippets"
 
 ### Tmux
 
