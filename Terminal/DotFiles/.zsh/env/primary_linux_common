@@ -161,7 +161,7 @@ alias rc_bank_process="$USCRIPTS/rc_bank_process $RC/VIDEO $BNK/rc"
 alias vpn_sb="nmcli con up id $sb_server_name"
 
 ### Disconnect from VPN
-alias u_vpn_sb="nmcli con down id $sb_server_name"
+alias um_vpn_sb="nmcli con down id $sb_server_name"
 
 ## Local Filesystem
 
@@ -169,7 +169,7 @@ alias u_vpn_sb="nmcli con down id $sb_server_name"
 alias fs_sb=". $USCRIPTS/mount_sbfs $SBFS"
 
 ### Unmount slot from local filesystem
-alias u_fs_sb="fusermount -u $SBFS"
+alias um_fs_sb="fusermount -u $SBFS"
 
 ## Tmux
 
@@ -177,7 +177,7 @@ alias u_fs_sb="fusermount -u $SBFS"
 alias sb=". $TSESSIONS/sb.session"
 
 ### Kill session
-alias u_sb="tmux kill-session -t sb"
+alias um_sb="tmux kill-session -t sb"
 
 ## Docker
 
