@@ -2,7 +2,7 @@
 
 #----------------
 # Name          : sb.session
-# Description   : Launches a tmux session configured for seedbox
+# Description   : Launches a tmux session configured for sb.
 # Author        : E Fournier
 # Dependencies  : tmux, zsh, mount_sbfs
 #----------------
@@ -24,7 +24,7 @@ tmux new-window -t "$SESSION_NAME:1" "ssh -t ${sb_username}@${sb_server_name}.${
 ## 3rd Window
 
 ### Full Pane
-tmux new-window -t "$SESSION_NAME:2" ". $USCRIPTS/mount_sbfs $SBFS; cd $SBFS; zsh"
+# tmux new-window -t "$SESSION_NAME:2" ". $USCRIPTS/mount_sbfs $SBFS; cd $SBFS; zsh"
 
 ## Select Starting Window
 tmux select-window -t "$SESSION_NAME:0"
