@@ -51,7 +51,7 @@ main() {
   $USCRIPTS/bleachbit_clean
 
   print_header "CLEAN WITH BLEACHBIT AS ADMIN"
-  sudo $USCRIPTS/clean_with_bleachbit
+  sudo $USCRIPTS/bleachbit_clean
 
   # print_header "CLEAN CHROME CACHE STORAGE"
   # setopt localoptions rmstarsilent
