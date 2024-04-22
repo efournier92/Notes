@@ -22,7 +22,7 @@ alias banking="$SDOCS/Fin/browser_tabs_banking"
 alias fresh="$SDOCS/Hlt/browser_tabs_fresh"
 
 ### Open Red Sox tabs in Chrome
-alias redsox="$SDOCS/Gme/Scripts/browser_tabs_redsox"
+alias baseball="$SDOCS/Gme/Scripts/browser_tabs_baseball"
 
 ### Open Weight spreadsheet
 alias weight="spreadsheet $SDOCS/Hlt/Diet/Weight.xlsx"
@@ -161,7 +161,7 @@ alias rc_bank_process="$USCRIPTS/rc_bank_process $RC/VIDEO $BNK/rc"
 alias vpn_sb="nmcli con up id $sb_server_name"
 
 ### Disconnect from VPN
-alias um_vpn_sb="nmcli con down id $sb_server_name"
+alias kvpn_sb="nmcli con down id $sb_server_name"
 
 ## Local Filesystem
 
@@ -169,7 +169,7 @@ alias um_vpn_sb="nmcli con down id $sb_server_name"
 alias fs_sb=". $USCRIPTS/mount_sbfs $SBFS"
 
 ### Unmount slot from local filesystem
-alias um_fs_sb="fusermount -u $SBFS"
+alias kfs_sb="fusermount -u $SBFS"
 
 ## Tmux
 
@@ -177,7 +177,7 @@ alias um_fs_sb="fusermount -u $SBFS"
 alias sb=". $TSESSIONS/sb.session"
 
 ### Kill session
-alias um_sb="tmux kill-session -t sb"
+alias ksb="tmux kill-session -t sb"
 
 ## Docker
 
