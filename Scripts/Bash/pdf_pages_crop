@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#----------------
+# Name          : pdf_pages_crop
+# Description   : Crops a page from all directions based on pixel-dimension input
+# Author        : E Fournier
+# Dependencies  : bash, image-magick
+# Example Usage : ./pdf_pages_crop "input.tif" "50" "25"
+#----------------
+
+main() {
+  local input_file="$1"
+  local crop_pixels="$2"
+  local output_quality="$3"
+
+  [[ -z "$crop_pixels" ]] && local crop_pixels="50"
+  [[ -z "$output_quality" ]] && local output_quality="100"
+
+  local out_dir=`date +%Y-%m-%d`
+
+  local output_file="${input_file%.*}.pdf"
+
+  mkdir -p "$out_dir"
+  
+  echo "-"
+  echo "CONVERTING: ${input_file} -> ${out_dir}/${output_file}"
+
+  convert "$input_file" \
+    -gravity East -chop "${crop_pixels}x0" \
+    -gravity West -chop "${crop_pixels}x0" \
+    -gravity North -chop "0x${crop_pixels}" \
+    -gravity South -chop "0x${crop_pixels}" \
+    -compress jpeg \
+    -quality "$output_quality" \
+    "${out_dir}/${output_file}"
+}
+
+main "$@"
+
