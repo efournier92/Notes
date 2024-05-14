@@ -224,6 +224,11 @@ nnoremap <leader>json :%!python -m json.tool<CR>
 """" Command Mapping
 noremap <Leader>q :call ReplaceCurlyQuotes()<CR>
 
+"" File Renaming
+
+""" Insert line numbers in each line
+noremap <Leader>ln :%s/^/\=printf('%03d', line('.'))<CR>
+
 "" Encoding
 
 """ Base64
