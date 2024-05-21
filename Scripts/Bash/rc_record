@@ -34,7 +34,7 @@ capture_dual_source_audio() {
   local right_device="$4"
 
   local left_volume="1"
-  local right_volume="4"
+  local right_volume="6"
   local audio_rate="11025"
   local thread_queue="16384"
 
