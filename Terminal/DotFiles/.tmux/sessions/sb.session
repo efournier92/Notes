@@ -24,7 +24,7 @@ tmux new-window -t "$SESSION_NAME:1" "ssh -t ${sb_username}@${sb_server_name}.${
 ## 3rd Window
 
 ### Full Pane
-# tmux new-window -t "$SESSION_NAME:2" ". $USCRIPTS/mount_sbfs $SBFS; cd $SBFS; zsh"
+tmux new-window -t "$SESSION_NAME:2" "cd $HLE; zsh"
 
 ## Select Starting Window
 tmux select-window -t "$SESSION_NAME:0"

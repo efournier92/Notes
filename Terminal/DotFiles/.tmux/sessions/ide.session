@@ -1,10 +1,10 @@
 #!/bin/zsh
 
 #----------------
-# Name          : ide.session
-# Description   : Launches a tmux session configured for IDE usa cases
+# Name          : note.session
+# Description   : Launches a tmux session configured for note
 # Author        : E Fournier
-# Dependencies  : tmux, zsh
+# Dependencies  : tmux, zsh, vim
 #----------------
 
 ## Load ZSH configuration
