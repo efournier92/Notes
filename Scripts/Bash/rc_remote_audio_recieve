@@ -66,7 +66,7 @@ main() {
   local rc_device_card_left=`get_device_card "$rc_device_name_left"`
   local rc_device_address_left="plughw:CARD=$rc_device_card_left,DEV=0"
 
-  if [[ ! -z rc_device_name_right ]]; then
+  if [[ ! -z "$rc_device_name_right" ]]; then
     local rc_device_card_right=`get_device_card "$rc_device_name_right"`
     local rc_device_address_right="plughw:CARD=$rc_device_card_right,DEV=0"
   fi

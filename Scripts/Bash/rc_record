@@ -21,9 +21,11 @@ capture_single_source_audio() {
   local audio_channels="1"
   local audio_rate="11025"
   local thread_queue="16384"
+  local volume="2"
 
   ffmpeg -fflags nobuffer -flags low_delay \
     -f alsa -channels "$audio_channels" -thread_queue_size "$thread_queue" -sample_rate "$audio_rate" -t "$output_duration" -async 1 -i "$audio_device" \
+    -filter:a "volume=2" \
     "${file_name}.wav"
 }
 
@@ -33,8 +35,8 @@ capture_dual_source_audio() {
   local left_device="$3"
   local right_device="$4"
 
-  local left_volume="1"
-  local right_volume="6"
+  local left_volume="6"
+  local right_volume="2"
   local audio_rate="11025"
   local thread_queue="16384"
 
