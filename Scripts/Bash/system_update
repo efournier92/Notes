@@ -53,9 +53,8 @@ main() {
   print_header "CLEAN WITH BLEACHBIT AS ADMIN"
   sudo $USCRIPTS/bleachbit_clean
 
-  # print_header "CLEAN CHROME CACHE STORAGE"
-  # setopt localoptions rmstarsilent
-  # rm -rv ~/.config/google-chrome/Profile\ */Service\ Worker/CacheStorage/*
+  print_header "CLEAN CHROME CACHE STORAGE"
+  rm -rfv ~/.config/google-chrome/Profile\ */Service\ Worker/CacheStorage/*
 
   print_header "USAGE > DISK"
   df -h
