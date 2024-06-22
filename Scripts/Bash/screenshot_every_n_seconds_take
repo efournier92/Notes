@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #----------------
 # Name          : screenshot_every_n_seconds_take
 # Description   : Takes a screenshot from the specified source every N seconds.

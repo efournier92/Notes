@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#----------------
+# Name          : video_extract_stills
+# Description   : Extracts frame stills from the supplied video file as `.png` images.
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./video_extract_stills 'video_file'
+#----------------
+
+main () {
+  local video_file="$1"
+
+  local out_dir="STILLS"
+
+  local video_name="${video_file%.*}"
+  local video_name=${video_name/\//_}
+  local video_dir="${out_dir}/${video_name}"
+  local output_format="png"
+
+  mkdir -p "$video_dir"
+
+  ffmpeg -i "$video_file" "./${video_dir}/${video_name}_%d.${output_format}"
+}
+
+main "$@"
+

@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #----------------
-# Name          : rc_clean
+# Name          : rc_remote_clean
 # Description   : Cleans directories on remote servers
 # Author        : E Fournier
 # Dependencies  : ssh
-# Example Usage : ./rc_clean "username" "server_domain" "home_directory"
+# Example Usage : ./rc_remote_clean "username" "server_domain" "home_directory"
 #----------------
 
 delete_from_server() {

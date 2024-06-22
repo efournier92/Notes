@@ -1,0 +1,162 @@
+#!/bin/bash
+
+create_markdown_file() {
+  local markdown_file_location="$1"
+  local platform="$2"
+  local first_name="$3"
+
+  touch "$markdown_file_location"
+
+  get_markdown_file_contents "$platform" "$first_name" >> "$markdown_file_location"
+}
+
+get_markdown_file_contents() {
+  local platform="$1"
+  local first_name="$2"
+
+cat << EOF
+# $platform | $first_name
+ 
+## Contact
+
+### Phone
+- 
+
+## Information
+
+### Full Name
+- 
+
+### Age
+- 
+
+### Height
+- 
+
+### Location
+
+#### Current
+- 
+
+#### Past
+- 
+
+### Children
+
+#### Has?
+- 
+
+#### Wants?
+- 
+
+### Politics
+- 
+
+### Religion
+- 
+
+### Interests
+- 
+
+### Career
+
+#### Occupation
+- 
+
+#### Employer
+
+##### Name
+- 
+
+##### Location
+- 
+
+### Education
+
+#### Undergrad
+
+##### School
+- 
+
+##### Degree
+- 
+
+##### Class Of
+- 
+
+##### Activities
+- 
+
+#### High School
+
+##### School
+- 
+
+##### Location
+- 
+
+##### Class Of
+- 
+
+## Links | Web
+
+### LinkedIn
+- 
+
+## Dates
+
+### TODO
+
+#### Location
+- 
+
+#### Questions
+- 
+
+## Messages 
+
+### Scraps
+
+### Texts
+
+EOF
+}
+
+create_parent_dir() {
+  local parent_dir_location="$1"
+
+  mkdir "$parent_dir_location"
+}
+
+create_child_dirs() {
+  local parent_dir_location="$1"
+  local platform="$2"
+
+  mkdir "${parent_dir_location}/Media_Photos"
+  touch "${parent_dir_location}/Media_Photos/.placeholder"
+
+  mkdir "${parent_dir_location}/Profile_${platform}"
+  touch "${parent_dir_location}/Profile_${platform}/.placeholder"
+
+  mkdir "${parent_dir_location}/Messages_${platform}"
+  touch "${parent_dir_location}/Messages_${platform}/.placeholder"
+
+  mkdir "${parent_dir_location}/Resources_Web"
+  touch "${parent_dir_location}/Resources_Web/.placeholder"
+}
+
+main() {
+  local platform="$1"
+  local first_name="$2"
+
+  local parent_dir_location="$(pwd)/${platform}_${first_name}"
+  local markdown_file_location="${parent_dir_location}/+${platform}_${first_name}.md"
+
+  create_parent_dir "$parent_dir_location"
+  create_child_dirs "$parent_dir_location" "$platform"
+
+  create_markdown_file "$markdown_file_location" "$platform" "$first_name"
+}
+
+main "$@"
+

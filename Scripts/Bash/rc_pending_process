@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #----------------
-# Name          : rc_process
+# Name          : rc_pending_process
 # Description   : Processes raw WAVs to MP3s of minimal size
 # Author        : E Fournier
 # Dependencies  : ffmpeg
-# Example Usage : ./rc_process {rc_dir} mono
+# Example Usage : ./rc_pending_process {rc_dir} mono
 #----------------
 
 get_processed_dir_location() {

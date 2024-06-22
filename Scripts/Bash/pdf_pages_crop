@@ -16,7 +16,7 @@ main() {
   [[ -z "$crop_pixels" ]] && local crop_pixels="50"
   [[ -z "$output_quality" ]] && local output_quality="100"
 
-  local out_dir=`date +%Y-%m-%d`
+  local out_dir="_OUTPUT_q${output_quality}_`date +%Y-%m-%d-%H00`"
 
   local output_file="${input_file%.*}.pdf"
 
