@@ -18,6 +18,12 @@ is_uuid_attached() {
     || echo true
 }
 
+list_contents() {
+  local rc_dir="$1"
+
+  ls -lh "$rc_dir"
+}
+
 main() {
  local uuid_new="EC95-4FBB"
  local uuid_old="0000-006F"
@@ -31,12 +37,16 @@ main() {
 
   if [[ "$is_uuid_new_attached" == true ]]; then
     mount "/dev/disk/by-uuid/$uuid_new"
+    list_contents "/mnt/rc/RECORD"
   elif [[ "$is_uuid_old_attached" == true ]]; then
     mount "/dev/disk/by-uuid/$uuid_old"
+    list_contents "/mnt/rc/RECORD"
   elif [[ "$is_uuid_alt_attached" == true ]]; then
     mount "/dev/disk/by-uuid/$uuid_alt"
+    list_contents "/mnt/rc/RECORD"
   elif [[ "$is_uuid_bank_attached" == true ]]; then
     mount "/dev/disk/by-uuid/$uuid_bank"
+    list_contents "/mnt/rc/VIDEO"
   else
     echo "ERROR: No rc drives found connected."
   fi
