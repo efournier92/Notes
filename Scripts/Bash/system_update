@@ -54,7 +54,8 @@ main() {
   sudo $USCRIPTS/bleachbit_clean
 
   print_header "CLEAN CHROME CACHE STORAGE"
-  rm -rfv ~/.config/google-chrome/Profile\ */Service\ Worker/CacheStorage/*
+  find $HOME/.config/google-chrome -type d -iname "*cache*" -exec rm -rvf "{}" \;
+  find $HOME/.cache/google-chrome -type d -iname "*cache*" -exec rm -rvf "{}" \;
 
   print_header "USAGE > DISK"
   df -h
