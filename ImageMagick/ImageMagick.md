@@ -16,3 +16,15 @@ convert "$input_file" \
   "$output_file"
 ```
 
+### Resize | By Pixel Dimensions
+
+```bash
+out_dimensions="2000x2000"
+out_dir="_OUT_${out_dimensions}"
+
+mkdir -p "$out_dir"
+for file in *.jpg; do
+  convert "$file" -resize "$out_dimensions" "${out_dir}/${file}"
+done
+```
+
