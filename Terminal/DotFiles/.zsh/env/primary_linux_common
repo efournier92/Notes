@@ -96,24 +96,24 @@ rc_remote_process_all() { rc_remote_process_lb; rc_remote_process_mb }
 ### Download
 
 #### Download RC from LB over SSH
-alias rc_remote_download_lb="$USCRIPTS/rc_remote_download $lb_username $lb_server_domain /mnt/bnk/rc"
+alias rc_remote_lb_download="$USCRIPTS/rc_remote_download $lb_username $lb_server_domain /mnt/bnk/rc"
 
 #### Download RC from MB over SSH
-alias rc_remote_download_mb="$USCRIPTS/rc_remote_download $mb_username $mb_server_domain /mnt/bnk/rc"
+alias rc_remote_mb_download="$USCRIPTS/rc_remote_download $mb_username $mb_server_domain /mnt/bnk/rc"
 
 #### Download RC from both LB and MB over SSH
-rc_remote_download_all() { rc_remote_download_lb; rc_remote_download_mb }
+rc_remote_all_download() { rc_remote_download_lb; rc_remote_download_mb }
 
 ### Clean
 
 #### Clean RC directories from MB over SSH
-alias rc_remote_clean_lb="$USCRIPTS/rc_remote_clean $lb_username $lb_server_domain /home/misigno"
+alias rc_remote_lb_clean="$USCRIPTS/rc_remote_clean $lb_username $lb_server_domain /home/misigno"
 
 #### Download RC from MB over SSH
-alias rc_remote_clean_mb="$USCRIPTS/rc_remote_clean $mb_username $mb_server_domain /home/misigno"
+alias rc_remote_mb_clean="$USCRIPTS/rc_remote_clean $mb_username $mb_server_domain /home/misigno"
 
 #### Download RC from both LB and MB over SSH
-rc_remote_clean_all() { rc_remote_clean_lb; rc_remote_clean_mb }
+rc_remote_all_clean() { rc_remote_clean_lb; rc_remote_clean_mb }
 
 ### Record
 
