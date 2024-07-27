@@ -113,7 +113,7 @@ alias rc_remote_lb_clean="$USCRIPTS/rc_remote_clean $lb_username $lb_server_doma
 alias rc_remote_mb_clean="$USCRIPTS/rc_remote_clean $mb_username $mb_server_domain /home/misigno"
 
 #### Download RC from both LB and MB over SSH
-rc_remote_all_clean() { rc_remote_clean_lb; rc_remote_clean_mb }
+rc_remote_all_clean() { rc_remote_lb_clean; rc_remote_mb_clean }
 
 ### Record
 
