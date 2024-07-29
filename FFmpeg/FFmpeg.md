@@ -482,6 +482,27 @@ Convert a `wav` audio file into an `mp3`.
 ffmpeg -i in.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 out.mp3
 ```
 
+### `flac` to `mp3` 
+
+#### Description
+Convert a `flac` audio file into an `mp3`.
+
+#### Single
+
+```bash
+ffmpeg -i in.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 out.mp3
+```
+
+#### Batch
+
+```bash
+out_dir="./_OUT"
+mkdir -p "$out_dir"
+for file in *.flac; d
+  ffmpeg -i "$file" -codec:a libmp3lame -qscale:a 3 "${file/.flac/.mp3}"
+done
+```
+
 ### Combine Video with Audio
 
 #### Description
