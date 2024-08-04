@@ -26,7 +26,7 @@ export HOSTS="/mnt/c/Windows/System32/drivers/etc/hosts"
 
 ## Tools
 
-### Sync
+### Snc
 
 #### Enable unison
 export AUTO_SNC_ENABLED=true

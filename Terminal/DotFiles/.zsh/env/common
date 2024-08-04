@@ -160,17 +160,22 @@ export SNOTES="$SNC/Notes"
 
 #### Lg
 snc_lg() { 
-  $ZSCRIPTS/unison_start "single_dir" "Lg"
+  $ZSCRIPTS/snc_init "single_dir" "Lg"
 }
 
 #### Desktop
 snc_desk() { 
-  $ZSCRIPTS/unison_start "desk"
+  $ZSCRIPTS/snc_init "single_dir" "Desktop"
+}
+
+#### Work
+snc_work() { 
+  $ZSCRIPTS/snc_init "single_dir" "Work"
 }
 
 #### Everything
-unison_snc_all() { 
-  $ZSCRIPTS/unison_start
+snc_zall() { 
+  $ZSCRIPTS/snc_init "all"
 }
 
 ## Tools                                                                                                                                                                                                         
@@ -241,10 +246,10 @@ chpwd() { ls }
 export UNISONLOCALHOSTNAME="$ENV_ID"
 
 #### Conditionally start the unison sync process
-$AUTO_SNC_ENABLED && $ZSCRIPTS/unison_start watch
+$AUTO_SNC_ENABLED && $ZSCRIPTS/snc_init watch
 
-### Sync with Unison
-alias uni=". $ZSCRIPTS/unison_start"
+### Sync via Unison
+alias uni=". $ZSCRIPTS/snc_init"
 
 ## Overrides
 

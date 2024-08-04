@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #----------------
-# Name          : unison_sync
-# Description   : Syncs local directory to remote using Unison
+# Name          : snc_run
+# Description   : Syncs local directory to a remote location over SSH
 # Author        : E Fournier
 # Dependencies  : unison, inotifywait, pgrep
-# Example Usage : ./unison_sync
+# Example Usage : ./snc_run
 #----------------
 
 validate_args() {
@@ -23,12 +23,12 @@ validate_args() {
     || -z "$remote_bin_dir" \
   ]]; then
     echo "ERROR: Arguments not supplied correctly"
-    echo "USAGE: $ sync_unison $server $user $local_dir $remote_dir $remote_bin_dir"
+    echo "USAGE: $ snc_run $server $user $local_dir $remote_dir $remote_bin_dir"
     exit 1
   fi
 }
 
-should_start_sync_watcher() {
+should_start_snc_watcher() {
   [[ "$AUTO_SNC_ENABLED" == "true" && -z `pgrep inotifywait` ]] \
     && echo "true" \
     || echo "false"
@@ -42,7 +42,7 @@ watch_for_change() {
     $dir_to_watch
 }
 
-run_unison_command() {
+run_snc_command() {
   local server="$1"
   local user="$2"
   local local_dir="$3"
@@ -64,7 +64,7 @@ run_unison_command() {
       "ssh://$user@$server/$remote_dir"
 }
 
-start_sync_watcher() {
+start_snc_watcher() {
   local server="$1"
   local user="$2"
   local local_dir="$3"
@@ -78,7 +78,7 @@ start_sync_watcher() {
   mkdir -p "$log_dir"
 
   while watch_for_change "$local_dir"; do
-    run_unison_command "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
+    run_snc_command "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
   done
 }
 
@@ -94,10 +94,10 @@ main() {
 
   validate_args "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir" 
 
-  if [[ "$mode" == "watch" && `should_start_sync_watcher` = "true" ]]; then
-    start_sync_watcher "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
+  if [[ "$mode" == "watch" && `should_start_snc_watcher` = "true" ]]; then
+    start_snc_watcher "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
   else
-    run_unison_command "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
+    run_snc_command "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
   fi
 }
 

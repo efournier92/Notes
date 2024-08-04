@@ -20,7 +20,7 @@ export PATH="$HOME/bin:$PATH"
 
 ## Tools
 
-### Sync
+### Snc
 
 #### Enable unison
 export AUTO_SNC_ENABLED=false

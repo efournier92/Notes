@@ -22,7 +22,7 @@ export START="$BNK"
 
 ## Tools
 
-### Sync
+### Snc
 
 #### Enable unison
 export AUTO_SNC_ENABLED=false
