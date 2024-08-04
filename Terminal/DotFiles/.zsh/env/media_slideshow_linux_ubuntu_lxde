@@ -20,7 +20,7 @@ export START="$HOME"
 ### Sync
 
 #### Enable unison
-export SYNC_ENABLED=false
+export AUTO_SNC_ENABLED=false
 
 ## Resources
 

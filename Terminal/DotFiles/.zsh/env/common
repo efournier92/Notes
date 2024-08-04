@@ -156,6 +156,29 @@ export SSTORIES="$SWORK/Stories"
 ### Notes
 export SNOTES="$SNC/Notes"
 
+### Snc Processes
+
+#### Lg
+snc_lg() { 
+  $ZSCRIPTS/unison_start "single_dir" "Lg"
+}
+
+#### Desktop
+snc_desk() { 
+  $ZSCRIPTS/unison_start "desk"
+}
+
+#### Everything
+unison_snc_all() { 
+  $ZSCRIPTS/unison_start
+}
+
+## Tools                                                                                                                                                                                                         
+
+### Open Lg session in Vim
+export lg_command="$ZSCRIPTS/lg_open"
+alias lg="$lg_command"
+
 ### Vim
 
 #### Vim root directory
@@ -179,11 +202,13 @@ export TSCRIPTS="$TTMUX/scripts"
 
 #### Diff tool
 
-##### Use vim for diffing
-git config --global diff.tool vimdiff
+if [[ `git config --global diff.tool` != "vimdiff" ]]; then
+  ##### Use vim for diffing
+  git config --global diff.tool vimdiff
 
-##### Disable the prompt before diffing
-git config --global difftool.prompt false
+  ##### Disable the prompt before diffing
+  git config --global difftool.prompt false
+fi
 
 ## Display
 
@@ -216,7 +241,7 @@ chpwd() { ls }
 export UNISONLOCALHOSTNAME="$ENV_ID"
 
 #### Conditionally start the unison sync process
-$SYNC_ENABLED && $ZSCRIPTS/unison_start watch
+$AUTO_SNC_ENABLED && $ZSCRIPTS/unison_start watch
 
 ### Sync with Unison
 alias uni=". $ZSCRIPTS/unison_start"

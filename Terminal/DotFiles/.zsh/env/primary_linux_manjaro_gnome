@@ -20,7 +20,7 @@ export START="$BNK"
 ### Sync
 
 #### Enable unison
-export SYNC_ENABLED=true
+export AUTO_SNC_ENABLED=true
 
 ## Resources
 
