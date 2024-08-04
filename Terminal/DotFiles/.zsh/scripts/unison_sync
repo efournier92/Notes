@@ -8,8 +8,6 @@
 # Example Usage : ./unison_sync
 #----------------
 
-#source "$HOME/.zsh/env/common"
-
 validate_args() {
   local server="$1"
   local user="$2"
@@ -31,7 +29,7 @@ validate_args() {
 }
 
 should_start_sync_watcher() {
-  [[ "$SYNC_ENABLED" == "true" && -z `pgrep inotifywait` ]] \
+  [[ "$AUTO_SNC_ENABLED" == "true" && -z `pgrep inotifywait` ]] \
     && echo "true" \
     || echo "false"
 }
@@ -92,13 +90,14 @@ main() {
   local remote_bin_dir="$5"
   local mode="$6"
 
-  validate_args "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir" 
-  if [[ "$mode" == "watch" && `should_start_sync_watcher` = "true" ]]; then
-      start_sync_watcher "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
+  mkdir -p "$HOME/.unison/logs"
 
+  validate_args "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir" 
+
+  if [[ "$mode" == "watch" && `should_start_sync_watcher` = "true" ]]; then
+    start_sync_watcher "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
   else
     run_unison_command "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
-
   fi
 }
 

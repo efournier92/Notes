@@ -29,7 +29,7 @@ export HOSTS="/mnt/c/Windows/System32/drivers/etc/hosts"
 ### Sync
 
 #### Enable unison
-export SYNC_ENABLED=true
+export AUTO_SNC_ENABLED=true
 
 ### Clipboard Server
 
