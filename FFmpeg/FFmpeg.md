@@ -498,7 +498,7 @@ ffmpeg -i in.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 out.mp3
 ```bash
 out_dir="./_OUT"
 mkdir -p "$out_dir"
-for file in *.flac; d
+for file in *.flac; do
   ffmpeg -i "$file" -codec:a libmp3lame -qscale:a 3 "${file/.flac/.mp3}"
 done
 ```
