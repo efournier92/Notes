@@ -10,7 +10,7 @@
 
 main() {
   local mode="$1"
-  local dir="$2"
+  local target_dir="$2"
 
   if ! command -v unison &> /dev/null; then
     echo "ERROR: Unison is not installed"
@@ -23,13 +23,13 @@ main() {
   local server_bin_dir="/usr/bin"
   local local_snc_dir="$SNC"
   local server_snc_dir="/home/${user}/bnk/snc"
-  local local_lg_dir="$SLG"
-  local server_lg_dir="/home/${user}/bnk/snc/Lg"
+  local local_lg_dir="${local_snc_dir}/${target_dir}"
+  local server_lg_dir="${server_snc_dir}/${target_dir}"
 
   if [[ "$mode" == "watch" ]]; then
     nohup "$snc_file_location" "$server_domain" "$user" "$local_snc_dir" "$server_snc_dir" "$server_bin_dir" "watch" >/dev/null 2>&1&
-  elif [[ "$mode" == "single_dir" && ! -z "$dir" ]]; then
-    local snc_dir="$SNC/$dir"
+  elif [[ "$mode" == "single_dir" && ! -z "$target_dir" ]]; then
+    local snc_dir="$SNC/$target_dir"
     if [[ -d "$snc_dir" ]]; then
       "$snc_file_location" "$server_domain" "$user" "$local_lg_dir" "$server_lg_dir" "$server_bin_dir"
     else 
