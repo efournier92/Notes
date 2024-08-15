@@ -158,27 +158,28 @@ export SNOTES="$SNC/Notes"
 
 ### Snc Processes
 
+#### A specific directory
+snc_dir() { 
+  local target_dir="$1"
+  $ZSCRIPTS/snc_init "single_dir" "$target_dir"
+}
+
 #### Lg
 snc_lg() { 
-  $ZSCRIPTS/snc_init "single_dir" "Lg"
+  snc_dir "Lg"
 }
 
 #### Desktop
 snc_desk() { 
-  $ZSCRIPTS/snc_init "single_dir" "Desktop"
+  snc_dir "Desktop"
 }
 
 #### Work
 snc_work() { 
-  $ZSCRIPTS/snc_init "single_dir" "Work"
+  snc_dir "Work"
 }
 
-#### Everything
-snc_zall() { 
-  $ZSCRIPTS/snc_init "all"
-}
-
-## Tools                                                                                                                                                                                                         
+## Tools
 
 ### Open Lg session in Vim
 export lg_command="$ZSCRIPTS/lg_open"
