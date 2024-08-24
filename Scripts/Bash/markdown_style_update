@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#----------------
+# Name          : markdown_style_update
+# Description   : Updates markdown styling on all `.md` files in a given directory
+# Author        : E Fournier
+# Dependencies  : vim, `UpdateMarkdownStyle` function in .vimrc
+# Example Usage : ./markdown_style_update [dir]
+#----------------
+
+main() {
+  # Define the directory to search in, or use the current directory
+  local search_dir="${1:-.}"
+
+  find . -type f -name "*.md" \
+    -exec echo 'ADJUSTING > ' {} \; \
+    -exec vim -c 'call UpdateMarkdownStyle()' -c 'wq' {} \;
+}
+
+main "$@"
+
