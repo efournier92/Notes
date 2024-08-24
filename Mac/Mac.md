@@ -1,18 +1,22 @@
 # [Mac](https://en.wikipedia.org/wiki/MacOS)
 
 ## Contents
+
 - [Overview](#overview)
 - [Applications](#applications)
 
 ## Overview
+
 [MacOS](https://en.wikipedia.org/wiki/MacOS) was my favorite [operating system](https://en.wikipedia.org/wiki/Operating_system) for the majority of my computing career. Only recently has it fallen in favor of [Ubuntu](https://ubuntu.com/), and I blame Apple for that. Somewhere around the end of the big cat versioning era, I felt the quality [OS X](https://en.wikipedia.org/wiki/MacOS) began to decline, as their ecosystem became even more closed than it was before, to the point where it's no longer pleasurable to use. I still think [Apple](https://www.apple.com/) has the best hardware in the game, and usually run [Ubuntu](https://ubuntu.com/) on a [Macbook](https://www.apple.com/macbook-pro/). All that said, my first coding experiences were in [OS X](https://en.wikipedia.org/wiki/MacOS), writing simple [AppleScripts](https://en.wikipedia.org/wiki/AppleScript) to automate tasks. Below are some apps and scripts I accumulated during my time in their ecosystem.
 
 ## Applications
 
 ### Description
+
 Below is a list of applications I've at some point used in [OS X](https://en.wikipedia.org/wiki/MacOS), which I might consider reinstalling when building on a fresh install.
 
 ### Full List
+
 - [Adobe Digital Editions](https://www.adobe.com/solutions/ebook/digital-editions/download.html)
 - [Adobe Photoshop](https://www.adobe.com/products/photoshop.html)
 - [Adobe Premier Pro](https://www.adobe.com/products/premiere/free-trial-download.html)

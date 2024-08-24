@@ -221,8 +221,31 @@ nnoremap <leader>f :set guifont=*<CR>
 """ Format JSON
 nnoremap <leader>json :%!python -m json.tool<CR>
 
-"""" Command Mapping
+""" Replace Curly Quote
 noremap <Leader>q :call ReplaceCurlyQuotes()<CR>
+
+""" Update Mardown Styling to 2024 Convention
+
+"""" Function
+function! UpdateMarkdownStyle()
+  """"" Headers | Spacing
+  silent! g/^#.*\n\([^\n#]\|#[^\n]\)/normal o
+
+  """"" Checkboxes | In Progress
+  silent! %s/\[\~\]/\[\-\]/g
+
+  """"" Lists | Dashes
+  silent! %s/\n\* /\r- /g
+
+  """"" Emphasis | Astrisks
+  for i in range(5)
+    silent! %s/\v(\s|[\r\n]|[*'"\(\{\[])_/\=submatch(1).'*'.submatch(2)/g
+    silent! %s/\v_(\s|[\r\n]|[*'",.:;?!\)\}\]])/\=submatch(2).'*'.submatch(1)/g
+  endfor
+endfunction
+
+"""" Mapping
+noremap <Leader>mdu :call UpdateMarkdownStyle()<CR>
 
 "" File Renaming
 

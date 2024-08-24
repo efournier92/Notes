@@ -1,6 +1,7 @@
 # Android
 
 ## Contents
+
 - [Overview](#overview)
 - [TWRP](#twrp)
 - [Install Custom ROMs](#install-custom-roms)
@@ -8,14 +9,17 @@
 - [Applications](#applications)
 
 ## Overview
+
 - When it comes to mobile device Operating Systems, [Android](https://www.android.com/) has become the norm across a multitude of non-desktop devices. I like it because it's based on the Linux kernel, and is a lot more open than [iOS](https://www.apple.com/ios/). I usually install a [custom ROM](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions) and a whole bunch of apps, as detailed below.
 
 ## [TWRP](https://twrp.me/about/)
 
 ### Description
+
 - A custom Recovery tool, used for installing custom software, backup, restoration, and more.
 
 #### Backup
+
 1. Boot into TWRP recovery mode.
 1. Select `Backup`.
 1. Uncheck everything except `Data (excl. storage)`.
@@ -23,6 +27,7 @@
 1. Copy `/TWRP` directory contents to backup location.
 
 #### Restore
+
 1. Copy ROM, `OpenGApps`, and `SuperSU` to device.
 1. Boot into `TWRP` recovery mode.
 1. Install ROM.
@@ -44,11 +49,13 @@
 ## Installing [Custom ROMs](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions)
 
 ### Description
+
 - In order to install a [custom ROM](https://en.wikipedia.org/wiki/List_of_custom_Android_distributions) on a device, the following steps must first be performed.
 
 ### Steps
 
 #### 1. Unlock Bootloader
+
 1. Enable USB Debugging in the `Developer Options`.
 1. Enable OEM unlock in the `Developer Options`.
 1. Connect device to computer.
@@ -58,6 +65,7 @@
 1. Reboot the device.
 
 #### 2. Install TWRP
+
 1. [Download TWRP](https://dl.twrp.me/bullhead/twrp-3.0.2-2-bullhead.img).
 1. Connect device to computer.
 1. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`.
@@ -65,6 +73,7 @@
 1. `$ fastboot flash recovery twrp-3.0.2-2-bullhead.img`>
 
 #### 3. Root Device
+
 1. [Download SuperSU](http://www.supersu.com/download)>
 1. Copy downloaded zip file to device.
 1. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`.
@@ -73,6 +82,7 @@
 1. Select `reboot` from the main TWRP menu.
 
 #### 4. Flash Custom ROM
+
 1. Choose & Download Desired Custom ROM.
 1. Copy downloaded zip file to device.
 1. Enter `fastboot` mode: `$ sudo adb reboot bootloader` or reboot while holding `Volume Down + Power`.
@@ -83,6 +93,7 @@
 ## [Rooting](https://en.wikipedia.org/wiki/Rooting_(Android)) Commands
 
 ### Description
+
 - The following commands come in handy while [rooting](https://en.wikipedia.org/wiki/Rooting_(Android)) an Android device.
 
 ### Commands
@@ -168,9 +179,11 @@ fastboot format userdata
 ## Applications
 
 ### Description
+
 - This is a comprehensive list of Android Apps I find useful, and usually install on my devices.
 
 ### List
+
 - ADE
 - Calculator
 - Camera

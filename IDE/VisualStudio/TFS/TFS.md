@@ -1,12 +1,14 @@
 # [Team Foundation Server](https://en.wikipedia.org/wiki/Team_Foundation_Server)
 
 ## Contents
+
 - [Overview](#overview)
 - [Operations](#operations)
   - [Cut Branch](#cut-branch)
   - [Merge Branch](#merge-branch)
 
 ## Overview
+
 I use TFS in conjunction with Visual Studio as a centralized version control system for a large corporate [ASP.NET](https://docs.microsoft.com/en-us/aspnet/#pivot=aspnet) application I work on. Below are some commands and operations I find useful.
 
 ## Operations
@@ -14,9 +16,11 @@ I use TFS in conjunction with Visual Studio as a centralized version control sys
 ### Cut Branch
 
 #### Description
+
 Cut a new branch from Trunk.
 
 #### Steps
+
 1. Create a clean TFS workspace
 2. Open a new instance of Visual Studio
     - Don't open any solution
@@ -33,9 +37,11 @@ Cut a new branch from Trunk.
 ### Merge Branch
 
 #### Description
+
 Merge a branch into Trunk.
 
 #### Steps
+
 1. Create a clean TFS workspace
 2. Open a new instance of Visual Studio
     - Don't open any solution

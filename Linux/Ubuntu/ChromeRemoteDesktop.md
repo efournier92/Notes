@@ -1,6 +1,7 @@
 # [Chrome Remote Desktop](https://remotedesktop.google.com/)
 
 ## Contents
+
 - [Overview](#overview)
 - [Ubuntu Server Configuration](#ubuntu-server-configuration)
   - [Download](#download)
@@ -13,6 +14,7 @@
   - [Start the server](#start-the-server)
 
 ## Overview
+
 When it comes to [remote desktops](https://en.wikipedia.org/wiki/Remote_desktop_software), I find [Google's](https://remotedesktop.google.com/) to be as sufficient and simple to install as anything. I find the following commands useful when setting up a server in [Ubuntu](https://ubuntu.com/).
 
 ## [Ubuntu](https://ubuntu.com/) Server Configuration
@@ -20,9 +22,11 @@ When it comes to [remote desktops](https://en.wikipedia.org/wiki/Remote_desktop_
 ### Download
 
 #### Description
+
 Download from the package repository.
 
 #### Command
+
 ```bash
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 ```
@@ -30,9 +34,11 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 ### Install
 
 #### Description
+
 Install the [deb](https://en.wikipedia.org/wiki/Deb_(file_format)) package.
 
 #### Command
+
 ```bash
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 ```
@@ -40,9 +46,11 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 ### Start
 
 #### Description
+
 Start the [remote desktop](https://en.wikipedia.org/wiki/Remote_desktop_software) server.
 
 #### Command
+
 ```bash
 /opt/google/chrome-remote-desktop/chrome-remote-desktop --stop
 ```
@@ -50,9 +58,11 @@ Start the [remote desktop](https://en.wikipedia.org/wiki/Remote_desktop_software
 ### Stop
 
 #### Description
+
 Stop the [remote desktop](https://en.wikipedia.org/wiki/Remote_desktop_software) server.
 
 #### Command
+
 ```bash
 /opt/google/chrome-remote-desktop/chrome-remote-desktop --stop
 ```
@@ -60,9 +70,11 @@ Stop the [remote desktop](https://en.wikipedia.org/wiki/Remote_desktop_software)
 ### Edit Configs
 
 #### Description
+
 Edit your [Chrome Remote Desktop](https://remotedesktop.google.com/) configuration file.
 
 #### Command
+
 ```bash
 sudo vim /opt/google/chrome-remote-desktop/chrome-remote-desktop
 ```
@@ -70,9 +82,11 @@ sudo vim /opt/google/chrome-remote-desktop/chrome-remote-desktop
 ### Backup Configs
 
 #### Description
+
 Backup your [Chrome Remote Desktop](https://remotedesktop.google.com/) configuration file.
 
 #### Command
+
 ```bash
 sudo cp /opt/google/chrome-remote-desktop/chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop.orig
 ```
@@ -80,9 +94,11 @@ sudo cp /opt/google/chrome-remote-desktop/chrome-remote-desktop /opt/google/chro
 ### Configure Resolution
 
 #### Description
+
 Configure screen resolution for your default display.
 
 #### Command
+
 ```bash
 DEFAULT_SIZES = "1920x1080"
 ```
@@ -90,25 +106,32 @@ DEFAULT_SIZES = "1920x1080"
 ### Configure Default Display
 
 #### Description
+
 Configure your default display number.
 
 #### Command
+
 ```bash
 FIRST_X_DISPLAY_NUMBER = 0
 ```
 
 #### Comment the following from configs
+
 ```bash
 # while os.path.exists(X_LOCK_FILE_TEMPLATE % display):
+
 #   display += 1
+
 ```
 
 ### Configure `launch_session`
 
 #### Description
+
 Configure how the [Chrome Remote Desktop](https://remotedesktop.google.com/) session launches.
 
 #### Command
+
 ```bash
 def launch_session(self, x_args):
   self._init_child_env()

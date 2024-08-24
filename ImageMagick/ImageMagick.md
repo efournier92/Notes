@@ -20,7 +20,7 @@ convert "$input_file" \
 
 ```bash
 out_dimensions="2000x2000"
-out_dir="_OUT_${out_dimensions}"
+out_dir="*OUT_${out_dimensions}"
 
 mkdir -p "$out_dir"
 for file in *.jpg; do

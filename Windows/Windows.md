@@ -1,6 +1,7 @@
 # Windows
 
 ## Contents
+
 - [Overview](#overview)
 - [Commands](#commands)
   - [Set Default Apps](#set-default-apps)
@@ -13,6 +14,7 @@
   - [Pro](#pro)
 
 ## Overview
+
 Sometimes, operating in a [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) environment is a necessary evil. When forced to do so, I sometimes use the following commands and configurations to enhance my workflow.
 
 ## Commands
@@ -20,9 +22,11 @@ Sometimes, operating in a [Windows](https://en.wikipedia.org/wiki/Microsoft_Wind
 ### Set Default Apps
 
 #### Description
+
 Configure a default app for system to open for any file type.
 
 #### Command
+
 ```dos
 assoc .="No Extension"
 ftype "No Extension"="C:\path\to\my editor.exe" "%1"
@@ -31,9 +35,11 @@ ftype "No Extension"="C:\path\to\my editor.exe" "%1"
 ### Always Edit with [Vim](https://www.vim.org/)
 
 #### Description
+
 [Vim](https://www.vim.org/) is my preferred text editor for writing [mardown](https://daringfireball.net/projects/markdown/) and small projects. To make [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) favor [Vim](https://www.vim.org/) as the system text editor, add the following entry to you [Registry](https://en.wikipedia.org/wiki/Windows_Registry).
 
 #### Command
+
 ```dos
 REGEDIT4
 [HKEY_CLASSES_ROOT\Unknown\shell]
@@ -46,21 +52,25 @@ REGEDIT4
 ## [Slmgr](https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-using-key-management-service-vamt)
 
 ### Description
+
 [Slmgr](https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-using-key-management-service-vamt) is a [Windows](https://en.wikipedia.org/wiki/Microsoft_Windows) service that ensures you're licensed, and sometimes acts buggy. If you find this service misbehaving, the following commands may come in handy.
 
 ### Commands
 
 #### Show Details
+
 ```dos
 slmgr -dli
 ```
 
 #### Rearm
+
 ```dos
 slmgr -rearm
 ```
 
 ### Set `SHELL` Environment Variable to `zsh` for [Cygwin](https://www.cygwin.com/)
+
 1. Press `Windows` Key
 2. Find & `Environment Variables`
 3. Set `Variable` as `SHELL`
@@ -69,26 +79,31 @@ slmgr -rearm
 ### Enable Scroll Lock
 
 #### Description
+
 Use the following command to enable system [Scroll Lock](https://en.wikipedia.org/wiki/Scroll_Loc://en.wikipedia.org/wiki/Scroll_Lock) in [DOS](https://en.wikipedia.org/wiki/DOS).
 
 #### Command
+
 ```dos
 wsh = New-Object -ComObject WScript.Shell
 wsh.SendKeys('{SCROLLLOCK}')
 ```
 
 ### Open Sound Settings in `Windows 10`
+
 ```dos
 control.exe /name Microsoft.Sound
 ```
 
 ### Launch `gnome-terminal`
+
 ```dos
 "C:\Program Files (x86)\Xming\Xming.exe" -clipboard -multiwindow &
 wsl -- export DISPLAY=:0; sudo gvim; sudo pkill gvim; sudo gnome-terminal
 ```
 
 ### Disable Updates
+
 1. Type "Services" in Start Menu
 2. Right Click `Windows Update`
 3. Select `Disabled` in `Startup type` drop down
@@ -96,6 +111,7 @@ wsl -- export DISPLAY=:0; sudo gvim; sudo pkill gvim; sudo gnome-terminal
 ### Remove Default Software
 
 #### In [PowerShell](https://en.wikipedia.org/wiki/PowerShell)
+
 - 3D Builder 
   - `Get-AppxPackage *3dbuilder* | Remove-AppxPackage`
 - Calendar and Mail 
@@ -136,19 +152,23 @@ wsl -- export DISPLAY=:0; sudo gvim; sudo pkill gvim; sudo gnome-terminal
 ### `DejaVu Sans for Powerline`
 
 #### Location
+
 [Github](https://github.com/efournier92/Notes/blob/master/Windows/Fonts/DejaVuSansMonoForPowerline.ttf)
 
 ## [dotNET](https://dotnet.microsoft.com/) 
 
 ### Description
+
 [.NET](https://dotnet.microsoft.com/) is [Microsoft's](https://www.microsoft.com/en-us) core [Software Framework](https://en.wikipedia.org/wiki/Software_framework), which has been available to developers since 2002. I mostly use it with [ASP.NET](https://dotnet.microsoft.com/apps/aspnet), for developing enterprise web applications. I've compiled a great deal more information at the following location.
 
 ### Location
+
 [Github](https://github.com/efournier92/Notes/blob/master/Windows/DotNet/DotNet.md)
 
 ## Applications
 
 ### Home
+
 - [7-Zip](https://sourceforge.net/projects/sevenzip/)
 - [Backup & Sync](https://www.google.com/drive/download/)
 - [Chrome](https://www.google.com/chrome/)
@@ -168,6 +188,7 @@ wsl -- export DISPLAY=:0; sudo gvim; sudo pkill gvim; sudo gnome-terminal
 - [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-manual)
 
 ### Pro
+
 - [7-Zip](https://sourceforge.net/projects/sevenzip/)
 - [Adobe Acrobat Reader](https://get.adobe.com/reader/otherversions/)
 - [Adobe Digital Editions](https://www.adobe.com/solutions/ebook/digital-editions/download.html)

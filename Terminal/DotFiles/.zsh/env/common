@@ -128,10 +128,10 @@ mkdir -p "$BNK" "$SNC" "$CS" "$HLE" > /dev/null 2>&1
 export SBOOKS="$SNC/Books"
 
 #### Desktop
-export SDESK="$SNC/Desktop"
+export SDESK="$SNC/Desk"
 
-#### Documents
-export SDOCS="$SNC/Documents"
+#### Desktop
+export DD="$SNC/D"
 
 #### Lg
 
@@ -161,7 +161,7 @@ export SNOTES="$SNC/Notes"
 #### A specific directory
 snc_dir() { 
   local target_dir="$1"
-  $ZSCRIPTS/snc_init "single_dir" "$target_dir"
+  [[ -d "${SNC}/${target_dir}" ]] && $ZSCRIPTS/snc_init "single_dir" "$target_dir"
 }
 
 #### Lg

@@ -1,15 +1,18 @@
 # Triple Boot Procedure | Macbook | 2018
 
 ## Contents
+
 - [Overview](#overview)
 - [Steps](#steps)
 
 ## Overview
+
 - The following steps can guide you thru the procedure for configuring a triple-boot system on a Macbook.
 
 ## Steps
 
 ### 1. Clean disk
+
 - Boot W10 install media
 - Open command prompt
   - `$ diskpart`
@@ -19,11 +22,12 @@
 - Shut down
 
 ## 2. Partition Disk
+
 - Boot OSX installation media
 - Open `Disk Utility`
 - Erase
-  - __Name__: OSX
-  - __Format__: Mac OS Extended (Journaled)
+  - **Name**: OSX
+  - **Format**: Mac OS Extended (Journaled)
 - Partition
   - Split OSX (leave 120 GB)
   - Rename new partition `W10`
@@ -54,6 +58,7 @@
 - Exit to main menu
 
 ## 3. Restore OSX
+
 - Select `Restore from Time Machine Backup`, then `continue`
 - Select `continue` past `Restore Your System`
 - Select disk containing Time Machine backup
@@ -62,6 +67,7 @@
 - Click `Continue`, and wait for restore process to complete
 
 ## 4. Install W10
+
 - Boot W10 installation media
 - Verify language & select `next`
 - Select `Install now`
@@ -83,6 +89,7 @@
 - Shut down
 
 ## 5. Install Linux
+
 - Boot Linux installation media
 - Verify language & select `continue`
 - Verify settings & select `continue`
@@ -90,10 +97,10 @@
   - Set `Device for bootloader installation`
     - Same LX1 partition
   - Change LX1 partition
-    - __Use as__: Ext4 journaling file system
-    - __Mount point__: /
+    - **Use as**: Ext4 journaling file system
+    - **Mount point**: /
   - Change SWP partition
-    - __Use as__: swap area
+    - **Use as**: swap area
   - Select `Install Now`
   - Select `Install Now`
   - Select `Install Now`
@@ -105,10 +112,11 @@
   - Download `brcmfmac43602-pcie.bin`
   - Move to `/lib/firmware/brcm/`
 - Shut down
-- Repeat _Step 6_ for LX2
+- Repeat *Step 6* for LX2
 - Shut down
 
 ## 6. Fix W10 Boot Partition
+
 - Boot Linux
 - Open terminal with root permissions
 - `$ fdisk list -l`
@@ -120,6 +128,7 @@
 - Shut down
 
 ## 7. Install rEFInd
+
 - Boot OSX
 - [Download](https://sourceforge.net/projects/refind/)
 - Unzip `refind-bin-0.11.2.zip`

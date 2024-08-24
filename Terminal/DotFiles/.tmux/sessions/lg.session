@@ -19,6 +19,7 @@ tmux has-session -t "$SESSION_NAME" 2>/dev/null
 
 ## New Window | Full Pane
 if [ "$?" -eq 1 ] ; then
+  snc_lg
   ### Create in new session if one does not exist
   tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR"
   tmux new-window -t "$SESSION_NAME" -c "$BASE_DIR" "$lg_command"

@@ -3,14 +3,17 @@
 ## Overview
 
 ### Purpose
+
 - Since the release of the `Rasberry Pi 4` with 8GB of RAM, it started to seem feasible to use it as a decent media box. I predominately wanted to use it to run `Kodi`, but didn't want to settle for distribution built specifically for that purpose like `LibreElec` or `LibreElec`. Instead, I wanted a full desktop environment, from which I could also launch a browser and perform other general-purpose tasks. After much trial and error testing all Linux distributions available for Pi in 2021, I settled on an `Lubuntu` build. Below is a collection of commands and configurations I used to accomplish this task.
 
 ### Notes
+
 - Much as I've often seen recent editions of `Lubuntu` slammed online, I've been impressed with the `20.10` build I installed in February of 2021. The default `Gnome` build is too resource hungry to consistently run smoothly on the `Raspberry Pi 4`, while `LXDE` trims enough fat to get rid of the lag I was facing on `Gnome`. I find the `Lununtu` flavor of `LXDE` gives me a solid base to build upon, without having to perform too much configuration in order to get a decent-looking UI. It still lacks on the eye candy as compared to `Gnome`, but provides a suitable trade off for running on underpowered architecture.
 - As of February 2021, `Ubuntu` does not offer an `Lubuntu` flavored installer for the Pi. In order to achieve as close as possible to a minimal build, the below instructions include steps to removing all packages specific to `Gnome`. I prefer to trim all that fat to begin with, then reinstall packages as I find a need for them.
 - The below should work if you have a `Rasberry Pi 4` with 8GB of RAM, which you plan to attach to a hi-res LED TV. Certain tweaks would be necessary if your needs differ from the parameters under which I was testing.
 
 ## Prepare the SD Card
+
 1. Using a piece of black duct tape, fold around the top of the card to form a tail
     - This is critical for easy retrieval from the Pi's slot
       - Improper retrieval can easily break the card
@@ -19,26 +22,32 @@
 ## Download `Raspberry Pi Imager`
 
 ### Application Description
+
 - This tool is useful for flashing operating-system images to an SD card without any hassle
   - The same can also be accomplished via the command line, albeit more tediously
 
 ### Ubuntu
+
 - `$ sudo apt install rpi-imager`
 
 ### Manjaro
+
 - `$ sudo pamac build rpi-imager`
 
 ## Install Ubuntu
 
 ### Flash Ubuntu to an SD Card
+
 1. Use the `Raspberry Pi Imager` GUI to choose and flash an image to your SD card.
     - Can download the supported operating system image of our choice.
     - Can install a pre-downloaded image we already have.
 
 ### Complete Setup
+
 1. Follow Ubuntu's first-boot prompts to complete the setup process.
 
 ### Configure `config.txt`
+
 1. Open `config.txt` via the following command
     - `$ sudo vim /boot/firmware/config.txt`
 1. Ensure the following custom configurations are present
@@ -53,23 +62,27 @@
 1. Reboot
 
 ### Install `Lubuntu`
+
 1. Install `Lubuntu` via the following command
     - `$ sudo apt install lubuntu`
 
 ### Launch `Lubuntu`
+
 1. Log out of the default `Gnome` shell
 1. From the `gdm` display manager, select the gear icon, then `Lubuntu`
 1. Enter passwords to boot into `Lubuntu`
 1. Launch a terminal instance
 
 ### Update `apt`
+
 - `$ sudo apt update`
 
 ### Delete Extraneous Packages
 
 #### Delete Gnome Packages
+
 1. Run the following commands to delete all packages pre-installed for Gnome
-    - This essentially reverts to a minimal build (_not offered for Pi as of 2021_)
+    - This essentially reverts to a minimal build (*not offered for Pi as of 2021*)
 
 ```bash
 sudo apt purge --auto-remove \
@@ -119,11 +132,13 @@ sudo apt purge --auto-remove \
 ```
 
 #### Hunt Down Even More Extraneous Packages
+
 1. Open the `Applications Menu`
 1. Locate any other unnecessary packages
     - Uninstall them individually via `sudo apt purge`
 
 #### Run `apt` Cleanup Commands
+
 1. `$ sudo apt autoremove`
 1. `$ sudo apt remove`
 1. `$ sudo apt autoclean`
@@ -133,64 +148,83 @@ sudo apt purge --auto-remove \
 ## Install Additional Packages
 
 ### Kodi
+
 - `$ sudo apt install kodi`
 
 ### Veracrypt
+
 - `$ sudo add-apt-repository ppa:unit193/encryption`
 - `$ sudo apt install veracrypt`
 
 ### VLC
+
 - `$ sudo apt install bleachbit`
 
 ### BleachBit
+
 - `$ sudo apt install bleachbit`
 
 ### Firefox
+
 - `$ sudo apt install firefox`
 
 ### Remmina
+
 - `$ sudo apt install remmina`
 
 ### Curl
+
 - `$ sudo apt install curl`
 
 ### Progress
+
 - `$ sudo apt install progress`
 
 ### Eog
+
 - `$ sudo apt install eog`
 
 ### Vim
+
 - `$ sudo apt install vim-gtk3`
 
 ### Tmux
+
 - `$ sudo apt install tmux`
 
 ### Zsh
+
 - `$ sudo apt install zsh`
 
 ### OpenVPN
+
 - `$ sudo apt install openvpn`
 
 ### TigerVNC
+
 - `$ sudo apt install tigervnc-scraping-server`
 
 ### Oh-My-Zsh
+
 - `$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 
 ### Power Manager
+
 - `$ sudo apt install xfce4-power-manager`
 
 ## Configure Monitor Settings
+
 1. `Application Menu > Preferences > LXQt settings > Monitor settings`
 1. In the `Setup` tab, configure the following
     - `Resolution` : `1920x1080`
 
 ## Configure the Main Panel
+
 1. Right click the main panel
 1. Use the following as guidelines for suggested panel configuration
 
 ### Panel
+
 - `Size` : `26px`
 - `Icon Size` : `20px`
 - `Length` : `100%`
@@ -203,6 +237,7 @@ sudo apt purge --auto-remove \
 - `Icon theme for panels` : `Papirus-Dark`
 
 ### Widgets
+
 - `Application menu`
 - `Task manager`
 - `Removable media`
@@ -211,12 +246,14 @@ sudo apt purge --auto-remove \
 - `World clock`
 
 #### Configure `Removable Media`
+
 1. Select `Removable Media`
 1. Select the gear icon from the right-hand panel
 1. In the `Removable Media Settings` window
     - `When a device is connected` : `Do nothing`
 
 #### Configure `Volume control`
+
 1. Select `Removable Media`
 1. Select the gear icon from the right-hand panel
 1. In the `Volume Control Settings` window, configure the following
@@ -230,19 +267,23 @@ sudo apt purge --auto-remove \
     - `External Mixer` : `pavucontrol-qt`
 
 #### Configure `PulseAudio Volume Control`
+
 1. Open `Application Menu`, open `Sound & Video > PulseAudio Volume Control`
 1. Click the `Output Devices` tab
 1. Find the section with port named `Analog Output`
 1. Select `Set as fallback` in the `Analog Output` section
 
 #### Configure `Desktop Notifications`
+
 1. `Application Menu > Preferences > LXQt settings > Destop Notifications`
 1. In the `Desktop Notifications` window, configure the following
 
 ##### Basic Settings
+
 - `Position on screen` : `<top right>`
 
 ##### Advanced Settings
+
 - `Default Duration` : `3 sec`
 - `Width` : `300 px`
 - `Spacing` : `6 px`
@@ -251,6 +292,7 @@ sudo apt purge --auto-remove \
 ## Configure Terminal 
 
 ### Rpi User
+
 1. Install `gnome-terminal`
     - `$ sudo apt install gnome-terminal`
 1. Set `gnome-terminal` as default
@@ -297,6 +339,7 @@ sudo apt purge --auto-remove \
       - `When command exits` : `Restart the command`
 
 ### Root User
+
 1. Start a session as root
     - `$ sudo su`
 1. Add config files from the following location
@@ -309,6 +352,7 @@ sudo apt purge --auto-remove \
     - `$ /bin/zsh`
 
 ## Automatic Login
+
 1. Create or edit file `/etc/sddm.conf`
     - `$ sudo vim /etc/sddm.conf`
 1. Add the following contents to that file
@@ -320,6 +364,7 @@ User=pi
 ```
 
 ## Add Gnome-Terminal to `Applications Menu`
+
 1. Create a new `desktop` item via the following command
     - `sudo vim /usr/share/applications/gterminal.desktop`
 1. Add the following contents in the new file
@@ -336,10 +381,12 @@ Exec=gnome-terminal
 ## Boot Script
 
 ### Purpose
+
 - I like to use a script to run a set of boot tasks when my system starts up. This file can be configured in any way, but an example of mine is available at the following location.
   - [boot_tasks](https://raw.githubusercontent.com/efournier92/Notes/master/Scripts/Bash/boot_tasks)
 
 ### Create Boot Script
+
 1. Copy the `boot_tasks` file from the repository we created above to our `scripts` directory
     - `$ mkdir -p ~/scripts`
     - `$ cp ~/cs/Notes/Scripts/Bash/boot_tasks ~/scripts`
@@ -358,6 +405,7 @@ run_pi_media_tasks() {
 ```
 
 ### Run Script on Boot
+
 1. Create a new `desktop` file in `autostart`
     - `$ vim ~/.config/autostart/boot.desktop`
 1. Paste the following block into that file
@@ -372,10 +420,12 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 ### VPN-Server Configuration
 
 #### Purpose
+
 - Having an active VNC server is useful for remoting into this machine's shell from elsewhere.
   - Enable this with discretion and be sure to have a strong password!
 
 #### Start OpenVPN on Boot
+
 1. Copy the `connect_vpn_persistly` file from the repository we created above to our `scripts` directory
     - `$ cp ~/cs/Notes/Scripts/Bash/connect_vpn_persistently ~/scripts`
 1. Open `boot-tasks`
@@ -384,6 +434,7 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
     - `$HOME/scripts/connect_vpn_persistently &`
 
 #### Add a VPN Connection
+
 1. Download a `.ovpn` file for our host
     - Save file anywhere temporarily
 1. Open `Application Menu > Preferences > Advanced Network Configuration`
@@ -396,15 +447,18 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
     - Select `Save`
 
 #### View/Edit VPN Connection Details
+
 1. Run the following command to view the contents of our VPN configuration
     - `$ sudo vim /etc/NetworkManager/system-connections/Calypso.nmconnection`
 
 ### VNC-Server Configuration
 
 #### Purpose
+
 - Having an active VNC server is useful for remoting into this machine's GUI from elsewhere.
 
 #### Start TigerVNC Server on Boot
+
 1. Copy the `connect_vnc_persistently` file from the repository we created above to our `scripts` directory
     - `$ cp ~/cs/Notes/Scripts/Bash/connect_vnc_persistently ~/scripts`
 1. Open `boot-tasks`
@@ -415,9 +469,11 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 ### Fix HDMI Audio
 
 #### Purpose
+
 - Because the Raspberry pie has both HDMI and headphone-jack outputs, PulseAudio tends to be inconsistent with which index it loads assigns to each, which leads to a frustrating experience of not having audio after boot 50% of the time. I choose to address this with a script I wrote, available in the same repository we cloned above, to be executed once at boot time.
 
 #### Detect PulseAudio HDMI Sink on Boot
+
 1. Copy the `connect_vnc_persistently` file from the repository we created above to our `scripts` directory
     - `$ cp ~/cs/Notes/Scripts/Bash/pulseaudio_set_default_sink ~/scripts`
 1. Open `boot-tasks`
@@ -428,26 +484,32 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 #### Useful PulseAudio Commands
 
 ##### Edit the default configuration at system level
+
 - `$ sudo vim /etc/pulse/default.pa`
 
 ##### Edit the default configuration for user
+
 - `$ cp /etc/pulse/default.pa ~/.config/pulse/`
 - `$ vim ~/.config/pulse/default.pa`
 
 ##### List all sinks
+
 - `$ pactl list sinks`
 - `$ pactl list short sinks`
 - `$ pacmd list-sinks`
 
 ##### Edit a Sound Profile
+
 - `$ sudo vim /usr/share/pulseaudio/alsa-mixer/paths/...`
 
 ## Shortcuts
 
 ### Open `Shortcut Keys` Settings
+
 1. Navigate to `Application Menu > Preferences > LXQt settings > Shortcut Keys`
 
 ### Terminal
+
 1. Locate and select the shortcut with description `Launch Terminal`
 1. In the right-hand menu, select `Modify...`
 1. Enter the following in the `Command` field
@@ -455,6 +517,7 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 1. Select `OK`
 
 ### Web Browser
+
 1. Locate and select the shortcut with description `Web browser`
 1. In the right-hand menu, select `Modify...`
 1. Enter the following in the `Description` field
@@ -464,6 +527,7 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 1. Select `OK`
 
 ### Kodi
+
 1. In the right-hand menu, click `Add...`
 1. Select the `Shortcut` field, then press `Control+Alt+K`
 1. Enter the following in the `Description` field
@@ -474,13 +538,16 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 ## Theming
 
 ### Resources
+
 - [How I Theme My Raspberry Pi OS | Novaspirit Tech](https://www.youtube.com/watch?v=gHUjO6MK5fg)
 
 ### Install Theme Packages
+
 1. Install `Arc`, `Papirus`, and `Breeze` via the following command
     - `$ sudo apt install arc-theme papirus-icon-them breeze-cursor-theme`
 
 ### Change the Main Theme
+
 1. Open `Application Menu > Preferences > LXQt settings > Appearance`
 1. Select `Widget Style`
     - Select `Breeze` for `Qt Style`
@@ -494,6 +561,7 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 1. In the main window, select `Close`
 
 #### Change the `Application Menu` Icon
+
 1. Right click the `Application Menu` in main bottom panel
 1. Select `Manage Widgets`
 1. Select `Appliction Menu`, then click the right-hand gear icon for settings
@@ -506,11 +574,13 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 #### OpenBox
 
 ##### Install the `Arc-Openbox` Theme
+
 1. `cd /usr/share/themes`
 1. `sudo git clone https://github.com/dglava/arc-openbox`
 1. `sudo mv arc-openbox Arc-Openbox`
 
 ##### Enable the `Arc-Openbox` Theme
+
 1. From the `Application Launcher`, open `Menu > Preferences > LXQt settings > Openbox Settings`
 1. Select the `Theme` tab
 1. Select `Install a new theme...`
@@ -522,6 +592,7 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 ## Power Settings
 
 ### Enable Sleep On Idle
+
 1. Open `Application Menu > Preferences > Power Manager`
 1. Select the `Display` tab
 1. Configure the following
@@ -530,6 +601,7 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
     - `Switch off after` : `<60 minutes>`
 
 ## Fix Choppy Audio
+
 1. Open the `PulseAudio` default configuration file
     - `$ sudo vim /etc/pulse/default.pa`
 1. Find the following line
@@ -538,11 +610,13 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
     - `$ load-module module-udev-detect tsched=0`
 
 ## Change User Properties
+
 1. Run `User and Group Settings` as root via the following command
     - `$ sudo lxqt-admin-user`
 1. Use to GUI tools to alter basic user properties
 
 ### Change a User's Name
+
 1. Launch `User and Group Settings` as root via the following command
     - `$ sudo lxqt-admin-user`
 1. Use to the GUI tools to create a new user
@@ -562,6 +636,7 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 1. Use to the GUI tools to delete the `alt` user
 
 ## Backup via `Clonezilla`
+
 1. Boot up a `Clonezilla Live` image
 1. Select `device-image`
 1. Select `local_dev`
@@ -582,11 +657,13 @@ Exec=/home/${user}/scripts/boot_tasks pi_media
 ## Disable Update Notifications
 
 ### Disable Auto Starting `upgNotifier`
+
 1. Open `Application Menu > Preferences > LXQt settings > Session Settings`
 1. Select the `Autostart` tab
 1. Uncheck `upgNotifier`
 
 ### Minimize System Update Notifications
+
 1. Open `Application Menu > Preferences > Software & Updates`
 1. Select the `Updates` tab
 1. Configure the following

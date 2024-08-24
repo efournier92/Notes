@@ -9,39 +9,39 @@
 
 ## Files
 
-### Bookmarks
-alias bookmarks="vim $SDOCS/bck/bookmarks.md"
-
 ### Open Budget spreadsheet
-alias budget="spreadsheet $SDOCS/Fin/Budget_${THIS_YEAR}.xls"
+alias budget="spreadsheet $SNC/Finances/Budget_${THIS_YEAR}.xls"
 
 ### Open financial tabs in Chrome
-alias banking="$SDOCS/Fin/browser_tabs_banking"
+alias banking="$SNV/Finance/browser_tabs_banking"
 
 ### Open Amazon Fresh tabs in Chrome
-alias fresh="$SDOCS/Hlt/browser_tabs_fresh"
+alias fresh="$SNC/Health/browser_tabs_fresh"
 
 ### Open Red Sox tabs in Chrome
-alias baseball="$SDOCS/Gme/Scripts/browser_tabs_baseball"
+alias baseball="$SNC/Games/Scripts/browser_tabs_baseball"
 
 ### Open Weight spreadsheet
-alias weight="spreadsheet $SDOCS/Hlt/Diet/Weight.xlsx"
+alias weight="spreadsheet $SNC/Health/Diet/Weight.xlsx"
 
 ### Open Jeopardy-download page in browser
-alias jeopardy_episodes="$SDOCS/Gme/Scripts/jeopardy_episodes"
+alias jeopardy_episodes="$SNC/Games/Scripts/jeopardy_episodes"
 
 ### Open Jeopardy spreadsheet
-alias jeopardy_games="$SDOCS/Gme/Scripts/jeopardy_games"
+alias jeopardy_games="$SNC/Games/Scripts/jeopardy_games"
 
 ### Open Chords markdown file
-chords_file="$SDOCS/Mus/Chords.md"
+chords_file="$SNC/Music/Chords.md"
 alias chords="markdown $chords_file > /dev/null & vim $chords_file"
 
 ### Open music-practice spreadsheet
-alias music_practice="libreoffice $SDOCS/Mus/Practice/Music_Practice.xlsx"
+alias music_practice="libreoffice $SNC/Music/Practice/Music_Practice.xlsx"
 
 ### Open Nautilus in a detached process nohup process
 nnautilus() { nohup nautilus "$1" </dev/null >/dev/null 2>&1 &! }
+
+### Open Bookmarks
+alias bookmarks="vim $SNC/Xyz/bookmarks.md"
 
 ## Browser
 
