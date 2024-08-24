@@ -33,7 +33,7 @@ main() {
     if [[ -d "$snc_dir" ]]; then
       "$snc_file_location" "$server_domain" "$user" "$local_lg_dir" "$server_lg_dir" "$server_bin_dir"
     else 
-      echo "ERROR: Must a preexisting SNC directory to snc_init." >&2
+      echo "ERROR: Must supply a preexisting SNC directory to snc_init." >&2
       echo "Directory $snc_dir not found" >&2
     fi
   elif [[ "$mode" == "all" ]]; then

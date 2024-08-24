@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#----------------
+# Name          : audio_convert_directories_flac-mp3
+# Description   : Recursively converts flac files in a directory to mp3
+# Author        : E Fournier
+# Dependencies  : bash
+# Example Usage : ./audio_convert_directories_flac-mp3
+#----------------
+
+out_dir="./_OUT"
+mkdir -p "$out_dir"
+for dir in *; do
+  cd "$dir"
+  for file in *.flac; do
+    ffmpeg -i "$file" -codec:a libmp3lame -qscale:a 3 "${file/.flac/.mp3}"
+  done
+  cd ..
+done
+
