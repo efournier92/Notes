@@ -10,7 +10,7 @@
 
 ## File system
 
-###
+### Secrets
 source "$ZZSH/.secrets"
 
 ### Bnk directory
@@ -65,6 +65,9 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 ### asdf
 export PATH="$HOME/.asdf/shims:$PATH"
 
+### Vlc
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+
 ### PostgreSQL
 # export PGPATH="/usr/local/opt/postgresql@12/bin"
 # export LDFLAGS="-L/usr/local/opt/postgresql@12/lib"
@@ -91,6 +94,8 @@ export PATH="$HOME/.asdf/shims:$PATH"
 ### Scripts
 alias agile_ticket_create="$USCRIPTS/agile_ticket_create"
 alias docker_clean="$USCRIPTS/docker_clean"
+alias docker_rebuild="$USCRIPTS/docker_rebuild"
+alias graphql_generate="yarn graphql:generate"
 alias graphql_watch="yarn graphql:generate:watch"
 
 ## Sleep Behavior
