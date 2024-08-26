@@ -64,6 +64,7 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 
 ### asdf
 export PATH="$HOME/.asdf/shims:$PATH"
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 ### Vlc
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'

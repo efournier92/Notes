@@ -7,10 +7,12 @@ main() {
 
   if [[ "$?" == 0 ]]; then
     # If there's already a session, switch to it
-    tmux switch -t "$session_name"
+    tmux switch-client -t "$session_name"
   else
     # If there's no session, create one
     bash "$TSESSIONS/${session_name}.session"
+    # Then switch to it
+    tmux switch-client -t "$session_name"
   fi
 }
 

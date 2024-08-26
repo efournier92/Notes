@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 #----------------
-# Name          : lg.session
-# Description   : Launches a tmux session configured for note
+# Name          : note.session
+# Description   : Launches a tmux session configured for notes
 # Author        : E Fournier
 # Dependencies  : tmux, zsh, vim
 #----------------
@@ -11,25 +11,25 @@
 source "$HOME/.zsh/.zshrc"
 
 ## Session Attributes
-BASE_DIR="$SLG"
-SESSION_NAME="lg"
+BASE_DIR="$SWN"
+SESSION_NAME="notes"
 
 ## Check if session already exists
 tmux has-session -t "$SESSION_NAME" 2>/dev/null
 
 ## New Window | Full Pane
 if [ "$?" -eq 1 ] ; then
-  snc_lg
   ### Create in new session if one does not exist
-  tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR"
-  tmux new-window -t "$SESSION_NAME" -c "$BASE_DIR" "$lg_command"
-  tmux last-window
-  tmux kill-window -t "lg:0"
+  tmux new -s "$SESSION_NAME" -d -c "$SWN" "source $ZENV/common; vim"
+  tmux new-window -t "$SESSION_NAME:1" -c "$SWT" "source $ZENV/common; vim"
+else
+  ### Switch to existing session if one already exists
+  tmux new-window -t "$SESSION_NAME" -c "$BASE_DIR" "vim"
 fi
 
 ## Attach to session
 tmux attach -t "$SESSION_NAME"
 
 ## Switch to session
-$TSCRIPTS/switch-to-session "$SESSION_NAME" &
+tmux switch-client -t "$SESSION_NAME" &
 

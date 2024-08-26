@@ -1,0 +1,53 @@
+#!/bin/zsh
+
+#----------------
+# Name          : ide.session
+# Description   : Launches a tmux session configured for IDE use case
+# Author        : E Fournier
+# Dependencies  : tmux, zsh, vim
+#----------------
+
+## Load ZSH configuration
+
+source "$HOME/.zsh/.zshrc"
+
+## Session Attributes
+SESSION_NAME="ide"
+BE_DIR="$CS/backend-service"
+FE_DIR="$CS/web-app"
+
+## Check if session already exists
+tmux has-session -t "$SESSION_NAME" 2>/dev/null
+
+## New Session
+
+if [[ "$?" -eq 1 ]] ; then
+  ## 1st Window
+
+  ### Full Pane
+  
+  tmux new -s "$SESSION_NAME" -d -c "$BE_DIR"
+
+  ## 2nd Window 
+
+  ### Full Pane
+  
+  tmux new-window -t "$SESSION_NAME:1" -c "$FE_DIR"
+
+  ## 3rd Window 
+
+  ### Full Pane
+  
+  tmux new-window -t "$SESSION_NAME:2" -c "$BE_DIR"
+
+  ## Switch to 1st Window
+  
+  tmux select-window -t 0
+fi
+
+## Attach to session
+tmux attach -t "$SESSION_NAME"
+
+## Switch to session
+tmux switch-client -t "$SESSION_NAME" &
+
