@@ -309,6 +309,14 @@ noremap <Leader>bhead :-1read $VSNIPS/bash_header.bash<CR>ea
 """ Bash null check
 noremap <Leader>bnull :-1read $VSNIPS/bash_nullcheck.bash<CR>ea
 
+"" Navigation
+
+""" Do Sections
+map <Leader>now /NOW<CR>:noh<CR>
+map <Leader>nex /NEXT<CR>:noh<CR>
+map <Leader>pro /PROGRESS<CR>/```<CR>n:noh<CR>
+map <Leader>bac /BACKLOG<CR>/```<CR>n:noh<CR>
+
 "" Functions
 
 """ Replace curly quotes with straight quotes
