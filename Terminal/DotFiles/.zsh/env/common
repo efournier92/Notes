@@ -131,15 +131,15 @@ export SBOOKS="$SNC/Books"
 export SDESK="$SNC/Desk"
 
 #### Desktop
-export DD="$SNC/D"
+export TT="$SNC/D"
 
 #### Lg
 
 ##### Root
 export SLG="$SNC/Lg"
 
-##### Snippets
-export LSNIPS="$SLG/.snippets"
+##### Vim Mappings
+export LMAPS="$SLG/.mappings"
 
 #### Pictures
 export SPHO="$SNC/Pictures"
@@ -158,25 +158,20 @@ export SNOTES="$SNC/Notes"
 
 ### Snc Processes
 
-#### A specific directory
-snc_dir() { 
-  local target_dir="$1"
-  [[ -d "${SNC}/${target_dir}" ]] && $ZSCRIPTS/snc_init "single_dir" "$target_dir"
-}
-
 #### Lg
 snc_lg() { 
   snc_dir "Lg"
 }
 
-#### Desktop
-snc_desk() { 
-  snc_dir "Desktop"
+#### Specific directory
+snc_dir() { 
+  local target_dir="$1"
+  [[ -d "${SNC}/${target_dir}" ]] && $ZSCRIPTS/snc_init "single_dir" "$target_dir"
 }
 
-#### Work
-snc_work() { 
-  snc_dir "Work"
+#### All
+snc_zall() { 
+  [[ -d "${SNC}/${target_dir}" ]] && $ZSCRIPTS/snc_init "all"
 }
 
 ## Tools

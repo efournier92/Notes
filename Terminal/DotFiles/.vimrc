@@ -292,9 +292,9 @@ noremap <Leader>ph :!tidy -mi -xml -wrap 0 %<CR>
 "" Snippets
 
 """ Lg
-let lg_snippets = $LSNIPS . "/_lg_snippets.vim"
-if filereadable(lg_snippets)
-  exe "source " . lg_snippets
+let lg_maps = $LMAPS . "/_lg_maps.vim"
+if filereadable(lg_maps)
+  exe "source " . lg_maps
 endif
 
 """ HTML skeleton
@@ -308,14 +308,6 @@ noremap <Leader>bhead :-1read $VSNIPS/bash_header.bash<CR>ea
 
 """ Bash null check
 noremap <Leader>bnull :-1read $VSNIPS/bash_nullcheck.bash<CR>ea
-
-"" Navigation
-
-""" Do Sections
-map <Leader>now /NOW<CR>:noh<CR>
-map <Leader>nex /NEXT<CR>:noh<CR>
-map <Leader>pro /PROGRESS<CR>/```<CR>n:noh<CR>
-map <Leader>bac /BACKLOG<CR>/```<CR>n:noh<CR>
 
 "" Functions
 
@@ -362,7 +354,6 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'leafOfTree/vim-vue-plugin'
-  " Plug 'ludovicchabant/vim-gutentags'
   Plug 'MattesGroeger/vim-bookmarks'
   Plug 'ngmy/vim-rubocop'
   Plug 'preservim/nerdtree'
