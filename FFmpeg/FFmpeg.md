@@ -311,7 +311,7 @@ out_dir="*OUT"
 time_start="00:01:00.000"
 time_end="01:00:00.000"
 mkdir -p "$out_dir"
-for file in *; do 
+for file in *.*; do 
   ffmpeg -i "$file" -ss "$time_start" -c:a libmp3lame -b:a 128k -ac 1 -t "$time_end" "${out_dir}/${file%.*}.mp3"
 done
 ```
