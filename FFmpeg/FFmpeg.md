@@ -88,7 +88,7 @@ ffmpeg -i "$in_file" \
 crf="28"
 ext_in=".mkv"
 ext_out=".mp4"
-out_dir="*OUTPUT_$crf"
+out_dir="_OUTPUT_$crf"
 mkdir "$out_dir"
 for file in *$ext_in; do
   ffmpeg -i "$file" \
@@ -276,7 +276,7 @@ ffmpeg -i in.mp4 -c:a libmp3lame -b:a 128k -ac 1 out.mp3
 ##### Batch
 
 ```bash
-out_dir="*OUT"
+out_dir="_OUT"
 mkdir -p "$out_dir"
 for file in *.mp4; do 
   ffmpeg -i "$file" -c:a libmp3lame -b:a 128k -ac 1 "${out_dir}/${file}"
@@ -307,7 +307,7 @@ ffmpeg -f concat -i /path/to/concat.txt \
 ##### Batch
 
 ```bash
-out_dir="*OUT"
+out_dir="_OUT"
 time_start="00:01:00.000"
 time_end="01:00:00.000"
 mkdir -p "$out_dir"
@@ -633,7 +633,7 @@ ffmpeg \
 ##### Usage
 
 ```bash
-gifski --fps 7 --width 520 -o file_520.gif frame*.png
+gifski --fps 7 --width 520 -o file_520.gif frame_.png
 ```
 
 #### Produce Frames from Video
