@@ -12,6 +12,7 @@ uuid_bnk="316fb91f-e238-4dce-b610-f7dfe74d8eec"
 uuid_extA="082f97de-0589-46f9-99d3-850791eddfb3"
 uuid_extB="8270e3db-a812-476c-b2bc-ef2bdb50e9e8"
 uuid_extC="b790dcd2-3998-4f51-9365-397149e38f97"
+uuid_extCM="034f2d78-cf47-4128-8564-1e418facbc39"
 uuid_bkA="9ecb85bd-62f3-4f24-9801-8b3c2839903d"
 uuid_bkB="d416cfe4-9b86-42da-9c33-4b3814a164de"
 uuid_bkC="e6210770-ba18-4162-9be5-cbc647e229ce"
@@ -62,6 +63,17 @@ alias m_extC=". $USCRIPTS/mount_uuid_veracrypt $uuid_extC $EXTC 16"
 
 #### Unmount
 alias um_extC=". $USCRIPTS/umount_uuid_veracrypt $uuid_extC"
+
+### /mnt/extC_Media
+
+#### Base
+export EXTCM="/mnt/extCM"
+
+#### Mount
+alias m_extCM=". $USCRIPTS/mount_uuid_veracrypt $uuid_extCM $EXTCM 17"
+
+#### Unmount
+alias um_extCM=". $USCRIPTS/umount_uuid_veracrypt $uuid_extCM"
 
 ### /mnt/bkA
 
@@ -130,10 +142,13 @@ alias bk_extAB=". $USCRIPTS/backup_dir $EXTA $EXTB"
 alias bk_extBA=". $USCRIPTS/backup_dir $EXTB $EXTA"
 
 ### Backup extA to extC
-alias bk_extAC=". $USCRIPTS/backup_dir $EXTA $EXTC"
+alias bk_extAC=". $USCRIPTS/backup_dir $EXTA $EXTC Media/\*\*"
+
+### Backup extA to extC
+alias bk_extACM=". $USCRIPTS/backup_dir $EXTA/Media $EXTCM/Media"
 
 ### Backup extB to extC
-alias bk_extBC=". $USCRIPTS/backup_dir $EXTB $EXTC"
+alias bk_extBC=". $USCRIPTS/backup_dir $EXTB $EXTC /Media/**"
 
 ### Backup extA to MD
 alias bk_extAMD=". $USCRIPTS/backup_dir $EXTA/Media $MD"
