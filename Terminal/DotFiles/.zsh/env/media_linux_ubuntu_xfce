@@ -47,9 +47,9 @@ run_boot_tasks() {
 
   m_md
 
-  $ZSCRIPTS/apps_keep_alive "firefox" &
-  $ZSCRIPTS/apps_keep_alive "xfce4-terminal --maximize" &
-  $ZSCRIPTS/apps_keep_alive "kodi -fs" &
+  $ZSCRIPTS/environment/apps_keep_alive "firefox" &
+  $ZSCRIPTS/environment/apps_keep_alive "xfce4-terminal --maximize" &
+  $ZSCRIPTS/environment/apps_keep_alive "kodi -fs" &
 
   until [[ `wmctrl -l` =~ "Mozilla Firefox" ]]; do
     sleep 2

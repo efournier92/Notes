@@ -3,7 +3,7 @@
 " Description   : Opens `lg` buffers per custom configuration
 " Author        : E Fournier
 " Dependencies  : lg_open
-" Example Usage : source $ZSCRIPTS/lg_open.vim
+" Example Usage : source $ZSCRIPTS/lg/lg_open.vim
 "----------------
 
 function! SwitchToTabIndex(index)

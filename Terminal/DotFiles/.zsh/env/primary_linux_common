@@ -192,7 +192,7 @@ export RC="/mnt/rc"
 
 #### Mount
 
-alias rc_thumb_mount="$ZSCRIPTS/rc_mount"
+alias rc_thumb_mount="$ZSCRIPTS/rc/rc_mount"
 
 #### Unmount
 
@@ -214,7 +214,7 @@ alias rc_thumb_process="$ZSCRIPTS/rc/rc_thumb_process -i $RC/RECORD -o $EXTA/Lg/
 
 #### Mount
 
-alias rc_bank_mount="$ZSCRIPTS/rc_mount"
+alias rc_bank_mount="$ZSCRIPTS/rc/rc_mount"
 
 #### Unmount
 

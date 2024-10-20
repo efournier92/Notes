@@ -28,7 +28,7 @@ tmux new-window -t "$SESSION_NAME:1" "ssh -t ${sb_username}@${sb_server_name}.${
 
 ### Full Pane
 
-# tmux new-window -t "$SESSION_NAME:2" ". $USCRIPTS/mount_sbfs $SBFS; cd $SBFS; zsh"
+# tmux new-window -t "$SESSION_NAME:2" ". $ZSCRIPTS/mount/mount_sbfs $SBFS; cd $SBFS; zsh"
 
 tmux new-window -t "$SESSION_NAME:2" "cd $HLE; zsh"
 

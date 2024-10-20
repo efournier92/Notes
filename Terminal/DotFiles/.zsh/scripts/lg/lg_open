@@ -20,7 +20,7 @@ main() {
 
   vim --cmd "set key=$password" \
     -o 20*.md \
-    -c "source $ZSCRIPTS/lg_open.vim"
+    -c "source $ZSCRIPTS/lg/lg_open.vim"
 }
 
 main "$@"

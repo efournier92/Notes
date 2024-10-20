@@ -17,7 +17,7 @@ main() {
     exit
   fi
   
-  local snc_file_location="$ZSCRIPTS/snc_run"
+  local snc_file_location="$ZSCRIPTS/backup/snc_run"
   local server_domain="$lb_server_domain"
   local user="$lb_username"
   local server_bin_dir="/usr/bin"

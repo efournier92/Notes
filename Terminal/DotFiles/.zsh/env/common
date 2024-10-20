@@ -215,20 +215,20 @@ snc_lg() {
 
 snc_dir() { 
   local target_dir="$1"
-  [[ -d "${SNC}/${target_dir}" ]] && $ZSCRIPTS/snc_init "single_dir" "$target_dir"
+  [[ -d "${SNC}/${target_dir}" ]] && $ZSCRIPTS/backup/snc_init "single_dir" "$target_dir"
 }
 
 #### All
 
 snc_zall() { 
-  [[ -d "${SNC}/${target_dir}" ]] && $ZSCRIPTS/snc_init "all"
+  [[ -d "${SNC}/${target_dir}" ]] && $ZSCRIPTS/backup/snc_init "all"
 }
 
 ## Tools
 
 ### Open Lg session in Vim
 
-export lg_command="$ZSCRIPTS/lg_open"
+export lg_command="$ZSCRIPTS/lg/lg_open"
 alias lg="$lg_command"
 
 ### Vim
@@ -309,7 +309,7 @@ $AUTO_SNC_ENABLED && $ZSCRIPTS/environment/snc_init watch
 
 ### Sync via Unison
 
-alias uni=". $ZSCRIPTS/snc_init"
+alias uni=". $ZSCRIPTS/backup/snc_init"
 
 ## Overrides
 
