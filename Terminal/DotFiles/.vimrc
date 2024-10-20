@@ -224,6 +224,35 @@ nnoremap <leader>json :%!python -m json.tool<CR>
 """ Replace Curly Quote
 noremap <Leader>q :call ReplaceCurlyQuotes()<CR>
 
+""" Convert The Selected Markdown For Use In Slack
+
+"""" Function
+function! ConvertMarkdownForSlack()
+  " Convert italics text (*italics*) to Slack's italics (_italics_)
+  silent! s/\*\([^*]\+\)\*/_\1_/g
+
+  " Convert bold text (**bold**) to Slack's bold (*bold*)
+  silent! s/\*\*\(.*\)\*\*/*\1*/g
+  
+  " Convert interim instance of (_* & *_) to bold (**)
+  silent! s/_\*\|\*_/*/g
+
+  " Convert headings to just bold
+  silent! s/^#\+\s\+\(.*\)$/*\1*/g
+
+  " Double every level of indentation
+  silent! s/^\( \+\)/\1\1/g
+
+  " Remove language specifiers from code blocks
+  silent! s/```[a-zA-Z0-9_-]\+/```/g
+  
+  " Remove highlighting
+  noh
+endfunction
+
+"""" Mapping
+noremap <Leader>mds :call ConvertMarkdownForSlack()<CR>
+
 """ Update Mardown Styling to 2024 Convention
 
 """" Function
