@@ -224,7 +224,7 @@ nnoremap <leader>json :%!python -m json.tool<CR>
 """ Replace Curly Quote
 noremap <Leader>q :call ReplaceCurlyQuotes()<CR>
 
-""" Convert The Selected Markdown For Use In Slack
+""" Convert The Selected Markdown To A Slack-Friendly syntax
 
 """" Function
 function! ConvertMarkdownForSlack()
@@ -240,12 +240,12 @@ function! ConvertMarkdownForSlack()
   " Convert headings to just bold
   silent! s/^#\+\s\+\(.*\)$/*\1*/g
 
-  " Double every level of indentation
-  silent! s/^\( \+\)/\1\1/g
-
   " Remove language specifiers from code blocks
   silent! s/```[a-zA-Z0-9_-]\+/```/g
   
+  " Double every level of indentation
+  silent! s/^\( \+\)/\1\1/g
+
   " Remove highlighting
   noh
 endfunction
