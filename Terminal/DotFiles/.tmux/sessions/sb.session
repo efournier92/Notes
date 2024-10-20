@@ -8,31 +8,39 @@
 #----------------
 
 ## Session Attributes
+
 BASE_DIR="$HOME"
 SESSION_NAME="sb"
 
 ## 1st Window
 
 ### Full Pane
+
 tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR" "ssh -t ${sb_username}@${sb_server_name}.${sb_server_domain} 'tremc -X'"
 
 ## 2nd Window 
 
 ### Full Pane
+
 tmux new-window -t "$SESSION_NAME:1" "ssh -t ${sb_username}@${sb_server_name}.${sb_server_domain} 'zsh'"
 
 ## 3rd Window
 
 ### Full Pane
+
 # tmux new-window -t "$SESSION_NAME:2" ". $USCRIPTS/mount_sbfs $SBFS; cd $SBFS; zsh"
+
 tmux new-window -t "$SESSION_NAME:2" "cd $HLE; zsh"
 
 ## Select Starting Window
+
 tmux select-window -t "$SESSION_NAME:0"
 
 ## Attach to session
+
 tmux attach -t "$SESSION_NAME"
 
 ## Switch to session
+
 tmux switch-client -t "$SESSION_NAME"
 

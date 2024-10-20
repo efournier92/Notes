@@ -8,15 +8,18 @@
 #----------------
 
 ## Load ZSH configuration
+
 #source "$HOME/.zsh/env/common"
 
 ## Create Base Session
+
 BASE_DIR="~/bnk/cs"
 SESSION_NAME="overmind"
 
 ## 1st Window
 
 ### Full Pane
+
 tmux new -s "$SESSION_NAME" -d "tmux splitw -v -p 95 'sleep 1; overmind connect web' & overmind start -f Procfile.dev"
 
 ## Session
@@ -24,12 +27,14 @@ tmux new -s "$SESSION_NAME" -d "tmux splitw -v -p 95 'sleep 1; overmind connect 
 ## 2nd Window 
 
 ### Full Pane
+
 #tmux new-window -t "$SESSION_NAME:1" "cd $CRX_DIR; vim .; zsh"
 
 ## Attach
+
 tmux attach -t "$SESSION_NAME"
 
 ## Switch to session
-tmux switch-client -t "$SESSION_NAME" &
 
+tmux switch-client -t "$SESSION_NAME" &
 

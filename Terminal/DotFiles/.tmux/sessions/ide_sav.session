@@ -12,11 +12,13 @@
 source "$HOME/.zsh/.zshrc"
 
 ## Session Attributes
+
 SESSION_NAME="ide"
 BE_DIR="$CS/backend-service"
 FE_DIR="$CS/web-app"
 
 ## Check if session already exists
+
 tmux has-session -t "$SESSION_NAME" 2>/dev/null
 
 ## New Session
@@ -46,8 +48,10 @@ if [[ "$?" -eq 1 ]] ; then
 fi
 
 ## Attach to session
+
 tmux attach -t "$SESSION_NAME"
 
 ## Switch to session
+
 tmux switch-client -t "$SESSION_NAME" &
 

@@ -10,12 +10,15 @@
 ## File system
 
 ### Bnk directory
+
 export BNK="$HOME/bnk"
 
 ### Start directory
+
 export START="$BNK"
 
 ### Add ~/bin to PATH                                                                                                                                            
+
 export PATH="$HOME/bin:$PATH"    
 
 ## Tools
@@ -23,13 +26,16 @@ export PATH="$HOME/bin:$PATH"
 ### Snc
 
 #### Enable unison
+
 export AUTO_SNC_ENABLED=false
 
 ## Resources
 
 ### Linux common
+
 source "$ZENV/linux_common"
 
 ### Record RC
+
 alias rc_record="nohup /home/misigno/.scripts/rc_record '08:00:00' '/home/misigno/bnk/rc' 'plughw:CARD=Creation,DEV=0' 'plughw:CARD=Device,DEV=0' > /dev/null 2>&1&"                                             
 

@@ -8,19 +8,23 @@
 #----------------
 
 ## Load ZSH configuration
+
 source "$HOME/.zsh/env/common"
 
 ## Create Base Session
+
 SESSION_NAME="base"
 BASE_DIR="$START"
 
 ## 1st Window
 
 ### Full Pane
+
 tmux new -s "$SESSION_NAME" -d "cd $BASE_DIR; zsh"
 
 ## Session
 
-## Attach
+### Attach
+
 tmux attach -t "$SESSION_NAME"
 

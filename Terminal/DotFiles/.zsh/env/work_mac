@@ -10,9 +10,11 @@
 ## File system
 
 ### Bnk directory
+
 export BNK="$HOME/bnk"
 
 ### Start directory
+
 export START="$HOME"
 
 ## Tools
@@ -20,17 +22,20 @@ export START="$HOME"
 ### Snc
 
 #### Enable unison
+
 export AUTO_SNC_ENABLED=false
 
 ## Resources
 
 ### PostgreSQL
+
 export PGPATH="/usr/local/opt/postgresql@12/bin"
 export LDFLAGS="-L/usr/local/opt/postgresql@12/lib"
 export CPPFLAGS="-I/usr/local/opt/postgresql@12/include"
 export PKG_CONFIG_PATH="/usr/local/opt/postgresql@12/lib/pkgconfig"
 
 ### Ruby
+
 export RB_ENV_PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin"
 export PATH="$RB_ENV_PATH:$PGPATH:$PATH"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
@@ -39,20 +44,24 @@ export MAX_THREADS=4
 ### Tmux
 
 #### Open a Debug shell using Overmind
+
 alias overmind_debug_web="tmux splitw -v -p 100 'sleep 1; overmind connect web' & overmind start -f Procfile.dev"
 alias overmind_debug_test="tmux splitw -v -p 100 'sleep 1; overmind connect web' & overmind start -f Procfile.test"
 
 ### Vim
 
 #### Ensure usage of the correct CTags version
+
 alias ctags="`brew --prefix`/bin/ctags"
 
 ### Scripts
+
 alias agile_ticket_create="$USCRIPTS/agile_ticket_create"
 
 ## Boot
 
 ### Tasks
+
 run_boot_tasks() {
 
 }

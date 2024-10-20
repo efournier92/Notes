@@ -8,16 +8,20 @@
 #----------------
 
 ## Load ZSH configuration
+
 source "$HOME/.zsh/.zshrc"
 
 ## Session Attributes
+
 BASE_DIR="$SLG"
 SESSION_NAME="lg"
 
 ## Check if session already exists
+
 tmux has-session -t "$SESSION_NAME" 2>/dev/null
 
 ## New Window | Full Pane
+
 if [ "$?" -eq 1 ] ; then
   ### Create in new session if one does not exist
   tmux new -s "$SESSION_NAME" -d -c "$BASE_DIR"
@@ -27,8 +31,10 @@ if [ "$?" -eq 1 ] ; then
 fi
 
 ## Attach to session
+
 tmux attach -t "$SESSION_NAME"
 
 ## Switch to session
+
 $TSCRIPTS/switch-to-session "$SESSION_NAME" &
 

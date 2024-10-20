@@ -10,41 +10,52 @@
 ## File System
 
 ### User home directory
+
 export UHOME="$HOME"
 
 ### Hosts file
+
 export HOSTS="/etc/hosts"
 
 ### SB
 
 #### SB mount point
+
 export SBFS="$BNK/sbfs"
 
 #### Ensure relevant directories exist
+
 mkdir -p "$SBFS" > /dev/null 2>&1
 
 ## Sources
 
 ### Drives
+
 source "$ZTOOLS/drives"
 
 ## GUI Launchers
 
 ### Explore
+
 explore() { nohup nautilus "$1" >/dev/null 2>&1 &; }
 
 ### Spreadsheet
+
 spreadsheet() { nohup libreoffice "$1" >/dev/null 2>&1 &; }
 
 ### Word Processing
+
 word() { nohup libreoffice "$1" >/dev/null 2>&1 &; }
 
 ### Presentation
+
 presentation() { nohup libreoffice "$1" >/dev/null 2>&1 &; }
 
 ### Markdown
+
 markdown() { nohup chromium $1 >/dev/null 2>&1 &; }
 
 ### PDF
+
 presentation() { nohup evince "$1" >/dev/null 2>&1 &; }
 

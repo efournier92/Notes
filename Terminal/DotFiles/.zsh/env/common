@@ -6,87 +6,111 @@
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------
- 
+
 ## Environment
 
 ### Env File
 
 #### Read the 1st line of the file to get the environment name
+
 export ENV_NAME="$(head -n 1 $HOME/.env_name)"
 
 ### Zsh
  
 #### Zsh root directory
+
 export ZZSH="$HOME/.zsh"
 
 #### Zsh dot directory
+
 export ZDOTDIR="$ZZSH"
 
 #### Oh-My-Zsh directory
+
 export ZOHMYZSH="$HOME/.oh-my-zsh"
 
 #### Zsh alias directory
+
 export ZTOOLS="$ZZSH/tools"
 
 #### Zsh plugins directory
+
 export ZPLUGINS="$ZZSH/plugins"
 
 #### Zsh environment directory
+
 export ZENV="$ZZSH/env"
 
 #### Zsh scripts directory
+
 export ZSCRIPTS="$ZZSH/scripts"
 
 ### Create env_id file
+
 export ENV_ID="$($ZSCRIPTS/env_id_get)"
 
 ### Specify the location of the .zcompdump file
+
 export ZSH_COMPDUMP="$HOME/.cache/.zcompdump-${ENV_ID}-${ZSH_VERSION}"
 
 ### Load environment-specific configuration
+
 source "$ZENV/$ENV_NAME"
 
 ### Oh-My-Zsh
 
 #### Shell theme
+
 [[ -z $ZSH_THEME ]] && ZSH_THEME="avit"
 
 #### Disable update prompts
+
 DISABLE_AUTO_UPDATE=true
 
 #### Hide user and host from auto titles
+
 DISABLE_AUTO_TITLE=true
 
 #### Set global variable
+
 ZSH="$ZOHMYZSH"
 
 #### Load oh-my-zsh assets
+
 source "$ZSH/oh-my-zsh.sh"
 
 #### Enable extension for syntax highlighting
+
 source "$ZPLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 #### Set custom highlighting for the `ls` command
+
 export LS_COLORS="di=31:tw=31:ow=31:fi=32:su=32:sg=32:ex=32:so=36:pi=36:bd=36:cd=36:ln=36:"
 
 #### Use same highlighting for completion as for the `ls` command
+
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 ## System
 
 ### Shell
+
 export SHELL="zsh"
 
 ### Editor
+
 export EDITOR="vim"
 
 ### Language
+
 export LANG="en_US.UTF-8"
 
 ### Preserve natural sort order
+
 export LC_COLLATE="C"
 
 ### The current year
+
 export THIS_YEAR=`date +"%Y"`
 
 ## File System
@@ -94,82 +118,108 @@ export THIS_YEAR=`date +"%Y"`
 ### Home
 
 #### Desktop
+
 export UDESK="$UHOME/Desktop"
 
 #### Desktop
+
 export UDOWN="$UHOME/Downloads"
 
 #### Documents
+
 export UDOCS="$UHOME/Documents"
 
 #### Documents
+
 export UPICS="$UHOME/Pictures"
 
 ### Bnk
 
 #### Cs
+
 export CS="$BNK/cs"
 
 #### Hle
+
 export HLE="$BNK/hle"
 
 #### Snc
+
 export SNC="$BNK/snc"
 
 #### Scripts
+
 export USCRIPTS="$HOME/.scripts"
 
 #### Ensure relevant directories exist
+
 mkdir -p "$BNK" "$SNC" "$CS" "$HLE" > /dev/null 2>&1
 
 ### Snc
 
 #### Books
+
 export SBOOKS="$SNC/Books"
 
 #### Desktop
+
 export SDESK="$SNC/Desk"
 
 #### Desktop
+
 export TT="$SNC/D"
 
 #### Lg
 
 ##### Root
+
 export SLG="$SNC/Lg"
 
 ##### Vim Mappings
+
 export LMAPS="$SLG/.mappings"
 
+##### Vim Snippets
+
+export LSNIPS="$SLG/.snippets"
+
 #### Pictures
+
 export SPHO="$SNC/Pictures"
 
 #### Screenshots
+
 export SSHOTS="$SNC/Pictures/screenshots"
 
 #### Work
+
 export SWORK="$SNC/Work"
 
 #### Stories
+
 export SSTORIES="$SWORK/Stories"
 
 ### Notes
+
 export SNOTES="$SNC/Notes"
 
 ### Snc Processes
 
 #### Lg
+
 snc_lg() { 
   snc_dir "Lg"
 }
 
 #### Specific directory
+
 snc_dir() { 
   local target_dir="$1"
   [[ -d "${SNC}/${target_dir}" ]] && $ZSCRIPTS/snc_init "single_dir" "$target_dir"
 }
 
 #### All
+
 snc_zall() { 
   [[ -d "${SNC}/${target_dir}" ]] && $ZSCRIPTS/snc_init "all"
 }
@@ -177,26 +227,32 @@ snc_zall() {
 ## Tools
 
 ### Open Lg session in Vim
+
 export lg_command="$ZSCRIPTS/lg_open"
 alias lg="$lg_command"
 
 ### Vim
 
 #### Vim root directory
+
 export VVIM="$HOME/.vim"
 
 #### Vim snippets directory
+
 export VSNIPS="$VVIM/snippets"
 
 ### Tmux
 
 ##### Tmux root directory
+
 export TTMUX="$HOME/.tmux"
 
 ##### Tmux session directory
+
 export TSESSIONS="$TTMUX/sessions"
 
 ##### Tmux scripts directory
+
 export TSCRIPTS="$TTMUX/scripts"
 
 ### Git
@@ -204,16 +260,20 @@ export TSCRIPTS="$TTMUX/scripts"
 #### Diff tool
 
 if [[ `git config --global diff.tool` != "vimdiff" ]]; then
+
   ##### Use vim for diffing
+  
   git config --global diff.tool vimdiff
 
   ##### Disable the prompt before diffing
+  
   git config --global difftool.prompt false
 fi
 
 ## Display
 
 ### Prevent partial-line %
+
 unsetopt PROMPT_SP
 
 ## Privacy
@@ -221,17 +281,21 @@ unsetopt PROMPT_SP
 ### History
 
 #### Maximum history items in memory
+
 HISTSIZE=1000
 
 #### Do not persist history to file
+
 SAVEHIST=0
 
 #### Unset history file location
+
 HISTFILE=""
 
 ## Tweaks
 
 ### Always list directory contents on change
+
 chpwd() { ls }
 
 ## Tools
@@ -239,12 +303,15 @@ chpwd() { ls }
 ### Unison
 
 #### Ensure unique host name per machine
+
 export UNISONLOCALHOSTNAME="$ENV_ID"
 
 #### Conditionally start the unison sync process
+
 $AUTO_SNC_ENABLED && $ZSCRIPTS/snc_init watch
 
 ### Sync via Unison
+
 alias uni=". $ZSCRIPTS/snc_init"
 
 ## Overrides
@@ -252,39 +319,58 @@ alias uni=". $ZSCRIPTS/snc_init"
 ### Location
 
 #### Whereami
+
 alias whereami="curl ipinfo.io"
 
 ### List
 
 ### Hide snap loop devices from `lsblk` output
+
 function lsbl() { command lsblk -e7; }; 
 
 #### List Block Devices with UUIDs
+
 alias lsuuid="lsblk -o NAME,FSTYPE,PARTLABEL,UUID,PARTUUID"
+
+### Find
+
+#### Find by file name
+
+function ffind() { local query="$1"; find . -iname "*$query*" }
+
+#### Find by file contents
+
+function gfind() { local query="$1"; grep -ir "$query" }
 
 ## Files
 
 ### Cleanup
 
 #### List `._` Files
-alias dotunderls="find . -name '._*' -print"
+
+alias dotunderls="find . -name '.**' -print"
 
 #### Delete `._` Files
-alias dotunderrm="find . -name '._*' -delete -print"
+
+alias dotunderrm="find . -name '.**' -delete -print"
 
 ### Dot Files
 
 #### Copy from current directory to $HOME
+
 alias dot_files_to_home="cp -r .tmux .tmux.conf .vim .vimrc .zsh .zshenv $HOME"
 
 #### Copy from $HOME to current directory
+
 alias dot_files_from_home="cp -rv ~/.tmux ~/.tmux.conf ~/.vim ~/.vimrc ~/.zsh ~/.zshenv ."
 
 ### Notes
 
 #### Start session
+
 alias notes=". $TSESSIONS/notes.session"
 
 #### Kill session
+
 alias notes!="tmux kill-session -t notes"
 

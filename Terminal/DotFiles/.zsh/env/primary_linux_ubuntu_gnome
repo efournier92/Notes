@@ -10,9 +10,11 @@
 ## File system
 
 ### Bnk directory
+
 export BNK="/mnt/bnk"
 
 ### Start directory
+
 export START="$BNK"
 
 ## Tools
@@ -20,14 +22,17 @@ export START="$BNK"
 ### Snc
 
 #### Enable unison
+
 export AUTO_SNC_ENABLED=false
 
 ## Resources
 
 ### Linux common
+
 source "$ZENV/common_linux"
 
 ### Primary common
+
 source "$ZENV/primary_linux_common"
 
 ## External Devices
@@ -37,20 +42,25 @@ source "$ZENV/primary_linux_common"
 #### Nexus
 
 ##### Phone ID
+
 phone_id="SAMSUNG_SAMSUNG_Android_28c97b85383f7ece"
 
 ##### Mount
+
 function m_phone() { gio mount "mtp://$phone_id"; }
 
 ##### Dismount
+
 function um_phone() { gio mount -u "mtp://$phone_id"; }
 
 ##### Access Files
+
 function cd_phone() { cd "/run/user/1000/gvfs/mtp:host=$phone_id/Phone"; }
 
 ## Language Support
 
 ### Ruby
+
 rbenv_dir="$HOME/.rbenv"
 if [[ -d "$rbenv_dir" ]]; then
   export PATH="$rbenv_dir/bin:$PATH"
@@ -60,6 +70,7 @@ fi
 ## Boot
 
 ### Tasks
+
 run_boot_tasks() {
   gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
   gsettings set org.gnome.desktop.screensaver lock-enabled true

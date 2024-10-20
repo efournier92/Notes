@@ -10,9 +10,11 @@
 ## File System
 
 ### Bnk directory
+
 export BNK="$HOME/bnk"
 
 ### Start directory
+
 export START="$HOME"
 
 ## Tools
@@ -20,16 +22,19 @@ export START="$HOME"
 ### Snc
 
 #### Enable unison
+
 export AUTO_SNC_ENABLED=false
 
 ## Resources
 
 ### Linux Common
+
 source "$ZENV/linux_common"
 
 ## Boot
 
 ### Tasks
+
 run_boot_tasks() {
   $USCRIPTS/pulseaudio_set_default_sink "alsa.name" "HDMI" &
 

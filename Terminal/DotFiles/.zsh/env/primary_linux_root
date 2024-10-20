@@ -10,14 +10,17 @@
 ## Environment
 
 ### Override Oh-My-Zsh theme
+
 ZSH_THEME="jonathan"
 
 ## File system
 
 ### Bnk directory
+
 export BNK="/mnt/bnk"
 
 ### Start directory
+
 export START="$BNK"
 
 ## Tools
@@ -25,10 +28,12 @@ export START="$BNK"
 ### Snc
 
 #### Enable unison
+
 export AUTO_SNC_ENABLED=false
 
 ## Resources
 
 ### Linux common
+
 source "$ZENV/linux_common"
 
