@@ -1,0 +1,181 @@
+#!/bin/bash
+
+#----------------
+# Name          : agile_ticket_create
+# Description   : Creates a template for tracking details while developing an agile ticket
+# Author        : E Fournier
+# Dependencies  : bash
+# Example Usage : ./agile_ticket_create 'ticket_sprint' 'ticket_id' 'ticket_title'
+#----------------
+
+get_story_contents() {
+  local ticket_sprint="$1"
+  local ticket_id="$2"
+  local ticket_title="$3"
+
+  local ticket_title_with_id="$ticket_id > $ticket_title"
+
+cat << EOF
+# [$ticket_sprint > $ticket_id > $ticket_title](https://dorsata.atlassian.net/browse/$ticket_id)
+
+## Ticket Details
+
+### Title
+- $ticket_title_with_id
+
+### Link
+
+#### Url
+- https://dorsata.atlassian.net/browse/$ticket_id
+
+#### Url With Title
+- [$ticket_title_with_id](https://dorsata.atlassian.net/browse/$ticket_id)
+
+### Background
+
+### Acceptance Criteria
+
+### Sprint
+- $ticket_sprint
+
+### Epic
+- []()
+
+### People
+
+#### Technical Lead
+- 
+
+#### Product Lead
+- 
+
+### Points
+- 
+
+## Commands
+
+## Code
+
+## Git
+
+### Branch
+- $ticket_id
+
+### Commits
+
+### Pull Request
+
+#### Date
+
+#### Title
+- $ticket_title_with_id
+
+#### Comment
+
+\`\`\`text
+[$ticket_id](https://dorsata.atlassian.net/browse/$ticket_id)
+
+**Resolves $ticket_id**
+
+### Loom
+
+- [$ticket_title_with_id]()
+
+### Changes made
+
+- 
+
+### Testing checklist (check all that apply)
+
+- [X] Ticket number is prefixed to title above <!-- example: "[DOR-123, DOR-234] Fix reminder popovers" -->
+- [X] Pull request title is concise and unambiguous
+- [ ] There is a test plan on [Notion](https://www.notion.so/dorsata/86fbebc517254abc8da98b10573cabf8?v=9c0325fab0144d5e8862b8fea64c1069)
+  - [ ] Test plan includes every practical feature scenario
+  - [ ] Test plan accounts for missing/negative data
+- [ ] Unit test was created
+- [ ] Necessary seed data for testing locally exists
+- [ ] An example patient exists (add EHR ID if importing is necessary)
+- [ ] One-off change is covered by a snapshot test
+
+### Additional testing for this commit and subsequent release
+
+N/A
+
+### Steps to reproduce original bug (if this is a bug fix)
+
+N/A
+\`\`\`
+
+#### Line Comments
+
+##### \`f\` | #0
+
+## Communication
+
+## Notes
+
+## Loom
+
+### Date
+- 
+
+### Title
+- $ticket_title_with_id
+
+### Link
+
+#### Url
+- 
+
+#### Url With Title
+- [$ticket_title_with_id]()
+
+### Agenda
+
+#### Background
+
+#### Demo
+
+EOF
+}
+
+format_file_name() {
+  local ticket_sprint="$1"
+  local ticket_id="$2"
+  local ticket_title="$3"
+
+  local ticket_title_camel_case="${ticket_title// /}"
+  local ticket_title_camel_case="${ticket_title_camel_case//And/+}"
+  local ticket_title_camel_case="${ticket_title_camel_case//-/}"
+  local ticket_title_camel_case="${ticket_title_camel_case//_/}"
+  local ticket_title_camel_case="${ticket_title_camel_case//\>/_}"
+
+  local file_name_formatted="${ticket_sprint}_${ticket_id}_${ticket_title_camel_case}"
+
+  echo "$file_name_formatted"
+}
+
+main() {
+  local ticket_sprint="$1"
+  local ticket_id="$2"
+  local ticket_title="$3"
+
+  local dir="$(pwd)"
+
+  if [[ -z "$ticket_sprint" || -z "$ticket_id" || -z "$ticket_title" ]]; then
+    echo "USAGE: agile_ticket_create 'ticket_sprint' 'ticket_id' 'ticket_title'"
+    exit
+  fi
+
+  local file_name_formatted=`format_file_name "$ticket_sprint" "$ticket_id" "$ticket_title"`
+
+  mkdir -p "${dir}/${file_name_formatted}"
+
+  local ticket_file="${dir}/${file_name_formatted}/${file_name_formatted}.md"
+  touch "$ticket_file"
+
+  get_story_contents "$ticket_sprint" "$ticket_id" "$ticket_title" >> "$ticket_file"
+}
+
+main "$@"
+

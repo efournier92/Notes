@@ -42,8 +42,8 @@ run_boot_tasks() {
   # Disable the inbuilt speaker
   pacmd unload-module module-switch-on-port-available
 
-  $USCRIPTS/connect_persistently_vpn 60 "Calypso" &
-  $USCRIPTS/connect_persistently_vnc 60 &
+  $ZSCRIPTS/connect/connect_persistently_vpn 60 "Calypso" &
+  $ZSCRIPTS/connect/connect_persistently_vnc 60 &
 
   m_md
 

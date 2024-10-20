@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#----------------
+# Name          : connect_vpn_persistently
+# Description   : Continuously attempts to connect a VPN client
+# Author        : E Fournier
+# Dependencies  : nmcli
+# Example Usage : ./connect_vpn_persistently "Calypso" 60
+#----------------
+
+main() {
+  local wifi_network_name="$1"
+  local timeout_seconds=$2
+
+  if [[ -z "$wifi_network_name" ]]; then
+    echo "ERROR: Must supply WIFI network name as first argument."
+    exit
+  fi
+
+  [[ -z "$timeout_seconds" ]] && local timeout_seconds=60
+
+  while true; do
+    [[ ! `nmcli connection show --active` =~ "$wifi_network_name" ]] \
+      && nmcli d wifi connect "$wifi_network_name"
+
+    sleep $timeout_seconds
+  done
+}
+
+main "$@"
+

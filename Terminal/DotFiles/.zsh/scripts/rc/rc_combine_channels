@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#----------------
+# Name          : rc_combine_channels
+# Description   : Combines channels from 2 mono sources
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./rc_clean "username" "server_domain" "home_directory"
+#----------------
+
+main() {
+  local left_file_name="$1"
+  local right_file_name="$2"
+  local output_file_name="$3"
+
+  local left_volume="1"
+  local right_volume="4"
+  local audio_rate="2005"
+  local thread_queue="16384"
+  local output_quality="8"
+  local output_codec="libmp3lame"
+  local output_channels="2"
+
+  ffmpeg \
+    -ac 1 -i "$left_file_name" -ac 1 -i "$right_file_name" \
+    -filter_complex "[0]volume=$left_volume[left_channel];[1]volume=$right_volume[right_channel];[left_channel][right_channel]join=inputs=2:channel_layout=stereo[combined_channels]" \
+    -map "[combined_channels]" \
+    -c:a "$output_codec" -ac "$output_channels" -q:a "$output_quality" \
+    "${output_file_name}"
+}
+
+main "$@"
+

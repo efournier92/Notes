@@ -1,0 +1,72 @@
+#!/bin/bash
+
+#----------------
+# Name          : rc_record
+# Description   : Records a 2-channel audio file from 1 or 2 audio sources for a specified duration.
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./rc_record "12:00:00" "/home/misigno/bnk/rc" "plughw:CARD=microphone,DEV=0" "plughw:CARD=Creation,DEV=0"
+#----------------
+
+# Example Devices
+# "plughw:CARD=microphone,DEV=0"
+# "plughw:CARD=Device,DEV=0"
+# "plughw:CARD=Creation,DEV=0"
+
+capture_single_source_audio() {
+  local output_duration="$1"
+  local file_name="$2"
+  local audio_device="$3"
+
+  local audio_channels="1"
+  local audio_rate="11025"
+  local thread_queue="16384"
+  local volume="2"
+
+  ffmpeg -fflags nobuffer -flags low_delay \
+    -f alsa -channels "$audio_channels" -thread_queue_size "$thread_queue" -sample_rate "$audio_rate" -t "$output_duration" -async 1 -i "$audio_device" \
+    -filter:a "volume=2" \
+    "${file_name}.wav"
+}
+
+capture_dual_source_audio() {
+  local output_duration="$1"
+  local file_name="$2"
+  local left_device="$3"
+  local right_device="$4"
+
+  local left_volume="6"
+  local right_volume="2"
+  local audio_rate="11025"
+  local thread_queue="16384"
+
+  ffmpeg -fflags nobuffer -flags low_delay \
+    -f alsa -channels 1 -thread_queue_size "$thread_queue" -sample_rate "$audio_rate" -t "$output_duration" -async 1 -i "$left_device" \
+    -f alsa -channels 1 -thread_queue_size "$thread_queue" -sample_rate "$audio_rate" -t "$output_duration" -async 1 -i "$right_device" \
+    -filter_complex "[0]volume=$left_volume[left_channel];[1]volume=$right_volume[right_channel];[left_channel][right_channel]join=inputs=2:channel_layout=stereo[combined_channels]" \
+    -map "[combined_channels]" "${file_name}.wav"
+}
+
+get_file_name() {
+  local timestamp=`date +"%Y-%m-%d-%H%M"`
+
+  echo "${timestamp}"
+}
+
+main() {
+  local output_duration="$1"
+  local output_dir="$2"
+  local left_device="$3"
+  local right_device="$4"
+
+  local file_name="${output_dir}/`get_file_name`"
+
+  if [[ ! -z "$right_device" ]]; then
+    capture_dual_source_audio "$output_duration" "$file_name" "$left_device" "$right_device"
+  else
+    capture_single_source_audio "$output_duration" "$file_name" "$left_device"
+  fi
+}
+
+main "$@"
+

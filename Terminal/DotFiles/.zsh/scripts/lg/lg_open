@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#----------------
+# Name          : lg_open
+# Description   : Opens `lg` in Vim per custom vimscript configuration
+# Author        : E Fournier
+# Dependencies  : vim
+# Example Usage : ./lg_open
+#----------------
+
+main() {
+  local year=`date +"%Y"`
+  local last_year=$((year - 1))
+  local all_files=`ls | tr '\n' ' '`
+
+  echo -n "Password: "
+  read -s password
+
+  cd "$SNC/Lg"
+
+  vim --cmd "set key=$password" \
+    -o 20*.md \
+    -c "source $ZSCRIPTS/lg_open.vim"
+}
+
+main "$@"
+

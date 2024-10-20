@@ -47,7 +47,7 @@ export ZSCRIPTS="$ZZSH/scripts"
 
 ### Create env_id file
 
-export ENV_ID="$($ZSCRIPTS/env_id_get)"
+export ENV_ID="$($ZSCRIPTS/environment/env_id_get)"
 
 ### Specify the location of the .zcompdump file
 
@@ -260,13 +260,10 @@ export TSCRIPTS="$TTMUX/scripts"
 #### Diff tool
 
 if [[ `git config --global diff.tool` != "vimdiff" ]]; then
-
   ##### Use vim for diffing
-  
   git config --global diff.tool vimdiff
 
   ##### Disable the prompt before diffing
-  
   git config --global difftool.prompt false
 fi
 
@@ -308,7 +305,7 @@ export UNISONLOCALHOSTNAME="$ENV_ID"
 
 #### Conditionally start the unison sync process
 
-$AUTO_SNC_ENABLED && $ZSCRIPTS/snc_init watch
+$AUTO_SNC_ENABLED && $ZSCRIPTS/environment/snc_init watch
 
 ### Sync via Unison
 

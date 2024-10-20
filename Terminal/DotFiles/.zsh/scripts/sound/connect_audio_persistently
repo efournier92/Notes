@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#----------------
+# Name          : connect_vnc_persistently
+# Description   : Continuously attempts to connect a TigerVNC 
+# Author        : E Fournier
+# Dependencies  : x0vncserver, nohup
+# Example Usage : ./connect_vnc_persistently 60
+#----------------
+
+main() {
+  local property_name="$1"
+  local target_pattern="$2"
+  local timeout_seconds=$3
+
+  [[ -z "$timeout" ]] && local timeout_seconds=600
+
+  while true; do
+    $USCRIPTS/pulseaudio_set_default_sink "$property_name" "$target_pattern" &
+
+    sleep $timeout_seconds
+  done
+}
+
+main "$@"
+

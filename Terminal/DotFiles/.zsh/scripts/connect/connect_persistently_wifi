@@ -1,0 +1,85 @@
+#!/bin/bash
+
+#----------------
+# Name          : connect_vpn_persistently
+# Description   : Continuously attempts to connect a VPN client
+# Author        : E Fournier
+# Dependencies  : nmcli, sleep
+# Example Usage : ./connect_persistently_wifi $timeout_seconds $wifi_network_primary $wifi_network_secondary
+#----------------
+
+get_all_wifi_connections() {
+  echo `nmcli dev wifi`
+}
+
+is_network_active() {
+  local wifi_network_primary="$1"
+  local active_network=`nmcli connection show --active`
+  
+  [[ "$active_network" =~ "$wifi_network_primary" ]]
+}
+
+connect_to_network() {
+  local network_to_connect="$1"
+
+  echo "Connecting to Network: $network_to_connect" >&2
+
+  nmcli d wifi connect "$network_to_connect"
+}
+
+connect_to_network_secondary() {
+  local wifi_network_secondary="$1"
+
+  if is_network_active $wifi_network_secondary; then
+    echo "Secondary Network Is Already Connected: $wifi_network_secondary" >&2
+    sleep $timeout_seconds
+  else
+    connect_to_network "$wifi_network_secondary"
+    sleep $timeout_seconds
+  fi
+}
+
+change_networks() {
+  local wifi_network_primary="$1"
+  local wifi_network_secondary="$2"
+
+  local all_wifi_connections=`get_all_wifi_connections`
+
+  if [[ "$all_wifi_connections" =~ "$wifi_network_primary" ]]; then
+    connect_to_network "$wifi_network_primary"
+  elif [[ ! -z "$wifi_network_secondary" && "$all_wifi_connections" =~ "$wifi_network_secondary" ]]; then
+    connect_to_network_secondary "$wifi_network_secondary"
+  fi
+}
+
+validate_arguments() {
+  local timeout_seconds="$1"
+  local wifi_network_primary="$2"
+
+  if [[ -z "$timeout_seconds" || -z "$wifi_network_primary" ]]; then
+    echo "ERROR: Arguments supplied incorrectly"
+    echo 'USAGE: ./connect_wifi_persistently $timeout_seconds $wifi_network_primary $wifi_network_secondary'
+    exit
+  fi
+}
+
+main() {
+  local timeout_seconds=$1
+  local wifi_network_primary="$2"
+  local wifi_network_secondary="$3"
+
+  validate_arguments "$timeout_seconds" "$wifi_network_primary"
+
+  while true; do
+    if is_network_active $wifi_network_primary; then
+      echo "Primary Network Is Already Connected: $wifi_network_primary" >&2
+      sleep $timeout_seconds
+    else
+      echo "Primary Network Is Not Connected: $wifi_network_primary" >&2
+      change_networks "$wifi_network_primary" "$wifi_network_secondary"
+    fi
+  done
+}
+
+main "$@"
+

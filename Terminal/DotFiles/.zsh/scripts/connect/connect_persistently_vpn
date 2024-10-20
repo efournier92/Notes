@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#----------------
+# Name          : connect_persistently_vpn
+# Description   : Continuously attempts to connect a VPN client
+# Author        : E Fournier
+# Dependencies  : nmcli
+# Example Usage : ./connect_persistently_vpn 60 "Calypso"
+#----------------
+
+validate_arguments() {
+  local timeout_seconds=$1
+  local vpn_server_id="$2"
+
+  if [[ -z "$timeout_seconds" || -z "$vpn_server_id" ]]; then
+    echo "ERROR: Arguments supplied incorrectly"
+    echo 'USAGE: ./connect_persistently_vpn $timeout_seconds $vpn_server_id'
+    exit
+  fi
+}
+
+main() {
+  local timeout_seconds=$1
+  local vpn_server_id="$2"
+
+  validate_arguments $timeout_seconds "$vpn_server_id"
+
+  while true; do
+    [[ -z `ip tuntap show` ]] \
+      && nmcli con up id "$vpn_server_id"
+
+    sleep $timeout_seconds
+  done
+}
+
+main "$@"
+

@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#----------------
+# Name          : backup_lg
+# Description   : Backup up lg directory
+# Author        : E Fournier
+# Dependencies  : zip
+# Example Usage : ./backup_lg /mnt/extA/lg/
+#----------------
+
+navigate_to_log_dir() {
+  local log_dir="$1"
+
+  cd "$log_dir"
+}
+
+navigate_to_starting_dir() {
+  local working_dir="$1"
+
+  cd "$working_dir"
+}
+
+try_delete_preexisting_zip() {
+  local zip_location="$1"
+
+  rm -rf "$zip_location"
+}
+
+zip_lg_dir() {
+  local zip_location="$1"
+  local lg_dir_name="Lg"
+
+  zip -r "$zip_location" "$lg_dir_name"
+}
+
+main() {
+  local backup_drive="$1"
+  local working_dir=`pwd`
+  local date_stamp=`date +'%Y-%m-%d'`
+  local zip_location="$backup_drive/Lg/Backups/$date_stamp.zip"
+  local log_dir="/mnt/bnk/snc"
+  
+  navigate_to_log_dir "$log_dir"
+  try_delete_preexisting_zip "$zip_location"
+  zip_lg_dir "$zip_location"
+  navigate_to_starting_dir "$working_dir"
+}
+
+main "$@"
+

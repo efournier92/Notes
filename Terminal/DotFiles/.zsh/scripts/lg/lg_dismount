@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#----------------
+# Name          : lg_dismount
+# Description   : Dismounts `lg` container
+# Author        : E Fournier
+# Dependencies  : veracrypt
+# Example Usage : ./lg_dismount
+#----------------
+
+main() {
+  veracrypt -t -d "$SNC/Lg"
+}
+
+main "$@"
+

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#----------------
+# Name          : connect_persistently_sound_profile
+# Description   : Continuously attempts to connect the correct sound profile
+# Author        : E Fournier
+# Dependencies  : pulseaudio
+# Example Usage : ./connect_persistently_sound_profile "alsa_card.pci-0000_00_1b.0" "output:hdmi-stereo-extra2+input:iec958-stereo" "hdmi"
+#----------------
+
+main() {
+  local card_name="$1"
+  local port_name="$2"
+  local port_type="$3"
+  local timeout_seconds=$4
+  
+  if [[ -z "$card_name" || -z "$port_name" || -z "$port_type" ]]; then
+    echo "ERROR: must supply arguments 'card_name' 'port_name' 'port_type'"
+    exit
+  fi
+
+  [[ -z "$timeout_seconds" ]] && local timeout_seconds=60
+
+  while true; do
+    [[ ! `pacmd list-sinks | grep "active port"` =~ "$port_type" ]] \
+      && pacmd set-card-profile "$card_name" "$port_name"
+
+    sleep $timeout_seconds
+  done
+}
+
+main "$@"
+

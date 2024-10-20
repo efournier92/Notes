@@ -1,0 +1,41 @@
+#!/bin/bash
+
+#----------------
+# Name          : rc_remote_process
+# Description   : Downloads the contents of a directory from a remote server
+# Author        : E Fournier
+# Dependencies  : rsync
+# Example Usage : ./rc_remote_process "server_username" "server_address" "target_dir"
+#----------------
+
+main() {
+  local server_username="$1" 
+  local server_address="$2"
+  local process_script_path="$3"
+  local target_dir="$4"
+
+  if [[ -z "$server_username" ]]; then
+    echo "ERROR > Must supply username as 1st argument."
+    exit
+  fi
+
+  if [[ -z "$server_address" ]]; then
+    echo "ERROR > Must supply address as 2nd argument."
+    exit
+  fi
+
+  if [[ -z "$process_script_path" ]]; then
+    echo "ERROR > Must supply script path as 3rd argument."
+    exit
+  fi
+
+  if [[ -z "$target_dir" ]]; then
+    echo "ERROR > Must supply target directory as 4th argument."
+    exit
+  fi
+
+  ssh -t -t "${server_username}@${server_address}" "'$process_script_path' '$target_dir'"
+}
+
+main "$@"
+

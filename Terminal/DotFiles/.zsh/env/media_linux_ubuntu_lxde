@@ -37,7 +37,7 @@ source "$ZENV/linux_common"
 
 run_boot_tasks() {
   export SYS_NAME="linux_lubuntu_media"
-  $USCRIPTS/connect_persistently_audio_sink 60 "alsa.name" "HDMI" &
+  $ZSCRIPTS/sound/connect_persistently_audio_sink 60 "alsa.name" "HDMI" &
 
   xfce4-power-manager &
   setxkbmap -option caps:escape &

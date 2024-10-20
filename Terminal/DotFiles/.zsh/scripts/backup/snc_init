@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#----------------
+# Name          : snc_init
+# Description   : Starts the snc syncronization process
+# Author        : E Fournier
+# Dependencies  : nohup, snc_run
+# Example Usage : ./snc_init
+#----------------
+
+main() {
+  local mode="$1"
+  local target_dir="$2"
+
+  if ! command -v unison &> /dev/null; then
+    echo "ERROR: Unison is not installed"
+    exit
+  fi
+  
+  local snc_file_location="$ZSCRIPTS/snc_run"
+  local server_domain="$lb_server_domain"
+  local user="$lb_username"
+  local server_bin_dir="/usr/bin"
+  local local_snc_dir="$SNC"
+  local server_snc_dir="/home/${user}/bnk/snc"
+  local local_lg_dir="${local_snc_dir}/${target_dir}"
+  local server_lg_dir="${server_snc_dir}/${target_dir}"
+
+  if [[ "$mode" == "watch" ]]; then
+    nohup "$snc_file_location" "$server_domain" "$user" "$local_snc_dir" "$server_snc_dir" "$server_bin_dir" "watch" >/dev/null 2>&1&
+  elif [[ "$mode" == "single_dir" && ! -z "$target_dir" ]]; then
+    local snc_dir="$SNC/$target_dir"
+    if [[ -d "$snc_dir" ]]; then
+      "$snc_file_location" "$server_domain" "$user" "$local_lg_dir" "$server_lg_dir" "$server_bin_dir"
+    else 
+      echo "ERROR: Must supply a preexisting SNC directory to snc_init." >&2
+      echo "Directory $snc_dir not found" >&2
+    fi
+  elif [[ "$mode" == "all" ]]; then
+    "$snc_file_location" "$server_domain" "$user" "$local_snc_dir" "$server_snc_dir" "$server_bin_dir"
+  else
+    echo "ERROR: Must provide valid arguments to snc_init" >&2
+  fi
+}
+
+main "$@"
+

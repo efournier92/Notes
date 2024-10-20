@@ -56,7 +56,7 @@ alias ctags="`brew --prefix`/bin/ctags"
 
 ### Scripts
 
-alias agile_ticket_create="$USCRIPTS/agile_ticket_create"
+alias agile_ticket_create="$ZSCRIPTS/development/agile_ticket_create"
 
 ## Boot
 

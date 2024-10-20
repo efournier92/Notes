@@ -1,0 +1,80 @@
+#!/bin/bash
+
+#----------------
+# Name          : mount_uuid # Description   : Mounts md drive with veracrypt
+# Author        : E Fournier
+# Dependencies  : veracrypt
+# Example Usage : ./mount_uuid $uuid $mount_location
+#----------------
+
+has_empty_args() {
+  local drive_uuid="$1"
+  local mount_location="$2"
+
+  [[ -z "$drive_uuid" || -z "$mount_location" ]] \
+    && echo "true" \
+    || echo "false"
+}
+
+is_mount_location_empty() {
+  local mount_location="$1"
+
+  [[ $(ls -A "$mount_location") ]] \
+    && echo "false" \
+    || echo "true"
+}
+
+is_uuid_missing() {
+  local drive_uuid="$1"
+
+  [[ -b /dev/disk/by-partuuid/$drive_uuid ]] \
+    && echo "false" \
+    || echo "true"
+}
+
+should_mount() {
+  local drive_uuid="$1"
+  local mount_location="$2"
+  local slot_num="$3"
+
+  local args_are_empty=`has_empty_args "$drive_uuid" "$mount_location" "$slot_num"`
+  
+  local mount_location_is_empty=`is_mount_location_empty "$mount_location"`
+
+  local uuid_is_missing=`is_uuid_missing "$drive_uuid"`
+
+  [[ "$args_are_empty" == "true" ]] \
+    && echo "ERROR: Required arguments are missing" >&2
+
+  [[ "$mount_location_is_empty" == "false" ]] \
+    && echo "ERROR: The supplied mount location is not empty" >&2
+
+  [[ "$uuid_is_missing" == "true" ]] \
+    && echo "ERROR: The supplied UUID is missing" >&2
+
+  [[ "$args_are_empty" == "false" && "$mount_location_is_empty" == "true" && "$uuid_is_missing" == "false" ]] \
+    && echo "true" \
+    || echo "false"
+}
+
+mount_drive() {
+  local drive_uuid="$1"
+  local mount_location="$2"
+
+  sudo mount "/dev/disk/by-partuuid/$drive_uuid" "$mount_location"
+}
+
+main() {
+  local drive_uuid="$1"
+  local mount_location="$2"
+
+  local should_mount_drive=`should_mount "$drive_uuid" "$mount_location"`
+
+  if [[ "$should_mount_drive" == "true" ]]; then
+    echo "Mounting $drive_uuid to $mount_location..."
+    mount_drive "$drive_uuid" "$mount_location"
+  fi
+}
+
+main "$@"
+

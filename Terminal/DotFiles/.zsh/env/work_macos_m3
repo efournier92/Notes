@@ -120,9 +120,9 @@ alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 
 ### Scripts
 
-alias agile_ticket_create="$USCRIPTS/agile_ticket_create"
-alias docker_clean="$USCRIPTS/docker_clean"
-alias docker_rebuild="$USCRIPTS/docker_rebuild"
+alias agile_ticket_create="$ZSCRIPTS/development/agile_ticket_create"
+alias docker_clean="$ZSCRIPTS/development/docker_clean"
+alias docker_rebuild="$ZSCRIPTS/development/docker_rebuild"
 alias graphql_generate="yarn graphql:generate"
 alias graphql_watch="yarn graphql:generate:watch"
 

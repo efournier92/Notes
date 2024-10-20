@@ -61,12 +61,12 @@ source "$ZTOOLS/windows"
 
 ### Create a new agile story directory and file
 
-alias story="$USCRIPTS/create_agile_story"
+alias story="$ZSCRIPTS/development/create_agile_story"
 
 ## Utilities
 
 alias start="cmd.exe /C start"
-alias vvm="bash $USCRIPTS/vvm.bash $SNC"
+#alias vvm="bash $ZSCRIPTS/vvm.bash $SNC"
 
 ## Programs
 

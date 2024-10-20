@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#----------------
+# Name          : connect_persistently_vnc
+# Description   : Continuously attempts to connect a TigerVNC 
+# Author        : E Fournier
+# Dependencies  : x0vncserver, nohup
+# Example Usage : ./connect_persistently_vnc $timeout_seconds
+#----------------
+
+main() {
+  local timeout_seconds=$1
+
+  [[ -z "$timeout" ]] && local timeout_seconds=60
+
+  while true; do
+    [[ -z `pgrep x0vncserver` ]] \
+      && nohup x0tigervncserver -localhost no -display :0 -passwordfile "$HOME/.vnc/passwd"
+
+    sleep $timeout_seconds
+  done
+}
+
+main "$@"
+

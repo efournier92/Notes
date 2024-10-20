@@ -37,10 +37,10 @@ source "$ZENV/linux_common"
 
 run_boot_tasks() {
   export SYS_NAME="linux_lubuntu_fmedia"
-  $USCRIPTS/connect_persistently_audio_sink 60 "alsa.name" "HDMI" &
-  $USCRIPTS/connect_persistently_vnc 60 &
-  $USCRIPTS/connect_persistently_wifi 60 "FW-FamilyRoom" "FW-East" &
-  #$USCRIPTS/connect_persistently_vpn 60 "Calypso" &
+  $ZSCRIPTS/sound/connect_persistently_audio_sink 60 "alsa.name" "HDMI" &
+  $ZSCRIPTS/sound/connect_persistently_vnc 60 &
+  $ZSCRIPTS/sound/connect_persistently_wifi 60 "FW-FamilyRoom" "FW-East" &
+  #$ZSCRIPTS/sound/connect_persistently_vpn 60 "Calypso" &
 
   xfce4-power-manager &
   setxkbmap -option caps:escape &

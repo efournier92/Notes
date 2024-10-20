@@ -62,7 +62,7 @@ alias tor="GTK_THEME=Adwaita:light torbrowser-launcher"
 
 ### Torr
 
-alias torr="$USCRIPTS/torr"
+alias torr="$ZSCRIPTS/download/torr"
 
 ## Web
 
@@ -76,7 +76,7 @@ alias material_colors="open_browser_url https://materialui.co/colors"
 
 ### Download YouTube Audio
 
-yt_audio() { "$USCRIPTS/yt_audio" "$1"; }
+yt_audio() { "$ZSCRIPTS/download/yt_audio" "$1"; }
 
 source "$ZZSH/.secrets"
 
@@ -106,11 +106,11 @@ alias ssh_mb="ssh ${mb_username}@${mb_server_domain}"
 
 #### Process pending RCs on LB over SSH
 
-alias rc_remote_lb_process="$USCRIPTS/rc_remote_process $lb_username $lb_server_domain '/home/$lb_username/.scripts/rc_pending_process' '/home/$lb_username/bnk/rc'"
+alias rc_remote_lb_process="$ZSCRIPTS/rc/rc_remote_process $lb_username $lb_server_domain '/home/$lb_username/.scripts/rc_pending_process' '/home/$lb_username/bnk/rc'"
 
 #### Process pending RCs on MB over SSH
 
-alias rc_remote_mb_process="$USCRIPTS/rc_remote_process $mb_username $mb_server_domain '/home/$mb_username/.scripts/rc_pending_process' '/home/$mb_username/bnk/rc'"
+alias rc_remote_mb_process="$ZSCRIPTS/rc/rc_remote_process $mb_username $mb_server_domain '/home/$mb_username/.scripts/rc_pending_process' '/home/$mb_username/bnk/rc'"
 
 #### Process all pending RCs over SSH
 
@@ -120,11 +120,11 @@ rc_remote_all_process() { rc_remote_lb_process; rc_remote_mb_process }
 
 #### Download RC from LB over SSH
 
-alias rc_remote_lb_download="$USCRIPTS/rc_remote_download $lb_username $lb_server_domain /mnt/bnk/rc"
+alias rc_remote_lb_download="$ZSCRIPTS/rc/rc_remote_download $lb_username $lb_server_domain /mnt/bnk/rc"
 
 #### Download RC from MB over SSH
 
-alias rc_remote_mb_download="$USCRIPTS/rc_remote_download $mb_username $mb_server_domain /mnt/bnk/rc"
+alias rc_remote_mb_download="$ZSCRIPTS/rc/rc_remote_download $mb_username $mb_server_domain /mnt/bnk/rc"
 
 #### Download RC from both LB and MB over SSH
 
@@ -134,11 +134,11 @@ rc_remote_all_download() { rc_remote_lb_download; rc_remote_mb_download }
 
 #### Clean RC directories from MB over SSH
 
-alias rc_remote_lb_clean="$USCRIPTS/rc_remote_clean $lb_username $lb_server_domain /home/misigno"
+alias rc_remote_lb_clean="$ZSCRIPTS/rc/rc_remote_clean $lb_username $lb_server_domain /home/misigno"
 
 #### Download RC from MB over SSH
 
-alias rc_remote_mb_clean="$USCRIPTS/rc_remote_clean $mb_username $mb_server_domain /home/misigno"
+alias rc_remote_mb_clean="$ZSCRIPTS/rc/rc_remote_clean $mb_username $mb_server_domain /home/misigno"
 
 #### Download RC from both LB and MB over SSH
 
@@ -150,17 +150,17 @@ rc_remote_all_clean() { rc_remote_lb_clean; rc_remote_mb_clean }
 
 ##### Single Source
 
-alias rc_remote_record_mic="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB PnP Audio Device'"
+alias rc_remote_record_mic="$ZSCRIPTS/rc/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB PnP Audio Device'"
 
 #### Phone
 
 ##### Cord Audio
 
-alias rc_remote_record_phone="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device'"
+alias rc_remote_record_phone="$ZSCRIPTS/rc/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device'"
 
 ##### Microphone Audio
 
-alias rc_remote_record_phone_mic="$USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device' 'USB PnP Audio Device'"
+alias rc_remote_record_phone_mic="$ZSCRIPTS/rc/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device' 'USB PnP Audio Device'"
 
 #### Zoom
 
@@ -168,21 +168,21 @@ alias rc_remote_record_phone_mic="$USCRIPTS/rc_remote_audio_send $lb_username $l
 
 ###### Headset Audio
 
-alias rc_remote_record_zoom_headset="$ZSCRIPTS/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device' 'Creation'"
+alias rc_remote_record_zoom_headset="$ZSCRIPTS/sound/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device' 'Creation'"
 
 ###### Microphone Audio
 
-alias rc_remote_record_zoom_mic="$ZSCRIPTS/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device' "
+alias rc_remote_record_zoom_mic="$ZSCRIPTS/sound/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device' "
 
 ##### Attach from Local Session
 
 ###### Headset Audio
 
-alias rc_remote_record_zoom_headset_unattached="$ZSCRIPTS/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve_unattached 08:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device' 'Creation'"
+alias rc_remote_record_zoom_headset_unattached="$ZSCRIPTS/sound/combined_audio_sink_enable; $ZSCRIPTS/rc/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve_unattached 08:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device' 'Creation'"
 
 ###### Microphone Audio
 
-alias rc_remote_record_zoom_mic_unattached="$ZSCRIPTS/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve_unattached 08:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device' "
+alias rc_remote_record_zoom_mic_unattached="$ZSCRIPTS/sound/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve_unattached 08:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device' "
 
 ### Thumbs
 
@@ -208,7 +208,7 @@ alias rc_thumb_clean="rm $RC/RECORD/*.WAV"
 
 #### Convert Files
 
-alias rc_thumb_process="$USCRIPTS/rc_thumb_process -i $RC/RECORD -o $EXTA/Lg/Audio"
+alias rc_thumb_process="$ZSCRIPTS/rc/rc_thumb_process -i $RC/RECORD -o $EXTA/Lg/Audio"
 
 ### Bank
 
@@ -230,7 +230,7 @@ alias rc_bank_clean="rm $RC/VIDEO/*.AVI"
 
 #### Convert Files
 
-alias rc_bank_process="$USCRIPTS/rc_bank_process $RC/VIDEO $BNK/rc"
+alias rc_bank_process="$ZSCRIPTS/rc/rc_bank_process $RC/VIDEO $BNK/rc"
 
 ## VPN
 
@@ -246,7 +246,7 @@ alias kvpn_sb="nmcli con down id $sb_server_name"
 
 ### Mount slot to local filesystem
 
-alias fs_sb=". $USCRIPTS/mount_sbfs $SBFS"
+alias fs_sb=". $ZSCRIPTS/mount/mount_sbfs $SBFS"
 
 ### Unmount slot from local filesystem
 

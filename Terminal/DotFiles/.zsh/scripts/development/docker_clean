@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#----------------
+# Name          : docker_clean
+# Description   : Purges all local docker containers, images, and volumes.
+# Author        : E Fournier
+# Dependencies  : docker
+# Example Usage : ./docker_clean
+#----------------
+
+stop_containers() {
+  docker stop $(docker ps -a -q)
+}
+
+delete_containers() {
+  docker rm -vf $(docker ps -aq)
+}
+
+delete_images() {
+  docker rmi -f $(docker images -aq)
+}
+
+delete_volumes() {
+  docker volume rm $(docker volume ls -q --filter dangling=true)
+}
+
+main() {
+  stop_containers
+  delete_containers
+  delete_images
+  delete_volumes
+}
+
+main "$@"
+
