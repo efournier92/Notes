@@ -13,52 +13,50 @@ get_story_contents() {
   local ticket_id="$2"
   local ticket_title="$3"
 
-  local ticket_title_with_id="$ticket_id > $ticket_title"
+  local company_name="savvylabs"
+  local ticket_url="https://${company_name}.atlassian.net/browse/${ticket_id}"
+
+  local ticket_title_with_id="$ticket_id | $ticket_title"
 
 cat << EOF
-# [$ticket_sprint > $ticket_id > $ticket_title](https://dorsata.atlassian.net/browse/$ticket_id)
+# [$ticket_sprint | $ticket_id | $ticket_title]($ticket_url)
 
 ## Ticket Details
 
 ### Title
+
 - $ticket_title_with_id
 
 ### Link
 
 #### Url
-- https://dorsata.atlassian.net/browse/$ticket_id
+
+- $ticket_url
 
 #### Url With Title
-- [$ticket_title_with_id](https://dorsata.atlassian.net/browse/$ticket_id)
+
+- [$ticket_title_with_id]($ticket_url)
 
 ### Background
 
 ### Acceptance Criteria
 
 ### Sprint
+
 - $ticket_sprint
 
-### Epic
+### Parent
+
 - []()
 
-### People
-
-#### Technical Lead
-- 
-
-#### Product Lead
-- 
-
 ### Points
+
 - 
-
-## Commands
-
-## Code
 
 ## Git
 
 ### Branch
+
 - $ticket_id
 
 ### Commits
@@ -67,48 +65,32 @@ cat << EOF
 
 #### Date
 
+-
+
 #### Title
+
 - $ticket_title_with_id
 
 #### Comment
 
 \`\`\`text
-[$ticket_id](https://dorsata.atlassian.net/browse/$ticket_id)
+### Ticket
 
-**Resolves $ticket_id**
+- [$ticket_id]($ticket_url)
 
-### Loom
-
-- [$ticket_title_with_id]()
-
-### Changes made
+### Changes
 
 - 
 
-### Testing checklist (check all that apply)
-
-- [X] Ticket number is prefixed to title above <!-- example: "[DOR-123, DOR-234] Fix reminder popovers" -->
-- [X] Pull request title is concise and unambiguous
-- [ ] There is a test plan on [Notion](https://www.notion.so/dorsata/86fbebc517254abc8da98b10573cabf8?v=9c0325fab0144d5e8862b8fea64c1069)
-  - [ ] Test plan includes every practical feature scenario
-  - [ ] Test plan accounts for missing/negative data
-- [ ] Unit test was created
-- [ ] Necessary seed data for testing locally exists
-- [ ] An example patient exists (add EHR ID if importing is necessary)
-- [ ] One-off change is covered by a snapshot test
-
-### Additional testing for this commit and subsequent release
-
-N/A
-
-### Steps to reproduce original bug (if this is a bug fix)
-
-N/A
 \`\`\`
 
 #### Line Comments
 
 ##### \`f\` | #0
+
+## Commands
+
+## Code
 
 ## Communication
 
@@ -117,17 +99,21 @@ N/A
 ## Loom
 
 ### Date
+
 - 
 
 ### Title
+
 - $ticket_title_with_id
 
 ### Link
 
 #### Url
+
 - 
 
 #### Url With Title
+
 - [$ticket_title_with_id]()
 
 ### Agenda
@@ -149,6 +135,8 @@ format_file_name() {
   local ticket_title_camel_case="${ticket_title_camel_case//-/}"
   local ticket_title_camel_case="${ticket_title_camel_case//_/}"
   local ticket_title_camel_case="${ticket_title_camel_case//\>/_}"
+  local ticket_title_camel_case="${ticket_title_camel_case//\|/_}"
+  local ticket_title_camel_case="${ticket_title_camel_case//\//+}"
 
   local file_name_formatted="${ticket_sprint}_${ticket_id}_${ticket_title_camel_case}"
 

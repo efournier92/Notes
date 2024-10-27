@@ -36,5 +36,5 @@ tmux attach -t "$SESSION_NAME"
 
 ## Switch to session
 
-$TSCRIPTS/switch-to-session "$SESSION_NAME" &
+$TSCRIPTS/switch_to_session "$SESSION_NAME" &
 

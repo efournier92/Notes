@@ -8,27 +8,54 @@
 # Example Usage : ./docker_clean
 #----------------
 
+print_line() {
+  echo "--------"
+}
+
 stop_containers() {
+  print_line
+  echo "STOPPING DOCKER CONTAINERS"
+  print_line
   docker stop $(docker ps -a -q)
 }
 
 delete_containers() {
+  stop_containers
+  print_line
+  echo "DELETING DOCKER CONTAINERS"
+  print_line
   docker rm -vf $(docker ps -aq)
 }
 
 delete_images() {
+  print_line
+  echo "DELETING DOCKER IMAGES"
+  print_line
   docker rmi -f $(docker images -aq)
 }
 
 delete_volumes() {
+  print_line
+  echo "DELETING DOCKER VOLUMES"
+  print_line
   docker volume rm $(docker volume ls -q --filter dangling=true)
+  print_line
 }
 
-main() {
-  stop_containers
+delete_all() {
   delete_containers
   delete_images
   delete_volumes
+}
+
+main() {
+  local mode="$1"
+
+  if [[ "$mode" =~ "c" ]]; then
+    delete_containers
+  else
+    delete_all
+  fi
 }
 
 main "$@"

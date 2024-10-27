@@ -53,6 +53,22 @@ export ENV_ID="$($ZSCRIPTS/environment/env_id_get)"
 
 export ZSH_COMPDUMP="$HOME/.cache/.zcompdump-${ENV_ID}-${ZSH_VERSION}"
 
+#### Plugins
+
+##### Directory
+
+export ZPLUGINS="$HOME/.oh-my-zsh/custom/plugins"
+
+##### Install
+
+if [[ ! -d "$ZPLUGINS/zsh-syntax-highlighting" ]]; then
+  git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$ZPLUGINS/zsh-syntax-highlighting"
+fi
+
+##### Activate
+
+plugins=(zsh-syntax-highlighting)
+
 ### Tmux Session Names
 
 #### Base
