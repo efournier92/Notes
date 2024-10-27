@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#----------------
+# Name          : switch-to-session
+# Description   : Simplifies switching between Tmux session
+# Author        : E Fournier
+# Dependencies  : tmux
+#----------------
+
 main() {
   local session_name="$1"
 

@@ -53,6 +53,28 @@ export ENV_ID="$($ZSCRIPTS/environment/env_id_get)"
 
 export ZSH_COMPDUMP="$HOME/.cache/.zcompdump-${ENV_ID}-${ZSH_VERSION}"
 
+### Tmux Session Names
+
+#### Base
+
+export TSESSION_BASE="base"
+
+#### Lg
+
+export TSESSION_LG="lg"
+
+#### Notes
+
+export TSESSION_NOTES="notes"
+
+#### Ide
+
+export TSESSION_IDE="ide"
+
+#### Sb
+
+export TSESSION_SB="sb"
+
 ### Load environment-specific configuration
 
 source "$ZENV/$ENV_NAME"

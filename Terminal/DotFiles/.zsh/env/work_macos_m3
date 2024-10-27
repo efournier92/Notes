@@ -84,6 +84,18 @@ export PATH="$HOME/.asdf/shims:$PATH"
 
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 
+## Tmux
+
+### Session Names
+
+#### Notes
+
+export TSESSION_NOTES="notes_sav"
+
+#### Ide
+
+export TSESSION_IDE="ide_sav"
+
 ### PostgreSQL
 
 # export PGPATH="/usr/local/opt/postgresql@12/bin"
