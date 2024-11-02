@@ -1,0 +1,14 @@
+#!/bin/bash
+
+main() {
+  local command="$@"
+  local process="${command%\ *}"
+  
+  while true; do
+    ! pgrep -x "$process" >/dev/null && eval "$command"
+    sleep 5
+  done
+}
+
+main "$@"
+
