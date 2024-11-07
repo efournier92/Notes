@@ -29,14 +29,32 @@ export AUTO_SNC_ENABLED=false
 
 ### Linux Common
 
-source "$ZENV/linux_common"
+source "$ZENV/common_linux"
 
 ## Boot
 
 ### Tasks
 
+fix_resolution() {
+  local display_mode="1080p"
+  local display_name="HDMI-1"
+  xrandr --newmode "$display_mode" 173.00 1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync    
+  xrandr --newmode "$display_mode" 712.75  3840 4160 4576 5312  2160 2163 2168 2237 -hsync +vsync
+  xrandr --addmode "$display_name" "$display_mode"
+  xrandr --output "$display_name" --mode "$display_mode"
+  
+  xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+  xrandr --newmode "1920x1080_60.00" 712.75  3840 4160 4576 5312  2160 2163 2168 2237 -hsync +vsync
+  xrandr --newmode "3840x2160_60.00"  712.75  3840 4160 4576 5312  2160 2163 2168 2237 -hsync +vsync
+  xrandr --addmode "HDMI-1" "3840x2160_60.00"
+  xrandr --output "HDMI-1" --mode "3840x2160_60.00"
+}
+
 run_boot_tasks() {
-  export SYS_NAME="linux_lubuntu_fmedia"
+  export SYS_NAME="fmedia_linux_lubuntu"
+
+  #fix_resolution()
+
   $ZSCRIPTS/sound/connect_persistently_audio_sink 60 "alsa.name" "HDMI" &
   $ZSCRIPTS/sound/connect_persistently_vnc 60 &
   $ZSCRIPTS/sound/connect_persistently_wifi 60 "FW-FamilyRoom" "FW-East" &
