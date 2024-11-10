@@ -133,7 +133,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 ##### In-Progress Environment Variables ($*)
 
-ZSH_HIGHLIGHT_STYLES[comment]=fg=yellow
+ZSH_HIGHLIGHT_STYLES[comment]=fg=cyan
 
 ## System
 

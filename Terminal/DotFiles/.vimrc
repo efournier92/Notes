@@ -281,6 +281,30 @@ nnoremap <leader>json :%!python -m json.tool<CR>
 
 noremap <Leader>q :call ReplaceCurlyQuotes()<CR>
 
+""" Insert a header based on the file name
+
+function! MarkdownHeaderFromFileName()
+  " Get the current file name without the directory path and extension
+  let l:filename = expand('%:t:r')
+
+  " Replace underscores with ' | ' and plus signs with ', '
+  let l:formatted = substitute(substitute(l:filename, '_', ' | ', 'g'), '+', ', ', 'g')
+  
+  " Add spaces before each uppercase letter (split PascalCase)
+  let l:formatted = substitute(l:formatted, '\(\l\)\(\u\)', '\1 \2', 'g')
+
+  " Prepend '# ' to make it a Markdown header
+  let l:formatted = '# ' . l:formatted
+
+  " Insert the formatted header at the top of the file
+  call append(0, l:formatted)
+  call append(1, '')
+endfunction
+
+"""" Mapping
+
+nnoremap <Leader>mdh :call MarkdownHeaderFromFileName()<CR>
+
 """ Convert The Selected Markdown To A Slack-Friendly syntax
 
 """" Function
