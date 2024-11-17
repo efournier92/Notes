@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#----------------
+# Name          : system_update
+# Description   : Runs a series of update tasks to automate routine maintenance of Ubuntu systems
+# Author        : E Fournier
+# Dependencies  : apt, snap
+# Example Usage : ./system_update
+#----------------
+
+print_header() {
+  local header_title="$1"
+  echo
+  echo "-------------------------------"
+  echo "# $header_title"
+  echo "-------------------------------"
+}
+
+main() {
+  # Prompt for admin password, in necessary
+  sudo printf ""
+  
+  print_header "APT UPDATE"
+  sudo apt -y update
+
+  print_header "APT UPGRADE"
+  sudo apt -y upgrade
+
+  print_header "APT INSTALL"
+  sudo apt -y install
+
+  print_header "APT AUTOREMOVE"
+  sudo apt -y autoremove
+
+  print_header "APT AUTOCLEAN"
+  sudo apt -y autoclean
+
+  print_header "APT CLEAN"
+  sudo apt -y clean
+
+  print_header "APT PURGE"
+  sudo apt -y purge
+
+  print_header "APT REMOVE"
+  sudo apt -y remove
+
+  print_header "SNAP REFRESH"
+  sudo snap refresh
+
+  print_header "CLEAN WITH BLEACHBIT"
+  $USCRIPTS/bleachbit_clean
+
+  print_header "CLEAN WITH BLEACHBIT AS ADMIN"
+  sudo $USCRIPTS/bleachbit_clean
+
+  print_header "CLEAN CHROME CACHE STORAGE"
+  find $HOME/.config/google-chrome -type d -iname "*cache*" -exec rm -rvf "{}" \;
+  find $HOME/.cache/google-chrome -type d -iname "*cache*" -exec rm -rvf "{}" \;
+
+  print_header "USAGE > DISK"
+  df -h
+
+  print_header "USAGE > BOOT PARTITION"
+  df -h /boot
+}
+
+main "$@"
+

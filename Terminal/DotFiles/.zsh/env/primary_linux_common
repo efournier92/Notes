@@ -268,3 +268,9 @@ alias ksb="tmux kill-session -t sb"
 
 alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
 
+## Updates
+
+### Clean and Update Debian
+
+alias system_update="$ZSCRIPTS/environment/system_update"
+
