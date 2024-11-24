@@ -73,7 +73,7 @@ main() {
 
   output_verbose_details "$duration" "$target_dir" "$rc_device_name_left" "$rc_device_card_left" "$rc_device_address_left" "$rc_device_name_right" "$rc_device_card_right" "$rc_device_address_right" 
 
-  ~/.scripts/rc_record "$duration" "$target_dir" "$rc_device_address_left" "$rc_device_address_right"
+  $ZSCRIPTS/rc_record "$duration" "$target_dir" "$rc_device_address_left" "$rc_device_address_right"
 }
 
 main "$@"

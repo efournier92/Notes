@@ -33,7 +33,7 @@ export AUTO_SNC_ENABLED=false
 
 ### Linux common
 
-source "$ZENV/linux_common"
+source "$ZENV/common_linux"
 
 ### Record RC
 

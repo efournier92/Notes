@@ -168,11 +168,11 @@ alias rc_remote_record_phone_mic="$ZSCRIPTS/rc/rc_remote_audio_send $lb_username
 
 ###### Headset Audio
 
-alias rc_remote_record_zoom_headset="$ZSCRIPTS/sound/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device' 'Creation'"
+alias rc_remote_record_zoom_headset="$ZSCRIPTS/sound/combined_audio_sink_enable; $ZSCRIPTS/rc/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'USB-Audio - USB Audio Device' 'Creation'"
 
 ###### Microphone Audio
 
-alias rc_remote_record_zoom_mic="$ZSCRIPTS/sound/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device' "
+alias rc_remote_record_zoom_mic="$ZSCRIPTS/sound/combined_audio_sink_enable; $ZSCRIPTS/rc/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve 04:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device'"
 
 ##### Attach from Local Session
 
@@ -182,7 +182,7 @@ alias rc_remote_record_zoom_headset_unattached="$ZSCRIPTS/sound/combined_audio_s
 
 ###### Microphone Audio
 
-alias rc_remote_record_zoom_mic_unattached="$ZSCRIPTS/sound/combined_audio_sink_enable; $USCRIPTS/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve_unattached 08:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device' "
+alias rc_remote_record_zoom_mic_unattached="$ZSCRIPTS/sound/combined_audio_sink_enable; $ZSCRIPTS/rc/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve_unattached 08:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device'"
 
 ### Thumbs
 
