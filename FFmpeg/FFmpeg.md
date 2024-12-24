@@ -500,10 +500,22 @@ ffmpeg -i in.mpg out%d.jpg
 
 - Output the sound from a video as an audio file.
 
-#### Command
+#### Commands
+
+##### Single
 
 ```bash
 ffmpeg -i in.avi -vn -ar 44100 -ac 2 -ab 192k -f mp3 out.mp3
+```
+
+##### Batch
+
+```bash
+OUT_DIR="_OUT"
+mkdir "$OUT_DIR"
+for file in *; do
+  ffmpeg -i "$file" -codec:a libmp3lame "${OUT_DIR}/${file}.mp3"
+done
 ```
 
 ### Amplify Audio Volume
