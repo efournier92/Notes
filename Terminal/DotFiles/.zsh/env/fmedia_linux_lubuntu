@@ -60,8 +60,8 @@ run_boot_tasks() {
   $ZSCRIPTS/sound/connect_persistently_wifi 60 "FW-FamilyRoom" "FW-East" &
   #$ZSCRIPTS/sound/connect_persistently_vpn 60 "Calypso" &
 
-  xfce4-power-manager &
   setxkbmap -option caps:escape &
+  xfce4-power-manager &
 
   gnome-terminal --window --maximize &
   kodi -fs >/dev/null 2>&1 &
