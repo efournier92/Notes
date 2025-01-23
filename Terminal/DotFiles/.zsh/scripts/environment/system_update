@@ -57,6 +57,9 @@ main() {
   find $HOME/.config/google-chrome -type d -iname "*cache*" -exec rm -rvf "{}" \;
   find $HOME/.cache/google-chrome -type d -iname "*cache*" -exec rm -rvf "{}" \;
 
+  print_header "CLEAN UNISON BACKUPS"
+  rm -rfv $HOME/.unison/backup
+
   print_header "USAGE > DISK"
   df -h
 
