@@ -31,6 +31,92 @@ local repo=""
 git clone ssh://git@github.com:${username}/${repo}
 ```
 
+## Multiple Users On 1 Machine
+
+### Purpose
+
+- Sometimes it's useful to be able to push commits from multiple GitHub account in 1 environment.
+  - Typically, depending on the repository.
+  - Often, this delineation pertains to personal vs work accounts.
+
+### Resources
+
+- [How to Work With GitHub and Multiple Accounts](https://code.tutsplus.com/quick-tip-how-to-work-with-github-and-multiple-accounts--net-22574t)
+
+### Steps
+
+#### Generate SSH Keys
+
+##### Commands
+
+```bash 
+ssh-keygen -t ed25519 -C "${USER_EMAIL_1}" -f ~/.ssh/id_ed25519_${USER_NAME_1}
+ssh-keygen -t ed25519 -C "${USER_EMAIL_2}" -f ~/.ssh/id_ed25519_#{USER_NAME_2}
+```
+
+#### Register Keys In GitHub
+
+##### Commands
+
+```bash
+cat ~/.ssh/id_ed25519_${USER_1}.pub
+cat ~/.ssh/id_ed25519_${USER_2}.pub
+```
+
+##### Location | GUI | GitHub
+
+- `github.com/settings/profile`
+- *Public profile*
+- *SSH and GPG Keys*
+- *SSH keys / Add new*
+
+#### Add Keys To The Agent
+
+##### Commands
+
+```bash
+ssh-add ~/.ssh/id_ed25519_${USER_1}
+ssh-add ~/.ssh/id_ed25519_${USER_2}
+```
+
+#### Create A `config` File
+
+##### Location
+
+- `vim ~/.ssh/config`
+
+##### Example
+
+```bash
+#Default GitHub
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_${USER_1}
+
+Host github.com-${USER_2}
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_${USER_2}
+```
+
+#### Clone The Repository | As User
+
+##### Commands
+
+```bash
+git clone ssh://git@github.com-${USER_2}:/${GIT_USER}/${GIT_REPO}.git`
+```
+
+#### Configure The Repo To Push As Our User
+
+##### Commands
+
+```bash
+git config user.name "${USER_2_NAME}"
+git config user.email "${USER_2_EMAIL}"
+```
+
 ## [ReadMes](https://en.wikipedia.org/wiki/README)
 
 ### Description
