@@ -11,19 +11,21 @@
 validate_args() {
   local server="$1"
   local user="$2"
-  local local_dir="$3"
-  local remote_dir="$4"
-  local remote_bin_dir="$5"
+  local port="$3"
+  local local_dir="$4"
+  local remote_dir="$5"
+  local remote_bin_dir="$6"
 
   if [[ \
        -z "$server" \
     || -z "$user" \
+    || -z "$port" \
     || -z "$local_dir" \
     || -z "$remote_dir" \
     || -z "$remote_bin_dir" \
   ]]; then
     echo "ERROR: Arguments not supplied correctly"
-    echo "USAGE: $ snc_run $server $user $local_dir $remote_dir $remote_bin_dir"
+    echo "USAGE: $ snc_run $server $user $port $local_dir $remote_dir $remote_bin_dir"
     exit 1
   fi
 }
@@ -45,10 +47,10 @@ watch_for_change() {
 run_snc_command() {
   local server="$1"
   local user="$2"
-  local local_dir="$3"
-  local remote_dir="$4"
-  local remote_bin_dir="$5"
-
+  local port="$3"
+  local local_dir="$4"
+  local remote_dir="$5"
+  local remote_bin_dir="$6"
   local log_dir="$HOME/.unison/logs"
   local log_file_name="unison.log"
   local log_file_path="$log_dir/$log_file_name"
@@ -58,7 +60,7 @@ run_snc_command() {
     -logfile "$log_file_path" \
     -backup 'Name *' \
     -backupprefix '' -backupsuffix '_$VERSION'"_$(date +%y%m%d%H%M%S)" \
-    -sshargs '-o PasswordAuthentication=no' \
+    -sshargs "-o PasswordAuthentication=no -p $port" \
     -servercmd "$remote_bin_dir/unison" \
       "$local_dir" \
       "ssh://$user@$server/$remote_dir"
@@ -67,9 +69,10 @@ run_snc_command() {
 start_snc_watcher() {
   local server="$1"
   local user="$2"
-  local local_dir="$3"
-  local remote_dir="$4"
-  local remote_bin_dir="$5"
+  local port="$3"
+  local local_dir="$4"
+  local remote_dir="$5"
+  local remote_bin_dir="$6"
 
   local log_dir="$HOME/.unison/logs"
   local log_file_name="unison.log"
@@ -78,26 +81,27 @@ start_snc_watcher() {
   mkdir -p "$log_dir"
 
   while watch_for_change "$local_dir"; do
-    run_snc_command "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
+    run_snc_command "$server" "$user" "$port" "$local_dir" "$remote_dir" "$remote_bin_dir"
   done
 }
 
 main() {
   local server="$1"
   local user="$2"
-  local local_dir="$3"
-  local remote_dir="$4"
-  local remote_bin_dir="$5"
+  local port="$3"
+  local local_dir="$4"
+  local remote_dir="$5"
+  local remote_bin_dir="$6"
   local mode="$6"
 
   mkdir -p "$HOME/.unison/logs"
 
-  validate_args "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir" 
+  validate_args "$server" "$user" "$port" "$local_dir" "$remote_dir" "$remote_bin_dir" 
 
   if [[ "$mode" == "watch" && `should_start_snc_watcher` = "true" ]]; then
-    start_snc_watcher "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
+    start_snc_watcher "$server" "$user" "$port" "$local_dir" "$remote_dir" "$remote_bin_dir"
   else
-    run_snc_command "$server" "$user" "$local_dir" "$remote_dir" "$remote_bin_dir"
+    run_snc_command "$server" "$user" "$port" "$local_dir" "$remote_dir" "$remote_bin_dir"
   fi
 }
 

@@ -94,7 +94,7 @@ alias ssh_sb="ssh ${sb_username}@${sb_server_name}.${sb_server_domain}"
 
 ### Connect to LB via SSH
 
-alias ssh_lb="ssh ${lb_username}@${lb_server_domain}"
+alias ssh_lb="ssh ${lb_username}@${lb_server_domain} -p ${sb_server_port}"
 
 ### Connect to MB via SSH
 

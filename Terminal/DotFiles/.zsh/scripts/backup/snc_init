@@ -20,6 +20,7 @@ main() {
   local snc_file_location="$ZSCRIPTS/backup/snc_run"
   local server_domain="$lb_server_domain"
   local user="$lb_username"
+  local server_port="$lb_server_port"
   local server_bin_dir="/usr/bin"
   local local_snc_dir="$SNC"
   local server_snc_dir="/home/${user}/bnk/snc"
@@ -27,17 +28,17 @@ main() {
   local server_lg_dir="${server_snc_dir}/${target_dir}"
 
   if [[ "$mode" == "watch" ]]; then
-    nohup "$snc_file_location" "$server_domain" "$user" "$local_snc_dir" "$server_snc_dir" "$server_bin_dir" "watch" >/dev/null 2>&1&
+    nohup "$snc_file_location" "$server_domain" "$user" "$server_port" "$local_snc_dir" "$server_snc_dir" "$server_bin_dir" "watch" >/dev/null 2>&1&
   elif [[ "$mode" == "single_dir" && ! -z "$target_dir" ]]; then
     local snc_dir="$SNC/$target_dir"
     if [[ -d "$snc_dir" ]]; then
-      "$snc_file_location" "$server_domain" "$user" "$local_lg_dir" "$server_lg_dir" "$server_bin_dir"
+      "$snc_file_location" "$server_domain" "$user" "$server_port" "$local_lg_dir" "$server_lg_dir" "$server_bin_dir"
     else 
       echo "ERROR: Must supply a preexisting SNC directory to snc_init." >&2
       echo "Directory $snc_dir not found" >&2
     fi
   elif [[ "$mode" == "all" ]]; then
-    "$snc_file_location" "$server_domain" "$user" "$local_snc_dir" "$server_snc_dir" "$server_bin_dir"
+    "$snc_file_location" "$server_domain" "$user" "$server_port" "$local_snc_dir" "$server_snc_dir" "$server_bin_dir"
   else
     echo "ERROR: Must provide valid arguments to snc_init" >&2
   fi
