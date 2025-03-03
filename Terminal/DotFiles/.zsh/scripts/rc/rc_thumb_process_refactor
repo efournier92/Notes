@@ -54,7 +54,7 @@ mp3_file() {
 is_valid_file() {
   local eval_file="$1"
 
-  [[ "$eval_file" = *.WAV ]] && [[ ! "$eval_file" =~ [@#\$%^\&*+] ]]
+  [[ "$eval_file" = *.WAV || "$eval_file" = *.wav ]] && [[ ! "$eval_file" =~ [@#\$%^\&*+] ]]
 }
 
 # True if input is of valid date format
