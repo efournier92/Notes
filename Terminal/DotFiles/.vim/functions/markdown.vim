@@ -33,41 +33,57 @@ nnoremap <Leader>mdh :call MarkdownHeaderFromFileName()<CR>
 
 """ Function
 
-function! ConvertMarkdownForSlack()
+function! SlackifyMarkdown()
+  """" Convert Emphasis
 
-  """"" Convert italics text (*italics*) to Slack's italics (_italics_)
+  """"" Bold Italics: (***example***) to (_*example*_)
+  silent! s/\(^\|\W\)\*\*\*\([^*]\+\)\*\*\*\(\W\|$\)/\1_*\2*_\3/g
 
+  """"" Italics: (*example*) to (_example_)
   silent! s/\*\([^*]\+\)\*/_\1_/g
 
-  """"" Convert bold text (**bold**) to Slack's bold (*bold*)
-
+  """"" Bold: (**example**) to (*example*)
   silent! s/\*\*\(.*\)\*\*/*\1*/g
   
-  """"" Convert interim instance of (_* & *_) to bold (**)
+  """"" Correct Interim Strings
 
+  """""" (_*example*_) to (*example*)
   silent! s/_\*\|\*_/*/g
 
-  """"" Convert headings to just bold
+  """""" (__example__) to (_*example*_)
+  silent! s/\(^\|\W\)__\([^_]\+\)__\(\W\|$\)/\1_*\2*_\3/g
 
-  silent! s/^#\+\s\+\(.*\)$/*\1*/g
+  """" Convert Headings
 
-  """"" Remove language specifiers from code blocks
+  """"" H1 | _*TEXT*_
+  silent! s/^# \+\(.*\)$/\U_*\1*_/g
 
+  """"" H2 | **TEXT**
+  silent! s/^## \+\(.*\)$/\U*\1*/g
+
+  """"" H3 | ***Text***
+  silent! s/^### \+\(.*\)$/_*\1*_/g
+
+  """"" H4 | **Text**
+  silent! s/^#### \+\(.*\)$/*\1*/g
+
+  """"" H5 | *Text*
+  silent! s/^##### \+\(.*\)$/_\1_/g
+
+  """"" H6 | `Text` (just remove hashes)
+  silent! s/^###### \+\(.*\)$/`\1`/g
+
+  """" Remove language specifiers from code blocks
   silent! s/```[a-zA-Z0-9_-]\+/```/g
   
-  """"" Double every level of indentation
-
+  """" Double every level of indentation
   silent! s/^\( \+\)/\1\1/g
-
-  """"" Remove highlighting
-
-  noh
 
 endfunction
 
 """ Mapping
 
-noremap <Leader>mds :call ConvertMarkdownForSlack()<CR>
+noremap <Leader>mds :call SlackifyMarkdown()<CR>
 
 "" Update Mardown Styling to 2024 Convention
 

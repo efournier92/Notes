@@ -287,6 +287,10 @@ noremap <Leader>q :call ReplaceCurlyQuotes()<CR>
 
 nnoremap <leader>ts :call InsertTimestamp()<CR>
 
+""" Insert a markdown-formatted link to a Jira ticket
+
+nnoremap <leader>tk :call InsertTicketLink()<CR>
+
 "" File Renaming
 
 """ Insert line numbers in each line
@@ -397,7 +401,18 @@ endfunction
 
 function! InsertTimestamp()
   let l:timestamp = strftime("%Y-%m-%d-%H%M")
-  execute "normal! i" . l:timestamp
+  execute "normal! A" . " " . l:timestamp
+endfunction
+
+""" Insert ticket link
+
+function! InsertTicketLink()
+  let l:default = 'BAC-'
+  let l:input = input('ID: ', l:default)
+  if !empty(l:input)
+    let l:link = printf('[%s](https://savvylabs.atlassian.net/browse/%s)', l:input, l:input)
+    execute "normal! a" . ' ' . l:link
+  endif
 endfunction
 
 " Plugins
