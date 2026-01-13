@@ -1,0 +1,222 @@
+#!/bin/zsh
+
+#----------------
+# Name          : work_mac_m3
+# Description   : Shell-environment configuration for Work build in a MacOS Work environment with an M3 chip.
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## Resources
+
+source "$ZZSH/.secrets"
+source "$ZENV/primary_common"
+source "$ZENV/primary_macos_common"
+
+## File system
+
+### Mnt
+
+export MNT="$HOME/mnt"
+
+### Bnk directory
+
+export BNK="$MNT/bnk"
+
+### Start directory
+
+export START="$BNK"
+
+### Home
+
+export UHOME="$HOME"
+
+### Pictures
+
+#### Root
+
+export SP="$SNC/Pictures"
+
+### Copy
+
+alias copy_with_progress="$ZSCRIPTS/files/copy_with_progress"
+
+### Work
+
+#### Root
+
+export SW="$SNC/Work"
+
+#### Code
+
+export SWC="$SWORK/Code"
+
+#### Documents
+
+export SWD="$SWORK/Documents"
+
+#### Notes
+
+export SWN="$SWORK/Notes"
+
+#### Screenshots
+
+export SWS="$SWORK/Screenshots"
+
+#### Tickets
+
+export SWT="$SWORK/Tickets"
+
+## Tools
+
+### Snc
+
+#### Enable unison
+
+export AUTO_SNC_ENABLED=false
+
+## Resources
+
+### HomeBrew
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+### Bin
+
+export PATH="$PATH:/usr/local/bin"
+
+### asdf
+
+export PATH="$HOME/.asdf/shims:$PATH"
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+### Vlc
+
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+
+### Lg
+
+alias lg_build="ruby $CS/Log_Builder/src/run.rb $SLG/.config/log_builder_config.yml"
+
+## Scans
+
+alias scan=". $ZSCRIPTS/scan/scan_mac"
+
+## Vpn
+
+alias vpn_up="sudo echo 'INTIALIZING...';sudo nohup openvpn --config $BNK/cnf/o.v > /dev/null 2>&1 &!; sleep 3; whereami"
+alias vpn_down="sudo echo 'CLOSING...';sudo pkill openvpn; whereami"
+
+## Locations
+
+export FLOWS="$BNK/flows"
+export RC="/Volumes/VOICE"
+
+## Photos
+
+### Flows
+
+export FLOWS_PHOTOS="$FLOWS/Photos"
+
+alias photos_flows_clean="rm -rv $FLOWS_PHOTOS/*"
+
+### Phone
+
+export PHONE_PHOTOS="sdcard/DCIM"
+
+alias photos_phone_copy="mkdir -p $FLOWS_PHOTOS; adb pull $PHONE_PHOTOS $FLOWS_PHOTOS"
+alias photos_phone_clean="adb shell \"rm -rv $PHONE_PHOTOS/*\""
+
+## RC
+
+### Flows
+
+export FLOWS_RC="$FLOWS/Rc"
+export FLOWS_RC_IN="$FLOWS_RC/In"
+export FLOWS_RC_OUT="$FLOWS_RC/Out"
+
+alias rc_flows_clean="rm -rv $FLOWS_RC_IN/* $FLOWS_RC_OUT/*"
+
+### Thumb
+
+export THUMB_RC="$MNT/rc/RECORD"
+
+alias rc_thumb_mount="$ZSCRIPTS/mount/mount_by_label 'VOICE' $MNT/rc"
+alias rc_thumb_umount="umount $MNT/rc"
+alias rc_thumb_copy="copy_with_progress $THUMB_RC $FLOWS_RC/In"
+alias rc_thumb_clean="rm -rv $THUMB_RC/* ."
+alias rc_thumb_list="ls -alh $THUMB_RC/*"
+
+### Phone
+
+export PHONE_RC="sdcard/rc"
+
+alias rc_phone_copy=". $ZSCRIPTS/rc/rc_phone_pull $PHONE_RC $FLOWS_RC/In"
+alias rc_phone_clean="adb shell \"rm -rv $PHONE_RC/*\""
+alias rc_dir=". $ZSCRIPTS/rc/rc_mkdir $FLOWS_RC"
+alias rc_process="bash $ZSCRIPTS/rc/rc_process $FLOWS_RC_IN $FLOWS_RC_OUT"
+
+[[ -d "$BNK/hle" ]] || m_bnk
+
+## Tmux
+
+### SB
+
+#### Start session
+
+alias sb=". $TSESSIONS/sb.session"
+
+#### Kill session
+
+alias ksb="tmux kill-session -t sb"
+
+## SB
+
+### SB root directory
+
+export SBROOT="/home/${sb_username}"
+
+## SSH Connections
+
+### Connect to SB via SSH
+
+alias ssh_sb="ssh ${sb_username}@${sb_server_name}.${sb_server_domain}"
+
+### Connect to LB via SSH
+
+alias ssh_lb="ssh ${lb_username}@${lb_server_domain} -p ${sb_server_port}"
+
+### Connect to MB via SSH
+
+alias ssh_mb="ssh ${mb_username}@${mb_server_domain}"
+
+## Shortcuts
+
+### Budget
+
+alias budget="spreadsheet $SNC/Finances/Budget_${THIS_YEAR}.xls"
+
+### Weight
+
+alias weight="spreadsheet $SNC/Health/Diet/Weight.xlsx"
+
+### Finance Tabs
+
+alias banking="$SNC/Finances/browser_tabs_banking"
+
+### Baseball Tabs
+
+alias baseball="$SNC/Games/Scripts/browser_tabs_baseball"
+
+### Jeopardy Archive
+
+alias jeopardy_archive="browser_u https://j-archive.com"
+
+### Jeopardy Downloads
+
+alias jeopardy_episodes="$SNC/Games/Scripts/jeopardy_episodes"
+
+### Jeopardy Scores
+
+alias jeopardy_games="$SNC/Games/Scripts/jeopardy_games"
+
