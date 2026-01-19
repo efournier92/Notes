@@ -29,11 +29,11 @@ export BNK="$BNK"
 
 #### Mount
 
-alias m_bnk=". $ZSCRIPTS/mount/mount_uuid_veracrypt $uuid_bnk $BNK 33"
+alias m_bnk=". $ZSCRIPTS/mount/mount_linux_uuid_veracrypt $uuid_bnk $BNK 33"
 
 #### Unmount
 
-alias um_bnk=". $ZSCRIPTS/mount/umount_uuid_veracrypt $uuid_bnk"
+alias um_bnk=". $ZSCRIPTS/mount/umount_linux_uuid_veracrypt $uuid_bnk"
 
 ### /mnt/extA
 
@@ -43,11 +43,11 @@ export EXTA="/mnt/extA"
 
 #### Mount
 
-alias m_extA="$ZSCRIPTS/mount/mount_uuid_veracrypt $uuid_extA $EXTA 8"
+alias m_extA="$ZSCRIPTS/mount/mount_linux_uuid_veracrypt $uuid_extA $EXTA 8"
 
 #### Unmount
 
-alias um_extA="$ZSCRIPTS/mount/umount_uuid_veracrypt $uuid_extA"
+alias um_extA="$ZSCRIPTS/mount/umount_linux_uuid_veracrypt $uuid_extA"
 
 ### /mnt/extB
 
@@ -57,11 +57,11 @@ export EXTB="/mnt/extB"
 
 #### Mount
 
-alias m_extB=". $ZSCRIPTS/mount/mount_uuid_veracrypt $uuid_extB $EXTB 12"
+alias m_extB=". $ZSCRIPTS/mount/mount_linux_uuid_veracrypt $uuid_extB $EXTB 12"
 
 #### Unmount
 
-alias um_extB=". $ZSCRIPTS/mount/umount_uuid_veracrypt $uuid_extB"
+alias um_extB=". $ZSCRIPTS/mount/umount_linux_uuid_veracrypt $uuid_extB"
 
 ### /mnt/extC
 
@@ -71,11 +71,11 @@ export EXTC="/mnt/extC"
 
 #### Mount
 
-alias m_extC=". $ZSCRIPTS/mount/mount_uuid_veracrypt $uuid_extC $EXTC 16"
+alias m_extC=". $ZSCRIPTS/mount/mount_linux_uuid_veracrypt $uuid_extC $EXTC 16"
 
 #### Unmount
 
-alias um_extC=". $ZSCRIPTS/mount/umount_uuid_veracrypt $uuid_extC"
+alias um_extC=". $ZSCRIPTS/mount/umount_linux_uuid_veracrypt $uuid_extC"
 
 ### /mnt/extC_Media
 
@@ -85,11 +85,11 @@ export EXTCM="/mnt/extCM"
 
 #### Mount
 
-alias m_extCM=". $ZSCRIPTS/mount/mount_uuid_veracrypt $uuid_extCM $EXTCM 17"
+alias m_extCM=". $ZSCRIPTS/mount/mount_linux_uuid_veracrypt $uuid_extCM $EXTCM 17"
 
 #### Unmount
 
-alias um_extCM=". $ZSCRIPTS/mount/umount_uuid_veracrypt $uuid_extCM"
+alias um_extCM=". $ZSCRIPTS/mount/umount_linux_uuid_veracrypt $uuid_extCM"
 
 ### /mnt/bkA
 
@@ -99,11 +99,11 @@ export BKA="/mnt/bkA"
 
 #### Mount
 
-alias m_bkA=". $ZSCRIPTS/mount/mount_uuid $uuid_bkA $BKA"
+alias m_bkA=". $ZSCRIPTS/mount/mount_linux_by_uuid $uuid_bkA $BKA"
 
 #### Unmount
 
-alias um_bkA=". $ZSCRIPTS/mount/umount_uuid $uuid_bkA"
+alias um_bkA=". $ZSCRIPTS/mount/umount_linux_by_uuid $uuid_bkA"
 
 ### /mnt/bkB
 
@@ -113,11 +113,11 @@ export BKB="/mnt/bkB"
 
 #### Mount
 
-alias m_bkB=". $ZSCRIPTS/mount/mount_uuid $uuid_bkB $BKB"
+alias m_bkB=". $ZSCRIPTS/mount/mount_linux_by_uuid $uuid_bkB $BKB"
 
 #### Unmount
 
-alias um_bkB=". $ZSCRIPTS/mount/umount_uuid $uuid_bkB"
+alias um_bkB=". $ZSCRIPTS/mount/umount_linux_by_uuid $uuid_bkB"
 
 ### /mnt/bkC
 
@@ -127,11 +127,11 @@ export BKC="/mnt/bkC"
 
 #### Mount
 
-alias m_bkC=". $ZSCRIPTS/mount/mount_uuid $uuid_bkC $BKC"
+alias m_bkC=". $ZSCRIPTS/mount/mount_linux_by_uuid $uuid_bkC $BKC"
 
 #### Umount
 
-alias um_bkC=". $ZSCRIPTS/mount/umount_uuid $uuid_bkC"
+alias um_bkC=". $ZSCRIPTS/mount/umount_linux_by_uuid $uuid_bkC"
 
 ### /mnt/md
 
@@ -141,11 +141,11 @@ export MD="/mnt/md"
 
 #### Mount
 
-alias m_md=". $ZSCRIPTS/mount/mount_uuid_veracrypt $uuid_md $MD 16"
+alias m_md=". $ZSCRIPTS/mount/mount_linux_uuid_veracrypt $uuid_md $MD 16"
 
 #### Unmount
 
-alias um_md=". $ZSCRIPTS/mount/umount_uuid_veracrypt $uuid_md"
+alias um_md=". $ZSCRIPTS/mount/umount_linux_uuid_veracrypt $uuid_md"
 
 ### Veracrypt
 

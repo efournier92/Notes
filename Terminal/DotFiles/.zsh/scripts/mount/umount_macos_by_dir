@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#----------------
+# Name          : umount_macos_by_dir
+# Description   : Unmounts the given mount point drive via macos system utils
+# Author        : E Fournier
+# Dependencies  : macos
+# Example Usage : ./umount_macos $mount_point
+#----------------
+
+validate_args() {
+  local mount_point="$1"
+
+  if [[ -z "$mount_point" ]]; then
+    eche "ERROR: Must supply drive UUID"
+    echo "USAGE: ./umount_macos mount_point"
+    exit 1
+  fi
+}
+
+unmount_drive() {
+  local mount_point="$1"
+
+  diskutil umount "$mount_point"
+}
+
+main() {
+  local mount_point="$1"
+
+  validate_args "$mount_point"
+
+  unmount_drive "$mount_point"
+}
+
+main "$@"
+

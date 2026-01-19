@@ -29,11 +29,11 @@ uuid_md="7F412531-90B1-4E3A-BD65-418382D2ABC5"
 
 #### Mount
 
-alias m_bnk="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_bnk $BNK"
+alias m_bnk="$ZSCRIPTS/mount/mount_macos_veracrypt $uuid_bnk $BNK"
 
 #### Unmount
 
-alias um_bnk="$ZSCRIPTS/mount/umount_veracrypt_macos $BNK"
+alias um_bnk="$ZSCRIPTS/mount/umount_macos_veracrypt $BNK"
 
 ### /mnt/extA
 
@@ -43,11 +43,11 @@ export EXTA="$MNT/extA"
 
 #### Mount
 
-alias m_extA="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_extA $EXTA"
+alias m_extA="$ZSCRIPTS/mount/mount_macos_veracrypt $uuid_extA $EXTA"
 
 #### Unmount
 
-alias um_extA="$ZSCRIPTS/mount/umount_veracrypt_macos $EXTA"
+alias um_extA="$ZSCRIPTS/mount/umount_macos_veracrypt $EXTA"
 
 ### /mnt/extB
 
@@ -57,11 +57,11 @@ export EXTB="$MNT/extB"
 
 #### Mount
 
-alias m_extB="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_extB $EXTB"
+alias m_extB="$ZSCRIPTS/mount/mount_macos_veracrypt $uuid_extB $EXTB"
 
 #### Unmount
 
-alias um_extB="$ZSCRIPTS/mount/umount_veracrypt_macos $EXTB"
+alias um_extB="$ZSCRIPTS/mount/umount_macos_veracrypt $EXTB"
 
 ### /mnt/extC
 
@@ -71,11 +71,11 @@ export EXTC="$MNT/extC"
 
 #### Mount
 
-alias m_extC="$ZSCRIPTS/mount/mount_veracrypt_macos $EXTC"
+alias m_extC="$ZSCRIPTS/mount/mount_macos_veracrypt $EXTC"
 
 #### Unmount
 
-alias um_extC="$ZSCRIPTS/mount/umount_veracrypt_macos $EXTC"
+alias um_extC="$ZSCRIPTS/mount/umount_macos_veracrypt $EXTC"
 
 ### /mnt/extC_Media
 
@@ -85,11 +85,11 @@ export EXTCM="$MNT/extCM"
 
 #### Mount
 
-alias m_extCM="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_extCM $EXTCM"
+alias m_extCM="$ZSCRIPTS/mount/mount_macos_veracrypt $uuid_extCM $EXTCM"
 
 #### Unmount
 
-alias um_extCM="$ZSCRIPTS/mount/umount_veracrypt_macos $EXTCM"
+alias um_extCM="$ZSCRIPTS/mount/umount_macos_veracrypt $EXTCM"
 
 ### /mnt/bkA
 
@@ -99,11 +99,11 @@ export BKA="$MNT/bkA"
 
 #### Mount
 
-alias m_bkA="$ZSCRIPTS/mount/mount_macos $uuid_bkA $BKA"
+alias m_bkA="$ZSCRIPTS/mount/mount_macos_by_uuid $uuid_bkA $BKA"
 
 #### Unmount
 
-alias um_bkA="$ZSCRIPTS/mount/umount_macos $BKA"
+alias um_bkA="$ZSCRIPTS/mount/umount_macos_by_dir $BKA"
 
 ### /mnt/bkB
 
@@ -113,11 +113,11 @@ export BKB="$MNT/bkB"
 
 #### Mount
 
-alias m_bkB="$ZSCRIPTS/mount/mount_macos $uuid_bkB $BKB"
+alias m_bkB="$ZSCRIPTS/mount/mount_macos_by_uuid $uuid_bkB $BKB"
 
 #### Unmount
 
-alias um_bkB="$ZSCRIPTS/mount/umount_macos $BKB"
+alias um_bkB="$ZSCRIPTS/mount/umount_macos_by_dir $BKB"
 
 ### /mnt/bkC
 
@@ -127,11 +127,11 @@ export BKC="$MNT/bkC"
 
 #### Mount
 
-alias m_bkC="$ZSCRIPTS/mount/mount_macos $uuid_bkC $BKC"
+alias m_bkC="$ZSCRIPTS/mount/mount_macos_by_uuid $uuid_bkC $BKC"
 
 #### Umount
 
-alias um_bkC="$ZSCRIPTS/mount/umount_macos $BKC"
+alias um_bkC="$ZSCRIPTS/mount/umount_macos_by_dir $BKC"
 
 ### /mnt/md
 
@@ -141,12 +141,12 @@ export MD="$MNT/md"
 
 #### Mount
 
-#alias m_md="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_md $MD"
-alias m_md="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_md $MD"
+#alias m_md="$ZSCRIPTS/mount/mount_macos_veracrypt $uuid_md $MD"
+alias m_md="$ZSCRIPTS/mount/mount_macos_veracrypt $uuid_md $MD"
 
 #### Unmount
 
-alias um_md="$ZSCRIPTS/mount/umount_veracrypt_macos $MD"
+alias um_md="$ZSCRIPTS/mount/umount_macos_veracrypt $MD"
 
 ### Veracrypt
 
@@ -171,54 +171,54 @@ alias bk_lg="$ZSCRIPTS/backup/backup_lg $EXTA"
 
 ### Backup extA to extB
 
-alias bk_extAB="$ZSCRIPTS/backup/backup_dir_rsync $EXTA $EXTB --delete"
+alias bk_extAB="sudo $ZSCRIPTS/backup/backup_dir_rsync $EXTA $EXTB --delete"
 
 ### Backup extA to extB
 
-alias bk_extBA="$ZSCRIPTS/backup/backup_dir_rsync $EXTB $EXTA --delete"
+alias bk_extBA="sudo $ZSCRIPTS/backup/backup_dir_rsync $EXTB $EXTA --delete"
 
 ### Backup extA to extC
 
 bk_extAC() {
-  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Annual" "$EXTC/Annual" --delete
-  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Audio" "$EXTC/Audio" --delete
-  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Lg" "$EXTC/Lg" --delete
-  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Projects" "$EXTC/Projects" --delete
-  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Snc" "$EXTC/Snc" --delete
-  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Workd" "$EXTC/Work" --delete
+  sudo $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Annual" "$EXTC/Annual" --delete
+  sudo $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Audio" "$EXTC/Audio" --delete
+  sudo $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Lg" "$EXTC/Lg" --delete
+  sudo $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Projects" "$EXTC/Projects" --delete
+  sudo $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Snc" "$EXTC/Snc" --delete
+  sudo $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Workd" "$EXTC/Work" --delete
 }
 
 ### Backup extA to extC
 
-alias bk_extACM="$ZSCRIPTS/backup/backup_dir_rsync $EXTA/Media $EXTCM/Media --delete"
+alias bk_extACM="sudo $ZSCRIPTS/backup/backup_dir_rsync $EXTA/Media $EXTCM/Media --delete"
 
 ### Backup extB to extC
 
-alias bk_extBC="$ZSCRIPTS/backup/backup_dir_rsync $EXTB $EXTC /Media/** --delete"
+alias bk_extBC="sudo $ZSCRIPTS/backup/backup_dir_rsync $EXTB $EXTC /Media/** --delete"
 
 ### Backup extA to MD
 
-alias bk_extAMD="$ZSCRIPTS/backup/backup_dir_rsync $EXTA/Media $MD --delete"
+alias bk_extAMD="sudo $ZSCRIPTS/backup/backup_dir_rsync $EXTA/Media $MD --delete"
 
 ### Backup extB to MD
 
-alias bk_extBMD="$ZSCRIPTS/backup/backup_dir_rsync $EXTB/Media $MD --delete"
+alias bk_extBMD="sudo $ZSCRIPTS/backup/backup_dir_rsync $EXTB/Media $MD --delete"
 
 ### Backup bkA to bkB
 
-alias bk_bkAB="$ZSCRIPTS/backup/backup_dir_rsync $BKA $BKB --delete"
+alias bk_bkAB="sudo $ZSCRIPTS/backup/backup_dir_rsync $BKA $BKB --delete"
 
 ### Backup bkA to bkB
 
-alias bk_bkBA="$ZSCRIPTS/backup/backup_dir_rsync $BKB $BKA --delete"
+alias bk_bkBA="sudo $ZSCRIPTS/backup/backup_dir_rsync $BKB $BKA --delete"
 
 ### Backup bkA to bkC
 
-alias bk_bkAC="$ZSCRIPTS/backup/backup_dir_rsync $BKA $BKC --delete"
+alias bk_bkAC="sudo $ZSCRIPTS/backup/backup_dir_rsync $BKA $BKC --delete"
 
 ### Backup bkB to bkC
 
-alias bk_bkBC="$ZSCRIPTS/backup/backup_dir_rsync $BKB $BKC --delete"
+alias bk_bkBC="sudo $ZSCRIPTS/backup/backup_dir_rsync $BKB $BKC --delete"
 
 ### Dynamically exports external drive locations
 

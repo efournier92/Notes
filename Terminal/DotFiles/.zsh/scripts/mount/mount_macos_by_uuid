@@ -1,0 +1,75 @@
+#!/bin/bash
+
+#----------------
+# Name          : mount_macos_by_uuid
+# Description   : Mounts a drive by its partition UUID on macOS
+# Author        : E Fournier (updated by Gemini)
+# Dependencies  : None
+# Example Usage : ./mount_macos_by_uuid <partition_guid> <mount_point>
+#----------------
+
+set -euo pipefail
+
+error() {
+  echo "Error: $1" >&2
+  exit 1
+}
+
+get_device_path_from_guid() {
+  local target_guid="$1"
+
+  if ! diskutil_path=$(command -v diskutil); then
+    error "'diskutil' command not found. This script is intended for macOS."
+  fi
+
+  local all_devices
+  all_devices=$($diskutil_path list | awk '/^[[:space:]]*[0-9]+:/{print $NF}')
+
+  for device in $all_devices; do
+    local current_guid
+    current_guid=$($diskutil_path info "$device" 2>/dev/null | awk -F': *' '/(Disk \/ Partition UUID|Volume UUID)/ {print $2; exit}')
+
+    if [[ -n "$current_guid" && "$(echo "$current_guid" | tr '[:upper:]' '[:lower:]')" == "$(echo "$target_guid" | tr '[:upper:]' '[:lower:]')" ]]; then
+      echo "/dev/$device"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+main() {
+  if [[ "$#" -ne 2 ]]; then
+    echo "Usage: $(basename "$0") <partition_guid> <mount_point>"
+    echo "Example: $(basename "$0") \"92E6F6CD-C526-4EFD-9EA9-E20D1B990B65\" /Users/user/mydrive"
+    exit 1
+  fi
+
+  local drive_uuid="$1"
+  local mount_location="$2"
+
+  if [[ ! -d "$mount_location" ]]; then
+    error "Mount location \"$mount_location\" is not a directory."
+  fi
+
+  if [[ $(ls -A "$mount_location") ]]; then
+    error "Mount location \"$mount_location\" is not empty."
+  fi
+
+  local device_path
+  if ! device_path=$(get_device_path_from_guid "$drive_uuid"); then
+    error "Partition with GUID \"$drive_uuid\" not found."
+  fi
+
+  echo "Found device: $device_path"
+  echo "Attempting to mount $device_path to $mount_location..."
+
+  if sudo mount -t hfs "$device_path" "$mount_location"; then
+    echo "Successfully mounted $device_path to $mount_location"
+  else
+    error "Failed to mount $device_path to $mount_location"
+  fi
+}
+
+main "$@"
+

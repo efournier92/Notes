@@ -1,0 +1,80 @@
+#!/bin/bash
+
+#----------------
+# Name          : mount_linux_by_uuid_veracrypt
+# Description   : Mounts drive with veracrypt based on arguments
+# Author        : E Fournier
+# Dependencies  : veracrypt
+# Example Usage : ./mount_linux_by_uuid_veracrypt $drive_uuid $mount_location $slot_num
+#----------------
+
+has_all_args() {
+  local drive_uuid="$1"
+  local mount_location="$2"
+  local slot_num="$3"
+
+  [[ -z "$drive_uuid" || -z "$mount_location" || -z "$slot_num" ]] \
+    && echo "false" \
+    || echo "true"
+}
+
+is_mount_location_empty() {
+  local mount_location="$1"
+
+  [[ $(ls -A "$mount_location") ]] \
+    && echo "false" \
+    || echo "true"
+}
+
+is_uuid_connected() {
+  local drive_uuid="$1"
+
+  [[ -b /dev/disk/by-partuuid/$drive_uuid ]] \
+    && echo "true" \
+    || echo "false"
+}
+
+should_mount() {
+  local drive_uuid="$1"
+  local mount_location="$2"
+  local slot_num="$3"
+
+  local args_are_supplied=`has_all_args "$drive_uuid" "$mount_location" "$slot_num"`
+  [[ "$args_are_supplied" == "false" ]] && echo "ERROR: Arguments missing" >&2
+  
+  local mount_location_is_empty=`is_mount_location_empty "$mount_location"`
+  [[ "$mount_location_is_empty" == "false" ]] && echo "ERROR: Mount location is not empty" >&2
+
+  local uuid_is_connected=`is_uuid_connected "$drive_uuid"`
+  [[ "$uuid_is_connected" == "false" ]] && echo "ERROR: Drive is not connected" >&2
+
+  [[ "$args_are_supplied" == "true" && "$mount_location_is_empty" == "true" && "$uuid_is_connected" == "true" ]] \
+    && echo "true" \
+    || echo "false"
+}
+
+mount_drive() {
+  local drive_uuid="$1"
+  local mount_location="$2"
+  local slot_num="$3"
+
+  veracrypt --mount "/dev/disk/by-partuuid/$drive_uuid" "$mount_location" --slot="$slot_num"
+}
+
+main() {
+  local drive_uuid="$1"
+  local mount_location="$2"
+  local slot_num="$3"
+
+  local should_mount_drive=`should_mount "$drive_uuid" "$mount_location" "$slot_num"`
+  
+  if [[ "$should_mount_drive" == "true" ]]; then
+    echo "Mounting $drive_uuid to $mount_location"
+    mount_drive "$drive_uuid" "$mount_location" "$slot_num"
+  else
+    echo "Not mounting $drive_uuid to $mount_location"
+  fi
+}
+
+main "$@"
+

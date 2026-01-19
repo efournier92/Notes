@@ -1,0 +1,52 @@
+#!/bin/bash
+
+#----------------
+# Name          : mount_macos_by_label
+# Description   : Mounts a drive by its partition given on macOS
+# Author        : E Fournier
+# Dependencies  : diskutil, mount
+# Example Usage : ./mount_macos_by_label <partition_guid> <mount_point>
+#----------------
+
+set -e
+
+get_device_for_label() {
+    local label="$1"
+    diskutil list | grep "$label" | awk '{print $NF}'
+}
+
+create_mount_point() {
+    local destination="$1"
+    if [ ! -d "$destination" ]; then
+        echo "Creating mount point: $destination"
+        mkdir -p "$destination"
+    fi
+}
+
+main() {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: $0 <label> <destination>"
+        exit 1
+    fi
+
+    local label="$1"
+    local destination="$2"
+
+    local device
+    device=$(get_device_for_label "$label")
+
+    if [ -z "$device" ]; then
+        echo "Error: No disk found with label '$label'" >&2
+        exit 1
+    fi
+
+    create_mount_point "$destination"
+
+    echo "Mounting $device to $destination"
+    diskutil mount -mountPoint "$destination" "$device"
+
+    echo "Successfully mounted $device to $destination"
+}
+
+main "$@"
+

@@ -2,6 +2,7 @@
 /Terminal/DotFiles/.vim/plugged/
 /Terminal/DotFiles/.zsh/.zcompdump
 /Terminal/DotFiles/.zsh/plugins
+/Terminal/DotFiles/.zsh/.zsh_sessions/*
 /Terminal/DotFiles/.vim/bookmarks
 /Terminal/DotFiles/.vim/plugged
 tags
