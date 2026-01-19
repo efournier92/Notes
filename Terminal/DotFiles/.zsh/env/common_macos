@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+#----------------
+# Name          : primary_macos_common
+# Description   : Common configuration for Primary build on Linux Lubuntu
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## System
+
+### Power
+
+#### Off
+
+alias power_off="sudo shutdown -h now"
+
+#### Reboot
+
+alias power_reboot="sudo shutdown -r now"
+
+## App Openers
+
+### Browser
+
+browser_u() { open -na 'Firefox' --args --new-window "$@" }
+browser_a() { open -na 'Google Chrome' --args --new-window "$@" }
+
+### Spreadsheet
+
+spreadsheet() { open -na 'LibreOffice' --args --calc "$@" }
+
+### DiskUtil
+
+alias dlist="diskutil list"
+alias dinfo="diskutil info"
+
+### Download YouTube Audio
+
+yt_audio() { "$ZSCRIPTS/download/yt_audio" "$@"; }
+

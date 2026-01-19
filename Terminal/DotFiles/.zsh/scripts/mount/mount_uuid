@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #----------------
-# Name          : mount_uuid # Description   : Mounts md drive with veracrypt
+# Name          : mount_uuid
+# Description   : Mounts md drive with veracrypt
 # Author        : E Fournier
 # Dependencies  : veracrypt
 # Example Usage : ./mount_uuid $uuid $mount_location

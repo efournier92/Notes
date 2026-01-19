@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Mount a volume by its label on macOS in a functional style
+
+set -e
+
+# Function to get the device identifier for a given label
+get_device_for_label() {
+    local label="$1"
+    diskutil list | grep "$label" | awk '{print $NF}'
+}
+
+# Function to create the destination directory if it doesn't exist
+create_mount_point() {
+    local destination="$1"
+    if [ ! -d "$destination" ]; then
+        echo "Creating mount point: $destination"
+        mkdir -p "$destination"
+    fi
+}
+
+# Main function
+main() {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: $0 <label> <destination>"
+        exit 1
+    fi
+
+    local label="$1"
+    local destination="$2"
+
+    local device
+    device=$(get_device_for_label "$label")
+
+    if [ -z "$device" ]; then
+        echo "Error: No disk found with label '$label'" >&2
+        exit 1
+    fi
+
+    create_mount_point "$destination"
+
+    echo "Mounting $device to $destination"
+    diskutil mount -mountPoint "$destination" "$device"
+
+    echo "Successfully mounted $device to $destination"
+}
+
+main "$@"

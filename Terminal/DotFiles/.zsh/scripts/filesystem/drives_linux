@@ -169,47 +169,47 @@ alias bk_lg=". $ZSCRIPTS/backup/backup_lg $EXTA"
 
 ### Backup extA to extB
 
-alias bk_extAB=". $ZSCRIPTS/backup/backup_dir $EXTA $EXTB"
+alias bk_extAB=". $ZSCRIPTS/backup/backup_dir_rclone $EXTA $EXTB"
 
 ### Backup extA to extB
 
-alias bk_extBA=". $ZSCRIPTS/backup/backup_dir $EXTB $EXTA"
+alias bk_extBA=". $ZSCRIPTS/backup/backup_dir_rclone $EXTB $EXTA"
 
 ### Backup extA to extC
 
-alias bk_extAC=". $ZSCRIPTS/backup/backup_dir $EXTA $EXTC Media/\*\*"
+alias bk_extAC=". $ZSCRIPTS/backup/backup_dir_rclone $EXTA $EXTC Media/\*\*"
 
 ### Backup extA to extC
 
-alias bk_extACM=". $ZSCRIPTS/backup/backup_dir $EXTA/Media $EXTCM/Media"
+alias bk_extACM=". $ZSCRIPTS/backup/backup_dir_rclone $EXTA/Media $EXTCM/Media"
 
 ### Backup extB to extC
 
-alias bk_extBC=". $ZSCRIPTS/backup/backup_dir $EXTB $EXTC /Media/**"
+alias bk_extBC=". $ZSCRIPTS/backup/backup_dir_rclone $EXTB $EXTC /Media/**"
 
 ### Backup extA to MD
 
-alias bk_extAMD=". $ZSCRIPTS/backup/backup_dir $EXTA/Media $MD"
+alias bk_extAMD=". $ZSCRIPTS/backup/backup_dir_rclone $EXTA/Media $MD"
 
 ### Backup extB to MD
 
-alias bk_extBMD=". $ZSCRIPTS/backup/backup_dir $EXTB/Media $MD"
+alias bk_extBMD=". $ZSCRIPTS/backup/backup_dir_rclone $EXTB/Media $MD"
 
 ### Backup bkA to bkB
 
-alias bk_bkAB=". $ZSCRIPTS/backup/backup_dir $BKA $BKB"
+alias bk_bkAB=". $ZSCRIPTS/backup/backup_dir_rclone $BKA $BKB"
 
 ### Backup bkA to bkB
 
-alias bk_bkBA=". $ZSCRIPTS/backup/backup_dir $BKB $BKA"
+alias bk_bkBA=". $ZSCRIPTS/backup/backup_dir_rclone $BKB $BKA"
 
 ### Backup bkA to bkC
 
-alias bk_bkAC=". $ZSCRIPTS/backup/backup_dir $BKA $BKC"
+alias bk_bkAC=". $ZSCRIPTS/backup/backup_dir_rclone $BKA $BKC"
 
 ### Backup bkB to bkC
 
-alias bk_bkBC=". $ZSCRIPTS/backup/backup_dir $BKB $BKC"
+alias bk_bkBC=". $ZSCRIPTS/backup/backup_dir_rclone $BKB $BKC"
 
 ## Externals
 

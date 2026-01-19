@@ -1,0 +1,92 @@
+#!/bin/bash
+
+#----------------
+# Name          : bk_sync
+# Description   : Synchronizes two directories using rsync.
+# Author        : E Fournier
+# Dependencies  : rsync
+# Example Usage : ./bk_sync <source_dir> <dest_dir> [--dry] [--delete]
+#----------------
+
+set -euo pipefail
+
+validate_args() {
+  local source_dir="$1"
+  local dest_dir="$2"
+
+  if [[ ! -d "$source_dir" ]]; then
+    echo "ERROR: source_dir directory does not exist: $source_dir"
+    exit 1
+  fi
+
+  if [[ ! -d "$dest_dir" ]]; then
+    echo "ERROR: dest_dir directory does not exist: $dest_dir"
+    exit 1
+  fi
+
+  # Prevent syncing root by accident
+  if [[ "$source_dir" == "/" || "$dest_dir" == "/" ]]; then
+    echo "ERROR: source_dir or dest_dir is '/' — refusing to run."
+    exit 1
+  fi
+
+  # Prevent syncing home directory by accident
+  if [[ "$source_dir" == "$HOME" || "$dest_dir" == "$HOME" ]]; then
+    echo "ERROR: source_dir or dest_dir is '$HOME' — refusing to run."
+    exit 1
+  fi
+}
+
+print_info() {
+  local source_dir="$1"
+  local dest_dir="$2"
+  local dry_run="$4"
+  local delete="$3"
+
+  echo "----------------------------------------"
+  echo " Syncing:"
+  echo "   source_dir: $source_dir"
+  echo "   dest_dir:   $dest_dir"
+  echo "   dry_run:    $dry_run"
+  echo "   delete:     $delete"
+  echo "----------------------------------------"
+  echo
+}
+
+sync_dirs() {
+  local source_dir="$1"
+  local dest_dir="$2"
+  local dry_run="$3"
+  local delete_files="$4"
+
+  local rsync_opts=(-avh --info=progress2 --modify-window=2 --omit-dir-times --omit-link-times --inplace --no-whole-file)
+
+  [[ "$dry_run" == "true" ]] && rsync_opts+=(--dry-run)
+
+  [[ "$delete_files" == "true" && "$dry_run" == "false" ]] && rsync_opts+=(--delete)
+
+
+  rsync "${rsync_opts[@]}" "$source_dir"/ "$dest_dir"/
+}
+
+main() {
+  local source_dir="$1"
+  local dest_dir="$2"
+
+  local dry_run="false"
+  local delete_files="false"
+
+  validate_args "$source_dir" "$dest_dir"
+
+  for arg in "$@"; do
+    [[ "$arg" == "--dry" ]] && dry_run="true"
+    [[ "$arg" == "--delete" ]] && delete_files="true"
+  done
+
+  print_info "$source_dir" "$dest_dir" "$dry_run" "$delete_files"
+
+  sync_dirs "$source_dir" "$dest_dir" "$dry_run" "$delete_files"
+}
+
+main "$@"
+

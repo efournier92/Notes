@@ -1,0 +1,20 @@
+#!/bin/bash
+
+main() {
+  local output_name="$1"
+  local output_resolution="$2"
+
+  local output_directory="$FLOWS_SCANS"
+  local scanner_name="$SCANNER_DEFAULT"
+
+  [[ -z "$output_name" ]] && local output_name=$(date +"%Y-%m-%d-%H%M%S")
+  [[ -z "$output_resolution" ]] && local output_resolution="150"
+
+  cd "$output_directory"
+
+  #scanline -scanner "$scanner_name" -flatbed -batch -resolution "$output_resolution" -dir "$output_directory" -name "$output_name"
+  scanline -flatbed -batch -resolution "$output_resolution" -dir "$output_directory" -name "$output_name"
+}
+
+main "$@"
+

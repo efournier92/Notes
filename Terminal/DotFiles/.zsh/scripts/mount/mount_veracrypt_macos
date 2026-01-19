@@ -1,0 +1,99 @@
+#!/bin/bash
+
+#----------------
+# Name          : mount_veracrypt_macos
+# Description   : Mounts the given drive to the given mount point using Veracrypt
+# Author        : E Fournier
+# Dependencies  : veracrypt
+# Example Usage : ./mount_veracrypt_macos $drive_uuid $mount_point
+#----------------
+
+set -euo pipefail
+
+error() {
+  echo "Error: $1" >&2
+}
+
+print_usage() {
+  echo "Usage: $(basename "$0") <partition_guid> <mount_point>"
+  echo "Example: $(basename "$0") \"92E6F6CD-C526-4EFD-9EA9-E20D1B990B65\" /Users/user/veracrypt"
+  echo ""
+  echo "Find the <partition_guid> by running 'diskutil list' to find the partition"
+  echo "identifier (e.g. disk4s2), then run 'diskutil info <identifier>'."
+}
+
+check_veracrypt_executable() {
+  if ! command -v veracrypt &> /dev/null; then
+    error "VeraCrypt executable 'veracrypt' not found in PATH."
+    error "Please ensure VeraCrypt is installed and accessible in your system's PATH."
+    return 1
+  fi
+}
+
+get_all_partition_identifiers() {
+  diskutil list | awk '/^[[:space:]]*[0-9]+:/{print $NF}'
+}
+
+get_guid_for_device() {
+  local device="$1"
+  diskutil info "$device" 2>/dev/null | awk -F': *' '/Partition UUID/ {print $2; exit}'
+}
+
+guids_match() {
+  local guid1="$1"
+  local guid2="$2"
+  [[ -n "$guid1" && "$(echo "$guid1" | tr '[:upper:]' '[:lower:]')" == "$(echo "$guid2" | tr '[:upper:]' '[:lower:]')" ]]
+}
+
+get_device_path_from_guid() {
+  local target_guid="$1"
+  local current_guid
+
+  for device in $(get_all_partition_identifiers); do
+    current_guid=$(get_guid_for_device "$device")
+    if guids_match "$current_guid" "$target_guid"; then
+      echo "/dev/$device"
+      return 0
+    fi
+  done
+
+  error "Partition with GUID \"$target_guid\" not found."
+  return 1
+}
+
+mount_veracrypt_volume() {
+  local device_path="$1"
+  local mount_point="$2"
+
+  echo "Attempting to mount the VeraCrypt volume..."
+  if veracrypt --text --mount "$device_path" "$mount_point" --pim=0 --keyfiles="" --protect-hidden=no; then
+    echo "VeraCrypt volume mounted successfully at $mount_point"
+  else
+    error "Failed to mount VeraCrypt volume. Check password and volume validity."
+    return 1
+  fi
+}
+
+main() {
+  if [[ "$#" -ne 2 ]]; then
+    print_usage
+    exit 1
+  fi
+
+  local partition_guid="$1"
+  local mount_point="$2"
+  local device_path
+
+  check_veracrypt_executable
+
+  device_path=$(get_device_path_from_guid "$partition_guid")
+
+  if [[ -n "$device_path" ]]; then
+    mount_veracrypt_volume "$device_path" "$mount_point"
+  else
+    exit 1
+  fi
+}
+
+main "$@"
+

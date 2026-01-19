@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#----------------
+# Name          : umount_veracrypt_macos
+# Description   : Unmounts the given drive using Veracrypt
+# Author        : E Fournier
+# Dependencies  : veracrypt
+# Example Usage : ./umount_veracrypt_macos $mount_point
+#----------------
+
+validate_args() {
+  local mount_point="$1"
+
+  if [[ -z "$mount_point" ]]; then
+    echo "ERROR: Must supply the drive's mount point"
+    echo "USAGE: ./umount_veracrypt_macos mount_point"
+    exit 1
+  fi
+}
+
+unmount_drive() {
+  local mount_point="$1"
+
+  veracrypt -t -d "$mount_point"
+}
+
+main() {
+  local mount_point="$1"
+
+  validate_args "$mount_point"
+
+  unmount_drive "$mount_point"
+}
+
+main "$@"
+

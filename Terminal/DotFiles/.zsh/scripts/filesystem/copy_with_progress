@@ -1,0 +1,90 @@
+#!/bin/bash
+
+#----------------
+# Name          : copy_with_progress
+# Description   : Recursively copies the contents of a directory to a destination,
+#                 warning about and skipping existing files.
+# Author        : E Fournier (updated by Gemini)
+# Dependencies  : rsync
+# Example Usage : ./copy_with_progress <source_dir> <dest_dir> [debugger]
+#----------------
+
+IS_DEBUG="false"
+
+print_usage() {
+  local script_name
+  
+  script_name=$(basename "$0")
+  echo "Usage: $script_name <source_dir> <dest_dir> [debugger]"
+}
+
+validate_inputs() {
+  if [[ "$#" -ne 2 ]]; then
+    echo "Error: Invalid number of arguments." >&2
+    print_usage
+    exit 1
+  fi
+
+  local source_dir="$1"
+  local dest_dir="$2"
+
+  if [[ ! -d "$source_dir" ]]; then
+    echo "Error: Source directory '$source_dir' not found or is not a directory." >&2
+    exit 1
+  fi
+  
+  if [[ ! -d "$dest_dir" ]]; then
+    local parent_dest_dir
+    parent_dest_dir=$(dirname "$dest_dir")
+    if [[ ! -d "$parent_dest_dir" || ! -w "$parent_dest_dir" ]]; then
+      echo "Error: Destination directory '$dest_dir' does not exist and its parent '$parent_dest_dir' is not writable." >&2
+      exit 1
+    fi
+  elif [[ ! -w "$dest_dir" ]]; then
+    echo "Error: Destination directory '$dest_dir' exists but is not writable." >&2
+    exit 1
+  fi
+}
+
+log_debug_info() {
+  local source_dir="$1"
+  local dest_dir="$2"
+  
+  if [[ "$IS_DEBUG" == "true" ]]; then
+    echo "--- Debug Info ---"
+    echo "Source Directory: $source_dir"
+    echo "Destination Directory: $dest_dir"
+    echo "PID: $$"
+    echo "------------------"
+  fi
+}
+
+main() {
+  if [[ "${@: -1}" == "debugger" ]]; then
+    IS_DEBUG="true"
+    set -- "${@:1:$#-1}"
+  fi
+
+  validate_inputs "$@"
+  
+  local source_dir="$1"
+  local dest_dir="$2"
+
+  log_debug_info "$source_dir" "$dest_dir"
+  
+  echo "- [Copying from '$source_dir' to '$dest_dir']"
+  
+  rsync -a --info=progress2 --ignore-existing "$source_dir/" "$dest_dir"
+  
+  local rsync_exit_code=$?
+
+  if [[ "$rsync_exit_code" -eq 0 ]]; then
+    echo "Copy complete."
+  else
+    echo "Error: Copy failed with exit code $rsync_exit_code." >&2
+    exit "$rsync_exit_code"
+  fi
+}
+
+main "$@"
+

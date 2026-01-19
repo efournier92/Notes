@@ -1,0 +1,246 @@
+#!/bin/bash
+
+#----------------
+# Name          : rc_thumb_process
+# Description   : Compresses raw WAV voice memos as smaller MP3 files for long-term storage.
+# Author        : E Fournier
+# Dependencies  : ffmpeg
+# Example Usage : ./rc_thumb_process -i /mnt/rc/RECORD -o ~/Desktop -v
+#----------------
+
+shopt -s extglob
+
+concat_dir() {
+  local out_dir="$1"
+
+  echo "$out_dir/.concat"
+}
+
+concat_file() {
+  local date=$(parse_date "$1")
+  local out_dir="$2"
+
+  local dir=$(concat_dir "$out_dir")
+
+  echo "$dir/$date.txt"
+}
+
+mp3_file() {
+  local date="$1"
+  local out_dir="$2"
+
+  echo "$out_dir/$date.mp3"
+}
+
+is_valid_file() {
+  local eval_file="$1"
+
+  [[ "$eval_file" = *.WAV || "$eval_file" = *.wav ]] && [[ ! "$eval_file" =~ [@#\$%^\&*+] ]]
+}
+
+is_valid_file_name() {
+  local eval_file="$1"
+
+  local file_name="${eval_file##*/}"
+  local file_name="${file_name%%.*}"
+
+  if [[ "$file_name" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{4}_[0-9]{2}$ ]]; then
+    [[ "$IS_DEBUG" = true ]] && echo "$file_name IS a valid file"
+
+    true
+  else
+    [[ "$IS_DEBUG" = true ]] && echo "$file_name is NOT a valid file"
+
+    false
+  fi
+}
+
+parse_date() {
+  local eval_file="$1"
+  local file_name="${eval_file##*/}"
+  local file_name="${file_name%%.*}"
+  local file_name="${file_name%%_*}"
+
+  echo "$file_name"
+}
+
+format_duration() {
+  local total_seconds="$1"
+  local hours=$((total_seconds / 3600))
+  local minutes=$(((total_seconds % 3600) / 60))
+  local seconds=$((total_seconds % 60))
+
+  printf "%02d:%02d:%02d" "$hours" "$minutes" "$seconds"
+}
+
+get_formatted_duration() {
+  local file="$1"
+
+  local duration_seconds=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$file" | cut -d. -f1)
+  local formatted_duration=$(format_duration "$duration_seconds")
+  echo "$formatted_duration"
+}
+
+wait_for_ffmpeg_to_finish() {
+  [[ "$IS_DEBUG" = true ]] && echo "Started waiting for FFmpeg to finish"
+
+  local time_spent_waiting=0
+
+  until [[ "$is_convert_complete" == true || "$time_spent_waiting" -gt 10000 ]]; do
+    local seconds_to_wait=1
+    sleep "$seconds_to_wait"
+    [[ "$IS_DEBUG" = true ]] && echo "Waiting for FFmpeg: $time_spent_waiting seconds"
+    local time_spent_waiting=$((time_spent_waiting + seconds_to_wait))
+    local ffmpeg_windows=$(tmux list-windows | grep -i 'ffmpeg')
+    if [[ "$ffmpeg_windows" == '' ]]; then
+      [[ "$IS_DEBUG" = true ]] && echo "FFmpeg conversion complete"
+      is_convert_complete=true
+    fi
+  done
+}
+
+convert_audio_files() {
+  local in_dir="$1"
+  local out_dir="$2"
+
+  for file_to_convert in "$in_dir"/*; do
+    [[ "$file_to_convert" = *.WAV ]] || continue
+
+    if ! $(is_valid_file "$file_to_convert"); then
+      [[ "$IS_DEBUG" = true ]] && echo "Skipping invalid file $file_to_convert"
+      continue
+    fi
+
+    local date=$(parse_date "$file_to_convert")
+    local mp3_file=$(mp3_file "$date" "$out_dir")
+    local concat_file=$(concat_file "$date" "$out_dir")
+
+    if [[ "$IS_DEBUG" = true ]]; then
+      echo "------------"
+      echo "CONVERTING WITH FFMPEG:"
+      echo "  Convert File: $file_to_convert"
+      echo "  Date: $date"
+      echo "  MP3 File: $mp3_file"
+      echo "  Concat File: $concat_file"
+    fi
+
+    if [[ "$file_to_convert" =~ "_00" ]]; then
+      [[ "$IS_DEBUG" = true ]] && echo "  First File: "$file_to_convert""
+      local file_to_write=$(concat_file "$date" "$out_dir")
+      clean_concat_file "$file_to_write" "$out_dir" "$IS_DEBUG"
+      [[ "$IS_DEBUG" = true ]] && echo "  Writing concat file "$concat_file" to "$in_dir""
+      local loops=9
+      for (( n = 0; n < loops; n++ )); do
+        echo "file '$in_dir/${date}_0${n}.WAV'" >> "$file_to_write"
+      done
+
+      tmux new-window "ffmpeg -f concat -safe 0 -i \"$concat_file\" -c:a libmp3lame -ac 1 -q:a 15 \"$mp3_file\""
+    fi
+  done
+
+  wait_for_ffmpeg_to_finish
+}
+
+clean_concat_file() {
+  local clean_date=$(parse_date "$1")
+  local out_dir="$2"
+
+  local file_to_clean=$(concat_file "$clean_date" "$out_dir")
+  mkdir -p "$(concat_dir "$out_dir")"
+  [[ "$IS_DEBUG" = true ]] && echo "  Cleaning $file_to_clean in $(concat_dir "$out_dir")"
+
+  rm -f "$file_to_clean"
+  touch "$file_to_clean"
+}
+
+does_file_already_exist() {
+  local in_dir="$1"
+  local new_file_name="$2"
+
+  if [[ -f "$in_dir/$new_file_name.WAV" ]]; then
+    true
+  else
+    false
+  fi
+}
+
+name_audio_files() {
+  local in_dir="$1"
+  local out_dir="$2"
+
+  for file in "$in_dir"/*.@(WAV|wav); do
+    if ! is_valid_file "$file"; then
+      continue
+    fi
+    local new_file_name="$file"
+    local has_file_moved=false
+
+    until is_valid_file_name "$new_file_name" "$IS_DEBUG"; do
+      ffplay -nodisp -autoexit "$file" > /dev/null 2>&1 &
+      local ffplay_process=$!
+      sleep 0.1
+      local current_year_month=$(date "+%Y-%m-")
+
+      local file_size=$(du -h "$file" | awk '{print $1}')
+      local formatted_duration=$(get_formatted_duration "$file")
+
+      echo "- [$file | $file_size | $formatted_duration]"
+      read -p "[yyyy-mm-dd-HHMM_##]: " -i "$current_year_month" -e new_file_name
+      kill "$ffplay_process" 2>/dev/null
+
+      if [[ "$new_file_name" == "delete" ]]; then
+        rm "$file"
+        break
+      elif does_file_already_exist "$in_dir" "$new_file_name"; then
+        echo "ERROR: File name already exists. Please enter a different name."
+      elif is_valid_file_name "$new_file_name"; then
+        mkdir -p "$out_dir"
+        mv -n "$file" "$in_dir/$new_file_name.WAV"
+        break
+      fi
+    done
+  done
+}
+
+ensure_valid_directories() {
+  local in_dir="$1"
+  local out_dir="$2"
+
+  if [[ ! -d "$in_dir" || -z "$out_dir" ]]; then
+    echo "Input and output directories expected."
+    exit 1
+  else
+    if [[ "$IS_DEBUG" = true ]]; then
+      echo "INPUT DIRECTORY: $in_dir"
+      echo "OUTPUT DIRECTORY: $out_dir"
+    fi
+  fi
+}
+
+start_conversion() {
+  local in_dir="$1"
+  local out_dir="$2"
+
+  ensure_valid_directories "$in_dir" "$out_dir"
+  name_audio_files "$in_dir" "$out_dir"
+  convert_audio_files "$in_dir" "$out_dir"
+}
+
+main() {
+  local in_dir="$1"
+  local out_dir="$2"
+  local debugger="$3"
+
+  if [[ "$debugger" = "debugger" ]]; then
+    IS_DEBUG=true
+    echo "DEBUGGER OUTPUT ENABLED"
+  else
+    IS_DEBUG=false
+  fi
+
+  start_conversion "$in_dir" "$out_dir"
+  rm -rf "$(concat_dir "$out_dir")"
+}
+
+main "$@"
+

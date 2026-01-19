@@ -10,8 +10,15 @@
 ## Resources
 
 source "$ZZSH/.secrets"
+source "$ZENV/common_macos"
 source "$ZENV/primary_common"
-source "$ZENV/primary_macos_common"
+source "$ZFS/drives_macos"
+
+## Settings
+
+### Disable DocumentRevisions
+
+#sudo tmutil disablelocal
 
 ## File system
 
@@ -39,7 +46,7 @@ export SP="$SNC/Pictures"
 
 ### Copy
 
-alias copy_with_progress="$ZSCRIPTS/files/copy_with_progress"
+alias copy_with_progress="$ZFS/copy_with_progress"
 
 ### Work
 
@@ -112,6 +119,16 @@ alias vpn_down="sudo echo 'CLOSING...';sudo pkill openvpn; whereami"
 export FLOWS="$BNK/flows"
 export RC="/Volumes/VOICE"
 
+## Scans
+
+### Flows
+
+export FLOWS_SCANS="$FLOWS/Scans"
+
+### Names
+
+export SCANNER_DEFAULT="V600"
+
 ## Photos
 
 ### Flows
@@ -155,6 +172,7 @@ alias rc_phone_copy=". $ZSCRIPTS/rc/rc_phone_pull $PHONE_RC $FLOWS_RC/In"
 alias rc_phone_clean="adb shell \"rm -rv $PHONE_RC/*\""
 alias rc_dir=". $ZSCRIPTS/rc/rc_mkdir $FLOWS_RC"
 alias rc_process="bash $ZSCRIPTS/rc/rc_process $FLOWS_RC_IN $FLOWS_RC_OUT"
+alias rc_archive_copy="cp -v $FLOWS_RC_OUT/* $AALG"
 
 [[ -d "$BNK/hle" ]] || m_bnk
 

@@ -55,7 +55,7 @@ run_snc_command() {
   local log_file_name="unison.log"
   local log_file_path="$log_dir/$log_file_name"
 
-  unison \
+  unison -ui text \
     -batch -force newer -perms 0 \
     -logfile "$log_file_path" \
     -backup 'Name *' \

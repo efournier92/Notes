@@ -15,7 +15,7 @@ export BNK="$HOME/bnk"
 
 ### Start directory
 
-export START="$HOME"
+export START="$BNK"
 
 ## Tools
 

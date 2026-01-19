@@ -1,0 +1,17 @@
+#!/bin/bash
+
+main() {
+  local phone_rc_dir="$1"
+  local local_rc_dir="$2"
+  
+  rc_dir
+
+  adb pull "$phone_rc_dir" "$local_rc_dir"
+
+  mv "${local_rc_dir}/rc"/*.wav "$local_rc_dir"
+
+  rm -r "${local_rc_dir}/rc"
+}
+
+main "$@"
+

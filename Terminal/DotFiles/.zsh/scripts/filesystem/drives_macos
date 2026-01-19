@@ -1,0 +1,313 @@
+#!/bin/zsh
+
+#----------------
+# Name          : drives
+# Description   : Aliases for drive operations
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## Configuration
+
+uuid_bnk="9429C154-E360-4A84-8993-C3704D11DC21"
+uuid_extA="E1F98D8B-AD6F-4A83-AF73-3908CD074F1A"
+uuid_extB="92E6F6CD-C526-4EFD-9EA9-E20D1B990B65"
+uuid_extC=""
+uuid_extCM=""
+uuid_bkA="9409B941-CCEF-3DE7-AB49-8F7FCFFE1C21"
+uuid_bkB="310E8531-8C91-384A-A018-71CDEE94F003"
+uuid_bkC=""
+uuid_md="7F412531-90B1-4E3A-BD65-418382D2ABC5"
+
+## Mountpoints
+
+### /mnt/bnk
+
+#### Base
+
+#export BNK="$BNK"
+
+#### Mount
+
+alias m_bnk="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_bnk $BNK"
+
+#### Unmount
+
+alias um_bnk="$ZSCRIPTS/mount/umount_veracrypt_macos $BNK"
+
+### /mnt/extA
+
+#### Base
+
+export EXTA="$MNT/extA"
+
+#### Mount
+
+alias m_extA="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_extA $EXTA"
+
+#### Unmount
+
+alias um_extA="$ZSCRIPTS/mount/umount_veracrypt_macos $EXTA"
+
+### /mnt/extB
+
+#### Base
+
+export EXTB="$MNT/extB"
+
+#### Mount
+
+alias m_extB="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_extB $EXTB"
+
+#### Unmount
+
+alias um_extB="$ZSCRIPTS/mount/umount_veracrypt_macos $EXTB"
+
+### /mnt/extC
+
+#### Base
+
+export EXTC="$MNT/extC"
+
+#### Mount
+
+alias m_extC="$ZSCRIPTS/mount/mount_veracrypt_macos $EXTC"
+
+#### Unmount
+
+alias um_extC="$ZSCRIPTS/mount/umount_veracrypt_macos $EXTC"
+
+### /mnt/extC_Media
+
+#### Base
+
+export EXTCM="$MNT/extCM"
+
+#### Mount
+
+alias m_extCM="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_extCM $EXTCM"
+
+#### Unmount
+
+alias um_extCM="$ZSCRIPTS/mount/umount_veracrypt_macos $EXTCM"
+
+### /mnt/bkA
+
+#### Base
+
+export BKA="$MNT/bkA"
+
+#### Mount
+
+alias m_bkA="$ZSCRIPTS/mount/mount_macos $uuid_bkA $BKA"
+
+#### Unmount
+
+alias um_bkA="$ZSCRIPTS/mount/umount_macos $BKA"
+
+### /mnt/bkB
+
+#### Base
+
+export BKB="$MNT/bkB"
+
+#### Mount
+
+alias m_bkB="$ZSCRIPTS/mount/mount_macos $uuid_bkB $BKB"
+
+#### Unmount
+
+alias um_bkB="$ZSCRIPTS/mount/umount_macos $BKB"
+
+### /mnt/bkC
+
+#### Base
+
+export BKC="$MNT/bkC"
+
+#### Mount
+
+alias m_bkC="$ZSCRIPTS/mount/mount_macos $uuid_bkC $BKC"
+
+#### Umount
+
+alias um_bkC="$ZSCRIPTS/mount/umount_macos $BKC"
+
+### /mnt/md
+
+#### Base
+
+export MD="$MNT/md"
+
+#### Mount
+
+#alias m_md="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_md $MD"
+alias m_md="$ZSCRIPTS/mount/mount_veracrypt_macos $uuid_md $MD"
+
+#### Unmount
+
+alias um_md="$ZSCRIPTS/mount/umount_veracrypt_macos $MD"
+
+### Veracrypt
+
+#### Mount Container Read Only
+
+m_v_ro() { veracrypt -m ro "$1" "$2" }
+
+#### Dismount Container
+
+um_v() { veracrypt -d "$1" }
+
+## Backups
+
+### Create a zip backup of snc directory
+
+alias bk_snc="$ZSCRIPTS/backup/backup_snc $EXTA"
+alias bk_sncB="$ZSCRIPTS/backup/backup_snc $EXTB"
+
+### Create a zip backup of lg directory
+
+alias bk_lg="$ZSCRIPTS/backup/backup_lg $EXTA"
+
+### Backup extA to extB
+
+alias bk_extAB="$ZSCRIPTS/backup/backup_dir_rsync $EXTA $EXTB --delete"
+
+### Backup extA to extB
+
+alias bk_extBA="$ZSCRIPTS/backup/backup_dir_rsync $EXTB $EXTA --delete"
+
+### Backup extA to extC
+
+bk_extAC() {
+  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Annual" "$EXTC/Annual" --delete
+  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Audio" "$EXTC/Audio" --delete
+  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Lg" "$EXTC/Lg" --delete
+  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Projects" "$EXTC/Projects" --delete
+  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Snc" "$EXTC/Snc" --delete
+  $ZSCRIPTS/backup/backup_dir_rsync "$EXTA/Workd" "$EXTC/Work" --delete
+}
+
+### Backup extA to extC
+
+alias bk_extACM="$ZSCRIPTS/backup/backup_dir_rsync $EXTA/Media $EXTCM/Media --delete"
+
+### Backup extB to extC
+
+alias bk_extBC="$ZSCRIPTS/backup/backup_dir_rsync $EXTB $EXTC /Media/** --delete"
+
+### Backup extA to MD
+
+alias bk_extAMD="$ZSCRIPTS/backup/backup_dir_rsync $EXTA/Media $MD --delete"
+
+### Backup extB to MD
+
+alias bk_extBMD="$ZSCRIPTS/backup/backup_dir_rsync $EXTB/Media $MD --delete"
+
+### Backup bkA to bkB
+
+alias bk_bkAB="$ZSCRIPTS/backup/backup_dir_rsync $BKA $BKB --delete"
+
+### Backup bkA to bkB
+
+alias bk_bkBA="$ZSCRIPTS/backup/backup_dir_rsync $BKB $BKA --delete"
+
+### Backup bkA to bkC
+
+alias bk_bkAC="$ZSCRIPTS/backup/backup_dir_rsync $BKA $BKC --delete"
+
+### Backup bkB to bkC
+
+alias bk_bkBC="$ZSCRIPTS/backup/backup_dir_rsync $BKB $BKC --delete"
+
+### Dynamically exports external drive locations
+
+export_ext_by_drive_letter() {
+  local letter="$1"
+  local base="$2"
+
+  local this_year=`date +"%Y"`
+  
+  #### External base directory
+  
+  export ${letter}BASE="$base"
+
+  #### Annual base directory
+  
+  export ${letter}ANN="$base/Annual"
+
+  #### Annual directory for the current year
+  
+  export ${letter}YR="$base/Annual/$this_year"
+
+  #### Lg base directory
+  
+  local lg="$base/Lg"
+  export ${letter}LG="$lg"
+
+  #### Lg audio directory
+  
+  export ${letter}ALG="$lg/Audio"
+
+  #### Projects base directory
+  
+  local projects="$base/Projects"
+  export ${letter}PROJ="$projects"
+
+  #### Family projects directory
+  
+  export ${letter}FAM="$projects/FamilyMedia"
+
+  #### Digitization projects directory
+  
+  export ${letter}DIG="$projects/Digitization"
+
+  #### LeCoursville directory
+  
+  export ${letter}LEC="$projects/LeCoursville"
+}
+
+### Dynamically exports external media drive locations
+
+export_media_by_drive_letter() {
+  local letter="$1"
+  local base="$2"
+
+  #### Media base directory
+  
+  local media="$base/Media"
+  export ${letter}MED="$media"
+  
+  #### Audio directory
+  
+  export ${letter}AU="$media/Audio"
+
+  #### Video directory
+  
+  local video="$media/Video"
+  export ${letter}VID="$video"
+
+  #### Movies directory
+  
+  export ${letter}MOV="$video/Movies"
+
+  #### TV directory
+  
+  export ${letter}TV="$video/TV"
+}
+
+### Exports variables for external drives
+
+assign_drive_letters() {
+  export_ext_by_drive_letter "A" "$EXTA"
+  export_ext_by_drive_letter "B" "$EXTB"
+  export_ext_by_drive_letter "C" "$EXTC"
+
+  export_media_by_drive_letter "A" "$EXTA"
+  export_media_by_drive_letter "B" "$EXTB"
+  export_media_by_drive_letter "C" "$EXTC"
+  export_media_by_drive_letter "M" "$MD"
+}
+
+assign_drive_letters
+

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#----------------
+# Name          : umount_macos
+# Description   : Mounts md drive with veracrypt
+# Author        : E Fournier
+# Dependencies  : veracrypt
+# Example Usage : ./umount_macos $mount_point
+#----------------
+
+validate_args() {
+  local mount_point="$1"
+
+  if [[ -z "$mount_point" ]]; then
+    eche "ERROR: Must supply drive UUID"
+    echo "USAGE: ./umount_macos mount_point"
+    exit 1
+  fi
+}
+
+unmount_drive() {
+  local mount_point="$1"
+
+  sudo umount "$mount_point"
+}
+
+main() {
+  local mount_point="$1"
+
+  validate_args "$mount_point"
+
+  unmount_drive "$mount_point"
+}
+
+main "$@"
+

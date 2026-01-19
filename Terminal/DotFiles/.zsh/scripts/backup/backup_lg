@@ -38,7 +38,7 @@ main() {
   local working_dir=`pwd`
   local date_stamp=`date +'%Y-%m-%d'`
   local zip_location="$backup_drive/Lg/Backups/$date_stamp.zip"
-  local log_dir="/mnt/bnk/snc"
+  local log_dir="$SLG"
   
   navigate_to_log_dir "$log_dir"
   try_delete_preexisting_zip "$zip_location"

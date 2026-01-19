@@ -188,7 +188,7 @@ alias rc_remote_record_zoom_mic_unattached="$ZSCRIPTS/sound/combined_audio_sink_
 
 #### Base
 
-export RC="/mnt/rc"
+#export RC="/mnt/rc"
 
 #### Mount
 
@@ -202,6 +202,10 @@ alias rc_thumb_umount="umount $RC"
 
 alias rc_thumb_list="ls -lh $RC/RECORD"
 
+#### Copy files
+
+alias rc_thumb_copy="cp -rv $RC/RECORD/* ."
+
 #### Remove WAV files
 
 alias rc_thumb_clean="rm $RC/RECORD/*.WAV"
@@ -209,6 +213,10 @@ alias rc_thumb_clean="rm $RC/RECORD/*.WAV"
 #### Convert Files
 
 alias rc_thumb_process="$ZSCRIPTS/rc/rc_thumb_process -i $RC/RECORD -o $EXTA/Lg/Audio"
+
+#### Make Directory
+
+alias rc_process_dir_make="mkdir -p RC_PROCESS/{IN,OUT}"
 
 ### Bank
 
@@ -266,7 +274,7 @@ alias ksb="tmux kill-session -t sb"
 
 ### m4b-tool
 
-alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
+#alias m4b-tool='docker run -it --rm -u $(id -u):$(id -g) -v "$(pwd)":/mnt sandreas/m4b-tool:latest'
 
 ## Updates
 

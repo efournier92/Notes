@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #----------------
-# Name          : backup_dir
+# Name          : backup_dir_rclone
 # Description   : Backs up one directory to another using rclone
 # Author        : E Fournier
 # Dependencies  : rclone, ls, cat
-# Example Usage : ./backup_dir /dev/extA /dev/extB
+# Example Usage : ./backup_dir_rclone /dev/extA /dev/extB
 #----------------
 
 has_empty_args() {

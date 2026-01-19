@@ -29,10 +29,6 @@ export ZDOTDIR="$ZZSH"
 
 export ZOHMYZSH="$HOME/.oh-my-zsh"
 
-#### Zsh alias directory
-
-export ZTOOLS="$ZZSH/tools"
-
 #### Zsh plugins directory
 
 export ZPLUGINS="$ZZSH/plugins"
@@ -44,6 +40,10 @@ export ZENV="$ZZSH/env"
 #### Zsh scripts directory
 
 export ZSCRIPTS="$ZZSH/scripts"
+
+#### Zsh files scripts directory
+
+export ZFS="$ZSCRIPTS/filesystem"
 
 ### Create env_id file
 
@@ -197,7 +197,7 @@ export USCRIPTS="$HOME/.scripts"
 
 #### Ensure relevant directories exist
 
-mkdir -p "$BNK" "$SNC" "$CS" "$HLE" > /dev/null 2>&1
+#mkdir -p "$BNK" "$SNC" "$CS" "$HLE" > /dev/null 2>&1
 
 ### Snc
 

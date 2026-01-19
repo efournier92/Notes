@@ -2,7 +2,7 @@
 
 #----------------
 # Name          : rc_bank_process
-# Description   : TODO
+# Description   : Process video from bank
 # Author        : E Fournier
 # Dependencies  : ffmpeg
 # Example Usage : ./rc_bank_process ${in_dir} ${out_dir} ${crf}

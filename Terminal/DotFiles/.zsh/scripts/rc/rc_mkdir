@@ -1,0 +1,14 @@
+#!/bin/bash
+
+main() {
+  local rc_dir="$1"
+
+  local in="In"
+  local out="Out"
+
+  mkdir -p $rc_dir/{$in,$out}
+  cd $rc_dir/$in
+}
+
+main "$@"
+
