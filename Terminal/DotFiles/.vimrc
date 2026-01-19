@@ -187,13 +187,12 @@ set complete=.,w,b,u,t,k
 
 set guifont=Hack
 
-""" Hide the menubar
-
-set guioptions -=m
-
-""" Hide the toolbar
-
-set guioptions -=T
+if has("gui_running")
+  """ Hide the menubar
+  set guioptions -=m
+  """ Hide the toolbar
+  set guioptions -=T
+endif
 
 "" Spelling
 
