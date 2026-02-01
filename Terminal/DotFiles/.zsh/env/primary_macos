@@ -158,7 +158,7 @@ alias rc_flows_clean="rm -rv $FLOWS_RC_IN/* $FLOWS_RC_OUT/*"
 
 export THUMB_RC="$MNT/rc/RECORD"
 
-alias rc_thumb_mount="$ZSCRIPTS/mount/mount_by_label 'VOICE' $MNT/rc"
+alias rc_thumb_mount="$ZSCRIPTS/mount/mount_macos_by_label 'VOICE' $MNT/rc"
 alias rc_thumb_umount="umount $MNT/rc"
 alias rc_thumb_copy="copy_with_progress $THUMB_RC $FLOWS_RC/In"
 alias rc_thumb_clean="rm -rv $THUMB_RC/* ."

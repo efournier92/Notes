@@ -8,9 +8,9 @@ main() {
 
   adb pull "$phone_rc_dir" "$local_rc_dir"
 
-  mv "${local_rc_dir}/rc"/*.wav "$local_rc_dir"
+  find . -name "*.wav" -exec mv {} . \;
 
-  rm -r "${local_rc_dir}/rc"
+  find . -mindepth 1 -maxdepth 1 -type d -exec rm -rv {} \;
 }
 
 main "$@"

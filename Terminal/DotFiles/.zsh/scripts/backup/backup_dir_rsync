@@ -40,15 +40,15 @@ validate_args() {
 print_info() {
   local source_dir="$1"
   local dest_dir="$2"
-  local dry_run="$4"
-  local delete="$3"
+  local dry_run="$3"
+  local delete_files="$4"
 
   echo "----------------------------------------"
   echo " Syncing:"
   echo "   source_dir: $source_dir"
   echo "   dest_dir:   $dest_dir"
   echo "   dry_run:    $dry_run"
-  echo "   delete:     $delete"
+  echo "   delete:     $delete_files"
   echo "----------------------------------------"
   echo
 }

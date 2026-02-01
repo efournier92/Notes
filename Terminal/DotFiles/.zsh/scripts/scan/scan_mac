@@ -8,7 +8,7 @@ main() {
   local scanner_name="$SCANNER_DEFAULT"
 
   [[ -z "$output_name" ]] && local output_name=$(date +"%Y-%m-%d-%H%M%S")
-  [[ -z "$output_resolution" ]] && local output_resolution="150"
+  [[ -z "$output_resolution" ]] && local output_resolution="400"
 
   cd "$output_directory"
 
