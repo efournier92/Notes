@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+#----------------
+# Name          : primary_linux_ubuntu_gnome
+# Description   : Shell-environment configuration for Primary build on Linux Ubuntu
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## File system
+
+### Start directory
+
+export START="$HOME"
+
+## Tools
+
+### Snc
+
+#### Enable unison
+
+export AUTO_SNC_ENABLED=false
+
+## Resources
+
+### Linux common
+
+source "$ZENV/common_linux"
+
+## Boot
+
+### Tasks
+
+run_boot_tasks() {
+
+}
+
