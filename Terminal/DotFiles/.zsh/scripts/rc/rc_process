@@ -1,14 +1,16 @@
 #!/bin/bash
 
 #----------------
-# Name          : rc_thumb_process
-# Description   : Compresses raw WAV voice memos as smaller MP3 files for long-term storage.
+# Name          : rc_process
+# Description   : Processes raw WAV voice memos as smaller MP3 files for long-term archival storage.
 # Author        : E Fournier
 # Dependencies  : ffmpeg
-# Example Usage : ./rc_thumb_process -i /mnt/rc/RECORD -o ~/Desktop -v
+# Example Usage : ./rc_process $in_dir $out_dir [debugger]
 #----------------
 
 shopt -s extglob
+
+IS_DEBUG=false
 
 concat_dir() {
   local out_dir="$1"
@@ -35,7 +37,11 @@ mp3_file() {
 is_valid_file() {
   local eval_file="$1"
 
-  [[ "$eval_file" = *.WAV || "$eval_file" = *.wav ]] && [[ ! "$eval_file" =~ [@#\$%^\&*+] ]]
+  if [[ -f "$eval_file" ]]; then
+    [[ "$eval_file" = *.WAV || "$eval_file" = *.wav ]] && [[ ! "$eval_file" =~ [@#\$%^\&*+] ]]
+  else
+    false
+  fi
 }
 
 is_valid_file_name() {
@@ -45,11 +51,11 @@ is_valid_file_name() {
   local file_name="${file_name%%.*}"
 
   if [[ "$file_name" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{4}_[0-9]{2}$ ]]; then
-    [[ "$IS_DEBUG" = true ]] && echo "$file_name IS a valid file"
+    [[ "$IS_DEBUG" = true ]] && echo "$file_name IS a valid file" >&2
 
     true
   else
-    [[ "$IS_DEBUG" = true ]] && echo "$file_name is NOT a valid file"
+    [[ "$IS_DEBUG" = true ]] && echo "$file_name is NOT a valid file" >&2
 
     false
   fi
@@ -79,6 +85,33 @@ get_formatted_duration() {
   local duration_seconds=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$file" | cut -d. -f1)
   local formatted_duration=$(format_duration "$duration_seconds")
   echo "$formatted_duration"
+}
+
+get_current_date_ym() {
+  echo "$(date "+%Y-%m-")"
+}
+
+get_current_date_ym() {
+  echo "$(date "+%Y-%m-")"
+}
+
+is_in_split_sequence() {
+  local formatted_duration="$1"
+  local duration_match=false
+  local split_durations_list=("02:00:00" "01:59:59")
+
+  for split_duration in "${split_durations_list[@]}"; do
+    if [[ "$formatted_duration" == "$split_duration" ]]; then
+      duration_match=true
+      break
+    fi
+  done
+
+  if $duration_match; then
+    true
+  else
+    false
+  fi
 }
 
 wait_for_ffmpeg_to_finish() {
@@ -164,9 +197,106 @@ does_file_already_exist() {
   fi
 }
 
+try_parse_filename_from_raw() {
+  local raw_file="$1"
+  local filename_no_ext="${raw_file##*/}"
+  filename_no_ext="${filename_no_ext%%.*}"
+
+  # Try to match YYYY_MM_DD_HH_MM_NN or YYYY-MM-DD-HHMM_NN
+  if [[ "$filename_no_ext" =~ ^([0-9]{4})_([0-9]{2})_([0-9]{2})_([0-9]{2})_([0-9]{2})_([0-9]{2})$ ]]; then
+    echo "${BASH_REMATCH[1]}-${BASH_REMATCH[2]}-${BASH_REMATCH[3]}-${BASH_REMATCH[4]}${BASH_REMATCH[5]}_00"
+  elif [[ "$filename_no_ext" =~ ^([0-9]{4})-([0-9]{2})-([0-9]{2})-([0-9]{4})_([0-9]{2})$ ]]; then
+    echo "$filename_no_ext"
+  else
+    echo ""
+  fi
+}
+
+calculate_default_prompt_value() {
+  local last_duration="$1"
+  local last_successful_filename_arg="$2"
+  local raw_file="$3"
+  local current_date_ym_arg="$4"
+
+  local default_prompt_value=""
+  local base_from_current_file=""
+
+  local parsed_raw_filename=$(try_parse_filename_from_raw "$raw_file")
+  if [[ -n "$parsed_raw_filename" ]]; then
+    base_from_current_file="${parsed_raw_filename%_*}"
+  fi
+
+  if is_in_split_sequence "$last_duration"; then
+    if [[ -n "$last_successful_filename_arg" ]]; then
+      local last_prefix="${last_successful_filename_arg%_*}"
+      local last_suffix_str="${last_successful_filename_arg##*_}"
+      local last_suffix_num=$((10#$last_suffix_str))
+      local next_suffix_num=$((last_suffix_num + 1))
+      local next_suffix_str=$(printf "%02d" "$next_suffix_num")
+      default_prompt_value="${last_prefix}_${next_suffix_str}"
+    else
+      if [[ -n "$base_from_current_file" ]]; then
+        default_prompt_value="${base_from_current_file}_00"
+      else
+        default_prompt_value="${current_date_ym_arg}"
+      fi
+    fi
+  else
+    if [[ -n "$parsed_raw_filename" ]]; then
+      default_prompt_value="$parsed_raw_filename"
+    else
+      default_prompt_value="${current_date_ym_arg}"
+    fi
+  fi
+  echo "$default_prompt_value"
+}
+
+handle_user_input_and_file_action() {
+  local new_file_name_input="$1"
+  local original_file="$2"
+  local in_dir="$3"
+  local out_dir="$4"
+
+  # Return codes:
+  # 0: Action completed (break until loop)
+  # 1: Error, continue until loop
+
+  # Echoed output:
+  # <new_last_successful_filename> (if rename)
+  # "" (if delete or error where last_successful_filename should be cleared)
+
+  if [[ "${new_file_name_input,,}" == "D" || "${new_file_name_input,,}" == "delete" ]]; then
+    rm "$original_file"
+    echo "Deleted '$original_file'" >&2
+    echo ""
+    return 0
+  elif [[ "${new_file_name_input}" =~ [Dd]$ ]]; then
+    rm "$original_file"
+    echo "Deleted '$original_file'" >&2
+    echo ""
+    return 0
+  elif does_file_already_exist "$in_dir" "$new_file_name_input"; then
+    echo "ERROR: File name already exists. Please enter a different name." >&2
+    echo ""
+    return 1
+  elif is_valid_file_name "$new_file_name_input"; then
+    mkdir -p "$out_dir"
+    mv -n "$original_file" "$in_dir/$new_file_name_input.WAV"
+    [[ "$IS_DEBUG" = true ]] && echo "Renamed '$original_file' to '$new_file_name_input.WAV'" >&2
+    echo "$new_file_name_input"
+    return 0
+  else
+    echo "ERROR: Invalid file name format. Please enter a valid name." >&2
+    echo ""
+    return 1
+  fi
+}
+
 name_audio_files() {
   local in_dir="$1"
   local out_dir="$2"
+  local last_successful_filename=""
+  local last_duration=""
 
   for file in "$in_dir"/*.@(WAV|wav); do
     if ! is_valid_file "$file"; then
@@ -175,30 +305,40 @@ name_audio_files() {
     local new_file_name="$file"
     local has_file_moved=false
 
-    until is_valid_file_name "$new_file_name" "$IS_DEBUG"; do
+    until is_valid_file_name "$new_file_name"; do
       ffplay -nodisp -autoexit "$file" > /dev/null 2>&1 &
       local ffplay_process=$!
       sleep 0.1
-      local current_year_month=$(date "+%Y-%m-")
 
       local file_size=$(du -h "$file" | awk '{print $1}')
-      local formatted_duration=$(get_formatted_duration "$file")
+      local current_duration=$(get_formatted_duration "$file")
 
-      echo "- [$file | $file_size | $formatted_duration]"
-      read -p "[yyyy-mm-dd-HHMM_##]: " -i "$current_year_month" -e new_file_name
+      local current_date_ym=$(date "+%Y-%m-")
+
+      local default_prompt_value=$(calculate_default_prompt_value \
+        "$last_duration" \
+        "$last_successful_filename" \
+        "$file" \
+        "$current_date_ym")
+
+      echo "- [$file | $file_size | $current_duration]"
+      read -p "[yyyy-mm-dd-HHMM_##]: " -i "$default_prompt_value" -e new_file_name
       kill "$ffplay_process" 2>/dev/null
 
-      if [[ "$new_file_name" == "delete" ]]; then
-        rm "$file"
-        break
-      elif does_file_already_exist "$in_dir" "$new_file_name"; then
-        echo "ERROR: File name already exists. Please enter a different name."
-      elif is_valid_file_name "$new_file_name"; then
-        mkdir -p "$out_dir"
-        mv -n "$file" "$in_dir/$new_file_name.WAV"
+      local returned_last_successful_filename
+      returned_last_successful_filename=$(handle_user_input_and_file_action \
+        "$new_file_name" \
+        "$file" \
+        "$in_dir" \
+        "$out_dir")
+      local action_exit_status=$?
+
+      if [[ "$action_exit_status" == "0" ]]; then
+        last_successful_filename="$returned_last_successful_filename"
         break
       fi
     done
+    last_duration="$current_duration"
   done
 }
 
