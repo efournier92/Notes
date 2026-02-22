@@ -59,3 +59,9 @@ markdown() { nohup chromium $1 >/dev/null 2>&1 &; }
 
 presentation() { nohup evince "$1" >/dev/null 2>&1 &; }
 
+## Updates
+
+### Clean and Update Debian
+
+alias system_update="$ZSCRIPTS/environment/system_update_linux"
+

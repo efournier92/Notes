@@ -1,0 +1,55 @@
+#!/bin/bash
+
+#----------------
+# Name          : bleachbit_clean
+# Description   : Cleans configured locations using bleachbit as user and admin
+# Author        : E Fournier
+# Dependencies  : bleachbit, whoami
+# Example Usage : ./bleachbit_clean
+#----------------
+
+run_bleachbit() {
+  bleachbit --clean \
+    apt.* \
+    chromium.* \
+    deepscan.* \
+    evolution.* \
+    firefox.* \
+    gnome.* \
+    google_chrome.dom \
+    google_chrome.form_history \
+    google_chrome.search_engines \
+    google_chrome.session \
+    google_chrome.vacuum \
+    journald.* \
+    libreoffice.* \
+    thumbnails.* \
+    vlc.* \
+    x11.* \
+    zoom.* \
+    system.cache \
+    system.clipboard \
+    system.custom \
+    system.desktop_entry \
+    system.localizations \
+    system.recent_documents  \
+    system.rotated_logs \
+    system.tmp \
+    system.trash
+}
+
+run_bleachbit_as_user() {
+  local user=`whoami`
+  echo "________"
+  echo "Cleaning as $user"
+  echo ""
+
+  run_bleachbit
+}
+
+main() {
+  run_bleachbit_as_user
+}
+
+main "$@"
+
