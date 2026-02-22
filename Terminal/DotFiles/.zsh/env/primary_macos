@@ -114,17 +114,6 @@ alias scan=". $ZSCRIPTS/scan/scan_mac"
 alias vpn_up="sudo echo 'INTIALIZING...';sudo nohup openvpn --config $BNK/cnf/o.v > /dev/null 2>&1 &!; sleep 3; whereami"
 alias vpn_down="sudo echo 'CLOSING...';sudo pkill openvpn; whereami"
 
-## Locations
-
-export FLOWS="$BNK/flows"
-export RC="/Volumes/VOICE"
-
-## Scans
-
-### Flows
-
-export FLOWS_SCANS="$FLOWS/Scans"
-
 ### Names
 
 export SCANNER_DEFAULT="V600"
@@ -132,8 +121,6 @@ export SCANNER_DEFAULT="V600"
 ## Photos
 
 ### Flows
-
-export FLOWS_PHOTOS="$FLOWS/Photos"
 
 alias photos_flows_clean="rm -rv $FLOWS_PHOTOS/*"
 
@@ -146,17 +133,7 @@ alias photos_phone_clean="adb shell \"rm -rv $PHONE_PHOTOS/*\""
 
 ## RC
 
-### Flows
-
-export FLOWS_RC="$FLOWS/Rc"
-export FLOWS_RC_IN="$FLOWS_RC/In"
-export FLOWS_RC_OUT="$FLOWS_RC/Out"
-
-alias rc_flows_clean="rm -rv $FLOWS_RC_IN/* $FLOWS_RC_OUT/*"
-
 ### Thumb
-
-export THUMB_RC="$MNT/rc/RECORD"
 
 alias rc_thumb_mount="$ZSCRIPTS/mount/mount_macos_by_label 'VOICE' $MNT/rc"
 alias rc_thumb_umount="umount $MNT/rc"
@@ -170,9 +147,6 @@ export PHONE_RC="sdcard/rc"
 
 alias rc_phone_copy=". $ZSCRIPTS/rc/rc_phone_pull $PHONE_RC $FLOWS_RC/In"
 alias rc_phone_clean="adb shell \"rm -rv $PHONE_RC/*\""
-alias rc_dir=". $ZSCRIPTS/rc/rc_mkdir $FLOWS_RC"
-alias rc_process="bash $ZSCRIPTS/rc/rc_process $FLOWS_RC_IN $FLOWS_RC_OUT"
-alias rc_archive_copy="cp -v $FLOWS_RC_OUT/* $AALG"
 
 [[ -d "$BNK/hle" ]] || m_bnk
 

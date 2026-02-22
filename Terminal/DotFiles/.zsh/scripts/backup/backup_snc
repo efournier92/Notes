@@ -49,7 +49,7 @@ main() {
   backup_drive="$1"
   working_dir=`pwd`
   date_stamp=`date +'%Y-%m-%d'`
-  zip_location="$backup_drive/Snc/$date_stamp.zip"
+  zip_location="$backup_drive/Backups/Snc/$date_stamp.zip"
   sync_dir="$BNK"
   trash_dir="$sync_dir/snc/.trash"
   

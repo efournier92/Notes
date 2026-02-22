@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 #----------------
-# Name          : primary_linux_common
-# Description   : Common configuration for Primary build on Linux Lubuntu
+# Name          : primary_common
+# Description   : Common configuration for the Primary build
 # Author        : E Fournier
 # Dependencies  : zsh
 #----------------
@@ -184,11 +184,29 @@ alias rc_remote_record_zoom_headset_unattached="$ZSCRIPTS/sound/combined_audio_s
 
 alias rc_remote_record_zoom_mic_unattached="$ZSCRIPTS/sound/combined_audio_sink_enable; $ZSCRIPTS/rc/rc_remote_audio_send $lb_username $lb_server_domain_local /home/$lb_username/.scripts/rc_remote_audio_recieve_unattached 08:00:00 /home/$lb_username/bnk/rc 'Creation' 'USB PnP Audio Device'"
 
-### Thumbs
+### Flows
 
-#### Base
+## Locations
 
-#export RC="/mnt/rc"
+export FLOWS="$BNK/flows"
+export RC="/Volumes/VOICE"
+
+## Scans
+
+### Flows
+
+export FLOWS_SCANS="$FLOWS/Scans"
+export FLOWS_PHOTOS="$FLOWS/Photos"
+export FLOWS_RC="$FLOWS/Rc"
+export FLOWS_RC_IN="$FLOWS_RC/In"
+export FLOWS_RC_OUT="$FLOWS_RC/Out"
+export THUMB_RC="$MNT/rc/RECORD"
+
+### Flows
+
+alias rc_flows_clean="rm -rv $FLOWS_RC_IN/* $FLOWS_RC_OUT/*"
+
+### RC
 
 #### Mount
 
@@ -212,11 +230,15 @@ alias rc_thumb_clean="rm $RC/RECORD/*.WAV"
 
 #### Convert Files
 
-alias rc_thumb_process="$ZSCRIPTS/rc/rc_thumb_process -i $RC/RECORD -o $EXTA/Lg/Audio"
+alias rc_process="bash $ZSCRIPTS/rc/rc_process $FLOWS_RC_IN $FLOWS_RC_OUT"
 
 #### Make Directory
 
-alias rc_process_dir_make="mkdir -p RC_PROCESS/{IN,OUT}"
+alias rc_dir=". $ZSCRIPTS/rc/rc_mkdir $FLOWS_RC"
+
+#### Archive Files
+
+alias rc_archive_copy="cp -v $FLOWS_RC_OUT/* $AALG"
 
 ### Bank
 

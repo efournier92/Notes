@@ -31,7 +31,7 @@ export SBFS="$BNK/sbfs"
 
 ### Drives
 
-source "$ZTOOLS/drives_linux"
+source "$ZSCRIPTS/filesystem/drives_linux"
 
 ## GUI Launchers
 

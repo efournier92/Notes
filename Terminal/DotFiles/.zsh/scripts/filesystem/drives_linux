@@ -161,7 +161,7 @@ um_v() { veracrypt -d "$1" }
 
 ### Create a zip backup of snc directory
 
-alias bk_snc=". $ZSCRIPTS/backup/backup_snc $EXTA"
+alias bk_sncA=". $ZSCRIPTS/backup/backup_snc $EXTA"
 
 ### Create a zip backup of lg directory
 

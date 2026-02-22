@@ -10,11 +10,11 @@
 ## Configuration
 
 uuid_bnk="9429C154-E360-4A84-8993-C3704D11DC21"
-uuid_extA="E1F98D8B-AD6F-4A83-AF73-3908CD074F1A"
+uuid_extA="A1888CE8-E627-4A14-8955-91C14E6BF7A3"
 uuid_extB="5ED165AE-0BB3-4C44-A5C2-BC15CBB65633"
 uuid_extC=""
 uuid_extCM=""
-uuid_bkA="9409B941-CCEF-3DE7-AB49-8F7FCFFE1C21"
+uuid_bkA="1B00D5A7-E459-3EA4-97F0-2A24CBBF9179"
 uuid_bkB="6C4B3BDB-8581-3C30-AC53-F213CA12412C"
 uuid_bkC=""
 uuid_md="7F412531-90B1-4E3A-BD65-418382D2ABC5"
@@ -162,7 +162,7 @@ um_v() { veracrypt -d "$1" }
 
 ### Create a zip backup of snc directory
 
-alias bk_snc="$ZSCRIPTS/backup/backup_snc $EXTA"
+alias bk_sncA="$ZSCRIPTS/backup/backup_snc $EXTA"
 alias bk_sncB="$ZSCRIPTS/backup/backup_snc $EXTB"
 
 ### Create a zip backup of lg directory
@@ -219,6 +219,18 @@ alias bk_bkAC="sudo $ZSCRIPTS/backup/backup_dir_rsync $BKA $BKC --delete"
 ### Backup bkB to bkC
 
 alias bk_bkBC="sudo $ZSCRIPTS/backup/backup_dir_rsync $BKB $BKC --delete"
+
+### Backup bnk to extA
+
+alias bk_bnkA="sudo $ZSCRIPTS/backup/backup_dir_rsync $MNT/bnk $EXTA/Backups/Bnk --delete"
+
+### Backup bnk to extB
+
+alias bk_bnkB="sudo $ZSCRIPTS/backup/backup_dir_rsync $MNT/bnk $EXTB/Backups/Bnk --delete"
+
+### Backup bnk to extC
+
+alias bk_bnkC="sudo $ZSCRIPTS/backup/backup_dir_rsync $MNT/bnk $EXTC/Backups/Bnk --delete"
 
 ### Dynamically exports external drive locations
 
