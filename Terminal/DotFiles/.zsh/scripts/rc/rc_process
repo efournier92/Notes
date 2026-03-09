@@ -162,9 +162,12 @@ convert_audio_files() {
       local file_to_write=$(concat_file "$date" "$out_dir")
       clean_concat_file "$file_to_write" "$out_dir" "$IS_DEBUG"
       [[ "$IS_DEBUG" = true ]] && echo "  Writing concat file "$concat_file" to "$in_dir""
-      local loops=9
-      for (( n = 0; n < loops; n++ )); do
-        echo "file '$in_dir/${date}_0${n}.WAV'" >> "$file_to_write"
+      
+      # Use glob to find all related WAV files
+      for f in "$in_dir/${date}"_[0-9][0-9].{WAV,wav}; do
+        if [[ -f "$f" ]]; then
+          echo "file '$f'" >> "$file_to_write"
+        fi
       done
 
       tmux new-window "ffmpeg -f concat -safe 0 -i \"$concat_file\" -c:a libmp3lame -ac 1 -q:a 15 \"$mp3_file\""
@@ -186,27 +189,17 @@ clean_concat_file() {
   touch "$file_to_clean"
 }
 
-does_file_already_exist() {
-  local in_dir="$1"
-  local new_file_name="$2"
-
-  if [[ -f "$in_dir/$new_file_name.WAV" ]]; then
-    true
-  else
-    false
-  fi
-}
-
 try_parse_filename_from_raw() {
   local raw_file="$1"
   local filename_no_ext="${raw_file##*/}"
   filename_no_ext="${filename_no_ext%%.*}"
 
-  # Try to match YYYY_MM_DD_HH_MM_NN or YYYY-MM-DD-HHMM_NN
+  # Try to match YYYY_MM_DD_HH_MM_SS
   if [[ "$filename_no_ext" =~ ^([0-9]{4})_([0-9]{2})_([0-9]{2})_([0-9]{2})_([0-9]{2})_([0-9]{2})$ ]]; then
-    echo "${BASH_REMATCH[1]}-${BASH_REMATCH[2]}-${BASH_REMATCH[3]}-${BASH_REMATCH[4]}${BASH_REMATCH[5]}_00"
-  elif [[ "$filename_no_ext" =~ ^([0-9]{4})-([0-9]{2})-([0-9]{2})-([0-9]{4})_([0-9]{2})$ ]]; then
-    echo "$filename_no_ext"
+    echo "${BASH_REMATCH[1]}-${BASH_REMATCH[2]}-${BASH_REMATCH[3]}-${BASH_REMATCH[4]}${BASH_REMATCH[5]}"
+  # Try to match YYYY-MM-DD-HHMM_NN
+  elif [[ "$filename_no_ext" =~ ^([0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{4})(_[0-9]{2})?$ ]]; then
+    echo "${BASH_REMATCH[1]}"
   else
     echo ""
   fi
@@ -219,36 +212,36 @@ calculate_default_prompt_value() {
   local current_date_ym_arg="$4"
 
   local default_prompt_value=""
-  local base_from_current_file=""
-
   local parsed_raw_filename=$(try_parse_filename_from_raw "$raw_file")
-  if [[ -n "$parsed_raw_filename" ]]; then
-    base_from_current_file="${parsed_raw_filename%_*}"
-  fi
 
-  if is_in_split_sequence "$last_duration"; then
-    if [[ -n "$last_successful_filename_arg" ]]; then
-      local last_prefix="${last_successful_filename_arg%_*}"
-      local last_suffix_str="${last_successful_filename_arg##*_}"
-      local last_suffix_num=$((10#$last_suffix_str))
-      local next_suffix_num=$((last_suffix_num + 1))
-      local next_suffix_str=$(printf "%02d" "$next_suffix_num")
-      default_prompt_value="${last_prefix}_${next_suffix_str}"
-    else
-      if [[ -n "$base_from_current_file" ]]; then
-        default_prompt_value="${base_from_current_file}_00"
-      else
-        default_prompt_value="${current_date_ym_arg}"
-      fi
-    fi
+  if is_in_split_sequence "$last_duration" && [[ -n "$last_successful_filename_arg" ]]; then
+    default_prompt_value="${last_successful_filename_arg%_*}"
+  elif [[ -n "$parsed_raw_filename" ]]; then
+    default_prompt_value="$parsed_raw_filename"
   else
-    if [[ -n "$parsed_raw_filename" ]]; then
-      default_prompt_value="$parsed_raw_filename"
-    else
-      default_prompt_value="${current_date_ym_arg}"
-    fi
+    default_prompt_value="${current_date_ym_arg}"
   fi
   echo "$default_prompt_value"
+}
+
+get_next_increment() {
+  local in_dir="$1"
+  local base_name="$2"
+
+  local i=0
+  while true; do
+    local suffix=$(printf "%02d" $i)
+    local candidate="${base_name}_${suffix}"
+    if [[ ! -f "$in_dir/${candidate}.WAV" && ! -f "$in_dir/${candidate}.wav" ]]; then
+      echo "$candidate"
+      return
+    fi
+    i=$((i + 1))
+    if [[ $i -gt 99 ]]; then
+      echo "${base_name}_99"
+      return
+    fi
+  done
 }
 
 handle_user_input_and_file_action() {
@@ -265,28 +258,27 @@ handle_user_input_and_file_action() {
   # <new_last_successful_filename> (if rename)
   # "" (if delete or error where last_successful_filename should be cleared)
 
-  if [[ "${new_file_name_input,,}" == "D" || "${new_file_name_input,,}" == "delete" ]]; then
+  if [[ "${new_file_name_input,,}" == "D" || "${new_file_name_input,,}" == "delete" || "${new_file_name_input}" =~ [Dd]$ ]]; then
     rm "$original_file"
     echo "Deleted '$original_file'" >&2
     echo ""
     return 0
-  elif [[ "${new_file_name_input}" =~ [Dd]$ ]]; then
-    rm "$original_file"
-    echo "Deleted '$original_file'" >&2
-    echo ""
-    return 0
-  elif does_file_already_exist "$in_dir" "$new_file_name_input"; then
-    echo "ERROR: File name already exists. Please enter a different name." >&2
-    echo ""
-    return 1
-  elif is_valid_file_name "$new_file_name_input"; then
+  fi
+
+  local base_name
+  local final_name
+
+  if [[ "$new_file_name_input" =~ ^([0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{4})(_[0-9]{2})?$ ]]; then
+    base_name="${BASH_REMATCH[1]}"
+    final_name=$(get_next_increment "$in_dir" "$base_name")
+
     mkdir -p "$out_dir"
-    mv -n "$original_file" "$in_dir/$new_file_name_input.WAV"
-    [[ "$IS_DEBUG" = true ]] && echo "Renamed '$original_file' to '$new_file_name_input.WAV'" >&2
-    echo "$new_file_name_input"
+    mv -n "$original_file" "$in_dir/$final_name.WAV"
+    [[ "$IS_DEBUG" = true ]] && echo "Renamed '$original_file' to '$final_name.WAV'" >&2
+    echo "$final_name"
     return 0
   else
-    echo "ERROR: Invalid file name format. Please enter a valid name." >&2
+    echo "ERROR: Invalid file name format. Please enter a valid name (yyyy-mm-dd-HHMM)." >&2
     echo ""
     return 1
   fi
@@ -322,7 +314,7 @@ name_audio_files() {
         "$current_date_ym")
 
       echo "- [$file | $file_size | $current_duration]"
-      read -p "[yyyy-mm-dd-HHMM_##]: " -i "$default_prompt_value" -e new_file_name
+      read -p "[yyyy-mm-dd-HHMM]: " -i "$default_prompt_value" -e new_file_name
       kill "$ffplay_process" 2>/dev/null
 
       local returned_last_successful_filename
