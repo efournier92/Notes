@@ -16,6 +16,8 @@ source "$HOME/.zsh/.zshrc"
 SESSION_NAME="ide"
 BE_DIR="$CS/backend-service"
 FE_DIR="$CS/web-app"
+PVS_DIR="$CS/portfolio-valuation-service"
+AWS_DIR="$HOME/.aws"
 
 ## Check if session already exists
 
@@ -24,23 +26,35 @@ tmux has-session -t "$SESSION_NAME" 2>/dev/null
 ## New Session
 
 if [[ "$?" -eq 1 ]] ; then
-  ## 1st Window
+  ## Window 1
 
   ### Full Pane
   
   tmux new -s "$SESSION_NAME" -d -c "$BE_DIR"
 
-  ## 2nd Window 
+  ## Window 2
 
   ### Full Pane
   
   tmux new-window -t "$SESSION_NAME:1" -c "$FE_DIR"
-
-  ## 3rd Window 
+  
+  ## Window 3
 
   ### Full Pane
   
   tmux new-window -t "$SESSION_NAME:2" -c "$BE_DIR"
+
+  ## Window 4
+
+  ### Full Pane
+  
+  tmux new-window -t "$SESSION_NAME:3" -c "$PVS_DIR"
+
+  ## Window 5
+
+  ### Full Pane
+  
+  tmux new-window -t "$SESSION_NAME:4" -c "$AWS_DIR"
 
   ## Switch to 1st Window
   

@@ -17,6 +17,10 @@ source "$ZZSH/.secrets"
 
 export BNK="$HOME/bnk"
 
+### CS
+
+export CS="$BNK/cs"
+
 ### Start directory
 
 export START="$HOME"
@@ -78,7 +82,10 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 ### asdf
 
 export PATH="$HOME/.asdf/shims:$PATH"
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+### Java 21
+
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 
 ### Vlc
 
@@ -135,8 +142,14 @@ export TSESSION_IDE="ide_sav"
 alias agile_ticket_create="$ZSCRIPTS/development/agile_ticket_create"
 alias docker_clean="$ZSCRIPTS/development/docker_clean"
 alias docker_rebuild="$ZSCRIPTS/development/docker_rebuild"
-alias graphql_generate="yarn graphql:generate"
 alias graphql_watch="yarn graphql:generate:watch"
+alias killme="$USCRIPTS/km"
+graphql_generate() {
+  local last_dir="$(pwd)"
+  cd "$CS/backend-service"
+  make frontend-generate-graphql
+  cd "$last_dir"
+}
 
 ## Sleep Behavior
 
