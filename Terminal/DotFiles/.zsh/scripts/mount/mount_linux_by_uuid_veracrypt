@@ -58,7 +58,7 @@ mount_drive() {
   local mount_location="$2"
   local slot_num="$3"
 
-  veracrypt --mount "/dev/disk/by-partuuid/$drive_uuid" "$mount_location" --slot="$slot_num"
+  veracrypt --text --mount "/dev/disk/by-partuuid/$drive_uuid" "$mount_location" --slot="$slot_num" --pim=0 --keyfiles="" --protect-hidden=no
 }
 
 main() {
