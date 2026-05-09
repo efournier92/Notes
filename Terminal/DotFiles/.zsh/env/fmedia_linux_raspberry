@@ -1,0 +1,47 @@
+#!/bin/zsh
+
+#----------------
+# Name          : fmedia_linux_lubuntu
+# Description   : Shell-environment configuration for FMedia build on Linux Lubuntu
+# Author        : E Fournier
+# Dependencies  : zsh
+#----------------
+
+## File System
+
+### Bnk directory
+
+export BNK="$HOME/bnk"
+
+### Start directory
+
+export START="$HOME"
+
+## Tools
+
+### Snc
+
+#### Enable unison
+
+export AUTO_SNC_ENABLED=false
+
+## Resources
+
+### Linux Common
+
+source "$ZENV/common_linux"
+
+## Boot
+
+### Tasks
+
+run_boot_tasks() {
+  export SYS_NAME="fmedia_linux_lubuntu"
+
+  gnome-terminal --window --maximize &
+
+  sleep 2
+
+  kodi --fullscreen --standalone &
+}
+
