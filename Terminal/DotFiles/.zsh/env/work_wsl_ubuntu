@@ -47,15 +47,15 @@ export DISPLAY=localhost:0.0
 
 ### Snc aliases
 
-source "$ZFS/snc"
+source "$ZTOOLS/snc"
 
 ### Tools aliases
 
-source "$ZFS/tools"
+source "$ZTOOLS/tools"
 
 ### Windows aliases
 
-source "$ZFS/windows"
+source "$ZTOOLS/windows"
 
 ## Agile
 

@@ -25,13 +25,13 @@ export SBFS="$BNK/sbfs"
 
 #### Ensure relevant directories exist
 
-#mkdir -p "$SBFS" > /dev/null 2>&1
+mkdir -p "$SBFS" > /dev/null 2>&1
 
 ## Sources
 
 ### Drives
 
-source "$ZSCRIPTS/filesystem/drives_linux"
+source "$ZTOOLS/drives"
 
 ## GUI Launchers
 
@@ -41,15 +41,15 @@ explore() { nohup nautilus "$1" >/dev/null 2>&1 &; }
 
 ### Spreadsheet
 
-spreadsheet() { open -a "LibreOffice.app" --args "$1" >/dev/null 2>&1 &; }
+spreadsheet() { nohup libreoffice "$1" >/dev/null 2>&1 &; }
 
 ### Word Processing
 
-word() { nohup soffice "$1" >/dev/null 2>&1 &; }
+word() { nohup libreoffice "$1" >/dev/null 2>&1 &; }
 
 ### Presentation
 
-presentation() { nohup soffice "$1" >/dev/null 2>&1 &; }
+presentation() { nohup libreoffice "$1" >/dev/null 2>&1 &; }
 
 ### Markdown
 
@@ -58,10 +58,4 @@ markdown() { nohup chromium $1 >/dev/null 2>&1 &; }
 ### PDF
 
 presentation() { nohup evince "$1" >/dev/null 2>&1 &; }
-
-## Updates
-
-### Clean and Update Debian
-
-alias system_update="$ZSCRIPTS/environment/system_update_linux"
 
