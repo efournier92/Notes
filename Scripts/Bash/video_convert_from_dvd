@@ -1,0 +1,513 @@
+#!/bin/bash
+
+#----------------
+# Name          : video_convert_dvd
+# Description   : Converts a DVD (a folder holding VIDEO_TS) into one
+#                 cross-device compatible mp4. The title's VOB set is joined
+#                 with the byte-level concat protocol, deinterlaced, and
+#                 encoded with libx264. The largest title is converted by
+#                 default; other titles are reported.
+# Author        : E Fournier
+# Dependencies  : ffmpeg, ffprobe
+# Example Usage : ./video_convert_dvd 20 true "$(pwd)"
+#                 ./video_convert_dvd 20 true "$(pwd)" VTS_02
+# Environment   : FORCE=1    overwrite an existing output file
+#                 DRY_RUN=1  print the ffmpeg command instead of running it
+#                 STRICT=1   fail when the encoder reports decode warnings
+#----------------
+
+set -euo pipefail
+shopt -s nullglob
+export LC_ALL=C
+
+readonly DEFAULT_CRF="20"
+readonly DEFAULT_DEINTERLACE="true"
+readonly PRESET="slow"
+readonly TUNE="film"
+readonly PROFILE="main"
+readonly LEVEL="3.1"
+readonly AUDIO_BITRATE="160k"
+
+# Paths the EXIT trap must clean up. Empty means nothing to remove.
+TMP_OUT=""
+LOG_FILE=""
+KEEP_LOG=0
+
+die() {
+  echo "error: $*" >&2
+  exit 1
+}
+
+usage() {
+  cat >&2 <<'EOF'
+usage: video_convert_dvd [crf] [deinterlace] [working_dir] [vts_id]
+
+  crf          x264 quality, 0-51, lower is better. Default 20.
+  deinterlace  true or false. Default true.
+  working_dir  Folder holding VIDEO_TS, or the VIDEO_TS folder itself.
+               Default the current directory.
+  vts_id       Title to convert, e.g. VTS_02. Default the largest title.
+
+environment:
+  FORCE=1      Overwrite an existing output file.
+  DRY_RUN=1    Print the ffmpeg command instead of running it.
+  STRICT=1     Fail when the encoder reports decode warnings.
+EOF
+}
+
+# Never leave a partial output behind, and keep the log when something failed.
+cleanup() {
+  local status=$?
+  if [[ -n "$TMP_OUT" && -f "$TMP_OUT" ]]; then
+    rm -f "$TMP_OUT"
+  fi
+  if [[ -n "$LOG_FILE" && -f "$LOG_FILE" && "$KEEP_LOG" != "1" ]]; then
+    rm -f "$LOG_FILE"
+  fi
+  exit "$status"
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+require_tools() {
+  command -v ffmpeg >/dev/null 2>&1 || die "ffmpeg not found in PATH"
+  command -v ffprobe >/dev/null 2>&1 || die "ffprobe not found in PATH"
+
+  local encoders
+  encoders="$(ffmpeg -hide_banner -encoders 2>/dev/null || true)"
+  [[ "$encoders" == *libx264* ]] || die "this ffmpeg build has no libx264 encoder"
+  [[ "$encoders" == *" aac "* ]] || die "this ffmpeg build has no aac encoder"
+}
+
+file_size() {
+  wc -c < "$1" | tr -d '[:space:]'
+}
+
+# Echo free space in bytes on the filesystem holding the given path.
+free_bytes() {
+  df -Pk "$1" 2>/dev/null | awk 'NR==2 {print $4 * 1024; exit}'
+}
+
+# Echo the container duration in seconds, or nothing when unknown.
+probe_duration() {
+  ffprobe -v error -show_entries format=duration -of csv=p=0 "$1" 2>/dev/null | tr -d '[:space:]'
+}
+
+# Echo a stream's duration in seconds, or nothing when unknown.
+probe_stream_duration() {
+  local stream="$1"
+  local file="$2"
+  ffprobe -v error -select_streams "$stream" -show_entries stream=duration -of csv=p=0 "$file" 2>/dev/null \
+    | tr -d '[:space:]' | head -1
+}
+
+# Echo the VIDEO_TS folder inside the given root, if one exists.
+find_dvd_dir() {
+  local root="$1"
+  local candidate
+  local matches
+  for candidate in "$root/VIDEO_TS" "$root/video_ts" "$root"; do
+    [[ -d "$candidate" ]] || continue
+    matches=("$candidate"/VTS_[0-9][0-9]_[1-9].VOB)
+    if (( ${#matches[@]} > 0 )); then
+      echo "$candidate"
+      return 0
+    fi
+  done
+  return 1
+}
+
+# Echo every title id (VTS_01, VTS_02, ...) that owns content VOBs.
+# printf -v keeps the two-digit padding without bash 4 brace expansion.
+title_ids() {
+  local dvd_dir="$1"
+  local n
+  local id
+  for n in {1..99}; do
+    printf -v id '%02d' "$n"
+    if [[ -f "$dvd_dir/VTS_${id}_1.VOB" ]]; then
+      echo "VTS_$id"
+    fi
+  done
+}
+
+# Echo the content VOBs of a title in playback order.
+title_vobs() {
+  local dvd_dir="$1"
+  local vts="$2"
+  local n
+  for n in 1 2 3 4 5 6 7 8 9; do
+    if [[ -f "$dvd_dir/${vts}_${n}.VOB" ]]; then
+      printf '%s\n' "$dvd_dir/${vts}_${n}.VOB"
+    fi
+  done
+}
+
+# Echo the first content VOB of a title.
+first_vob() {
+  local file=""
+  local candidate
+  while IFS= read -r candidate; do
+    file="$candidate"
+    break
+  done < <(title_vobs "$1" "$2")
+  echo "$file"
+}
+
+# Echo the total byte size of a title.
+title_total_size() {
+  local dvd_dir="$1"
+  local vts="$2"
+  local n
+  local total=0
+  for n in 1 2 3 4 5 6 7 8 9; do
+    if [[ -f "$dvd_dir/${vts}_${n}.VOB" ]]; then
+      total=$(( total + $(file_size "$dvd_dir/${vts}_${n}.VOB") ))
+    fi
+  done
+  echo "$total"
+}
+
+# Echo the id of the largest title.
+main_title() {
+  local dvd_dir="$1"
+  local id
+  local size
+  local best=""
+  local best_size=-1
+  while IFS= read -r id; do
+    size="$(title_total_size "$dvd_dir" "$id")"
+    if (( size > best_size )); then
+      best_size="$size"
+      best="$id"
+    fi
+  done < <(title_ids "$dvd_dir")
+  echo "$best"
+}
+
+# Echo the byte-level concat protocol input for a title.
+concat_input() {
+  local dvd_dir="$1"
+  local vts="$2"
+  local file
+  local joined=""
+  while IFS= read -r file; do
+    if [[ -n "$joined" ]]; then
+      joined+="|"
+    fi
+    joined+="$file"
+  done < <(title_vobs "$dvd_dir" "$vts")
+  echo "$joined"
+}
+
+# Echo the whole-second duration a title should decode to.
+expected_duration() {
+  local dvd_dir="$1"
+  local vts="$2"
+  local file
+  local duration
+  local total=0
+  while IFS= read -r file; do
+    duration="$(probe_duration "$file")"
+    if [[ "$duration" =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+      total=$(( total + ${duration%.*} ))
+    fi
+  done < <(title_vobs "$dvd_dir" "$vts")
+  echo "$total"
+}
+
+build_filter() {
+  if [[ "$1" == "true" ]]; then
+    echo "yadif=0:0:0"
+  else
+    echo "null"
+  fi
+}
+
+# Reject a title whose VOB numbering skips a number, or has no VOBs at all.
+validate_vob_sequence() {
+  local dvd_dir="$1"
+  local vts="$2"
+  local n
+  local previous=0
+  local found=0
+  for n in 1 2 3 4 5 6 7 8 9; do
+    if [[ -f "$dvd_dir/${vts}_${n}.VOB" ]]; then
+      if (( found == 1 && n != previous + 1 )); then
+        die "title $vts has a gap: ${vts}_${previous}.VOB is followed by ${vts}_${n}.VOB"
+      fi
+      found=1
+      previous="$n"
+    fi
+  done
+  (( found == 1 )) || die "title $vts has no content VOBs"
+}
+
+# Reject unreadable, empty, or non-video sources before spending an encode.
+validate_sources() {
+  local dvd_dir="$1"
+  local vts="$2"
+  local file
+  local video_streams
+  local audio_streams
+
+  while IFS= read -r file; do
+    [[ -r "$file" ]] || die "cannot read $file"
+    [[ "$(file_size "$file")" -gt 0 ]] || die "zero-byte VOB: $file"
+  done < <(title_vobs "$dvd_dir" "$vts")
+
+  file="$(first_vob "$dvd_dir" "$vts")"
+  [[ -n "$file" ]] || die "title $vts has no VOBs to probe"
+
+  video_streams="$(ffprobe -v error -select_streams v -show_entries stream=index -of csv=p=0 "$file" 2>/dev/null || true)"
+  [[ -n "$video_streams" ]] || die "no video stream in $file"
+
+  audio_streams="$(ffprobe -v error -select_streams a -show_entries stream=index -of csv=p=0 "$file" 2>/dev/null | wc -l | tr -d '[:space:]')"
+  if [[ "$audio_streams" -gt 1 ]]; then
+    echo "note: $audio_streams audio streams found; only the first is kept" >&2
+  fi
+}
+
+# Refuse to start when the encode cannot plausibly fit on the target volume.
+validate_free_space() {
+  local dir="$1"
+  local source_bytes="$2"
+  local free
+  local required=$(( source_bytes / 2 ))
+
+  free="$(free_bytes "$dir")"
+  [[ -n "$free" ]] || return 0
+  if (( free < required )); then
+    die "not enough free space in $dir: need about $(( required / 1048576 )) MiB, have $(( free / 1048576 )) MiB"
+  fi
+}
+
+# Count the decoder messages that indicate real damage, ignoring the benign
+# padding notices a DVD emits at the end of a VOB.
+count_decode_warnings() {
+  local log="$1"
+  local count="0"
+  if [[ -s "$log" ]]; then
+    count="$(grep -c -E 'corrupt decoded frame|Invalid data found|Error while decoding|concealing|non-monotonous DTS|Error writing|Error initializing|Could not write header|Conversion failed' "$log" 2>/dev/null || true)"
+  fi
+  echo "${count:-0}"
+}
+
+encode_title() {
+  local input="$1"
+  local crf="$2"
+  local filter="$3"
+  local tmp_file="$4"
+  local title="$5"
+  local log_file="$6"
+
+  local -a cmd=(
+    ffmpeg -hide_banner -nostdin -y
+    -i "concat:$input"
+    -map 0:v:0 -map "0:a:0?"
+    -vf "$filter"
+    -c:v libx264 -crf "$crf" -tune "$TUNE" -preset "$PRESET"
+    -profile:v "$PROFILE" -level "$LEVEL" -pix_fmt yuv420p
+    -c:a aac -ac 2 -b:a "$AUDIO_BITRATE"
+    -movflags +faststart
+    -max_muxing_queue_size 1024
+    -map_metadata -1
+    -metadata "title=$title"
+    "$tmp_file"
+  )
+
+  if [[ "${DRY_RUN:-0}" == "1" ]]; then
+    printf '%q ' "${cmd[@]}"
+    printf '\n'
+    return 0
+  fi
+
+  echo "Converting: $title -> $tmp_file" >&2
+  "${cmd[@]}" 2> >(tee "$log_file" >&2)
+}
+
+# Fail when the output is missing, short, or has disagreeing video and audio.
+verify_output() {
+  local out_file="$1"
+  local expected="$2"
+  local v_dur
+  local a_dur
+  local frames
+  local size
+  local status="PASS"
+
+  if [[ ! -f "$out_file" ]]; then
+    printf 'verify: FAIL | output file was not created\n' >&2
+    return 1
+  fi
+
+  v_dur="$(probe_stream_duration v:0 "$out_file")"
+  a_dur="$(probe_stream_duration a:0 "$out_file")"
+  frames="$(ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of csv=p=0 "$out_file" 2>/dev/null | tr -d '[:space:]')"
+  size="$(file_size "$out_file")"
+
+  local v_int="${v_dur%.*}"
+
+  if [[ -z "$v_int" ]]; then
+    status="FAIL"
+    echo "verify: output has no readable video duration" >&2
+  else
+    if [[ "$expected" =~ ^[0-9]+$ ]] && (( expected > 0 )); then
+      local delta=$(( v_int - expected ))
+      if (( delta < 0 )); then delta=$(( -delta )); fi
+      if (( delta > 3 )); then
+        status="FAIL"
+        echo "verify: video is ${v_int}s but the VOB set should decode to about ${expected}s" >&2
+      fi
+    else
+      echo "verify: source duration unknown, only checking that audio and video agree" >&2
+    fi
+    if [[ -n "$a_dur" ]]; then
+      local a_int="${a_dur%.*}"
+      local adelta=$(( v_int - a_int ))
+      if (( adelta < 0 )); then adelta=$(( -adelta )); fi
+      if (( adelta > 2 )); then
+        status="FAIL"
+        echo "verify: video ${v_int}s and audio ${a_int}s diverge" >&2
+      fi
+    fi
+  fi
+
+  printf 'verify: %s | %ss | %s frames | %s bytes\n' "$status" "${v_int:-?}" "${frames:-?}" "$size"
+  [[ "$status" == "PASS" ]]
+}
+
+main() {
+  if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+    usage
+    exit 0
+  fi
+
+  local crf="${1:-$DEFAULT_CRF}"
+  local deinterlace="${2:-$DEFAULT_DEINTERLACE}"
+  local working_dir="${3:-$(pwd)}"
+  local requested_vts="${4:-}"
+
+  require_tools
+
+  [[ "$crf" =~ ^[0-9]+$ ]] || die "crf must be an integer, got '$crf'"
+  (( crf >= 0 && crf <= 51 )) || die "crf must be between 0 and 51, got '$crf'"
+  [[ "$deinterlace" == "true" || "$deinterlace" == "false" ]] \
+    || die "deinterlace must be true or false, got '$deinterlace'"
+  [[ -d "$working_dir" ]] || die "not a directory: $working_dir"
+  [[ -r "$working_dir" ]] || die "not readable: $working_dir"
+
+  local dvd_dir
+  dvd_dir="$(find_dvd_dir "$working_dir")" || die "no VIDEO_TS with title VOBs found in $working_dir"
+
+  local ids
+  ids="$(title_ids "$dvd_dir")"
+  [[ -n "$ids" ]] || die "no title VOBs found in $dvd_dir"
+
+  local vts
+  if [[ -n "$requested_vts" ]]; then
+    local found=""
+    local candidate
+    for candidate in $ids; do
+      if [[ "$candidate" == "$requested_vts" ]]; then
+        found="1"
+      fi
+    done
+    [[ -n "$found" ]] || die "title $requested_vts not found in $dvd_dir (available: $(echo $ids))"
+    vts="$requested_vts"
+  else
+    vts="$(main_title "$dvd_dir")"
+  fi
+
+  local other
+  for other in $ids; do
+    if [[ "$other" != "$vts" ]]; then
+      echo "note: title $other is also present ($(title_total_size "$dvd_dir" "$other") bytes); pass $other as the 4th argument to convert it" >&2
+    fi
+  done
+
+  validate_vob_sequence "$dvd_dir" "$vts"
+  validate_sources "$dvd_dir" "$vts"
+
+  local vob
+  while IFS= read -r vob; do
+    if [[ "$vob" == *"|"* ]]; then
+      die "path contains a pipe character, which the concat protocol cannot express: $vob"
+    fi
+  done < <(title_vobs "$dvd_dir" "$vts")
+
+  local parent
+  parent="$(dirname "$dvd_dir")"
+  local base
+  base="$(basename "$parent")"
+  local out_file
+  if [[ -n "$requested_vts" ]]; then
+    out_file="$parent/$base ($vts).mp4"
+  else
+    out_file="$parent/$base.mp4"
+  fi
+
+  [[ -w "$parent" ]] || die "not writable: $parent"
+
+  local input
+  input="$(concat_input "$dvd_dir" "$vts")"
+  local filter
+  filter="$(build_filter "$deinterlace")"
+  local expected
+  expected="$(expected_duration "$dvd_dir" "$vts")"
+
+  echo "DVD    : $dvd_dir" >&2
+  echo "Title  : $vts" >&2
+  echo "VOBs   :" >&2
+  while IFS= read -r vob; do
+    echo "         $vob" >&2
+  done < <(title_vobs "$dvd_dir" "$vts")
+  echo "Source : ${expected}s" >&2
+  echo "Output : $out_file" >&2
+  echo "" >&2
+
+  local tmp_file="$out_file.part.mp4"
+
+  if [[ "${DRY_RUN:-0}" == "1" ]]; then
+    encode_title "$input" "$crf" "$filter" "$tmp_file" "$base" "/dev/null"
+    return 0
+  fi
+
+  if [[ -f "$out_file" && "${FORCE:-0}" != "1" ]]; then
+    echo "skip: $out_file already exists (set FORCE=1 to overwrite)" >&2
+    return 0
+  fi
+
+  validate_free_space "$parent" "$(title_total_size "$dvd_dir" "$vts")"
+
+  LOG_FILE="$(mktemp "${TMPDIR:-/tmp}/video_convert_dvd.XXXXXX")" || die "cannot create a log file"
+  TMP_OUT="$tmp_file"
+
+  if ! encode_title "$input" "$crf" "$filter" "$tmp_file" "$base" "$LOG_FILE"; then
+    KEEP_LOG=1
+    die "ffmpeg failed; partial output removed, log kept at $LOG_FILE"
+  fi
+
+  local warnings
+  warnings="$(count_decode_warnings "$LOG_FILE")"
+  if (( warnings > 0 )); then
+    KEEP_LOG=1
+    echo "decode warnings: $warnings (log kept at $LOG_FILE)" >&2
+    if [[ "${STRICT:-0}" == "1" ]]; then
+      die "STRICT=1 and the encoder reported $warnings decode warnings"
+    fi
+  fi
+
+  if ! verify_output "$tmp_file" "$expected"; then
+    KEEP_LOG=1
+    die "verification failed; partial output removed, log kept at $LOG_FILE"
+  fi
+
+  mv -f "$tmp_file" "$out_file"
+  TMP_OUT=""
+
+  echo "done: $out_file" >&2
+}
+
+main "$@"
